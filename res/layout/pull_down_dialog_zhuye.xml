@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="200dp"
+              android:layout_height="wrap_content"
+        >
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/pull_down_share"-->
+    <!--android:text="分享"-->
+    <!--style="@style/pull_font_color"-->
+    <!--android:background="@drawable/zhuye_item_select"-->
+    <!--/>-->
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/pull_down_delete_layout">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pull_down_delete"
+                android:text="删除"
+                android:textSize="16sp"
+                style="@style/pull_font_color"
+                android:background="@drawable/zhuye_item_select"
+                />
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/pull_down_dispatch_layout">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pull_down_dispatch"
+                android:text="转发"
+                android:textSize="16sp"
+                android:background="@drawable/zhuye_item_select"
+                style="@style/pull_font_color"
+                />
+
+    </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/pull_down_nofocus"-->
+    <!--android:text="取消关注"-->
+    <!--android:textSize="16sp"-->
+    <!--android:background="@drawable/zhuye_item_select"-->
+    <!--style="@style/pull_font_color"-->
+    <!--/>-->
+
+</LinearLayout>

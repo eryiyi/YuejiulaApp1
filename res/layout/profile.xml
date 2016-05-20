@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dip"
+                    android:gravity="center"
+                    android:text="我"
+                    android:id="@+id/profile_name"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+    </RelativeLayout>
+        <!-- 主体 -->
+        <RelativeLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+            <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_one"
+                    android:layout_height="wrap_content">
+                <com.liangxun.yuejiula.widget.CircleImageView
+                        android:layout_width="65dp"
+                        android:id="@+id/profile_cover"
+                        android:src="@drawable/head"
+                        android:layout_height="65dp"/>
+                <ImageView android:layout_width="wrap_content"
+                           android:id="@+id/profile_sex"
+                           android:layout_marginLeft="8dp"
+                           android:layout_marginRight="3dp"
+                           android:layout_marginTop="8dp"
+                           android:src="@drawable/icon_sex_female"
+                           android:layout_toRightOf="@+id/profile_cover"
+                           android:layout_height="wrap_content"/>
+                <ImageView android:layout_width="wrap_content"
+                           android:id="@+id/profile_type"
+                           android:src="@drawable/icon_type_shang"
+                           android:layout_toRightOf="@+id/profile_sex"
+                           android:layout_marginTop="8dp"
+                           android:layout_height="wrap_content"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_weight="1"
+                          android:text="昵称"
+                          android:layout_marginLeft="5dp"
+                          android:layout_marginTop="8dp"
+                          android:textSize="16sp"
+                          android:singleLine="true"
+                          android:ellipsize="end"
+                          android:maxEms="7"
+                          android:layout_toRightOf="@+id/profile_type"
+                          android:id="@+id/profile_nickname"
+                          android:textColor="@color/right_font_color"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:gravity="center_vertical"
+                          android:id="@+id/profile_sign"
+                          android:layout_marginTop="5dp"
+                          android:layout_marginLeft="8dp"
+                          android:lineSpacingMultiplier="1.2"
+                          android:textColor="@color/textColortwo"
+                          android:layout_toRightOf="@+id/profile_cover"
+                          android:layout_below="@+id/profile_sex"
+                          android:textSize="14sp"/>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:text="初入江湖"
+                              android:layout_alignParentRight="true"
+                              android:textSize="14sp"
+                              android:drawablePadding="6dp"
+                              android:layout_marginLeft="8dp"
+                              android:layout_marginRight="8dp"
+                              android:layout_marginTop="8dp"
+                              android:id="@+id/level_title"
+                              android:drawableLeft="@drawable/icon_little_rank"
+                              android:textColor="@color/textColortwo"
+                              android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <View android:layout_width="match_parent"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/liner_two"
+                  android:layout_below="@+id/liner_one"
+                  android:background="@drawable/global_top_background"
+                  android:layout_height="10dp"/>
+
+            <ListView
+                    android:id="@+id/mine_gridview"
+                    android:layout_below="@+id/liner_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginBottom="60dp"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@drawable/home_item_shadow"
+                    android:dividerHeight="0.5dp"
+
+                   />
+
+        </RelativeLayout>
+</LinearLayout>

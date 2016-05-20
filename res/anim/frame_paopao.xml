@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!-- 美团的序列帧动画 -->
+<animation-list  
+    android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android" >   
+    <item android:drawable="@drawable/process_1" android:duration="250"/>
+    <item android:drawable="@drawable/process_2" android:duration="250"/>
+    <item android:drawable="@drawable/process_3" android:duration="250"/>
+    <item android:drawable="@drawable/process_4" android:duration="250"/>
+    <item android:drawable="@drawable/process_5" android:duration="250"/>
+    <item android:drawable="@drawable/process_6" android:duration="250"/>
+</animation-list>

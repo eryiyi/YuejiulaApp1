@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="10dp"
+              android:background="@drawable/zhuye_item_select"
+        >
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/searchLayoutTx">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/notice"
+                android:layout_marginRight="10dp"
+                android:id="@+id/parttime_item_cover"
+                />
+    </RelativeLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical"
+            android:id="@+id/searchLayout"
+            >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:singleLine="true"
+                android:textSize="16sp"
+                android:textColor="@color/textColor"
+                android:id="@+id/parttime_item_title"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cont"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/textColortwo"
+                android:id="@+id/parttime_item_cont"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:id="@+id/searchFriendAddGz">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="时间"
+                android:textColor="@color/textColortwo"
+                android:id="@+id/parttime_item_dateline"/>
+        <ImageView android:layout_width="20dp"
+                   android:id="@+id/delete_parttime_item"
+                   android:layout_marginLeft="5dp"
+                   android:src="@drawable/icon_little_h_trash"
+                   android:layout_height="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+

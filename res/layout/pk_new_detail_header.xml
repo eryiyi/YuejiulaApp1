@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <com.liangxun.yuejiula.widget.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/head"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:id="@+id/detail_pk_cover"/>
+                <TextView
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="张三李四"
+                        android:textSize="16sp"
+                        android:id="@+id/pk_detail_nickname"
+                        android:textColor="@color/black_deep"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:maxEms="7"
+                        android:layout_toRightOf="@+id/detail_pk_cover"
+                        />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="学校"
+                        android:id="@+id/pk_detail_colleage"
+                        android:textSize="13sp"
+                        android:layout_alignBottom="@+id/detail_pk_cover"
+                        android:layout_alignLeft="@+id/pk_detail_nickname"
+                        android:layout_toRightOf="@+id/detail_pk_cover"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="时间"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="12dp"
+                        android:id="@+id/pk_detail_time"
+                        android:textSize="13sp"
+                        android:gravity="right"
+                        android:layout_alignParentRight="true"/>
+                <ImageView android:layout_width="wrap_content"
+                           android:src="@drawable/prizes_isure"
+                           android:id="@+id/prizes_issure"
+                           android:visibility="gone"
+                           android:layout_alignParentRight="true"
+                           android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="内容"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:singleLine="false"
+                    android:textIsSelectable="true"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:id="@+id/pk_detail_content"/>
+            <ImageView android:layout_width="match_parent"
+                       android:src="@drawable/pic_none"
+                       android:id="@+id/picOne"
+                       android:layout_marginTop="6dp"
+                       android:layout_height="wrap_content"/>
+
+            <com.liangxun.yuejiula.widget.PictureGridview
+                    android:id="@+id/gridview_detail_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:horizontalSpacing="4dip"
+                    android:numColumns="3"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="4dip"
+                    android:padding="4dip"/>
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/video_pic"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content">
+                <ImageView android:layout_width="match_parent"
+                           android:scaleType="fitXY"
+                           android:id="@+id/video_pic_url"
+                           android:layout_height="wrap_content"/>
+                <ImageView android:layout_width="wrap_content"
+                           android:layout_centerInParent="true"
+                           android:id="@+id/video_pic_img"
+                           android:src="@drawable/icon_home_play"
+                           android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/pk_like_liner_layout"
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp">
+                <GridView
+                        android:numColumns="8"
+                        android:stretchMode="columnWidth"
+                        android:id="@+id/pk_gridView"
+                        android:horizontalSpacing="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="0.5dp"
+               android:background="#f1f1f1"/>
+    <!-- 评论 -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="2dp"
+            android:paddingLeft="10dp"
+            android:background="#ffffff">
+        <!-- 被点击 颜色是黑色 -->
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="评论:"
+                  android:textSize="14sp"
+                  android:layout_marginLeft="5dp"
+                  android:textColor="#7d7d7d"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="14sp"
+                  android:text="145"
+                  android:layout_marginLeft="5dp"
+                  android:id="@+id/pk_pl_text"
+                  android:layout_marginRight="15dp"
+                  android:textColor="#7d7d7d"/>
+
+        <ImageView android:layout_width="0.5dp"
+                   android:layout_height="20dp"
+                   android:background="#d1d1d1"
+                   android:layout_margin="3dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="票数:"
+                  android:layout_marginLeft="15dp"
+                  android:textSize="14sp"
+                  android:textColor="#7d7d7d"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="5dp"
+                  android:textSize="14sp"
+                  android:text="145"
+                  android:id="@+id/pk_favour_text"
+                  android:textColor="#7d7d7d"/>
+    </LinearLayout>
+
+</LinearLayout>

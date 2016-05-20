@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="约酒啦新闻"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/news_back_menu"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:src="@drawable/add_more"
+                   android:layout_alignParentRight="true"
+                   android:paddingLeft="10dp"
+                   android:paddingRight="15dp"
+                   android:visibility="gone"
+                   android:id="@+id/news_addmore"/>
+    </RelativeLayout>
+    <com.liangxun.yuejiula.widget.ColumnHorizontalScrollView
+            android:id="@+id/mColumnHorizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="40.0dip"
+            android:scrollbars="none">
+        <LinearLayout
+                android:id="@+id/mRadioGroup_content"
+                android:layout_width="match_parent"
+                android:layout_height="40.0dip"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="2.0dip"
+                android:paddingRight="2.0dip"/>
+    </com.liangxun.yuejiula.widget.ColumnHorizontalScrollView>
+    <View
+            android:id="@+id/category_line"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="#ffdddddd"/>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/mViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="2.0dip"
+            android:paddingLeft="2.0dip"
+            android:paddingRight="2.0dip"/>
+</LinearLayout>

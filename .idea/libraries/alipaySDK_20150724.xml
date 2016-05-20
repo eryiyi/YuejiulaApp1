@@ -1,0 +1,44 @@
+<component name="libraryTable">
+  <library name="alipaySDK-20150724">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/alipaySDK-20150724.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-async-http-1.4.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/baidumapapi_v3_2_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/com.umeng.message.lib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/easemobchat_2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/greendao-1.3.0-beta-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/happy-dns-0.2.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpcore-4.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpmime-4.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/locSDK_3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/MobCommons-2016.0303.1229.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/MobTools-2016.0303.1229.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/nineoldandroids-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/pushservice-4.4.0.71.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/qiniu-android-sdk-7.0.7.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SMSSDK-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_QQZone_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_QQZone_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_QQZone_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_scrshot.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_shake.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_Sina.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_tencentWB_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_tencentWB_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_tencentWB_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_WeiXin_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_WeiXin_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng-analytics-v5.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng-update-v2.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng_social_sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/volley.jar!/tests/src" />
+    </SOURCES>
+  </library>
+</component>

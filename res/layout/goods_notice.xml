@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="match_parent">
+    <RelativeLayout
+            android:id="@+id/lp_01"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            >
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/goods_notice_menu"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="约酒啦市场须知"
+                android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"
+                />
+    </RelativeLayout>
+    <com.liangxun.yuejiula.widget.ReboundScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+        <ImageView android:layout_width="match_parent"
+                   android:src="@drawable/help"
+                   android:scaleType="fitStart"
+                   android:layout_height="wrap_content"/>
+    </com.liangxun.yuejiula.widget.ReboundScrollView>
+</LinearLayout>

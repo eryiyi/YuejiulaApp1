@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/zhuye_item_select"
+        >
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="动态信息举报"
+                  android:textSize="16sp"
+                  android:paddingLeft="10dp"
+                  android:id="@+id/report_title"
+                  android:textColor="@color/nameColor"
+                  android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20151515"
+                android:textSize="13sp"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:paddingRight="10dp"
+                android:layout_toRightOf="@+id/report_title"
+                android:textColor="@color/textColortwo"
+                android:id="@+id/report_item_dateline"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="0.1dp"
+          android:background="#d1d1d1"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center|left">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="举报原因举报原因"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:textColor="@color/textColor"
+                android:id="@+id/report_item_cont"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="张三"
+                  android:textSize="16sp"
+                  android:gravity="right"
+                  android:singleLine="true"
+                  android:maxEms="7"
+                  android:ellipsize="end"
+                  android:textColor="@color/maincolor"
+                  android:id="@+id/report_item_emp_one"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="举报"
+                  android:layout_marginLeft="5dp"
+                  android:textSize="17sp"
+                  android:gravity="center"
+                  android:textColor="@color/textColor"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="李四"
+                  android:textSize="16sp"
+                  android:textColor="@color/maincolor"
+                  android:layout_marginLeft="5dp"
+                  android:id="@+id/report_item_emp_two"
+                  android:singleLine="true"
+                  android:maxEms="7"
+                  android:ellipsize="end"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点此查看被举报信息详情"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="16sp"
+                android:id="@+id/report_item_detail"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="5dp"
+                  android:paddingTop="7dp"
+                  android:paddingBottom="7dp"
+                  android:background="@color/zhuye_item_bgh"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+                  android:text="处理"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/nameColor"
+                  android:layout_weight="1"
+                  android:id="@+id/report_item_done"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="0.5dp"
+                   android:layout_height="20dp"
+                   android:background="#d1d1d1"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="忽略"
+                  android:textSize="16sp"
+                  android:textColor="@color/nameColor"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:id="@+id/report_item_cancle"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
+
+

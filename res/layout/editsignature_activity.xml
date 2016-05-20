@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/editsignature_parent"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:background="@drawable/global_bg">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/global_top_background">
+
+        <TextView
+                android:id="@+id/editsignature_cannel"
+                android:layout_width="48dip"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dip"
+                android:layout_marginLeft="8dip"
+                android:layout_marginTop="8dip"
+                android:text="取消"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="编辑个性签名"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/editsignature_submit"
+                android:layout_width="48dip"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dip"
+                android:layout_marginRight="8dip"
+                android:layout_marginTop="8dip"
+                android:text="提交"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+    </LinearLayout>
+
+    <EditText
+            android:id="@+id/editsignature_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:gravity="top"
+            android:padding="8dip"/>
+
+
+</LinearLayout>

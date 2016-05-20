@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:background="@color/white"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+
+    <!-- head开始 -->
+    <RelativeLayout
+            android:id="@+id/lp_01"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            >
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/report_done_menu"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="处理举报"
+                android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"
+                />
+    </RelativeLayout>
+    <!-- head结束 -->
+
+    <com.liangxun.yuejiula.widget.ReboundScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            >
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:padding="5dp"
+                      android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:textSize="16sp"
+                          android:text="处理举报："
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_marginTop="10dp"
+                          android:text="title"
+                          android:textSize="18sp"
+                          android:id="@+id/report_done_title"
+                          android:textColor="@color/textColor"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="@drawable/set_line"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_marginTop="10dp"
+                              android:text="被举报人："
+                              android:textSize="16sp"
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_marginTop="10dp"
+                              android:text="张三"
+                              android:id="@+id/report_emp_one_nickname"
+                              android:textColor="@color/maincolor"
+                              android:textSize="16sp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_marginTop="5dp"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:textColor="@color/textColortwo"
+                              android:textSize="16sp"
+                              android:layout_marginTop="10dp"
+                              android:text="关禁闭："
+                              android:layout_height="wrap_content"/>
+                    <EditText
+                            android:editable="false"
+                            android:id="@+id/begin_time"
+                            android:hint="开始时间"
+                            android:layout_weight="30"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:editable="false"
+                            android:id="@+id/end_time"
+                            android:hint="结束时间"
+                            android:layout_weight="30"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:background="@drawable/set_line"/>
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_marginTop="10dp"
+                              android:text="举报人："
+                              android:textSize="16sp"
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_marginTop="10dp"
+                              android:text="李四"
+                              android:id="@+id/report_emp_two_nickname"
+                              android:textColor="@color/maincolor"
+                              android:textSize="16sp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:textColor="@color/textColortwo"
+                              android:textSize="16sp"
+                              android:layout_marginTop="10dp"
+                              android:text="赏积分："
+                              android:layout_height="wrap_content"/>
+                    <EditText android:layout_width="wrap_content"
+                              android:layout_marginTop="10dp"
+                              android:phoneNumber="true"
+                              android:minWidth="100dp"
+                              android:hint="请输入数字"
+                              android:id="@+id/report_done_editexttwo"
+                              android:layout_marginLeft="5dp"
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:text="分"
+                              android:layout_marginLeft="10dp"
+                              android:layout_marginTop="10dp"
+                              android:textSize="16sp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:background="@drawable/set_line"/>
+
+                <TextView
+                        android:id="@+id/report_done_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/button_height"
+                        android:background="@drawable/button_background"
+                        android:shadowColor="#7f000000"
+                        android:shadowDx="0.0"
+                        android:layout_gravity="center"
+                        android:shadowDy="1.0"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:shadowRadius="1.0"
+                        android:text="确  定"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp"
+                        android:layout_marginTop="20dp"
+                        android:enabled="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.liangxun.yuejiula.widget.ReboundScrollView>
+
+</LinearLayout>

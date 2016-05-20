@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:id="@+id/main"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/global_top_background"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="更新收货地址"
+                android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+    <com.liangxun.yuejiula.widget.ReboundScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:padding="8dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:layout_height="match_parent">
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="收货人："
+                      android:textSize="16sp"
+                      android:gravity="center_vertical"
+                      android:id="@+id/text_one"
+                      android:textColor="@color/black_text_color"
+                      android:layout_height="40dp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_toRightOf="@+id/text_one"
+                      android:hint="请输入收货人姓名"
+                      android:padding="5dp"
+                      android:id="@+id/add_nickname"
+                      android:background="@null"
+                      android:layout_height="40dp"/>
+            <View android:layout_width="match_parent"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/view_line_one"
+                  android:layout_below="@+id/text_one"
+                  android:background="@color/light_gray"
+                  android:layout_height="0.5dp"></View>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="手机号码："
+                      android:layout_marginTop="5dp"
+                      android:layout_below="@+id/view_line_one"
+                      android:textSize="16sp"
+                      android:gravity="center_vertical"
+                      android:id="@+id/text_two"
+                      android:textColor="@color/black_text_color"
+                      android:layout_height="40dp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_toRightOf="@+id/text_two"
+                      android:hint="收货人手机号码"
+                      android:padding="5dp"
+                      android:layout_marginTop="3dp"
+                      android:layout_below="@+id/view_line_one"
+                      android:id="@+id/add_tel"
+                      android:background="@null"
+                      android:layout_height="40dp"/>
+            <View android:layout_width="match_parent"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/view_line_two"
+                  android:visibility="gone"
+                  android:layout_below="@+id/text_two"
+                  android:background="@color/light_gray"
+                  android:layout_height="0.5dp"></View>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="所在地区："
+                      android:layout_marginTop="5dp"
+                      android:layout_below="@+id/view_line_two"
+                      android:textSize="16sp"
+                      android:gravity="center_vertical"
+                      android:id="@+id/text_three"
+                      android:textColor="@color/black_text_color"
+                      android:layout_height="40dp"/>
+            <TextView android:layout_width="match_parent"
+                      android:layout_toRightOf="@+id/text_three"
+                      android:text="省 市 区"
+                      android:padding="5dp"
+                      android:gravity="center_vertical"
+                      android:layout_marginTop="3dp"
+                      android:layout_below="@+id/view_line_two"
+                      android:id="@+id/add_address_one"
+                      android:background="@null"
+                      android:layout_height="40dp"/>
+            <View android:layout_width="match_parent"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/view_line_three"
+                  android:layout_below="@+id/text_three"
+                  android:background="@color/light_gray"
+                  android:layout_height="0.5dp"></View>
+            <TextView android:layout_width="wrap_content"
+                      android:text="地址："
+                      android:layout_marginTop="5dp"
+                      android:layout_below="@+id/view_line_three"
+                      android:textSize="16sp"
+                      android:gravity="center_vertical"
+                      android:id="@+id/text_four"
+                      android:textColor="@color/black_text_color"
+                      android:layout_height="40dp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_toRightOf="@+id/text_four"
+                      android:hint="详细地址"
+                      android:padding="5dp"
+                      android:layout_marginTop="3dp"
+                      android:layout_below="@+id/view_line_three"
+                      android:id="@+id/add_address_two"
+                      android:background="@null"
+                      android:layout_height="40dp"/>
+            <View android:layout_width="match_parent"
+                  android:layout_marginTop="5dp"
+                  android:id="@+id/view_line_four"
+                  android:layout_below="@+id/text_four"
+                  android:background="@color/light_gray"
+                  android:layout_height="0.5dp"></View>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="*设置为默认收货地址"
+                      android:textColor="@color/black_text_color"
+                      android:textSize="16sp"
+                      android:layout_marginTop="15dp"
+                      android:layout_below="@+id/view_line_four"
+                      android:layout_height="wrap_content"/>
+
+            <CheckBox android:layout_width="wrap_content"
+                      android:id="@+id/checkbox"
+                      android:layout_below="@+id/view_line_four"
+                      android:layout_alignParentRight="true"
+                      android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+    </com.liangxun.yuejiula.widget.ReboundScrollView>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:text="删除"
+                android:id="@+id/button_delete_address"
+                android:textColor="@color/white"
+                android:background="@drawable/button_selector_red_one"
+                android:layout_height="40dp"/>
+        <Button android:layout_width="0dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:text="保存"
+                android:id="@+id/button_add_address"
+                android:textColor="@color/white"
+                android:background="@drawable/button_selector_red_one"
+                android:layout_height="40dp"/>
+    </LinearLayout>
+
+</LinearLayout>

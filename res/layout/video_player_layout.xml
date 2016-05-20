@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/container"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <!-- head开始 -->
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="视频播放"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"/>
+
+
+    </RelativeLayout>
+    <!-- head结束 -->
+    <FrameLayout
+            android:id="@+id/video_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone"
+            ></FrameLayout>
+    <WebView
+            android:id="@+id/video_webview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            />
+    <TextView
+            android:id="@+id/video_error"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="加载失败，点击刷新！"
+            android:textSize="19sp"
+            android:textColor="#ff0000"
+            />
+    <TextView
+            android:id="@+id/video_refresh"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="正在刷新"
+            android:textSize="19sp"
+            android:textColor="#ff0000"
+            />
+</LinearLayout>
+

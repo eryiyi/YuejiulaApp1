@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:id="@+id/main"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <!-- head开始 -->
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dip"
+                    android:gravity="center"
+                    android:text="添加奖品"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/add_mine_prize_menu"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"/>
+
+    </RelativeLayout>
+    <!-- head结束 -->
+
+    <com.liangxun.yuejiula.widget.ReboundScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:padding="10dp"
+                      android:orientation="vertical"
+                      android:focusable="true"
+                      android:focusableInTouchMode="true"
+                      android:layout_height="match_parent">
+            <ImageView
+                    android:id="@+id/add_mine_prize_cover"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/video_fail"/>
+
+            <EditText
+                    android:id="@+id/add_mine_prize_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp"
+                    android:padding="15dp"
+                    android:gravity="top"
+                    android:background="@drawable/et_bule_bg"
+                    android:hint="文字介绍"/>
+            <com.liangxun.yuejiula.widget.NoScrollGridView
+                    android:id="@+id/add_prizes_gridview_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:listSelector="@drawable/selector_pressed_gray"
+                    android:horizontalSpacing="5dip"
+                    android:layout_marginTop="10dp"
+                    android:numColumns="2"
+                    android:padding="10dip"
+                    android:verticalSpacing="5dip"/>
+
+            <TextView
+                    android:id="@+id/add_mine_prize_run"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/button_background"
+                    android:shadowColor="#7f000000"
+                    android:shadowDx="0.0"
+                    android:layout_gravity="center"
+                    android:shadowDy="1.0"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:shadowRadius="1.0"
+                    android:text="确定发布"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                    android:enabled="true"/>
+        </LinearLayout>
+
+    </com.liangxun.yuejiula.widget.ReboundScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:id="@+id/main"
+                android:background="@color/white"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+        <LinearLayout
+                android:id="@+id/home_top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="100dip"
+                android:layout_marginRight="100dip"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="约酒啦"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:maxEms="6"
+                    android:id="@+id/home_maintitle"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/select_school"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/title_bar_arrow_down_bg"/>
+        </LinearLayout>
+
+        <!--<com.liangxun.yuejiula.widget.CircleImageView-->
+                <!--android:layout_width="35dp"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:id="@+id/main_cover"-->
+                <!--android:onClick="onTopHeadButtonClick"-->
+                <!--android:src="@drawable/head"-->
+                <!--/>-->
+        <ImageView android:layout_width="wrap_content"
+                   android:padding="8dp"
+                   android:onClick="onTopHeadButtonClick"
+                   android:layout_centerVertical="true"
+                   android:src="@drawable/btn_mood_selector"
+                   android:layout_height="wrap_content"/>
+            <Button
+                    android:id="@+id/home_write"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onTopMenuPopupButtonClick"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dip"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/icons_others_menu"
+                    />
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginBottom="60dp"
+                  android:layout_height="wrap_content">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/no_record"
+                   android:src="@drawable/collect_no_good"
+                   android:layout_centerInParent="true"
+                   android:layout_height="wrap_content"/>
+
+        <com.liangxun.yuejiula.library.PullToRefreshListView
+                android:id="@+id/home_lstv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@drawable/home_item_shadow"
+                android:dividerHeight="8dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

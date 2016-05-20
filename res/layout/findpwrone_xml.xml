@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+        >
+
+    <!-- head开始 -->
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="找回密码"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/findpwrone_back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"/>
+    </RelativeLayout>
+    <!-- head结束 -->
+    <!-- 主体 -->
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:id="@+id/linearname">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_gravity="center|left"
+                        android:gravity="center|left"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="8dp"
+                        android:background="@drawable/et_bule_bg"
+                        android:layout_height="wrap_content">
+            <EditText android:layout_width="match_parent"
+                      android:hint="手机号"
+                      android:id="@+id/mm_emp_mobile"
+                      android:numeric="integer"
+                      android:phoneNumber="true"
+                      android:singleLine="true"
+                      android:textSize="16sp"
+                      android:textColor="#333333"
+                      android:padding="15dp"
+                      android:background="@null"
+                      android:gravity="center|left"
+                      android:layout_height="50dp"/>
+            <Button android:layout_width="wrap_content"
+                    android:text="获取验证码"
+                    android:id="@+id/btn_code"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/white"
+                    android:padding="8dp"
+                    android:background="#ff5929"
+                    android:layout_height="50dp"/>
+        </RelativeLayout>
+        <EditText android:layout_width="match_parent"
+                  android:textColor="#333333"
+                  android:padding="15dp"
+                  android:layout_marginTop="5dp"
+                  android:numeric="integer"
+                  android:textSize="16sp"
+                  android:singleLine="true"
+                  android:id="@+id/code"
+                  android:hint="输入验证码"
+                  android:phoneNumber="true"
+                  android:background="@drawable/et_bule_bg"
+                  android:layout_height="50dp">
+        </EditText>
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="#333333"
+                  android:padding="15dp"
+                  android:textSize="16sp"
+                  android:layout_marginTop="5dp"
+                  android:background="@drawable/et_bule_bg"
+                  android:hint="新密码"
+                  android:phoneNumber="true"
+                  android:password="true"
+                  android:id="@+id/pwrone"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:layout_marginTop="5dp"
+                  android:textColor="#333333"
+                  android:background="@drawable/et_bule_bg"
+                  android:padding="15dp"
+                  android:textSize="16sp"
+                  android:hint="确认密码"
+                  android:password="true"
+                  android:phoneNumber="true"
+                  android:id="@+id/pwrtwo"/>
+
+        <TextView
+                android:id="@+id/findpwr_sure"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_background"
+                android:shadowColor="#7f000000"
+                android:shadowDx="0.0"
+                android:layout_gravity="center"
+                android:shadowDy="1.0"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:shadowRadius="1.0"
+                android:text="下一步"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:enabled="true"/>
+
+
+    </LinearLayout>
+
+
+    <!-- 主体结束 -->
+
+</LinearLayout>

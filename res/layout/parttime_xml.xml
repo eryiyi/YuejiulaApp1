@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:clickable="true"
+            android:orientation="vertical">
+        <!-- head开始 -->
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_top_bar"
+                android:background="@drawable/global_top_background"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                >
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/parttime_menu"
+                    android:paddingLeft="10dp"
+                    android:src="@drawable/back"
+                    android:paddingRight="10dp"
+                    />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="校园兼职"
+                    android:gravity="center_vertical"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"
+                    android:id="@+id/title"
+                    />
+        </RelativeLayout>
+        <!-- head结束 -->
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:focusable="true"
+                      android:focusableInTouchMode="true"
+                      android:layout_height="wrap_content">
+            <!--搜索框-->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/et_bule_bg"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/soubtn"
+                        android:id="@+id/searchImageView"/>
+                <EditText
+                        android:id="@+id/searchText"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="输入关键词"
+                        android:singleLine="true"
+                        android:background="@null"
+                        />
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/qingchu"
+                        android:id="@+id/deleteContSearch"/>
+            </LinearLayout>
+            <!--搜索框结束-->
+        </LinearLayout>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+            <ImageView android:layout_width="match_parent"
+                       android:src="@drawable/collect_no_good"
+                       android:id="@+id/search_null"
+                       android:visibility="gone"
+                       android:layout_centerInParent="true"
+                       android:layout_height="wrap_content"/>
+            <com.liangxun.yuejiula.library.PullToRefreshListView
+                    android:id="@+id/parttime_lstv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#19000000"
+                    android:dividerHeight="1dp"
+                    android:fadingEdge="none"
+                    android:fastScrollEnabled="false"
+                    android:footerDividersEnabled="false"
+                    android:headerDividersEnabled="false"
+                    android:smoothScrollbar="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

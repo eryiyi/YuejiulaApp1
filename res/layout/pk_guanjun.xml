@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:background="@color/white">
+
+    <com.liangxun.yuejiula.library.PullToRefreshListView
+            android:id="@+id/home_lstv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="#e9e9e9"
+            android:dividerHeight="0.5dp"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:smoothScrollbar="true"/>
+
+    <ImageView android:layout_width="match_parent"
+               android:src="@drawable/collect_no_good"
+               android:id="@+id/search_null"
+               android:visibility="gone"
+               android:layout_centerInParent="true"
+               android:layout_height="wrap_content"/>
+</LinearLayout>

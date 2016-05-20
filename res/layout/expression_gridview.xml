@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.liangxun.yuejiula.huanxin.chat.widget.ExpandGridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="7"
+            android:scrollbars="none"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:listSelector="@color/divider_color"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:fadingEdge="none"
+            />
+
+</LinearLayout>

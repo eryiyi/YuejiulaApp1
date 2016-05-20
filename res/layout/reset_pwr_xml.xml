@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+        >
+
+    <!-- head开始 -->
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="重置密码"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/reset_pwr_menu"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"/>
+
+
+    </RelativeLayout>
+    <!-- head结束 -->
+    <!-- 主体 -->
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:id="@+id/linearname">
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="@color/black_text_color"
+                  android:textColorHint="@color/textColortwo"
+                  android:textSize="16sp"
+                  android:password="true"
+                  android:padding="15dp"
+                  android:hint="原始密码"
+                  android:background="@drawable/et_bule_bg"
+                  android:id="@+id/yuanshi_pwr"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="@color/black_text_color"
+                  android:textColorHint="@color/textColortwo"
+                  android:textSize="16sp"
+                  android:padding="15dp"
+                  android:background="@drawable/et_bule_bg"
+                  android:hint="新密码"
+                  android:layout_marginTop="5dp"
+                  android:password="true"
+                  android:id="@+id/new_pwr"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="@color/black_text_color"
+                  android:textColorHint="@color/textColortwo"
+                  android:layout_weight="1"
+                  android:textSize="16sp"
+                  android:layout_marginTop="5dp"
+                  android:padding="15dp"
+                  android:background="@drawable/et_bule_bg"
+                  android:hint="确认密码"
+                  android:password="true"
+                  android:id="@+id/sure_pwr"/>
+
+        <TextView
+                android:id="@+id/resetPwr_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_background"
+                android:shadowColor="#7f000000"
+                android:shadowDx="0.0"
+                android:layout_gravity="center"
+                android:shadowDy="1.0"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:shadowRadius="1.0"
+                android:text="确  定"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:enabled="true"/>
+
+    </LinearLayout>
+
+
+    <!-- 主体结束 -->
+
+</LinearLayout>

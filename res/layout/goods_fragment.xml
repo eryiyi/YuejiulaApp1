@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:id="@+id/main"
+                android:background="@color/white"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+    <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:id="@+id/liner_top"-->
+            <!--android:layout_height="@dimen/height_top_bar"-->
+            <!--android:background="@drawable/global_top_background">-->
+
+            <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:padding="8dip"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:id="@+id/title"-->
+                    <!--android:text="商城"-->
+                    <!--android:textColor="@color/title_font_main"-->
+                    <!--android:textSize="18sp"/>-->
+
+    <!--</RelativeLayout>-->
+
+    <com.liangxun.yuejiula.widget.ContentListView
+            android:id="@+id/detail_lstv"
+            android:layout_weight="1"
+            android:divider="@color/liner_divider"
+            android:dividerHeight="1px"
+            android:layout_below="@+id/liner_top"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

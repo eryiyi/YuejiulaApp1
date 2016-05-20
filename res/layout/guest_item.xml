@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp"
+              android:gravity="center"
+              android:background="@drawable/news_item_background"
+        >
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="60dp"
+            android:maxWidth="60dp"
+            android:src="@drawable/head"
+            android:adjustViewBounds="true"
+            android:id="@+id/guest_cover"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="东方不败"
+            android:textSize="12sp"
+            android:id="@+id/guest_nickname"
+            android:textColor="@color/denglu_bt_bgp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2015-01-02"
+            android:textSize="10sp"
+            android:id="@+id/guest_time"/>
+</LinearLayout>

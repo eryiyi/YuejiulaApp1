@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/global_top_background"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="收货地址"
+                android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <ListView android:layout_width="match_parent"
+              android:layout_marginTop="5dp"
+              android:cacheColorHint="#00000000"
+              android:divider="#19000000"
+              android:dividerHeight="1dp"
+              android:fadingEdge="none"
+              android:layout_weight="1"
+              android:id="@+id/lstv"
+              android:fastScrollEnabled="false"
+              android:footerDividersEnabled="false"
+              android:headerDividersEnabled="false"
+              android:smoothScrollbar="true"
+              android:layout_height="wrap_content">
+
+    </ListView>
+
+    <Button android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="5dp"
+            android:text="新增我的收货地址"
+            android:id="@+id/button_add_address"
+            android:textColor="@color/white"
+            android:background="@drawable/button_selector_red_one"
+            android:layout_height="40dp"/>
+
+</LinearLayout>

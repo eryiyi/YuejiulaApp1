@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/detail_back"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/top_liner"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background"
+            android:gravity="center_vertical"
+            >
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/detail_goods_back"
+                android:textColor="@color/title_font_main"
+                android:text="提交订单"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/goods_detail_title"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:id="@+id/liner_two"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content">
+        <ImageView android:layout_width="wrap_content"
+                   android:src="@drawable/dizhi"
+                   android:layout_centerVertical="true"
+                   android:id="@+id/img_location"
+                   android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/textColor"
+                  android:textSize="14sp"
+                  android:drawablePadding="8dp"
+                  android:drawableLeft="@drawable/order_tx"
+                  android:layout_marginLeft="5dp"
+                  android:id="@+id/order_name"
+                  android:layout_toRightOf="@+id/img_location"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/order_tel"
+                  android:textColor="@color/textColor"
+                  android:textSize="14sp"
+                  android:drawablePadding="8dp"
+                  android:drawableLeft="@drawable/order_tel"
+                  android:layout_marginTop="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_below="@+id/order_name"
+                  android:layout_toRightOf="@+id/img_location"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/order_location"
+                  android:layout_marginRight="15dp"
+                  android:layout_marginLeft="5dp"
+                  android:textColor="@color/textColor"
+                  android:textSize="14sp"
+                  android:layout_marginTop="5dp"
+                  android:layout_below="@+id/order_tel"
+                  android:layout_toRightOf="@+id/img_location"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:src="@drawable/in"
+                   android:id="@+id/select_location"
+                   android:layout_centerVertical="true"
+                   android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="暂无收货地址，请添加"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/black_text_color"
+                  android:textSize="16sp"
+                  android:id="@+id/no_address"
+                  android:visibility="gone"
+                  android:layout_centerInParent="true"
+                  android:layout_toRightOf="@+id/img_location"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+            <ListView android:layout_width="match_parent"
+                      android:id="@+id/lstv"
+                      android:cacheColorHint="#00000000"
+                      android:divider="#19000000"
+                      android:dividerHeight="6dp"
+                      android:fadingEdge="none"
+                      android:layout_weight="1"
+                      android:fastScrollEnabled="false"
+                      android:footerDividersEnabled="false"
+                      android:headerDividersEnabled="false"
+                      android:smoothScrollbar="true"
+                      android:layout_height="wrap_content">
+            </ListView>
+    </RelativeLayout>
+
+    <View android:layout_width="match_parent"
+          android:background="@color/gray"
+          android:layout_height="1dp">
+
+    </View>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="50dp">
+            <Button android:layout_width="100dp"
+                    android:text="提交订单"
+                    android:id="@+id/order_sure"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_selector_red_one"
+                    android:textColor="@color/white"
+                    android:layout_height="match_parent"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:textSize="18sp"
+                      android:text="$1280.00"
+                      android:id="@+id/order_count"
+                      android:layout_marginRight="5dp"
+                      android:layout_toLeftOf="@+id/order_sure"
+                      android:gravity="center"
+                      android:textColor="@color/button_color_red_n"
+                      android:layout_height="match_parent"/>
+    </RelativeLayout>
+</LinearLayout>

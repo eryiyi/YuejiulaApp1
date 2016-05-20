@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/find_item_select"
+                android:duplicateParentState="false">
+
+    <!--//com.android.volley.toolbox.NetworkImageView-->
+    <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="11dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/head"/>
+
+    <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@id/avatar"
+            android:textColor="#0F0F0F"
+            android:textSize="16sp"/>
+
+
+    <Button
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="11dp"
+            android:background="@drawable/button_bg"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/button_add"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+</RelativeLayout>

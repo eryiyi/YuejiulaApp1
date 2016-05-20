@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="10dp"
+              android:background="@drawable/zhuye_item_select">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchLayoutTx">
+        <com.liangxun.yuejiula.widget.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/head"
+                android:id="@+id/findemp_item_cover"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:id="@+id/searchLayout">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昵称杨过"
+                android:textSize="16sp"
+                android:textColor="@color/textColor"
+                android:id="@+id/findemp_item_name"/>
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="2015-10-20"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:textSize="14sp"-->
+        <!--android:textColor="#999999"-->
+        <!--android:id="@+id/findemp_item_date"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/searchFriendAddGz">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/in"
+                android:id="@+id/findemp_item_in"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+

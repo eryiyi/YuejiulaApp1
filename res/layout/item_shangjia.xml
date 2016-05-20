@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="10dp"
+              android:gravity="center"
+              android:background="@color/white">
+
+    <com.liangxun.yuejiula.widget.CircleImageView
+            android:layout_width="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/head"
+            android:id="@+id/item_cover_shangjia"
+            android:layout_height="50dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:text="张三"
+              android:layout_weight="1"
+              android:layout_marginLeft="10dp"
+              android:id="@+id/item_nickname_shangjia"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:maxEms="7"
+              android:textColor="@color/textColor"
+              android:textSize="16sp"
+              android:layout_height="wrap_content"/>
+    <ImageView android:layout_width="wrap_content"
+               android:layout_marginRight="10dp"
+               android:src="@drawable/in"
+               android:layout_height="wrap_content"/>
+</LinearLayout>
+
+

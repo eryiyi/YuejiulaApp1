@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:padding="8dp"
+              android:background="@drawable/zhuye_item_select"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView android:layout_width="wrap_content"
+              android:text="张三是收货人"
+              android:padding="5dp"
+              android:drawableLeft="@drawable/order_tx"
+              android:drawablePadding="8dp"
+              android:textSize="14sp"
+              android:id="@+id/item_nickname"
+              android:textColor="@color/black_text_color"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_toRightOf="@+id/item_nickname"
+              android:id="@+id/item_moren"
+              android:text="[默认]"
+              android:padding="5dp"
+              android:layout_marginLeft="5dp"
+              android:textColor="@color/button_color_red_n"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/item_tel"
+              android:padding="5dp"
+              android:layout_marginLeft="10dp"
+              android:drawableLeft="@drawable/order_tel"
+              android:drawablePadding="8dp"
+              android:layout_marginRight="10dp"
+              android:layout_toRightOf="@+id/item_moren"
+              android:text="13034110000"
+              android:textSize="14sp"
+              android:textColor="@color/black_text_color"
+              android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:textColor="@color/black_text_color"
+              android:id="@+id/item_address"
+              android:padding="5dp"
+              android:textSize="14sp"
+              android:text="山东滨州开发区杜店办事山东滨州开发区杜店办事处秦皇河风景村1号楼2单元1503处秦皇河风景村1号楼2单元1503"
+              android:layout_below="@+id/item_nickname"
+              android:layout_height="wrap_content"/>
+    <ImageView android:layout_width="wrap_content"
+               android:padding="6dp"
+               android:id="@+id/item_select"
+               android:visibility="gone"
+               android:layout_alignParentRight="true"
+               android:src="@drawable/address_select"
+               android:layout_height="wrap_content"/>
+
+</RelativeLayout>

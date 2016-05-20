@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/white">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/et_bule_bg"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/soubtn"
+                android:id="@+id/searchImageView"/>
+        <EditText
+                android:id="@+id/searchText"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="请输入查询的用户名"
+                android:singleLine="true"
+                android:background="@null"
+                />
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qingchu"
+                android:id="@+id/deleteContSearch"/>
+    </LinearLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+        <ImageView android:layout_width="match_parent"
+                   android:src="@drawable/collect_no_good"
+                   android:id="@+id/search_null"
+                   android:visibility="gone"
+                   android:layout_centerInParent="true"
+                   android:layout_height="wrap_content"/>
+        <com.liangxun.yuejiula.library.PullToRefreshListView
+                android:id="@+id/pk_new_lstv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="#00000000"
+                android:dividerHeight="0.5dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:clickable="true"
+              android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/pop_layout"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/analyze_empty_bg">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/title"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="更多分类"
+                    android:textColor="@color/ss_comment_time"
+                    android:visibility="visible"
+                    android:textSize="14sp"/>
+
+        </LinearLayout>
+        <View android:layout_width="match_parent"
+              android:layout_height="0.5dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:background="@color/divider_color"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+            <com.liangxun.yuejiula.widget.ClassifyGridview
+                    android:id="@+id/moreparttimetyupeGridview"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:horizontalSpacing="4dip"
+                    android:numColumns="4"
+                    android:verticalSpacing="4dip"
+                    android:padding="4dip"/>
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:background="@color/divider_color"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center|left"
+                          android:layout_marginTop="10dp"
+                          android:layout_height="wrap_content">
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="1dp"
+                        android:src="@drawable/icons_others_sliddown"
+                        android:id="@+id/cancel"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

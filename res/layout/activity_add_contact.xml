@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/white"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background"
+            android:gravity="center_vertical">
+
+        <include layout="@layout/commom_back_btn"/>
+
+        <TextView
+                android:id="@+id/add_list_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"/>
+
+
+    </RelativeLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/et_bule_bg"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/soubtn"
+                android:id="@+id/searchImageView"/>
+        <EditText
+                android:id="@+id/edit_note"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="请输入查询的用户名"
+                android:singleLine="true"
+                android:background="@null"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/ll_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        <ListView
+                android:id="@+id/list_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/divider_color"
+                android:dividerHeight="0.5dp"
+                >
+
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

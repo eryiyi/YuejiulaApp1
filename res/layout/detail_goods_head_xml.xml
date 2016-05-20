@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+                android:padding="8dp"
+              android:background="@color/detail_back"
+              android:layout_height="wrap_content">
+
+        <TextView android:layout_width="match_parent"
+                  android:textSize="16sp"
+                  android:padding="6dp"
+                  android:text="这里是商品标题"
+                  android:textColor="@color/textColor"
+                  android:id="@+id/detail_goods_title"
+                  android:layout_height="wrap_content"/>
+
+            <com.liangxun.yuejiula.widget.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_below="@+id/detail_goods_title"
+                    android:layout_height="40dp"
+                    android:src="@drawable/head"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/detail_goods_cover"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三李四"
+                    android:id="@+id/goods_detail_nickname"
+                    android:textColor="@color/nickname_color"
+                    android:layout_marginTop="2dp"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_below="@+id/detail_goods_title"
+                    android:layout_toRightOf="@+id/detail_goods_cover"
+                    />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2015  发布"
+                    android:id="@+id/detail_goods_dateline"
+                    android:textSize="14sp"
+                    android:layout_alignBottom="@+id/detail_goods_cover"
+                    android:layout_alignLeft="@+id/goods_detail_nickname"
+                    android:layout_toRightOf="@+id/detail_goods_cover"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="18sp"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginTop="5dp"
+                      android:layout_below="@+id/detail_goods_cover"
+                      android:text="@string/goods_prices"
+                      android:textColor="#f00f00"
+                      android:id="@+id/detail_goods_money"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="16sp"
+                      android:layout_marginLeft="50dp"
+                      android:layout_toRightOf="@+id/detail_goods_cover"
+                      android:layout_marginTop="5dp"
+                      android:layout_below="@+id/detail_goods_cover"
+                      android:text="@string/goods_prices"
+                      android:textColor="#f00f00"
+                      android:id="@+id/detail_goods_market"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/detail_goods_mobile"
+                      android:text="咨询卖家"
+                      android:layout_below="@+id/detail_goods_title"
+                      android:layout_marginRight="5dp"
+                      android:layout_alignParentRight="true"
+                      android:padding="5dp"
+                      android:textSize="14sp"
+                      android:textColor="#ffffff"
+                      android:background="#f00f00"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="剩余100"
+                      android:padding="5dp"
+                      android:textSize="14sp"
+                      android:layout_marginTop="12dp"
+                      android:id="@+id/detail_goods_count"
+                      android:layout_marginRight="10dp"
+                      android:textColor="@color/black_text_color"
+                      android:layout_alignParentRight="true"
+                      android:layout_below="@+id/detail_goods_mobile"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:textSize="15sp"
+                      android:padding="8dp"
+                      android:textColor="@color/black_text_color"
+                      android:text="滨州学院"
+                      android:id="@+id/detail_school_name"
+                      android:layout_below="@+id/detail_goods_market"
+                      android:layout_height="wrap_content"/>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.1dp"
+                  android:layout_below="@+id/detail_school_name"
+                  android:id="@+id/liner_one"
+                  android:layout_marginTop="8dp"
+                  android:background="#d1d1d1"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="张三"
+                      android:id="@+id/detail_goods_person"
+                      android:textSize="16sp"
+                      android:drawableLeft="@drawable/lianxiren"
+                      android:singleLine="true"
+                      android:drawablePadding="8dp"
+                      android:layout_marginLeft="8dp"
+                      android:layout_marginTop="13dp"
+                      android:layout_below="@+id/liner_one"
+                      android:textColor="@color/textColortwo"
+                      android:layout_height="wrap_content"/>
+
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="1516888888"
+                      android:layout_below="@+id/detail_goods_person"
+                      android:textSize="16sp"
+                      android:drawableLeft="@drawable/dianhua"
+                      android:layout_marginTop="10dp"
+                      android:singleLine="true"
+                      android:drawablePadding="8dp"
+                      android:layout_marginLeft="8dp"
+                      android:id="@+id/detail_goods_tel"
+                      android:textColor="@color/textColortwo"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="山东滨州"
+                      android:singleLine="true"
+                      android:drawablePadding="8dp"
+                      android:layout_below="@+id/detail_goods_tel"
+                      android:drawableLeft="@drawable/dizhi"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginTop="10dp"
+                      android:textSize="16sp"
+                      android:layout_toRightOf="@+id/text_three"
+                      android:id="@+id/detail_goods_address"
+                      android:textColor="@color/textColortwo"
+                      android:layout_height="wrap_content"/>
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.1dp"
+                  android:layout_marginTop="10dp"
+                  android:id="@+id/liner_two"
+                  android:layout_below="@+id/detail_goods_address"
+                  android:background="#d1d1d1"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="16sp"
+                      android:padding="8dp"
+                      android:text="这里是内容"
+                      android:layout_below="@+id/liner_two"
+                      android:textColor="@color/textColortwo"
+                      android:id="@+id/detail_goods_content"/>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.1dp"
+                  android:id="@+id/liner_three"
+                  android:layout_marginTop="10dp"
+                  android:layout_below="@+id/detail_goods_content"
+                  android:background="#d1d1d1"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:padding="8dp"
+                      android:id="@+id/comment_count"
+                      android:drawablePadding="8dp"
+                      android:drawableLeft="@drawable/icon_little_h_gray_chat"
+                      android:layout_marginTop="8dp"
+                      android:layout_below="@+id/liner_three"
+                      android:text="查看所有评论"
+                      android:layout_height="wrap_content"/>
+</RelativeLayout>

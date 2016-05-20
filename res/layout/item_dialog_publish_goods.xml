@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:clickable="true"
+              android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/pop_layout"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/analyze_empty_bg">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/title"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="用户须知"
+                    android:textColor="@color/ss_comment_time"
+                    android:visibility="visible"
+                    android:textSize="16sp"/>
+
+        </LinearLayout>
+        <View android:layout_width="match_parent"
+              android:layout_height="0.5dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:background="@color/divider_color"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="校园招聘现只开通商家通道，请知悉"
+                        android:textColor="@color/main"
+                        android:textSize="14sp"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:background="@color/divider_color"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center|left"
+                          android:layout_marginTop="10dp"
+                          android:layout_marginBottom="10dp"
+                          android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="去开通商家权限"
+                        android:id="@+id/button_kaitong"
+                        android:textColor="@color/main"
+                        android:textSize="16sp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center|left"
+                          android:layout_marginTop="10dp"
+                          android:layout_marginBottom="10dp"
+                          android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="继续发布"
+                        android:id="@+id/button_add"
+                        android:textColor="@color/main"
+                        android:textSize="16sp"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center|left"
+                          android:layout_marginTop="10dp"
+                          android:layout_marginBottom="10dp"
+                          android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="取消"
+                        android:id="@+id/button_cancle"
+                        android:textColor="@color/btn_logout_pressed"
+                        android:textSize="16sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

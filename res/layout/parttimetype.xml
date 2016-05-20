@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:id="@+id/main"
+              android:background="@color/white"
+              android:orientation="vertical">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/parttype_back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"/>
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="60dip"
+                android:layout_marginRight="60dip"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:text="校园招聘"
+                    android:id="@+id/maintitle"
+                    android:textColor="@color/title_font_main"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:id="@+id/parttime_more"
+                android:orientation="horizontal">
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:padding="10dp"
+                       android:layout_gravity="right"
+                       android:id="@+id/pull_down_button"
+                       android:src="@drawable/add_more"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginTop="5dp"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/et_bule_bg"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/soubtn"
+                    android:id="@+id/searchImageView"/>
+            <EditText
+                    android:id="@+id/searchText"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="输入关键词"
+                    android:singleLine="true"
+                    android:background="@null"
+                    />
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/qingchu"
+                    android:id="@+id/deleteContSearch"/>
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+        <ImageView android:layout_width="match_parent"
+                   android:src="@drawable/collect_no_good"
+                   android:id="@+id/search_null"
+                   android:visibility="gone"
+                   android:layout_centerInParent="true"
+                   android:layout_height="wrap_content"/>
+        <!--搜索框结束-->
+        <com.liangxun.yuejiula.library.PullToRefreshListView
+                android:id="@+id/parttime_lstv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="#19000000"
+                android:dividerHeight="1dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true"/>
+    </RelativeLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:background="#ffffff">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/foot_part_button"
+                   android:src="@drawable/icons_others_slideup"/>
+
+    </LinearLayout>
+</LinearLayout>

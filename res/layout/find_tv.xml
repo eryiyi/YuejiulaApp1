@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/height_top_bar"
+                android:background="@drawable/global_top_background">
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dip"
+                        android:text="第一视听"
+                        android:id="@+id/notice_detail_title"
+                        android:textColor="@color/title_font_main"
+                        android:textSize="18sp"/>
+            </LinearLayout>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/notice_detail_menu"
+                    android:paddingLeft="10dp"
+                    android:src="@drawable/back"
+                    android:paddingRight="10dp"/>
+        </RelativeLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+            <WebView
+                    android:id="@+id/webview"
+                    android:scrollbars="none"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    />
+        </LinearLayout>
+        <!--</ReboundScrollView>-->
+    </LinearLayout>
+
+</LinearLayout>

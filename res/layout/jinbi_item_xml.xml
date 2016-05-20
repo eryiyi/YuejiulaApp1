@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="5dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp"
+            android:gravity="center|left">
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="张三"
+                  android:textSize="16sp"
+                  android:layout_alignParentLeft="true"
+                  android:gravity="left"
+                  android:layout_marginLeft="1dp"
+                  android:id="@+id/jinbi_nickname"
+                  android:textColor="@color/nameColor"
+                  android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="解除"
+                android:layout_toRightOf="@+id/jinbi_nickname"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:textColor="@color/textColortwo"
+                android:id="@+id/jiechu"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="report_cont"
+                android:textSize="16sp"
+                android:layout_marginLeft="3dp"
+                android:layout_below="@+id/jinbi_nickname"
+                android:textColor="@color/textColor"
+                android:id="@+id/jinbi_datetime"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20151515"
+                android:layout_marginLeft="3dp"
+                android:textSize="15sp"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:layout_below="@+id/jiechu"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/jinbi_datetime"
+                android:textColor="@color/textColortwo"
+                android:id="@+id/jinbi_dateline"/>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/guanggao"
+              android:background="#f2f2f2">
+    <!--广告-->
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="30dp"
+                  android:text="推广"
+                  android:id="@+id/title"
+                  android:gravity="center"
+                  android:layout_gravity="center"
+                  android:textSize="16dp"
+                  android:layout_marginTop="10dp"
+                  android:textColor="#7d7d7d"
+                />
+        <ImageView android:layout_width="match_parent"
+                   android:layout_height="140dp"
+                   android:padding="8dp"
+                   android:layout_below="@+id/title"
+                   android:scaleType="fitXY"
+                   android:id="@+id/detail_ad_image"/>
+</RelativeLayout>
