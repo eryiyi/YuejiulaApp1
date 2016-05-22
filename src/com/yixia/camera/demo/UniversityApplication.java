@@ -49,6 +49,12 @@ public class UniversityApplication extends FrontiaApplication {
     private SharedPreferences sp;
 
     private static UniversityApplication application;
+
+    public static String lat;
+    public static String lng;
+    public static String area;
+    public static String address;
+
     @Override
     public void onCreate() {
         super.onCreate();

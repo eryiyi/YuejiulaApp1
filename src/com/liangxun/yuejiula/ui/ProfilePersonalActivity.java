@@ -51,6 +51,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private TextView profile_personal_school;//学校名字
     private ImageView profile_personal_flag;//标识
     private LinearLayout profile_record;// 动态
+    private LinearLayout profile_paimai;// paimai
 
     private String empId;//用户UUID
     private String emp_id = "";//当前登陆者UUID
@@ -88,7 +89,9 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         profile_personal_school = (TextView) this.findViewById(R.id.profile_personal_school);
         profile_personal_flag = (ImageView) this.findViewById(R.id.profile_personal_flag);
         profile_record= (LinearLayout) findViewById(R.id.profile_record);
+        profile_paimai= (LinearLayout) findViewById(R.id.profile_paimai);
         profile_record.setOnClickListener(this);
+        profile_paimai.setOnClickListener(this);
     }
 
     @Override
@@ -110,6 +113,9 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                 Intent dynamic=new Intent(ProfilePersonalActivity.this,ProfileDynamicActivity.class);
                 dynamic.putExtra(Constants.EMPID,empId);//我要查询的那个人的 EMPID
                 startActivity(dynamic);
+            case R.id.profile_paimai:
+                //拍卖
+                break;
 
         }
     }

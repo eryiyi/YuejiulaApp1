@@ -3,10 +3,16 @@ package com.liangxun.yuejiula.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,7 +37,12 @@ import com.liangxun.yuejiula.huanxin.chat.HxConstant;
 import com.liangxun.yuejiula.huanxin.chat.db.HxUserDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.util.Utils;
+import com.yixia.camera.demo.UniversityApplication;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,13 +52,64 @@ import java.util.Map;
 /**
  * Created by Administrator on 2015/8/19.
  */
-public class WelcomeActivity extends BaseActivity implements View.OnClickListener,Runnable {
-    private Ad ad;
+public class WelcomeActivity extends BaseActivity implements View.OnClickListener,Runnable,AMapLocationListener {
+    List<Emp> emps = new ArrayList<Emp>();
+    boolean isMobileNet, isWifiNet;
+    private ImageView head;
+
+    //定位
+    private AMapLocationClient locationClient = null;
+    private AMapLocationClientOption locationOption = null;
+
+    Handler mHandler = new Handler() {
+        public void dispatchMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case Utils.MSG_LOCATION_FINISH:
+                    AMapLocation loc = (AMapLocation) msg.obj;
+                    String result = Utils.getLocationStr(loc);
+                    if("true".equals(result)){
+                        //定位成功
+                        if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("mm_emp_id", ""), String.class))){
+//                            sendLocation();
+                        }
+                    }else if("false".equals(result)){
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-//        initAd();
+//定位
+        locationClient = new AMapLocationClient(this.getApplicationContext());
+        locationOption = new AMapLocationClientOption();
+        // 设置定位模式为高精度模式
+        locationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        // 设置定位监听
+        locationClient.setLocationListener(this);
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(getApplicationContext());
+            isWifiNet = HttpUtils.isWifiDataEnable(getApplicationContext());
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(this, R.string.network_unavailable, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 设置定位参数
+        locationClient.setLocationOption(locationOption);
+        // 启动定位
+        locationClient.startLocation();
+        mHandler.sendEmptyMessage(Utils.MSG_LOCATION_START);
+
         // 启动一个线程
         new Thread(WelcomeActivity.this).start();
     }
@@ -263,9 +325,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    List<Emp> emps = new ArrayList<Emp>();
-    boolean isMobileNet, isWifiNet;
-    private ImageView head;
+
 
     public void getFriends(final String names) {
         StringRequest request = new StringRequest(
@@ -366,53 +426,150 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
 
 
     //去取广告图片
-    private void initAd() {
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-                InternetURL.GET_BIGAD_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String s) {
-                        if (StringUtil.isJson(s)) {
-                            AdDATA data = getGson().fromJson(s, AdDATA.class);
-                            if (data.getCode() == 200) {
-                                ad = data.getData();
-                            }else {
-                                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-                                finish();
-                            }
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        if (ad != null){
-                            Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
-                            intent.putExtra("ad",ad);
-                            startActivity(intent);
-                            finish();
-                        }
-                        else{
-                            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-                            finish();
-                        }
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                return params;
-            }
+//    private void initAd() {
+//        StringRequest request = new StringRequest(
+//                Request.Method.POST,
+//                InternetURL.GET_BIGAD_URL,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        if (StringUtil.isJson(s)) {
+//                            AdDATA data = getGson().fromJson(s, AdDATA.class);
+//                            if (data.getCode() == 200) {
+//                                ad = data.getData();
+//                            }else {
+//                                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+//                                finish();
+//                            }
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//                        if (ad != null){
+//                            Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
+//                            intent.putExtra("ad",ad);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                        else{
+//                            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+//                            finish();
+//                        }
+//                    }
+//                }
+//        ) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                return params;
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Content-Type", "application/x-www-form-urlencoded");
+//                return params;
+//            }
+//        };
+//        getRequestQueue().add(request);
+//    }
 
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
-        };
-        getRequestQueue().add(request);
+    // 根据控件的选择，重新设置定位参数
+    private void initOption() {
+        // 设置是否需要显示地址信息
+        locationOption.setNeedAddress(true);
+        /**
+         * 设置是否优先返回GPS定位结果，如果30秒内GPS没有返回定位结果则进行网络定位
+         * 注意：只有在高精度模式下的单次定位有效，其他方式无效
+         */
+        locationOption.setGpsFirst(true);
+//        String strInterval = etInterval.getText().toString();
+//        if (!TextUtils.isEmpty(strInterval)) {
+//            // 设置发送定位请求的时间间隔,最小值为1000，如果小于1000，按照1000算
+        locationOption.setInterval(Long.valueOf("1000"));
+//        }
+
     }
+
+
+
+    // 定位监听
+    @Override
+    public void onLocationChanged(AMapLocation loc) {
+        if (null != loc) {
+            Message msg = mHandler.obtainMessage();
+            msg.obj = loc;
+            msg.what = Utils.MSG_LOCATION_FINISH;
+            mHandler.sendMessage(msg);
+        }
+    }
+//    void sendLocation(){
+//        StringRequest request = new StringRequest(
+//                Request.Method.POST,
+//                InternetURL.SEND_LOCATION_BYID_URL,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        if (StringUtil.isJson(s)) {
+//                            try {
+//                                JSONObject jo = new JSONObject(s);
+//                                String code =  jo.getString("code");
+//                                if(Integer.parseInt(code) == 200){
+//
+//                                }
+//                                else{
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                        if (progressDialog != null) {
+//                            progressDialog.dismiss();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//                        if (progressDialog != null) {
+//                            progressDialog.dismiss();
+//                        }
+//                    }
+//                }
+//        ) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("lat", (UniversityApplication.lat==null?"":UniversityApplication.lat));
+//                params.put("lng", (UniversityApplication.lng==null?"":UniversityApplication.lng));
+//                params.put("mm_emp_id", getGson().fromJson(getSp().getString("mm_emp_id", ""), String.class) );
+//                return params;
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Content-Type", "application/x-www-form-urlencoded");
+//                return params;
+//            }
+//        };
+//        getRequestQueue().add(request);
+//    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != locationClient) {
+            /**
+             * 如果AMapLocationClient是在当前Activity实例化的，
+             * 在Activity的onDestroy中一定要执行AMapLocationClient的onDestroy
+             */
+            locationClient.onDestroy();
+            locationClient = null;
+            locationOption = null;
+        }
+    }
+
 }
