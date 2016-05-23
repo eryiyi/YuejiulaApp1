@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     private HxFragment classFragment;//约酒啦
     private FindFragment findFragment;//发现
     private ProfileFragment partFragment;//我的
-    private GoodsFragment goodsFragment;//商城
+    private DianpuFragment goodsFragment;//商城
 
     private ImageView foot_one;
     private ImageView foot_two;
@@ -257,7 +257,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                 break;
             case R.id.foot_three:
                 if (goodsFragment == null) {
-                    goodsFragment = new  GoodsFragment();
+                    goodsFragment = new  DianpuFragment();
                     fragmentTransaction.add(R.id.content_frame, goodsFragment);
                 } else {
                     fragmentTransaction.show(goodsFragment);

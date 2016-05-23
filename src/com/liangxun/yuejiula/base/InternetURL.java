@@ -258,4 +258,7 @@ public class InternetURL {
     //获得心情标签
     public static final String GET_MOOD_URL = INTERNAL + "listsRecodMoods.do";
 
+    //查询店铺信息
+    public static final String GET_DIANPU_MSG_URL = INTERNAL + "appGetDianPu.do";
+
 }
