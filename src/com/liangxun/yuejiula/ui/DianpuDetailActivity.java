@@ -44,10 +44,10 @@ import java.util.Map;
 public class DianpuDetailActivity extends BaseActivity implements View.OnClickListener,OnClickContentItemListener{
     //下拉刷新
     private PullToRefreshListView lstv ;
-    private ItemDianpuAdapter adapter;
+    private SearchGoodsAdapter adapterGoods;
     private int pageIndex = 1;
     private static boolean IS_REFRESH = true;
-    private List<EmpDianpu> listgoods = new ArrayList<EmpDianpu>();
+    private List<PaopaoGoods> listgoods = new ArrayList<PaopaoGoods>();
 
     private LinearLayout headView;
 
@@ -102,8 +102,8 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
 
         listView.addHeaderView(headView);
 
-        adapter = new ItemDianpuAdapter(listgoods, DianpuDetailActivity.this);
-        lstv.setAdapter(adapter);
+        adapterGoods = new SearchGoodsAdapter(listgoods, DianpuDetailActivity.this);
+        lstv.setAdapter(adapterGoods);
         lstv.setMode(PullToRefreshBase.Mode.BOTH);
         lstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -114,7 +114,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = true;
                 pageIndex = 1;
-//                initData();
+                initData();
             }
 
             @Override
@@ -125,28 +125,30 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = false;
                 pageIndex++;
-//                initData();
+                initData();
             }
         });
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                try {
-//                    EmpDianpu dianpu = listgoods.get(position-2);
-//                    if (dianpu != null) {
-//                        Intent detail = new Intent(DianpuDetailActivity.this, DianpuDetailActivity.class);
-//                        detail.putExtra("emp_id", dianpu.getEmpId());
-//                        startActivity(detail);
-//                    }
-//                } catch (Exception e) {
-//
-//                }
+                try {
+                    PaopaoGoods good = listgoods.get(position-1);
+                    if (good != null) {
+                        Intent detail = new Intent(DianpuDetailActivity.this, DetailGoodsActivity.class);
+                        detail.putExtra(Constants.GOODS, good);
+                        startActivity(detail);
+                    }
+                } catch (Exception e) {
+
+                }
             }
         });
         //查询个人广告位
         getSlide();
         //查询个人店铺信息
         getManagerInfo();
+        //个人商品
+        initData();
     }
 
     void initView(){
@@ -206,7 +208,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void run() {
                 int next = viewpager.getCurrentItem()+1;
-                if (next > adapter.getCount()) {
+                if (next > adaptertwo.getCount()) {
                     next = 0;
                 }
                 viewHandler.sendEmptyMessage(next);
@@ -330,7 +332,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
      * 设置当前的引导页
      */
     private void setCurView(int position) {
-        if (position < 0 || position > adapter.getCount()) {
+        if (position < 0 || position > adaptertwo.getCount()) {
             return;
         }
         viewpager.setCurrentItem(position);
@@ -511,5 +513,60 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         yingyetime.setText("营业时间:"+managerInfo.getYingye_time_start() + "-" + managerInfo.getYingye_time_end());
         youhui.setText("优惠承诺:"+managerInfo.getShouhui());
         content.setText(managerInfo.getCompany_detail());
+    }
+
+    //获得商品列表
+    private void initData() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_GOODS_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            GoodsDATA data = getGson().fromJson(s, GoodsDATA.class);
+                            if (data.getCode() == 200) {
+                                if (IS_REFRESH) {
+                                    listgoods.clear();
+                                }
+                                listgoods.addAll(data.getData());
+                                adapterGoods.notifyDataSetChanged();
+                                lstv.onRefreshComplete();
+                            } else {
+                                Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("cont", "");
+                params.put("schoolId", "");
+                params.put("page", String.valueOf(pageIndex));
+                params.put("typeId", "");
+                params.put("type", "0");
+                params.put("empId", emp_id);
+                params.put("isMine", "");
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
     }
 }
