@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp" >
+        <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+        </android.support.v4.view.ViewPager>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp" >
+
+            <TextView
+                    android:id="@+id/article_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="5dp"
+                    android:text="中国家庭院校园区域名字体现"
+                    android:textColor="#ffffff" />
+
+            <LinearLayout
+                    android:id="@+id/viewGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="1dp"
+                    android:paddingTop="1dp" >
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <!-- 主体 -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:padding="8dp"
+                        android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                      android:text="好店铺"
+                      android:lineSpacingMultiplier="1.2"
+                      android:layout_marginBottom="6dp"
+                      android:layout_marginLeft="8dp"
+                      android:layout_marginRight="8dp"
+                      android:id="@+id/title"
+                      android:textColor="@color/textColor"
+                      android:textSize="18sp"
+                      android:layout_height="wrap_content"/>
+            <com.liangxun.yuejiula.widget.CircleImageView
+                    android:layout_width="45dp"
+                    android:layout_below="@+id/title"
+                    android:id="@+id/head"
+                    android:src="@drawable/head"
+                     android:layout_height="45dp"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="用户姓名"
+                      android:textSize="16sp"
+                      android:layout_below="@+id/title"
+                      android:layout_marginLeft="8dp"
+                      android:layout_marginTop="8dp"
+                      android:layout_toRightOf="@+id/head"
+                      android:textColor="@color/blue"
+                      android:id="@+id/nickname"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="咨询卖家"
+                      android:layout_marginRight="8dp"
+                      android:layout_below="@+id/title"
+                      android:layout_alignParentRight="true"
+                      android:padding="8dp"
+                      android:id="@+id/zixun"
+                      android:textColor="@color/white"
+                      android:background="@color/btn_blue_normal"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="收藏本店"
+                      android:layout_marginRight="8dp"
+                      android:layout_marginTop="3dp"
+                      android:layout_below="@+id/zixun"
+                      android:layout_alignParentRight="true"
+                      android:padding="8dp"
+                      android:id="@+id/favour"
+                      android:textColor="@color/white"
+                      android:background="@color/btn_blue_normal"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="tel:13181038186"
+                      android:textSize="16sp"
+                 android:drawablePadding="6dp"
+                      android:layout_below="@+id/head"
+                      android:drawableLeft="@drawable/tel_order"
+                      android:layout_marginLeft="8dp"
+                      android:layout_marginTop="8dp"
+                      android:textColor="@color/textColor"
+                      android:id="@+id/tel"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="address:sfdsafads"
+                      android:textSize="16sp"
+                      android:layout_below="@+id/tel"
+                      android:layout_marginLeft="8dp"
+                      android:layout_marginTop="6dp"
+                      android:textColor="@color/textColor"
+                      android:id="@+id/address"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:id="@+id/location"
+                       android:layout_below="@+id/tel"
+                       android:layout_toRightOf="@+id/address"
+                       android:src="@drawable/umeng_socialize_location_ic"
+                       android:layout_height="wrap_content"/>
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="45dp"
+                            android:layout_below="@+id/location"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/detail_like_liner_layout"
+                            android:layout_marginTop="5dp">
+                <GridView
+                        android:numColumns="8"
+                        android:stretchMode="columnWidth"
+                        android:id="@+id/gridView"
+                        android:horizontalSpacing="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <TextView android:layout_width="wrap_content"
+                      android:id="@+id/yingyetime"
+                      android:textColor="@color/textColor"
+                      android:layout_marginTop="6dp"
+                      android:layout_marginLeft="8dp"
+                      android:layout_below="@+id/detail_like_liner_layout"
+                      android:text="营业时间：早8点 - 晚9点"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+            android:text="优惠承诺：司法地方的发生"
+            android:textColor="@color/blue"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/youhui"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/yingyetime"
+            android:layout_marginRight="8dp"
+            android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent"
+                      android:textSize="16sp"
+                      android:layout_below="@+id/youhui"
+                      android:layout_marginLeft="8dp"
+                      android:layout_marginTop="6dp"
+                      android:textColor="@color/textColor"
+                      android:id="@+id/content"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

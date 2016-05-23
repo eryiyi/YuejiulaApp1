@@ -175,6 +175,7 @@
         <activity android:name="com.liangxun.yuejiula.ui.VideosActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.DetailVideosActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.PublishVideoCommentAcitvity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DianpuDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
 
         <activity

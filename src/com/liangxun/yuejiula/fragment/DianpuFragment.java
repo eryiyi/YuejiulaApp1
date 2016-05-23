@@ -32,6 +32,7 @@ import com.liangxun.yuejiula.entity.PaopaoGoods;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.DetailGoodsActivity;
+import com.liangxun.yuejiula.ui.DianpuDetailActivity;
 import com.liangxun.yuejiula.ui.SearchGoodsActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
@@ -157,9 +158,9 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                 try {
                     EmpDianpu dianpu = listgoods.get(position-2);
                     if (dianpu != null) {
-//                        Intent detail = new Intent(getActivity(), DetailGoodsActivity.class);
-//                        detail.putExtra(Constants.GOODS, good);
-//                        startActivity(detail);
+                        Intent detail = new Intent(getActivity(), DianpuDetailActivity.class);
+                        detail.putExtra("emp_id", dianpu.getEmpId());
+                        startActivity(detail);
                     }
                 } catch (Exception e) {
 

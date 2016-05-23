@@ -97,7 +97,7 @@ public class ItemDianpuAdapter extends BaseAdapter {
         EmpDianpu cell = list.get(position);
         holder.item_address.setText(cell.getCompany_address());
         holder.item_title.setText(cell.getCompany_name());
-        holder.item_nickname.setText("掌柜:"+cell.getCompany_person());
+        holder.item_nickname.setText(cell.getCompany_person());
         //加载图片
         imageLoader.displayImage(cell.getCompany_pic(), holder.item_cover, UniversityApplication.options, animateFirstListener);
         imageLoader.displayImage(cell.getEmpCover(), holder.head, UniversityApplication.txOptions, animateFirstListener);
