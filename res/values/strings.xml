@@ -504,7 +504,7 @@
     <string name="order_error_one">订单生成失败</string>
     <string name="order_error_three">订单生成失败,您所购买的商品数量不够了</string>
     <string name="order_error_two">操作失败，如有疑问，请联系客服</string>
-    <string name="order_success">支付成功</string>
+    <string name="order_success">订单生成成功！请联系商户快送</string>
     <string name="item_count_adapter">共%1$s件商品</string>
     <string name="item_money_adapter">合计：￥%1$.2f</string>
     <string name="mine_cart_title">购物车(%1$.2s)</string>

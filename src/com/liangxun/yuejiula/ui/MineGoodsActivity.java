@@ -194,9 +194,15 @@ public class MineGoodsActivity extends BaseActivity implements View.OnClickListe
         good = goods.get(position);
         switch (flag) {
             case 1:
-                //删除
+                //上架
                 tmpSelected = position;
-                showSelectImageDialog();
+//                showSelectImageDialog();
+                updateStatus(good.getId(), "0");
+                break;
+            case 2:
+                tmpSelected = position;
+//                showSelectImageDialog();
+                updateStatus(good.getId(), "1");
                 break;
         }
     }
@@ -299,4 +305,54 @@ public class MineGoodsActivity extends BaseActivity implements View.OnClickListe
         }
 
     };
+
+
+
+
+
+    //获得商品
+    private void updateStatus(final String id, final String status) {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.UPDATE_GOODS_STATUS_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                goods.get(tmpSelected).setIsUse(status);
+                                adapter.notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(MineGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(MineGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(MineGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", id);
+                params.put("status", status);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 }

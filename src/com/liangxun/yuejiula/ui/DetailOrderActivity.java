@@ -144,7 +144,7 @@ public class DetailOrderActivity extends BaseActivity implements View.OnClickLis
         switch (Integer.parseInt(orderVo.getStatus())){
             //1生成订单,2支付订单,3取消订单,4作废订单,5完成订单', 6物流运输中（卖家确认订单）
             case 1:
-                order_status.setText("等待买家付款");
+                order_status.setText("等待卖家发货");
                 if(!StringUtil.isNullOrEmpty(orderVo.getCreate_time())){
                     datetime.append("\n" + "创建时间:"+orderVo.getCreate_time());
                 }
@@ -154,9 +154,9 @@ public class DetailOrderActivity extends BaseActivity implements View.OnClickLis
                 if(!StringUtil.isNullOrEmpty(orderVo.getCreate_time())){
                     datetime.append("\n" + "创建时间:"+orderVo.getCreate_time());
                 }
-                if(!StringUtil.isNullOrEmpty(orderVo.getPay_time())) {
-                    datetime.append("\n" + "付款时间:"+orderVo.getPay_time());
-                }
+//                if(!StringUtil.isNullOrEmpty(orderVo.getPay_time())) {
+//                    datetime.append("\n" + "付款时间:"+orderVo.getPay_time());
+//                }
                 break;
             case 3:
                 order_status.setText("订单已取消");
@@ -169,9 +169,9 @@ public class DetailOrderActivity extends BaseActivity implements View.OnClickLis
                 if(!StringUtil.isNullOrEmpty(orderVo.getCreate_time())){
                     datetime.append("\n" + "创建时间:" + orderVo.getCreate_time());
                 }
-                if(StringUtil.isNullOrEmpty(orderVo.getPay_time())){
-                    datetime.append("\n" + "付款时间:" + orderVo.getPay_time());
-                }
+//                if(StringUtil.isNullOrEmpty(orderVo.getPay_time())){
+//                    datetime.append("\n" + "付款时间:" + orderVo.getPay_time());
+//                }
                 if(!StringUtil.isNullOrEmpty(orderVo.getSend_time())){
                     datetime.append("\n" + "发货时间:" + orderVo.getSend_time());
                 }

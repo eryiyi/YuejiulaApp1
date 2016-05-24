@@ -92,7 +92,7 @@ public class ItemMineOrderAdapter extends BaseAdapter {
 //            TextView button_six;//删除订单
             switch (Integer.parseInt(cell.getStatus())){
                 case 1:
-                    holder.item_status.setText("等待买家付款");
+                    holder.item_status.setText("等待卖家发货");
                     holder.button_one.setVisibility(View.GONE);
                     holder.button_two.setVisibility(View.VISIBLE);
                     holder.button_three.setVisibility(View.GONE);
@@ -101,7 +101,7 @@ public class ItemMineOrderAdapter extends BaseAdapter {
                     holder.button_six.setVisibility(View.GONE);
                     break;
                 case 2:
-                    holder.item_status.setText("订单已支付");
+                    holder.item_status.setText("等待卖家发货");
                     holder.button_one.setVisibility(View.VISIBLE);
                     holder.button_two.setVisibility(View.GONE);
                     holder.button_three.setVisibility(View.GONE);
@@ -128,7 +128,7 @@ public class ItemMineOrderAdapter extends BaseAdapter {
                     holder.button_six.setVisibility(View.GONE);
                     break;
                 case 6:
-                    holder.item_status.setText("物流运输中");
+                    holder.item_status.setText("等待买家收货");
                     holder.button_one.setVisibility(View.VISIBLE);
                     holder.button_two.setVisibility(View.GONE);
                     holder.button_three.setVisibility(View.GONE);

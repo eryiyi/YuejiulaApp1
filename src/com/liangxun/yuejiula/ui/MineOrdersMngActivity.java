@@ -56,7 +56,7 @@ public class MineOrdersMngActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mine_order_activity);
+        setContentView(R.layout.mine_order_mng_activity);
         initView();
         initData();
     }
@@ -135,7 +135,7 @@ public class MineOrdersMngActivity extends BaseActivity implements View.OnClickL
                 text_two.setTextColor(getResources().getColor(R.color.button_color_orange_p));
                 text_three.setTextColor(getResources().getColor(R.color.black_text_color));
                 text_four.setTextColor(getResources().getColor(R.color.black_text_color));
-                status = "1";
+                status = "2";
                 initData();
                 break;
             case R.id.text_three:

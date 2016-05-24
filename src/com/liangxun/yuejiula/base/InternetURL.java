@@ -266,5 +266,7 @@ public class InternetURL {
     public static final String GET_THREE_PT_URL = INTERNAL + "appGetThreesBd.do";
     //查询店铺信息详情
     public static final String GET_DIANPU_MSG_DETAIL_URL = INTERNAL + "appGetProfileMsg.do";
+    //更新产品上架 下架信息
+    public static final String UPDATE_GOODS_STATUS_URL = INTERNAL + "paopaogoods/updatePaopaoGoodsJia.do";
 
 }

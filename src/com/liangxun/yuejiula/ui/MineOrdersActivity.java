@@ -225,7 +225,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
                 break;
             case 2:
                 //去付款
-                sendOrderSingle();
+//                sendOrderSingle();
                 break;
             case 3:
                 //投诉

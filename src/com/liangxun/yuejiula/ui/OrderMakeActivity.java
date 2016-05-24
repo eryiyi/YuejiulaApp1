@@ -161,6 +161,7 @@ public class OrderMakeActivity  extends BaseActivity implements View.OnClickList
         });
         no_address = (TextView) this.findViewById(R.id.no_address);
         no_address.setVisibility(View.GONE);
+        no_address.setOnClickListener(this);
     }
 
     @Override
@@ -171,6 +172,8 @@ public class OrderMakeActivity  extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.order_sure:
+                //todo
+                //判断是否在营业时间
                 order_sure.setClickable(false);
                 if(shoppingAddress != null){
                     //先传值给服务端
@@ -196,6 +199,7 @@ public class OrderMakeActivity  extends BaseActivity implements View.OnClickList
                 }
                 break;
             case R.id.select_location:
+            case R.id.no_address:
                 Intent selectAddressView = new Intent(OrderMakeActivity.this, SelectAddressActivity.class);
                 if(shoppingAddress != null){
                     selectAddressView.putExtra("address_id", shoppingAddress.getAddress_id());
@@ -425,7 +429,8 @@ public class OrderMakeActivity  extends BaseActivity implements View.OnClickList
                                 deleteCart();
                                 //已经生成订单，等待支付，下面去支付
                                 out_trade_no= data.getData().getOut_trade_no();
-                                pay(data.getData());//调用支付接口
+//                                pay(data.getData());//调用支付接口
+                                updateMineOrder();
                             }else if(data.getCode() == 2){
                                 Toast.makeText(OrderMakeActivity.this, R.string.order_error_three, Toast.LENGTH_SHORT).show();
                                 finish();

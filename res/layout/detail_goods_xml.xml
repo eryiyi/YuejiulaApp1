@@ -92,6 +92,7 @@
                   android:background="@color/dark_gray">
         <TextView android:layout_width="0dp"
                   android:text="收藏"
+                  android:visibility="gone"
                   android:id="@+id/button_favour"
                   android:layout_weight="0.5"
                   android:padding="5dp"
@@ -125,6 +126,7 @@
         <Button android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="马上买"
+                android:visibility="gone"
                 android:background="@drawable/button_selector_yellow_one"
                 android:id="@+id/foot_order"
                 android:gravity="center"

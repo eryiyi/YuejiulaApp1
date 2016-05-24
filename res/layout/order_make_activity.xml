@@ -122,7 +122,7 @@
                     android:background="@color/white"
                     android:layout_height="50dp">
             <Button android:layout_width="100dp"
-                    android:text="提交订单"
+                    android:text="货到订单"
                     android:id="@+id/order_sure"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/button_selector_red_one"

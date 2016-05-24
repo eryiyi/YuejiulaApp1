@@ -132,7 +132,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    PaopaoGoods good = listgoods.get(position-1);
+                    PaopaoGoods good = listgoods.get(position-2);
                     if (good != null) {
                         Intent detail = new Intent(DianpuDetailActivity.this, DetailGoodsActivity.class);
                         detail.putExtra(Constants.GOODS, good);

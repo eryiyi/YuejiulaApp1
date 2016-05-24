@@ -61,6 +61,7 @@ public class MineShangjiaColleageAdapter extends BaseAdapter {
             holder.item_nickname_shangjia = (TextView) convertView.findViewById(R.id.item_nickname_shangjia);
             holder.item_dateline_shangjia = (TextView) convertView.findViewById(R.id.item_dateline_shangjia);
             holder.item_xufei = (TextView) convertView.findViewById(R.id.item_xufei);
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -76,6 +77,7 @@ public class MineShangjiaColleageAdapter extends BaseAdapter {
                     onClickContentItemListener.onClickContentItem(position, 1, null);
                 }
             });
+
         }
         return convertView;
     }
@@ -84,6 +86,7 @@ public class MineShangjiaColleageAdapter extends BaseAdapter {
         TextView item_nickname_shangjia;
         TextView item_dateline_shangjia;
         TextView item_xufei;
+
     }
 
 }
