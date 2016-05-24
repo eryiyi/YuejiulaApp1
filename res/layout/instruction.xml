@@ -51,7 +51,7 @@
                android:layout_height="wrap_content"
                android:id="@+id/biaoti"
                android:paddingTop="20dp"
-               android:text="泡在江湖，爱在今朝 "
+               android:text="泡在，爱在今朝 "
                android:layout_below="@+id/tubiao"
                android:textSize="15dp"
                android:layout_centerHorizontal="true"

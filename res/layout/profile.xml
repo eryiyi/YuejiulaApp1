@@ -74,7 +74,7 @@
                           android:textSize="14sp"/>
 
                     <TextView android:layout_width="wrap_content"
-                              android:text="初入江湖"
+                              android:text="初入"
                               android:layout_alignParentRight="true"
                               android:textSize="14sp"
                               android:drawablePadding="6dp"

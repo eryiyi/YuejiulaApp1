@@ -54,7 +54,7 @@
                   android:id="@+id/concent"
                   android:layout_below="@+id/title"
                   android:singleLine="false"
-                  android:text="约酒啦商业联盟主要致力于打造一流的电子商务平台，立志于服务校园，为高校学生提供方便的购物市场。只要你有一定的热情和商业资源，我们都欢迎您加入约酒啦商业团队，加盟约酒啦市场，在约酒啦江湖上建立属于你们的专属高校商业区。"
+                  android:text="约酒啦商业联盟主要致力于打造一流的电子商务平台，立志于服务校园，为高校学生提供方便的购物市场。只要你有一定的热情和商业资源，我们都欢迎您加入约酒啦商业团队，加盟约酒啦市场，在约酒啦上建立属于你们的专属高校商业区。"
                  android:lineSpacingExtra="3dp"
                   android:textColor="@color/black_deep"
                   android:textSize="15dp"
@@ -142,7 +142,7 @@
                   android:paddingTop="5dp"
                   android:layout_centerHorizontal="true"
                   android:layout_below="@+id/erweima"
-                  android:text="微信扫描关注“约酒啦江湖”"
+                  android:text="微信扫描关注“约酒啦”"
                   android:textColor="@color/black_deep"
                   android:textSize="14dp"
                 />

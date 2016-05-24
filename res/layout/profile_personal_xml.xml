@@ -280,7 +280,7 @@
                               android:layout_height="wrap_content"
                               android:layout_weight="2"
                               android:gravity="left"
-                              android:text="青春无悔，约酒啦江湖"
+                              android:text="青春无悔，约酒啦"
                               android:textColor="@color/profile_font_color"
                               android:textSize="14sp"
                               android:id="@+id/profile_sign"/>

@@ -349,7 +349,7 @@
                               android:gravity="center|left"
                               android:paddingLeft="10dp"
                               android:singleLine="true"
-                              android:text="初入江湖"
+                              android:text="初入"
                               android:textSize="14sp"
                               android:textColor="@color/profile_font_color"
                               android:id="@+id/profile_dengji"/>
@@ -386,7 +386,7 @@
                             android:paddingLeft="10dp"
                             android:textSize="14sp"
                             android:background="@drawable/et_bule_bg"
-                            android:text="青春无悔，约酒啦江湖"/>
+                            android:text="青春无悔，约酒啦"/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
                       android:layout_height="0.5dp"

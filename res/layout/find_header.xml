@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:id="@+id/line_one"
+                  android:background="#e9e9e9"/>
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:visibility="gone"
+                          android:gravity="center|left"
+                          android:padding="8dp"
+                          android:text="校园PK"
+                          android:drawablePadding="8dp"
+                          android:drawableLeft="@drawable/find_item_pk"
+                          android:id="@+id/find_pk"
+                          android:drawableRight="@drawable/in"
+                          android:layout_marginLeft="10dp"
+                          android:textColor="@color/textColor"
+                          android:textSize="16sp"/>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:id="@+id/line_two"
+                      android:background="#e9e9e9"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:gravity="center|left"
+                      android:padding="8dp"
+                      android:drawableRight="@drawable/in"
+                      android:drawableLeft="@drawable/find_news"
+                      android:layout_below="@+id/line_two"
+                      android:text="约酒啦新闻"
+                      android:drawablePadding="8dp"
+                      android:id="@+id/find_news"
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/textColor"
+                      android:textSize="16sp"/>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:id="@+id/line_thee"
+                      android:background="#e9e9e9"/>
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:gravity="center|left"
+                          android:padding="8dp"
+                          android:drawableRight="@drawable/in"
+                          android:drawableLeft="@drawable/find_item_notice"
+                          android:text="约酒啦告示"
+                          android:drawablePadding="8dp"
+                          android:id="@+id/find_notices"
+                          android:layout_marginLeft="10dp"
+                          android:textColor="@color/textColor"
+                          android:textSize="16sp"/>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:id="@+id/line_four"
+                      android:background="#e9e9e9"/>
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:gravity="center|left"
+                          android:padding="8dp"
+                          android:id="@+id/find_jianzhi"
+                          android:drawableRight="@drawable/in"
+                          android:drawableLeft="@drawable/find_item_resume"
+                          android:text="校园招聘"
+                          android:drawablePadding="8dp"
+                          android:layout_marginLeft="10dp"
+                          android:textColor="@color/textColor"
+                          android:textSize="16sp"/>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:id="@+id/line_five"
+                      android:background="#e9e9e9"/>
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:gravity="center|left"
+                          android:padding="8dp"
+                          android:id="@+id/find_tv"
+                          android:drawableRight="@drawable/in"
+                          android:drawableLeft="@drawable/find_item_navi"
+                          android:text="约酒啦导航"
+                          android:drawablePadding="8dp"
+                          android:layout_marginLeft="10dp"
+                          android:textColor="@color/textColor"
+                          android:textSize="16sp"/>
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.5dp"
+                      android:id="@+id/line_six"
+                      android:background="#e9e9e9"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:gravity="center|left"
+                      android:padding="8dp"
+                      android:id="@+id/find_videos"
+                      android:drawableRight="@drawable/in"
+                      android:drawableLeft="@drawable/find_item_videos"
+                      android:text="约酒啦视频"
+                      android:drawablePadding="8dp"
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/textColor"
+                      android:textSize="16sp"/>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:id="@+id/line_seven"
+                  android:background="#e9e9e9"/>
+
+
+        </LinearLayout>

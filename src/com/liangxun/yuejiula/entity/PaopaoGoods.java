@@ -31,6 +31,34 @@ public class PaopaoGoods implements Serializable {
     private String schoolName;
     private String goodsPosition;//是否置顶
 
+    private String is_zhiying;
+    private String manager_id;
+    private String is_youhuo;
+
+    public String getIs_zhiying() {
+        return is_zhiying;
+    }
+
+    public void setIs_zhiying(String is_zhiying) {
+        this.is_zhiying = is_zhiying;
+    }
+
+    public String getManager_id() {
+        return manager_id;
+    }
+
+    public void setManager_id(String manager_id) {
+        this.manager_id = manager_id;
+    }
+
+    public String getIs_youhuo() {
+        return is_youhuo;
+    }
+
+    public void setIs_youhuo(String is_youhuo) {
+        this.is_youhuo = is_youhuo;
+    }
+
     public String getGoodsPosition() {
         return goodsPosition;
     }

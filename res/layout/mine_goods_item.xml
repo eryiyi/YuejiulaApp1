@@ -93,4 +93,19 @@
               android:id="@+id/button_two"
               android:background="@drawable/button_selector_yellow_one"
               android:layout_height="30dp"/>
+
+    <TextView android:layout_width="60dp"
+              android:layout_marginTop="10dp"
+              android:text="直营"
+              android:layout_alignParentRight="true"
+              android:layout_below="@+id/goods_item_pic"
+              android:layout_gravity="center"
+              android:gravity="center"
+              android:layout_marginBottom="10dp"
+              android:textColor="@color/blue"
+              android:textSize="14sp"
+              android:layout_marginRight="8dp"
+              android:visibility="gone"
+              android:id="@+id/button_three"
+              android:layout_height="30dp"/>
 </RelativeLayout>

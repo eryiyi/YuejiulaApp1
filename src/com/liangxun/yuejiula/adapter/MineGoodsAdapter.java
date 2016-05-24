@@ -68,6 +68,7 @@ public class MineGoodsAdapter extends BaseAdapter {
             holder.goods_item_money_market = (TextView) convertView.findViewById(R.id.goods_item_money_market);
             holder.button_one = (TextView) convertView.findViewById(R.id.button_one);
             holder.button_two = (TextView) convertView.findViewById(R.id.button_two);
+            holder.button_three = (TextView) convertView.findViewById(R.id.button_three);
             holder.goods_item_money_market.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             holder.status = (TextView) convertView.findViewById(R.id.status);
             convertView.setTag(holder);
@@ -90,6 +91,11 @@ public class MineGoodsAdapter extends BaseAdapter {
                 holder.status.setText("状态:上架中");
             }else {
                 holder.status.setText("状态:已下架");
+            }
+            if("1".equals(cell.getIs_zhiying())){
+                holder.button_three.setVisibility(View.VISIBLE);
+            }else {
+                holder.button_three.setVisibility(View.GONE);
             }
             holder.button_one.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,6 +122,7 @@ public class MineGoodsAdapter extends BaseAdapter {
         TextView button_one;
         TextView button_two;
         TextView status;
+        TextView button_three;
 
     }
 }

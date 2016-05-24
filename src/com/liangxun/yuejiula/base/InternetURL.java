@@ -8,8 +8,8 @@ public class InternetURL {
     public static final String APP_MOB_KEY = "12bd04f0dc118";
     public static final String APP_MOB_SCRECT = "6701d0f6ac951ba0b1f38af6aa34e5c3";
 
-    public static final String INTERNAL = "http://192.168.0.224:8080/";
-//    public static final String INTERNAL = "http://120.27.41.21:8070/";
+//    public static final String INTERNAL = "http://192.168.0.224:8080/";
+    public static final String INTERNAL = "http://120.27.41.21:8070/";
     //多媒体文件上传接口
 //    public static final String UPLOAD_FILE = INTERNAL + "uploadImage.do";
     public static final String QINIU_URL = "http://7xt74j.com1.z0.glb.clouddn.com/";
@@ -268,5 +268,8 @@ public class InternetURL {
     public static final String GET_DIANPU_MSG_DETAIL_URL = INTERNAL + "appGetProfileMsg.do";
     //更新产品上架 下架信息
     public static final String UPDATE_GOODS_STATUS_URL = INTERNAL + "paopaogoods/updatePaopaoGoodsJia.do";
+
+    //发现网址
+    public static final String FIND_WWW_URL = INTERNAL + "listFindsApp.do";
 
 }

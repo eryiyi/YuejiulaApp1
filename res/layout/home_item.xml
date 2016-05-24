@@ -150,7 +150,7 @@
                     android:gravity="center|left"
                     android:singleLine="true"
                     android:textColor="@color/textColortwo"
-                    android:text="出入江湖"
+                    android:text="出入"
                     android:drawablePadding="6dp"
                     android:textSize="14sp"/>
 

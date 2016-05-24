@@ -213,7 +213,7 @@ public class DetailVideosActivity extends BaseActivity implements View.OnClickLi
         if(!StringUtil.isNullOrEmpty(record.getTitle())){
             shareCont = record.getTitle();
         }else {
-            shareCont = "我在江湖，你在哪里，快到约酒啦江湖来！";
+            shareCont = "我在，你在哪里，快到约酒啦来！";
         }
         if (!StringUtil.isNullOrEmpty(record.getPicUrl())) {
             sharePic = record.getPicUrl();

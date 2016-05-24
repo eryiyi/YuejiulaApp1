@@ -25,151 +25,23 @@
                     android:textSize="18sp"/>
         </LinearLayout>
     </RelativeLayout>
-    <com.liangxun.yuejiula.widget.ReboundScrollView
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_height="match_parent">
-        <RelativeLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:layout_marginBottom="5dp">
 
-            <View android:layout_width="match_parent"
-                  android:layout_height="0.5dp"
-                  android:id="@+id/line_one"
-                  android:background="#e9e9e9"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginBottom="60dp"
+                    android:layout_height="wrap_content">
 
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:gravity="center|left"
-                          android:padding="8dp"
-                          android:layout_below="@+id/line_one"
-                          android:text="校园PK"
-                          android:drawablePadding="8dp"
-                          android:drawableLeft="@drawable/find_item_pk"
-                          android:id="@+id/find_pk"
-                          android:drawableRight="@drawable/in"
-                          android:layout_marginLeft="10dp"
-                          android:textColor="@color/textColor"
-                          android:textSize="16sp"/>
+        <com.liangxun.yuejiula.library.PullToRefreshListView
+                android:id="@+id/lstv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@drawable/home_item_shadow"
+                android:dividerHeight="8dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true"/>
+    </RelativeLayout>
 
-                <View android:layout_width="match_parent"
-                      android:layout_below="@+id/find_pk"
-                      android:layout_height="0.5dp"
-                      android:id="@+id/line_two"
-                      android:background="#e9e9e9"/>
-
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:gravity="center|left"
-                      android:padding="8dp"
-                      android:drawableRight="@drawable/in"
-                      android:drawableLeft="@drawable/find_news"
-                      android:layout_below="@+id/line_two"
-                      android:text="约酒啦新闻"
-                      android:drawablePadding="8dp"
-                      android:id="@+id/find_news"
-                      android:layout_marginLeft="10dp"
-                      android:textColor="@color/textColor"
-                      android:textSize="16sp"/>
-
-                <View android:layout_width="match_parent"
-                      android:layout_height="0.5dp"
-                      android:id="@+id/line_thee"
-                      android:layout_below="@+id/find_news"
-                      android:background="#e9e9e9"/>
-
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:gravity="center|left"
-                          android:padding="8dp"
-                          android:drawableRight="@drawable/in"
-                          android:drawableLeft="@drawable/find_item_notice"
-                          android:layout_below="@+id/line_thee"
-                          android:text="约酒啦告示"
-                          android:drawablePadding="8dp"
-                          android:id="@+id/find_notices"
-                          android:layout_marginLeft="10dp"
-                          android:textColor="@color/textColor"
-                          android:textSize="16sp"/>
-
-                <View android:layout_width="match_parent"
-                      android:layout_height="0.5dp"
-                      android:id="@+id/line_four"
-                      android:layout_below="@+id/find_notices"
-                      android:background="#e9e9e9"/>
-
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:gravity="center|left"
-                          android:padding="8dp"
-                          android:id="@+id/find_jianzhi"
-                          android:drawableRight="@drawable/in"
-                          android:drawableLeft="@drawable/find_item_resume"
-                          android:layout_below="@+id/line_four"
-                          android:text="校园招聘"
-                          android:drawablePadding="8dp"
-                          android:layout_marginLeft="10dp"
-                          android:textColor="@color/textColor"
-                          android:textSize="16sp"/>
-
-                <View android:layout_width="match_parent"
-                      android:layout_height="0.5dp"
-                      android:id="@+id/line_five"
-                      android:layout_below="@+id/find_jianzhi"
-                      android:background="#e9e9e9"/>
-
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:gravity="center|left"
-                          android:padding="8dp"
-                          android:id="@+id/find_tv"
-                          android:drawableRight="@drawable/in"
-                          android:drawableLeft="@drawable/find_item_navi"
-                          android:layout_below="@+id/line_five"
-                          android:text="约酒啦导航"
-                          android:drawablePadding="8dp"
-                          android:layout_marginLeft="10dp"
-                          android:textColor="@color/textColor"
-                          android:textSize="16sp"/>
-                <View android:layout_width="match_parent"
-                      android:layout_height="0.5dp"
-                      android:id="@+id/line_six"
-                      android:layout_below="@+id/find_tv"
-                      android:background="#e9e9e9"/>
-
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:gravity="center|left"
-                      android:padding="8dp"
-                      android:id="@+id/find_videos"
-                      android:drawableRight="@drawable/in"
-                      android:drawableLeft="@drawable/find_item_videos"
-                      android:layout_below="@+id/line_six"
-                      android:text="约酒啦视频"
-                      android:drawablePadding="8dp"
-                      android:layout_marginLeft="10dp"
-                      android:textColor="@color/textColor"
-                      android:textSize="16sp"/>
-            <View android:layout_width="match_parent"
-                  android:layout_height="0.5dp"
-                  android:id="@+id/line_seven"
-                  android:layout_below="@+id/find_videos"
-                  android:background="#e9e9e9"/>
-
-                <ImageView android:layout_width="match_parent"
-                           android:layout_marginTop="30dp"
-                           android:src="@drawable/find_below"
-                           android:layout_below="@+id/line_seven"
-                           android:id="@+id/find_pk_img"
-                           android:scaleType="fitXY"
-                           android:layout_height="wrap_content"/>
-        </RelativeLayout>
-    </com.liangxun.yuejiula.widget.ReboundScrollView>
 </LinearLayout>

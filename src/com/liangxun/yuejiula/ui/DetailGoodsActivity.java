@@ -406,6 +406,13 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
                 break;
             case R.id.foot_cart:
                 //购物车
+                //判断是否直营 是否允许直营
+                if("1".equals(goods.getIs_zhiying())){
+                    if("0".equals(goods.getIs_youhuo())){
+                        showMsg(DetailGoodsActivity.this, "暂时无货，请联系商家！");
+                        return;
+                    }
+                }
                 //先查询是否已经存在该商品了
                 if(DBHelper.getInstance(DetailGoodsActivity.this).isSaved(goods.getId())){
                     //如果已经加入购物车了

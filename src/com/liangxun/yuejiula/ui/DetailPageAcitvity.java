@@ -332,7 +332,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         if(!StringUtil.isNullOrEmpty(record.getRecordCont())){
             shareCont = record.getRecordCont();
         }else {
-            shareCont = "我在江湖，你在哪里，快到约酒啦江湖来！";
+            shareCont = "我在，你在哪里，快到约酒啦来！";
         }
         if (!StringUtil.isNullOrEmpty(record.getRecordPicUrl())) {
             if (record.getRecordPicUrl().contains(",")) {

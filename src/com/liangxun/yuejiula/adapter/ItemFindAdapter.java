@@ -2,7 +2,6 @@ package com.liangxun.yuejiula.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liangxun.yuejiula.R;
-import com.liangxun.yuejiula.entity.PaopaoGoods;
+import com.liangxun.yuejiula.entity.EmpDianpu;
+import com.liangxun.yuejiula.entity.SchoolFind;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
@@ -23,13 +23,13 @@ import java.util.List;
  * Time: 8:47
  * 类的功能、说明写在此处.
  */
-public class SearchGoodsAdapter extends BaseAdapter {
+public class ItemFindAdapter extends BaseAdapter {
     private ViewHolder holder;
-    private List<PaopaoGoods> list;
+    private List<SchoolFind> list;
     private Context context;
     Resources res;
 
-    public SearchGoodsAdapter(List<PaopaoGoods> list, Context context) {
+    public ItemFindAdapter(List<SchoolFind> list, Context context) {
         res = context.getResources();
         this.list = list;
         this.context = context;
@@ -82,42 +82,24 @@ public class SearchGoodsAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_goods, null);
-            holder.item_cover = (ImageView) convertView.findViewById(R.id.item_cover);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_find, null);
+            holder.item_pic = (ImageView) convertView.findViewById(R.id.item_pic);
             holder.item_title = (TextView) convertView.findViewById(R.id.item_title);
-            holder.item_sellPrice = (TextView) convertView.findViewById(R.id.item_sellPrice);
-            holder.item_marketPrice = (TextView) convertView.findViewById(R.id.item_marketPrice);
-            holder.item_nickname = (TextView) convertView.findViewById(R.id.item_nickname);
-            holder.item_zhiying = (TextView) convertView.findViewById(R.id.item_zhiying);
-            holder.item_marketPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        PaopaoGoods cell = list.get(position);
-        holder.item_sellPrice.setText(String.format(res.getString(R.string.goods_prices), cell.getSellPrice()));
-        holder.item_marketPrice.setText(String.format(res.getString(R.string.goods_prices), cell.getMarketPrice()));
-        String titlte = cell.getName();
-        if(titlte!= null && titlte.length()>20){
-            holder.item_title.setText(titlte.substring(0,19));
-        }else {
-            holder.item_title.setText(titlte);
+        SchoolFind cell = list.get(position);
+        if(cell != null){
+            holder.item_title.setText(cell.getTitle());
+            //加载图片
+            imageLoader.displayImage(cell.getPic_url(), holder.item_pic, UniversityApplication.txOptions, animateFirstListener);
         }
-        holder.item_nickname.setText(cell.getNickName());
-        if("1".endsWith(cell.getIs_zhiying())){
-            holder.item_zhiying.setVisibility(View.VISIBLE);
-        }
-        //加载图片
-        imageLoader.displayImage(cell.getCover(), holder.item_cover, UniversityApplication.options, animateFirstListener);
         return convertView;
     }
 
     class ViewHolder {
-        ImageView item_cover;
+        ImageView item_pic;
         TextView item_title;
-        TextView item_sellPrice;
-        TextView item_nickname;
-        TextView item_marketPrice;
-        TextView item_zhiying;
     }
 }
