@@ -6,16 +6,16 @@
         android:background="@drawable/zhuye_item_select"
         android:layout_height="wrap_content">
 
-        <com.liangxun.yuejiula.widget.CircleImageView
-                android:id="@+id/detail_favour_item_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/head"/>
+    <com.liangxun.yuejiula.widget.CircleImageView
+            android:id="@+id/detail_favour_item_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/head"/>
 
-        <TextView android:layout_width="32dp"
-                  android:id="@+id/favour_count"
-                  android:background="@drawable/zhezhao"
-                  android:gravity="center"
-                  android:textColor="@color/white"
-                  android:layout_height="32dp"/>
+    <TextView android:layout_width="32dp"
+              android:id="@+id/favour_count"
+              android:background="@drawable/zhezhao"
+              android:gravity="center"
+              android:textColor="@color/white"
+              android:layout_height="32dp"/>
 </RelativeLayout>

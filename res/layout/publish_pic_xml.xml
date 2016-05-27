@@ -23,7 +23,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dip"
-                    android:text="约酒啦"
+                    android:text="童心堂"
                     android:textColor="@color/title_font_main"
                     android:textSize="18sp"/>
         </LinearLayout>
@@ -53,7 +53,7 @@
                   android:orientation="vertical"
                   android:layout_height="wrap_content"
                   android:layout_weight="1">
-         <LinearLayout android:layout_width="match_parent"
+        <LinearLayout android:layout_width="match_parent"
                       android:orientation="vertical"
                       android:layout_weight="1"
                       android:layout_height="wrap_content">
@@ -88,31 +88,31 @@
                     android:numColumns="4"
                     android:padding="10dip"
                     android:verticalSpacing="5dip"/>
-             <LinearLayout android:layout_width="match_parent"
-                           android:orientation="horizontal"
-                           android:gravity="center|left"
-                           android:padding="5dp"
-                           android:layout_height="wrap_content">
-                 <TextView android:layout_width="wrap_content"
-                           android:layout_height="match_parent"
-                           android:textColor="@color/textColor"
-                           android:layout_gravity="center"
-                           android:gravity="center"
-                           android:layout_marginLeft="8dp"
-                           android:textSize="14sp"
-                           android:text="标签："
-                           android:phoneNumber="true"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center|left"
+                          android:padding="5dp"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          android:textColor="@color/textColor"
+                          android:layout_gravity="center"
+                          android:gravity="center"
+                          android:layout_marginLeft="8dp"
+                          android:textSize="14sp"
+                          android:text="标签："
+                          android:phoneNumber="true"/>
 
-                 <com.liangxun.yuejiula.widget.popview.CustomerSpinner
-                         android:background="@drawable/spinner1_bg"
-                         android:layout_width="120dp"
-                         android:layout_height="35dp"
-                         android:layout_marginRight="10dp"
-                         android:layout_marginLeft="5dp"
-                         android:layout_alignParentRight="true"
-                         android:id="@+id/provice_select_school"
-                         android:layout_marginTop="7px"/>
-             </LinearLayout>
+                <com.liangxun.yuejiula.widget.popview.CustomerSpinner
+                        android:background="@drawable/spinner1_bg"
+                        android:layout_width="120dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/provice_select_school"
+                        android:layout_marginTop="7px"/>
+            </LinearLayout>
         </LinearLayout>
 
         <View android:layout_width="match_parent"

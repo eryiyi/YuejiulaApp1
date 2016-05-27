@@ -79,7 +79,7 @@
                 android:id="@+id/rl_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-        android:background="#aaffffff"
+                android:background="#aaffffff"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingTop="4dp">
@@ -207,26 +207,26 @@
             <!-- 表情图片 -->
 
             <!--<LinearLayout-->
-                    <!--android:id="@+id/ll_face_container"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="150dp"-->
-                    <!--android:orientation="vertical"-->
-                    <!--android:visibility="visible">-->
+            <!--android:id="@+id/ll_face_container"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:orientation="vertical"-->
+            <!--android:visibility="visible">-->
 
-                <!--<android.support.v4.view.ViewPager-->
-                        <!--android:id="@+id/vPager"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"/>-->
+            <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/vPager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"/>-->
 
-                <!--<LinearLayout-->
-                        <!--android:id="@+id/iv_image"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentBottom="true"-->
-                        <!--android:layout_marginBottom="6dip"-->
-                        <!--android:gravity="center"-->
-                        <!--android:orientation="horizontal">-->
-                <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+            <!--android:id="@+id/iv_image"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginBottom="6dip"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
+            <!--</LinearLayout>-->
             <!--</LinearLayout>-->
 
             <RelativeLayout

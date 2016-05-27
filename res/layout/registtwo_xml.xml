@@ -43,160 +43,160 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:padding="10dp"
-                  android:id="@+id/linearname">
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_gravity="center|left"
-                        android:gravity="center|left"
-                        android:layout_marginTop="5dp"
-                        android:drawablePadding="8dp"
-                        android:background="@drawable/et_bule_bg"
-                        android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:padding="10dp"
+                      android:id="@+id/linearname">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_gravity="center|left"
+                            android:gravity="center|left"
+                            android:layout_marginTop="5dp"
+                            android:drawablePadding="8dp"
+                            android:background="@drawable/et_bule_bg"
+                            android:layout_height="wrap_content">
+                <EditText android:layout_width="match_parent"
+                          android:hint="手机号"
+                          android:id="@+id/mm_emp_mobile"
+                          android:numeric="integer"
+                          android:phoneNumber="true"
+                          android:singleLine="true"
+                          android:textSize="16sp"
+                          android:textColor="#333333"
+                          android:padding="15dp"
+                          android:background="@null"
+                          android:gravity="center|left"
+                          android:layout_height="50dp"/>
+                <Button android:layout_width="wrap_content"
+                        android:text="获取验证码"
+                        android:id="@+id/btn_code"
+                        android:layout_marginRight="8dp"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"
+                        android:padding="8dp"
+                        android:background="#ff5929"
+                        android:layout_height="50dp"/>
+            </RelativeLayout>
             <EditText android:layout_width="match_parent"
-                      android:hint="手机号"
-                      android:id="@+id/mm_emp_mobile"
-                      android:numeric="integer"
-                      android:phoneNumber="true"
-                      android:singleLine="true"
-                      android:textSize="16sp"
                       android:textColor="#333333"
                       android:padding="15dp"
-                      android:background="@null"
-                      android:gravity="center|left"
-                      android:layout_height="50dp"/>
-            <Button android:layout_width="wrap_content"
-                    android:text="获取验证码"
-                    android:id="@+id/btn_code"
-                    android:layout_marginRight="8dp"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/white"
-                    android:padding="8dp"
-                    android:background="#ff5929"
-                    android:layout_height="50dp"/>
-        </RelativeLayout>
-        <EditText android:layout_width="match_parent"
-                  android:textColor="#333333"
-                  android:padding="15dp"
-                  android:layout_marginTop="5dp"
-                  android:numeric="integer"
-                  android:textSize="16sp"
-                  android:singleLine="true"
-                  android:id="@+id/code"
-                  android:hint="输入验证码"
-                  android:phoneNumber="true"
-                  android:background="@drawable/et_bule_bg"
-                  android:layout_height="50dp">
-        </EditText>
-
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="50dp"
-                  android:layout_marginTop="5dp"
-                  android:textColor="#333333"
-                  android:padding="15dp"
-                  android:background="@drawable/et_bule_bg"
-                  android:textSize="16sp"
-                  android:hint="输入昵称"
-                  android:id="@+id/regist_nickname"/>
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="50dp"
-                  android:textColor="#333333"
-                  android:layout_marginTop="5dp"
-                  android:textSize="16sp"
-                  android:padding="15dp"
-                  android:background="@drawable/et_bule_bg"
-                  android:hint="输入密码，6到18位"
-                  android:password="true"
-                  android:id="@+id/registtwo_pwr"/>
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:layout_height="wrap_content">
-            <EditText android:layout_width="wrap_content"
-                      android:layout_height="50dp"
-                      android:layout_weight="1"
-                      android:textColor="#333333"
-                      android:textSize="16sp"
                       android:layout_marginTop="5dp"
-                      android:hint="确认密码"
+                      android:numeric="integer"
+                      android:textSize="16sp"
+                      android:singleLine="true"
+                      android:id="@+id/code"
+                      android:hint="输入验证码"
+                      android:phoneNumber="true"
+                      android:background="@drawable/et_bule_bg"
+                      android:layout_height="50dp">
+            </EditText>
+
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="50dp"
+                      android:layout_marginTop="5dp"
+                      android:textColor="#333333"
                       android:padding="15dp"
                       android:background="@drawable/et_bule_bg"
+                      android:textSize="16sp"
+                      android:hint="输入昵称"
+                      android:id="@+id/regist_nickname"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="50dp"
+                      android:textColor="#333333"
+                      android:layout_marginTop="5dp"
+                      android:textSize="16sp"
+                      android:padding="15dp"
+                      android:background="@drawable/et_bule_bg"
+                      android:hint="输入密码，6到18位"
                       android:password="true"
-                      android:id="@+id/registtwo_sure"/>
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:gravity="center"
-                      android:padding="5dp"
-                      android:layout_height="wrap_content">
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textColor="#333333"
-                      android:textSize="16sp"
-                      android:text="省份："
-                      android:phoneNumber="true"/>
+                      android:id="@+id/registtwo_pwr"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:layout_height="wrap_content">
+                <EditText android:layout_width="wrap_content"
+                          android:layout_height="50dp"
+                          android:layout_weight="1"
+                          android:textColor="#333333"
+                          android:textSize="16sp"
+                          android:layout_marginTop="5dp"
+                          android:hint="确认密码"
+                          android:padding="15dp"
+                          android:background="@drawable/et_bule_bg"
+                          android:password="true"
+                          android:id="@+id/registtwo_sure"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center"
+                          android:padding="5dp"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="#333333"
+                          android:textSize="16sp"
+                          android:text="省份："
+                          android:phoneNumber="true"/>
 
-            <com.liangxun.yuejiula.widget.popview.CustomerSpinner
-                    android:background="@drawable/spinner1_bg"
-                    android:layout_width="fill_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/provice_select_school"
-                    android:layout_marginTop="7px"/>
-        </LinearLayout>
+                <com.liangxun.yuejiula.widget.popview.CustomerSpinner
+                        android:background="@drawable/spinner1_bg"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/provice_select_school"
+                        android:layout_marginTop="7px"/>
+            </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:gravity="center"
-                      android:padding="5dp"
-                      android:layout_height="wrap_content">
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textColor="#333333"
-                      android:textSize="16sp"
-                      android:text="学校："
-                      android:phoneNumber="true"/>
-            <com.liangxun.yuejiula.widget.popview.CustomerSpinner
-                    android:background="@drawable/spinner1_bg"
-                    android:layout_width="fill_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/university_select_school"
-                    android:layout_marginTop="7px"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center"
+                          android:padding="5dp"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="#333333"
+                          android:textSize="16sp"
+                          android:text="学校："
+                          android:phoneNumber="true"/>
+                <com.liangxun.yuejiula.widget.popview.CustomerSpinner
+                        android:background="@drawable/spinner1_bg"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/university_select_school"
+                        android:layout_marginTop="7px"/>
 
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:gravity="center"
-                      android:layout_height="wrap_content">
-            <TextView android:layout_width="wrap_content"
-                      android:text="*"
-                      android:textColor="@color/denglu_bt_bg"
-                      android:layout_height="wrap_content"/>
-            <TextView android:layout_width="wrap_content"
-                      android:text="注册之后，不可更改"
-                      android:textColor="@color/sbc_page_number_text"
-                      android:layout_height="wrap_content"/>
-        </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:gravity="center"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:text="*"
+                          android:textColor="@color/denglu_bt_bg"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="wrap_content"
+                          android:text="注册之后，不可更改"
+                          android:textColor="@color/sbc_page_number_text"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-        <Button
-                android:id="@+id/registtwo_button"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height"
-                android:background="@drawable/button_background"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="确  定"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
-                android:enabled="true"/>
-    </LinearLayout>
-</com.liangxun.yuejiula.widget.ReboundScrollView>
+            <Button
+                    android:id="@+id/registtwo_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/button_background"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="确  定"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    android:enabled="true"/>
+        </LinearLayout>
+    </com.liangxun.yuejiula.widget.ReboundScrollView>
 </LinearLayout>

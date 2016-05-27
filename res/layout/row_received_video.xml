@@ -46,7 +46,7 @@
                     android:paddingLeft="3dp"
                     android:maxEms="7"
                     android:layout_alignParentLeft="true"
-                   />
+                    />
 
             <FrameLayout
                     android:id="@+id/chatting_click_area"

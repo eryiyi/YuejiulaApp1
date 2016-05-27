@@ -119,7 +119,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     void logout() {
         AlertDialog dialog = new AlertDialog.Builder(SetActivity.this)
                 .setIcon(R.drawable.quiticon)
-                .setTitle("确定退出约酒啦？")
+                .setTitle("确定退出童心堂？")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         final ProgressDialog pd = new ProgressDialog(SetActivity.this);

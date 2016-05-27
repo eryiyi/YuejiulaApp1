@@ -26,7 +26,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dip"
-                        android:text="约酒啦告示"
+                        android:text="童心堂告示"
                         android:id="@+id/notice_detail_title"
                         android:textColor="@color/title_font_main"
                         android:textSize="18sp"/>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by liuzh on 2015/8/16.
- * 约酒啦商城宝贝表
+ * 童心堂商城宝贝表
  */
 public class PaopaoGoods implements Serializable {
     private String id;

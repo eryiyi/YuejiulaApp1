@@ -75,14 +75,14 @@
                 android:textSize="12sp"/>
     </RelativeLayout>
     <View android:layout_width="match_parent"
-                           android:layout_height="0.5dp"
-                           android:background="#e9e9e9"/>
+          android:layout_height="0.5dp"
+          android:background="#e9e9e9"/>
 
     <RelativeLayout
             android:id="@+id/tongxunlu"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-          android:background="@drawable/find_item_select"
+            android:background="@drawable/find_item_select"
             android:duplicateParentState="true">
         <ImageView
                 android:id="@+id/contacts_cover"

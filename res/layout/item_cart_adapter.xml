@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+                android:orientation="vertical"
                 android:padding="8dp"
                 android:background="@drawable/zhuye_item_select"
-              android:layout_width="match_parent"
-              android:layout_height="140dp">
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
     <RelativeLayout android:layout_width="match_parent"
                     android:id="@+id/relate_one"
                     android:padding="3dp"
@@ -31,9 +31,9 @@
                   android:layout_height="wrap_content"/>
         <ImageView android:layout_width="wrap_content"
                    android:src="@drawable/button_red_delete"
-                  android:layout_alignParentRight="true"
-                  android:id="@+id/item_cart_edit"
-                  android:layout_height="wrap_content"/>
+                   android:layout_alignParentRight="true"
+                   android:id="@+id/item_cart_edit"
+                   android:layout_height="wrap_content"/>
 
     </RelativeLayout>
     <View android:layout_width="match_parent"
@@ -77,11 +77,11 @@
               android:textColor="@color/button_color_red_n"
               android:layout_height="wrap_content"/>
     <LinearLayout android:layout_width="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
+                  android:orientation="horizontal"
+                  android:padding="8dp"
                   android:layout_below="@+id/item_cart_cont"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="wrap_content">
+                  android:layout_alignParentRight="true"
+                  android:layout_height="wrap_content">
         <ImageView android:layout_width="wrap_content"
                    android:src="@drawable/cart_jian"
                    android:id="@+id/item_cart_jian"

@@ -47,26 +47,26 @@
             android:layout_width="match_parent"
             android:layout_marginTop="3dp"
             android:layout_height="match_parent">
-    <RelativeLayout android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
 
-            >
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textColor="@color/black_deep"
-              android:id="@+id/jinbitime"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:lineSpacingExtra="3dp"
-              android:layout_marginTop="8dp"
-              android:id="@+id/content"
-              android:textSize="15dp"
-              android:layout_below="@+id/jinbitime"
-              android:textColor="@color/black_deep"
-              android:text="您可能违反了以下协议：
- \n一、用户不得利用“ 约酒啦”账号或本服务制作、上传、复制、发布、传播如下法律、法规和政策禁止的内容：
+                >
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/black_deep"
+                      android:id="@+id/jinbitime"
+                    />
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:lineSpacingExtra="3dp"
+                      android:layout_marginTop="8dp"
+                      android:id="@+id/content"
+                      android:textSize="15dp"
+                      android:layout_below="@+id/jinbitime"
+                      android:textColor="@color/black_deep"
+                      android:text="您可能违反了以下协议：
+ \n一、用户不得利用“ 童心堂”账号或本服务制作、上传、复制、发布、传播如下法律、法规和政策禁止的内容：
 \n（一）反对宪法所确定的基本原则的；
 \n（二）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；
 \n（三）损害国家荣誉和利益的；
@@ -76,7 +76,7 @@
 \n（七）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；
 \n（八）侮辱或者诽谤他人，侵害他人合法权益的；
 \n（九）含有法律、行政法规禁止的其他内容的信息。
-\n二、用户不得利用“约酒啦”账号或本服务制作、上传、复制、发布、传播如下干扰“约酒啦”正常运营，以及侵犯其他用户或第三方合法权益的内容：
+\n二、用户不得利用“童心堂”账号或本服务制作、上传、复制、发布、传播如下干扰“童心堂”正常运营，以及侵犯其他用户或第三方合法权益的内容：
 \n（一）含有任何性或性暗示的；
 \n（二）含有辱骂、恐吓、威胁内容的；
 \n（三）含有骚扰、垃圾广告、恶意信息、诱骗信息的；
@@ -84,17 +84,17 @@
 \n（五）侵害他人名誉权、肖像权、知识产权、商业秘密等合法权利的；
 \n（六）含有其他干扰本服务正常运营和侵犯其他用户或第三方合法权益内容的信息。
          "
-            />
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/content"
-                  android:layout_alignParentRight="true"
-                  android:gravity="right"
-                  android:text="山东良讯传媒有限公司"
-                  android:textSize="15dp"
-                  android:layout_centerHorizontal="true"
-                  android:textColor="@color/black_deep"
-                />
-    </RelativeLayout>
+                    />
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@+id/content"
+                      android:layout_alignParentRight="true"
+                      android:gravity="right"
+                      android:text="山东良讯传媒有限公司"
+                      android:textSize="15dp"
+                      android:layout_centerHorizontal="true"
+                      android:textColor="@color/black_deep"
+                    />
+        </RelativeLayout>
     </com.liangxun.yuejiula.widget.ReboundScrollView>
 </LinearLayout>

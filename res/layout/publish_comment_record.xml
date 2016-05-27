@@ -120,7 +120,7 @@
                 android:visibility="gone"
                 android:layout_height="124dip"
                 android:layout_below="@id/rl_input"
-              android:background="#f6f5f5">
+                android:background="#f6f5f5">
 
             <android.support.v4.view.ViewPager
                     android:id="@+id/vp_contains"

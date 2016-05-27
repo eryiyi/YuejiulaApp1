@@ -29,7 +29,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dip"
-                        android:text="约酒啦新闻"
+                        android:text="童心堂新闻"
                         android:id="@+id/part_news_title"
                         android:singleLine="true"
                         android:textColor="@color/title_font_main"

@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     private FragmentManager fm;
 
     private HomeFragment homeFragment;//首页
-    private HxFragment classFragment;//约酒啦
+    private HxFragment classFragment;//童心堂
     private FindFragment findFragment;//发现
     private ProfileFragment partFragment;//我的
     private DianpuFragment goodsFragment;//商城

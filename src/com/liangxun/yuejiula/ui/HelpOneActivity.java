@@ -11,7 +11,7 @@ import com.liangxun.yuejiula.base.BaseActivity;
 
 /**
  * Created by Administrator on 2015/3/30.
- * 帮助  代理商列表没有学校管理人  来这儿联系我们约酒啦总舵
+ * 帮助  代理商列表没有学校管理人  来这儿联系我们童心堂总舵
  */
 public class HelpOneActivity extends BaseActivity implements View.OnClickListener {
     private TextView button_help;//联系总舵

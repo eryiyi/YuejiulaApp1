@@ -6,29 +6,29 @@
               android:background="@color/detail_back"
               android:orientation="vertical">
 
-        <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_top_bar"
-                android:background="@drawable/global_top_background">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background">
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dip"
-                    android:gravity="center"
-                    android:text="关于良讯"
-                    android:textColor="@color/title_font_main"
-                    android:textSize="18sp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="关于良讯"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"/>
 
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/aboutus_menu"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:src="@drawable/back"/>
-        </RelativeLayout>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/aboutus_menu"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/back"/>
+    </RelativeLayout>
 
     <com.liangxun.yuejiula.widget.ReboundScrollView
             android:layout_width="match_parent"

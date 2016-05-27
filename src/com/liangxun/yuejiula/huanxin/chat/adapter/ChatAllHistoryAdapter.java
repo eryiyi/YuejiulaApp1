@@ -111,7 +111,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<MyEMConversation> {
             holder.avatar.setImageUrl("", imageLoader);
 //			holder.avatar.setImageResource(R.drawable.xiaoyuandating);
 //			holder.name.setText(emp != null ? emp.getEmpName() : username);
-            holder.name.setText("约酒啦大厅");
+            holder.name.setText("童心堂大厅");
         } else {
             // 本地或者服务器获取用户详情，以用来显示头像和nick
 //            imageLoader.displayImage(userDao.getCoverByName(username), holder.avatar , UniversityApplication.txOptions, animateFirstListener);

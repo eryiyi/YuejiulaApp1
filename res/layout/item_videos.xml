@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:background="@drawable/zhuye_item_select"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:background="@drawable/zhuye_item_select"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,14 +61,14 @@
                         android:layout_marginRight="5dp"
                         android:text="23 点赞"
                         android:textColor="@color/light_gray"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
 
                 <TextView
                         android:id="@+id/dot2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/item_favour"
-                        android:text="·" />
+                        android:text="·"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
                         android:text="7 评论"
                         android:id="@+id/item_comment"
                         android:textColor="@color/light_gray"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
                         android:text="12月12日"
                         android:id="@+id/item_dateline"
                         android:textColor="@color/light_gray"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -112,7 +112,7 @@
                         android:layout_marginRight="13dp"
                         android:id="@+id/item_comment_btn"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/video_list_comment" />
+                        android:src="@drawable/video_list_comment"/>
 
                 <ImageView
                         android:layout_width="33dp"
@@ -120,7 +120,7 @@
                         android:layout_marginRight="13dp"
                         android:scaleType="fitCenter"
                         android:id="@+id/item_share_btn"
-                        android:src="@drawable/video_list_share" />
+                        android:src="@drawable/video_list_share"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -10,15 +10,15 @@
             android:layout_height="@dimen/height_top_bar"
             android:background="@drawable/global_top_background">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dip"
-                    android:id="@+id/title"
-                    android:layout_centerInParent="true"
-                    android:text="约酒啦视频"
-                    android:textColor="@color/title_font_main"
-                    android:textSize="18sp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dip"
+                android:id="@+id/title"
+                android:layout_centerInParent="true"
+                android:text="童心堂视频"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"/>
 
         <ImageView
                 android:layout_width="wrap_content"
@@ -33,13 +33,13 @@
 
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="horizontal"
-                    android:layout_height="wrap_content">
+                  android:layout_height="wrap_content">
         <RelativeLayout android:layout_width="0dp"
-                      android:layout_weight="1"
-                      android:id="@+id/liner_one"
-                      android:gravity="right|center"
-                      android:padding="8dp"
-                      android:layout_height="wrap_content">
+                        android:layout_weight="1"
+                        android:id="@+id/liner_one"
+                        android:gravity="right|center"
+                        android:padding="8dp"
+                        android:layout_height="wrap_content">
             <ImageView android:layout_width="wrap_content"
                        android:layout_centerVertical="true"
                        android:id="@+id/time_img"
@@ -55,11 +55,11 @@
                       android:layout_height="wrap_content"/>
         </RelativeLayout>
         <RelativeLayout android:layout_width="0dp"
-                      android:layout_weight="1"
-                      android:id="@+id/liner_two"
-                      android:gravity="left|center"
-                      android:padding="8dp"
-                      android:layout_height="wrap_content">
+                        android:layout_weight="1"
+                        android:id="@+id/liner_two"
+                        android:gravity="left|center"
+                        android:padding="8dp"
+                        android:layout_height="wrap_content">
             <ImageView android:layout_width="wrap_content"
                        android:layout_centerVertical="true"
                        android:id="@+id/favour_img"

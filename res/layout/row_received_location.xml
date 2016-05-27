@@ -46,7 +46,7 @@
                     android:paddingLeft="3dp"
                     android:paddingBottom="3dp"
                     android:maxEms="7"
-                   />
+                    />
             <TextView
                     android:id="@+id/tv_location"
                     style="@style/chat_content_date_style"

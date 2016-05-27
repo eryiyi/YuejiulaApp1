@@ -5,69 +5,69 @@
               android:background="@color/white"
               android:orientation="vertical">
 
-        <!-- head开始 -->
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_top_bar"
-                android:background="@drawable/global_top_background"
+    <!-- head开始 -->
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/global_top_background"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            >
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/detail_comment_back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                >
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/detail_comment_back"
-                    android:paddingLeft="10dp"
-                    android:src="@drawable/back"
-                    android:paddingRight="10dp"
-                    />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/title_font_main"
-                    android:text="评论"
-                    android:textSize="18sp"
-                    android:id="@+id/goods_comment_title"
-                    />
-            <!--<TextView android:layout_width="wrap_content"-->
-                      <!--android:layout_height="match_parent"-->
-                      <!--android:text="评论"-->
-                      <!--android:gravity="center_vertical"-->
-                      <!--android:textSize="18sp"-->
-                      <!--android:textColor="@color/right_font_color"-->
-                      <!--android:layout_alignParentRight="true"-->
-                      <!--android:paddingLeft="10dp"-->
-                      <!--android:paddingRight="15dp"-->
-                      <!--android:id="@+id/goods_comment_sub"-->
-                    <!--/>-->
-        </RelativeLayout>
-        <!-- head结束 -->
-        <RelativeLayout android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_height="wrap_content">
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/title_font_main"
+                android:text="评论"
+                android:textSize="18sp"
+                android:id="@+id/goods_comment_title"
+                />
+        <!--<TextView android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="评论"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textColor="@color/right_font_color"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:paddingLeft="10dp"-->
+        <!--android:paddingRight="15dp"-->
+        <!--android:id="@+id/goods_comment_sub"-->
+        <!--/>-->
+    </RelativeLayout>
+    <!-- head结束 -->
+    <RelativeLayout android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
 
-            <ImageView android:layout_width="match_parent"
-                       android:src="@drawable/collect_no_good"
-                       android:id="@+id/search_null"
-                       android:layout_centerInParent="true"
-                       android:layout_height="wrap_content"/>
-            <com.liangxun.yuejiula.library.PullToRefreshListView
-                    android:id="@+id/detail_comment_lstv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:cacheColorHint="#00000000"
-                    android:divider="#19000000"
-                    android:dividerHeight="1dp"
-                    android:fadingEdge="none"
-                    android:fastScrollEnabled="false"
-                    android:footerDividersEnabled="false"
-                    android:headerDividersEnabled="false"
-                    android:smoothScrollbar="true"/>
-        </RelativeLayout>
+        <ImageView android:layout_width="match_parent"
+                   android:src="@drawable/collect_no_good"
+                   android:id="@+id/search_null"
+                   android:layout_centerInParent="true"
+                   android:layout_height="wrap_content"/>
+        <com.liangxun.yuejiula.library.PullToRefreshListView
+                android:id="@+id/detail_comment_lstv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="#19000000"
+                android:dividerHeight="1dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true"/>
+    </RelativeLayout>
 
 </LinearLayout>

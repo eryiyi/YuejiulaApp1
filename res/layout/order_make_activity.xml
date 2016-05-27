@@ -98,19 +98,19 @@
                     android:background="@color/white"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
-            <ListView android:layout_width="match_parent"
-                      android:id="@+id/lstv"
-                      android:cacheColorHint="#00000000"
-                      android:divider="#19000000"
-                      android:dividerHeight="6dp"
-                      android:fadingEdge="none"
-                      android:layout_weight="1"
-                      android:fastScrollEnabled="false"
-                      android:footerDividersEnabled="false"
-                      android:headerDividersEnabled="false"
-                      android:smoothScrollbar="true"
-                      android:layout_height="wrap_content">
-            </ListView>
+        <ListView android:layout_width="match_parent"
+                  android:id="@+id/lstv"
+                  android:cacheColorHint="#00000000"
+                  android:divider="#19000000"
+                  android:dividerHeight="6dp"
+                  android:fadingEdge="none"
+                  android:layout_weight="1"
+                  android:fastScrollEnabled="false"
+                  android:footerDividersEnabled="false"
+                  android:headerDividersEnabled="false"
+                  android:smoothScrollbar="true"
+                  android:layout_height="wrap_content">
+        </ListView>
     </RelativeLayout>
 
     <View android:layout_width="match_parent"
@@ -121,22 +121,22 @@
     <RelativeLayout android:layout_width="match_parent"
                     android:background="@color/white"
                     android:layout_height="50dp">
-            <Button android:layout_width="100dp"
-                    android:text="货到订单"
-                    android:id="@+id/order_sure"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/button_selector_red_one"
-                    android:textColor="@color/white"
-                    android:layout_height="match_parent"/>
+        <Button android:layout_width="100dp"
+                android:text="货到订单"
+                android:id="@+id/order_sure"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/button_selector_red_one"
+                android:textColor="@color/white"
+                android:layout_height="match_parent"/>
 
-            <TextView android:layout_width="wrap_content"
-                      android:textSize="18sp"
-                      android:text="$1280.00"
-                      android:id="@+id/order_count"
-                      android:layout_marginRight="5dp"
-                      android:layout_toLeftOf="@+id/order_sure"
-                      android:gravity="center"
-                      android:textColor="@color/button_color_red_n"
-                      android:layout_height="match_parent"/>
+        <TextView android:layout_width="wrap_content"
+                  android:textSize="18sp"
+                  android:text="$1280.00"
+                  android:id="@+id/order_count"
+                  android:layout_marginRight="5dp"
+                  android:layout_toLeftOf="@+id/order_sure"
+                  android:gravity="center"
+                  android:textColor="@color/button_color_red_n"
+                  android:layout_height="match_parent"/>
     </RelativeLayout>
 </LinearLayout>

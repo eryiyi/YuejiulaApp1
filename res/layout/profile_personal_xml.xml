@@ -280,7 +280,7 @@
                               android:layout_height="wrap_content"
                               android:layout_weight="2"
                               android:gravity="left"
-                              android:text="青春无悔，约酒啦"
+                              android:text="青春无悔，童心堂"
                               android:textColor="@color/profile_font_color"
                               android:textSize="14sp"
                               android:id="@+id/profile_sign"/>
@@ -314,7 +314,7 @@
                               android:text="个人动态"
                               android:textColor="@color/maincolor"
                               android:textSize="14sp"
-                             />
+                            />
                 </LinearLayout>
                 <View android:layout_width="match_parent"
                       android:layout_height="0.5dp"

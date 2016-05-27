@@ -32,50 +32,50 @@
                       android:layout_marginLeft="@dimen/margin_chat_activity"
                       android:layout_toRightOf="@id/iv_userhead"
                 >
-        <TextView
-                android:id="@+id/tv_userid"
-                style="@style/chat_text_name_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:paddingLeft="3dp"
-                android:paddingBottom="3dp"
-                android:maxEms="7"
-                />
-
-        <RelativeLayout
-                android:id="@+id/row_recv_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@id/iv_userhead"
-                android:background="@drawable/chatbgzuo2">
-
-            <ImageView
-                    android:layout_marginLeft="8dp"
-                    android:id="@+id/iv_call_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/chat_voice_call_receive"
-                    />
-
             <TextView
-                    android:layout_toRightOf="@id/iv_call_icon"
-                    android:id="@+id/tv_chatcontent"
+                    android:id="@+id/tv_userid"
+                    style="@style/chat_text_name_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:padding="5dp"
-                    android:minHeight="40dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/black_deep"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:paddingLeft="3dp"
+                    android:paddingBottom="3dp"
+                    android:maxEms="7"
                     />
-        </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/row_recv_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/iv_userhead"
+                    android:background="@drawable/chatbgzuo2">
+
+                <ImageView
+                        android:layout_marginLeft="8dp"
+                        android:id="@+id/iv_call_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/chat_voice_call_receive"
+                        />
+
+                <TextView
+                        android:layout_toRightOf="@id/iv_call_icon"
+                        android:id="@+id/tv_chatcontent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:padding="5dp"
+                        android:minHeight="40dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black_deep"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        />
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 

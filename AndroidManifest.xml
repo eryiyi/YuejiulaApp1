@@ -37,34 +37,34 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
     <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
 
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <!--mob-->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <!--读取短信-->
     <uses-permission android:name="android.permission.READ_SMS"/>
 
     <uses-feature
             android:name="android.hardware.camera"
-            android:required="true" />
+            android:required="true"/>
     <uses-feature
             android:name="android.hardware.camera.autofocus"
-            android:required="false" />
+            android:required="false"/>
     <uses-feature
             android:glEsVersion="0x00020000"
-            android:required="true" />
+            android:required="true"/>
 
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <!--短信MOB-->
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!--高德地图sdk-->
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
-    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application android:label="@string/app_name"
                  android:allowBackup="true"
@@ -79,103 +79,199 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.liangxun.yuejiula.ui.LoadingActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.LoginActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.MainActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailPageAcitvity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AboutUsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.FindNewsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailNewsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ProfilePersonalActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AboutJHActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.RegistTwoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AlbumActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AlbumChanceActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.GalleryUrlActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishPicActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishVideoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.VideoPlayerActivity2" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishCommentAcitvity" android:windowSoftInputMode="adjustResize" android:screenOrientation="portrait"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailFavourActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ImageDelActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.NoticeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.NoticeDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PartTimeLstActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishPartTimeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PartTimeDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineRecordActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MinePartTimeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.SetActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AndMeAcitvity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.GoodsCommentActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishGoodCommentActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.UpdateProfilePersonalActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.FindPwrOneActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ReportDoneActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ReportActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.JinbiActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.LoadingActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.LoginActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.MainActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailPageAcitvity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AboutUsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.FindNewsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailNewsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ProfilePersonalActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AboutJHActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.RegistTwoActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AlbumActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AlbumChanceActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.GalleryUrlActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishPicActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishVideoActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.VideoPlayerActivity2"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishCommentAcitvity"
+                  android:windowSoftInputMode="adjustResize" android:screenOrientation="portrait"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailFavourActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishGoodsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ImageDelActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.NoticeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.NoticeDetailActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailGoodsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PartTimeLstActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishPartTimeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PartTimeDetailActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineRecordActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineGoodsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MinePartTimeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.SetActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AndMeAcitvity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.GoodsCommentActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishGoodCommentActivity"
+                  android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.UpdateProfilePersonalActivity"
+                  android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.FindPwrOneActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ReportDoneActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ReportActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.JinbiActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="com.liangxun.yuejiula.ui.MorePartTypeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ReSetPwrActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ReSetMobileActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.NewsFragmentActivtiy" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PartsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.OtherSchoolOneActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.OtherSchoolTwoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.OtherSchoolThreeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AboutActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishNewsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineShangjiaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailShangjiaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddShangjiaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.KaitongShangjiaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.UpdateShangjiaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ChengbaoshangActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.GoodsNoticesActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineSchoolsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.HelpOneActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineTuiguangActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AddMineTgActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.WebViewActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailPkFavourActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkCommentActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkTitleActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkAddActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.AddMinePrizeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkPrizesActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkWangqiActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PkWqLstActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineSchoolsSjActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.ProfileDynamicActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.OrderMakeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineCartActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddressActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineFavoursActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddressUpdateActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.SelectAddressActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PayOrderActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineOrdersActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailOrderActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddAreaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddCityActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddProvinceActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineShangpuActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineOrdersMngActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailOrderMngActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.VideoPalyerActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.SearchGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.FindTvActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PaoPaokefuActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.FindVideosActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.VideosActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DetailVideosActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.PublishVideoCommentAcitvity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.DianpuDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MorePartTypeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ReSetPwrActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ReSetMobileActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.NewsFragmentActivtiy" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PartsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.OtherSchoolOneActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.OtherSchoolTwoActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.OtherSchoolThreeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AboutActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishNewsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineShangjiaActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailShangjiaActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddShangjiaActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.KaitongShangjiaActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.UpdateShangjiaActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ChengbaoshangActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.GoodsNoticesActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineSchoolsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.HelpOneActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineTuiguangActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AddMineTgActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.WebViewActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailPkFavourActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkCommentActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkTitleActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkAddActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AddMinePrizeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkPrizesActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkWangqiActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PkWqLstActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineSchoolsSjActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.ProfileDynamicActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.OrderMakeActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineCartActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddressActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineFavoursActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddressUpdateActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.SelectAddressActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PayOrderActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineOrdersActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailOrderActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddAreaActivity"
+                  android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddCityActivity"
+                  android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineAddressAddProvinceActivity"
+                  android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineShangpuActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineOrdersMngActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailOrderMngActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.VideoPalyerActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.SearchGoodsActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.FindTvActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PaoPaokefuActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.FindVideosActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.VideosActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailVideosActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.PublishVideoCommentAcitvity"
+                  android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DianpuDetailActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
 
 
         <activity
@@ -183,35 +279,35 @@
                 android:hardwareAccelerated="true"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"
-                android:theme="@style/CameraTheme" >
+                android:theme="@style/CameraTheme">
         </activity>
         <activity
                 android:name="com.yixia.camera.demo.ui.record.MediaPreviewActivity"
                 android:hardwareAccelerated="true"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"
-                android:theme="@style/CameraTheme" >
+                android:theme="@style/CameraTheme">
         </activity>
         <activity
                 android:name="com.yixia.camera.demo.ui.record.ImportVideoActivity"
                 android:hardwareAccelerated="true"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"
-                android:theme="@style/CameraTheme" >
+                android:theme="@style/CameraTheme">
         </activity>
         <activity
                 android:name="com.yixia.camera.demo.ui.record.VideoPlayerActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/CameraTheme" >
+                android:theme="@style/CameraTheme">
         </activity>
 
-        <service android:name="com.yixia.camera.demo.service.AssertService" />
+        <service android:name="com.yixia.camera.demo.service.AssertService"/>
 
         <activity
                 android:name="com.mob.tools.MobUIShell"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@android:style/Theme.NoTitleBar"
-                android:windowSoftInputMode="stateHidden|adjustResize" />
+                android:windowSoftInputMode="stateHidden|adjustResize"/>
 
         <!-- push应用定义消息receiver声明 -->
         <receiver android:name="com.liangxun.yuejiula.receiver.MyPushMessageReceiver">
@@ -261,7 +357,7 @@
         <!-- 4.4版本新增的CommandService声明，提升小米和魅族手机上的实际推送到达率 -->
         <service
                 android:name="com.baidu.android.pushservice.CommandService"
-                android:exported="true" />
+                android:exported="true"/>
         <!-- push结束 -->
 
         <!-- 在百度开发者中心查询应用的API Key -->
@@ -493,13 +589,13 @@
                 android:name="com.alipay.sdk.app.H5PayActivity"
                 android:configChanges="orientation|keyboardHidden|navigation"
                 android:exported="false"
-                android:screenOrientation="behind" >
+                android:screenOrientation="behind">
         </activity>
         <activity
                 android:name="com.alipay.sdk.auth.AuthActivity"
                 android:configChanges="orientation|keyboardHidden|navigation"
                 android:exported="false"
-                android:screenOrientation="behind" >
+                android:screenOrientation="behind">
         </activity>
 
         <!--高德地图-->
@@ -507,7 +603,7 @@
                 android:name="com.amap.api.v2.apikey"
                 android:value="22cce8b581e7edef2d76d5f6014c1d02"/>
         <!-- 定位需要的服务 -->
-        <service android:name="com.amap.api.location.APSService" >
+        <service android:name="com.amap.api.location.APSService">
         </service>
 
     </application>

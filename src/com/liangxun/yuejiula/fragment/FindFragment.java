@@ -101,7 +101,8 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = true;
                 pageIndex = 1;
-                initData();
+                lstv.onRefreshComplete();
+//                initData();
             }
 
             @Override
@@ -112,7 +113,8 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = false;
                 pageIndex++;
-                initData();
+                lstv.onRefreshComplete();
+//                initData();
             }
         });
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

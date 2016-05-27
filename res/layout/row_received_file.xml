@@ -49,7 +49,7 @@
                     android:singleLine="true"
                     android:maxEms="7"
                     android:ellipsize="end"
-                 />
+                    />
 
 
             <ImageView

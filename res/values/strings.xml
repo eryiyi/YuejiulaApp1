@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">约酒啦</string>
+    <string name="app_name">童心堂</string>
 
     <string name="right_tag">RIGHT</string>
     <string name="left_tag">LEFT</string>
@@ -419,9 +419,9 @@
     <string name="reset_mobile_success">重置手机号成功</string>
 
 
-    <string name="sign">"大家都来约酒啦"</string>
+    <string name="sign">"大家都来童心堂"</string>
 
-    <string name="dating">约酒啦大厅</string>
+    <string name="dating">童心堂大厅</string>
 
     <string name="check_publish">请稍后</string>
 
@@ -463,7 +463,7 @@
     <string name="pk_add_error_five">"请先添加代理学校"</string>
     <string name="pk_add_error_six">"请先选择学校"</string>
 
-    <string name="publishgoods_error_nineone">约酒啦兼职需要商家权限</string>
+    <string name="publishgoods_error_nineone">童心堂兼职需要商家权限</string>
 
     <string name="pk_error_title">暂无主题</string>
     <string name="pk_error_wq">活动已结束，不能进行投票</string>
@@ -474,7 +474,7 @@
     <string name="pk_is_sure_prizes_error">"领取奖品失败"</string>
     <string name="pk_is_sure_prizes_errorone">"已领取"</string>
 
-    <string name="version_name">"约酒啦版本"</string>
+    <string name="version_name">"童心堂版本"</string>
     <string name="can_not_find_version_name">"没有最新版本信息"</string>
     <string name="pingbiqunshengyin">屏蔽消息声音</string>
 
@@ -522,7 +522,9 @@
     <string name="create_time">下单时间:</string>
 
     <string name="imageview_content_description"></string>
-    <string name="rule_text">1.大赛以丰富在校大学生的娱乐生活、才艺展示位宗旨，仅针对校内师生设立，其他参赛者无参赛资格！\n2、参赛者可发布多个参赛作品，但不可偏离主题，否则无效\n3、获奖作品版权归大赛组委会所有，大赛组委会具有发布权\n4、上传作品严禁违法违规，作品发布者将承担相应的法律责任\n5、参赛者需要保证本人手机号注册，并确保通讯畅通，以便我们及时发放奖品，奖品发放期限为活动结束后一周，过期视作自动放弃\n6、活动最终解释权归良讯网所有</string>
+    <string name="rule_text">
+        1.大赛以丰富在校大学生的娱乐生活、才艺展示位宗旨，仅针对校内师生设立，其他参赛者无参赛资格！\n2、参赛者可发布多个参赛作品，但不可偏离主题，否则无效\n3、获奖作品版权归大赛组委会所有，大赛组委会具有发布权\n4、上传作品严禁违法违规，作品发布者将承担相应的法律责任\n5、参赛者需要保证本人手机号注册，并确保通讯畅通，以便我们及时发放奖品，奖品发放期限为活动结束后一周，过期视作自动放弃\n6、活动最终解释权归良讯网所有
+    </string>
 
 
     <string name="pwr_error_one">原始密码输入错误，请确认！</string>

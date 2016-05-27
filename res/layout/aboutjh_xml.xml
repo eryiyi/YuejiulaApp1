@@ -6,34 +6,34 @@
               android:background="@color/detail_back"
               android:orientation="vertical">
 
-        <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="48dip"
-                android:background="@drawable/global_top_background">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/global_top_background">
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="8dip"
-                    android:text="关于约酒啦"
-                    android:textColor="@color/title_font_main"
-                    android:textSize="18sp"/>
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/aboutjh_back"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:src="@drawable/back"/>
-        </RelativeLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="关于童心堂"
+                android:textColor="@color/title_font_main"
+                android:textSize="18sp"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/aboutjh_back"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/back"/>
+    </RelativeLayout>
 
-        <WebView android:layout_width="match_parent"
-                 android:id="@+id/webview_aboutjh"
-                 android:layout_height="wrap_content">
+    <WebView android:layout_width="match_parent"
+             android:id="@+id/webview_aboutjh"
+             android:layout_height="wrap_content">
 
-        </WebView>
+    </WebView>
 
 </LinearLayout>

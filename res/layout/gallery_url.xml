@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:text="约酒啦"
+                    android:text="童心堂"
                     android:onClick="download"
                     android:src="@drawable/xiazai"
                     android:layout_centerHorizontal="true"

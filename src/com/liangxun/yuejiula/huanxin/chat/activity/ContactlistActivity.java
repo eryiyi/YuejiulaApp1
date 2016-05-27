@@ -54,7 +54,7 @@ public class ContactlistActivity extends BaseActivity implements View.OnClickLis
     ImageButton clearSearch;
     EditText query;
     private ImageView add_contact;
-    private TextView paopaokf;
+//    private TextView paopaokf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +113,8 @@ public class ContactlistActivity extends BaseActivity implements View.OnClickLis
         });
         registerForContextMenu(listView);
 
-        paopaokf = (TextView) this.findViewById(R.id.paopaokf);
-        paopaokf.setOnClickListener(this);
+//        paopaokf = (TextView) this.findViewById(R.id.paopaokf);
+//        paopaokf.setOnClickListener(this);
     }
 
 
@@ -282,11 +282,11 @@ public class ContactlistActivity extends BaseActivity implements View.OnClickLis
                 Intent add_intent = new Intent(this, AddContactActivity.class);
                 startActivity(add_intent);
                 break;
-            case R.id.paopaokf:
-                //查询约酒啦客服
-                Intent intent = new Intent(ContactlistActivity.this, PaoPaokefuActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.paopaokf:
+//                //查询童心堂客服
+//                Intent intent = new Intent(ContactlistActivity.this, PaoPaokefuActivity.class);
+//                startActivity(intent);
+//                break;
         }
     }
 }
