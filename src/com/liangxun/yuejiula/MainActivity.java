@@ -1183,7 +1183,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                             SchoolRecordMoodData data = getGson().fromJson(s, SchoolRecordMoodData.class);
                             if (data.getCode() == 200) {
                                arrayMood.clear();
-                               arrayMood.addAll(data.getData());
+                                SchoolRecordMood schoolRecordMood = new SchoolRecordMood();
+                                schoolRecordMood.setSchool_record_mood_name("全部");
+                                schoolRecordMood.setSchool_record_mood_id("");
+                                schoolRecordMood.setTop_num("");
+                                arrayMood.add(schoolRecordMood);
+                                arrayMood.addAll(data.getData());
                             } else {
                                 Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
