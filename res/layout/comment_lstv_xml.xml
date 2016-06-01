@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:text="评论"
                 android:textSize="18sp"
                 android:id="@+id/goods_comment_title"

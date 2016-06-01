@@ -41,6 +41,9 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../easeui" />
+  </component>
   <component name="IdProvider" IDEtalkID="4DFB55899284D3E330D6BD46C2AD66DA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />

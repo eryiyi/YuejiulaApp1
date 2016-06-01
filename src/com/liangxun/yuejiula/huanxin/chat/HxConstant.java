@@ -19,5 +19,5 @@ public class HxConstant {
     public static final String MESSAGE_ATTR_IS_VOICE_CALL = "is_voice_call";
     public static final String MESSAGE_ATTR_IS_VIDEO_CALL = "is_video_call";
     public static final String ACCOUNT_REMOVED = "account_removed";
-    public static final String HX_SMILE_UTILS = "HxSmileUtils";
+    public static final String HX_SMILE_UTILS = "com.liangxun.yuejiula.huanxin.chat.utils.HxSmileUtils";
 }

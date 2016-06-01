@@ -2,16 +2,13 @@
   <library name="alipaySDK-20150724">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/alipaySDK-20150724.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/AMap3DMap_3.3.1_AMapNavi_1.8.0_AMapSearch_3.2.1_AMapLocation_2.4.1_20160425.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/android-async-http-1.4.8.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/android-support-v13.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/baidumapapi_v3_2_0.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/com.umeng.message.lib.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/easemobchat_2.2.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/greendao-1.3.0-beta-1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/gson-2.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/happy-dns-0.2.3.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/httpcore-4.3.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/httpmime-4.3.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/locSDK_3.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/MobCommons-2016.0303.1229.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/MobTools-2016.0303.1229.jar!/" />
@@ -35,6 +32,10 @@
       <root url="jar://$PROJECT_DIR$/libs/umeng_social_sdk.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/easemobchat_2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpcore-4.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpmime-4.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

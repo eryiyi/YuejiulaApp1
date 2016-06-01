@@ -23,11 +23,13 @@ import com.liangxun.yuejiula.huanxin.chat.HxConstant;
 import com.liangxun.yuejiula.huanxin.chat.activity.AddContactActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.ChatActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.ContactlistActivity;
+import com.liangxun.yuejiula.huanxin.chat.activity.GroupsActivity;
 import com.liangxun.yuejiula.huanxin.chat.adapter.ChatAllHistoryAdapter;
 import com.liangxun.yuejiula.huanxin.chat.db.InviteMessgeDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.my.MyEMConversation;
 import com.liangxun.yuejiula.util.StringUtil;
+
 
 import java.util.*;
 
@@ -81,6 +83,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
         // 设置adapter
         listView.setAdapter(adapter);
         add_contact.setOnClickListener(this);
+        getView().findViewById(R.id.add_group).setOnClickListener(this);
         getNickNamesByHxUserNames(getHxUsernames(conversationList));
         final String st2 = getResources().getString(R.string.Cant_chat_with_yourself);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -273,6 +276,11 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
             case R.id.tongxunlu:
                 Intent intent = new Intent(getActivity(), ContactlistActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.add_group:
+                //dating
+                Intent groupV = new Intent(getActivity(), GroupsActivity.class);
+                startActivity(groupV);
                 break;
         }
     }

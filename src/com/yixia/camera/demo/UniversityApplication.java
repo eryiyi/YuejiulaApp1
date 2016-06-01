@@ -221,12 +221,13 @@ public class UniversityApplication extends FrontiaApplication {
         hxSDKHelper.setPassword(pwd);
     }
 
+
     /**
      * 退出登录,清空数据
      */
-    public void logout(final EMCallBack emCallBack) {
+    public void logout(final boolean isGCM,final EMCallBack emCallBack) {
         // 先调用sdk logout，在清理app中自己的数据
-        hxSDKHelper.logout(emCallBack);
+        hxSDKHelper.logout(isGCM,emCallBack);
     }
 
     public Emp getCurrentEmp() {

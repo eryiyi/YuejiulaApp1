@@ -287,7 +287,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     //取好友或者群聊失败，不让进入主页面
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            getMyApp().logout(null);
+                            getMyApp().logout(false, null);
                         }
                     });
                     return;

@@ -21,7 +21,7 @@
                     android:padding="8dip"
                     android:text="选择相册"
                     android:id="@+id/imageLocation"
-                    android:textColor="@color/title_font_main"
+                    android:textColor="@color/white"
                     android:textSize="18sp"/>
         </LinearLayout>
         <ImageView

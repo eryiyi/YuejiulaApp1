@@ -127,7 +127,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                         pd.setMessage(st);
                         pd.setCanceledOnTouchOutside(false);
                         //  pd.show();
-                        getMyApp().logout(new EMCallBack() {
+                        getMyApp().logout(false,new EMCallBack() {
                             @Override
                             public void onSuccess() {
                                 runOnUiThread(new Runnable() {

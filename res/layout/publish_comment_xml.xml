@@ -21,7 +21,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="对商品发表评论"
-                    android:textColor="@color/title_font_main"
+                    android:textColor="@color/white"
                     android:textSize="18sp"/>
         </LinearLayout>
 

@@ -18,7 +18,7 @@
                 android:padding="8dip"
                 android:gravity="center"
                 android:text="添加奖品"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"/>
 
         <ImageView

@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/address_book"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"/>
         <ImageView
                 android:id="@+id/add_contact"

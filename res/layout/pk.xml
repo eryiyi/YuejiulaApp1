@@ -27,7 +27,7 @@
                 android:text="校园PK"
                 android:gravity="center_vertical"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 />
         <ImageView
@@ -67,7 +67,7 @@
                         android:layout_weight="1.0"
                         android:gravity="center"
                         android:text="最新"
-                        android:textColor="@color/title_font_main"
+                        android:textColor="@color/white"
                         android:textSize="16sp"/>
 
                 <ImageView android:layout_width="1.5dp"
@@ -82,7 +82,7 @@
                         android:padding="8dip"
                         android:gravity="center"
                         android:text="排行"
-                        android:textColor="@color/title_font_main"
+                        android:textColor="@color/white"
                         android:textSize="16sp"/>
 
                 <ImageView android:layout_width="1.5dp"
@@ -97,7 +97,7 @@
                         android:layout_weight="1.0"
                         android:gravity="center"
                         android:text="冠军榜"
-                        android:textColor="@color/title_font_main"
+                        android:textColor="@color/white"
                         android:textSize="16sp"/>
             </LinearLayout>
 

@@ -20,10 +20,14 @@ import android.util.Log;
 import com.easemob.EMCallBack;
 import com.easemob.EMConnectionListener;
 import com.easemob.EMError;
+import com.easemob.EMValueCallBack;
 import com.easemob.chat.*;
+import com.easemob.exceptions.EaseMobException;
 import com.liangxun.yuejiula.huanxin.applib.model.DefaultHXSDKModel;
+import com.liangxun.yuejiula.huanxin.applib.model.HXNotifier;
 import com.liangxun.yuejiula.huanxin.applib.model.HXSDKModel;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,7 +45,15 @@ import java.util.List;
  *
  */
 public abstract class HXSDKHelper {
+    /**
+     * 群组更新完成
+     */
+    static public interface HXSyncListener {
+        public void onSyncSucess(boolean success);
+    }
+
     private static final String TAG = "HXSDKHelper";
+
     /**
      * application context
      */
@@ -77,7 +89,44 @@ public abstract class HXSDKHelper {
      */
     private static HXSDKHelper me = null;
 
-    public HXSDKHelper() {
+    /**
+     * the notifier
+     */
+    protected HXNotifier notifier = null;
+
+    /**
+     * HuanXin sync groups status listener
+     */
+    private List<HXSyncListener> syncGroupsListeners;
+
+    /**
+     * HuanXin sync contacts status listener
+     */
+    private List<HXSyncListener> syncContactsListeners;
+
+    /**
+     * HuanXin sync blacklist status listener
+     */
+    private List<HXSyncListener> syncBlackListListeners;
+
+    private boolean isSyncingGroupsWithServer = false;
+
+    private boolean isSyncingContactsWithServer = false;
+
+    private boolean isSyncingBlackListWithServer = false;
+
+    private boolean isGroupsSyncedWithServer = false;
+
+    private boolean isContactsSyncedWithServer = false;
+
+    private boolean isBlackListSyncedWithServer = false;
+
+    private boolean alreadyNotified = false;
+
+    public boolean isVoiceCalling;
+    public boolean isVideoCalling;
+
+    protected HXSDKHelper(){
         me = this;
     }
 
@@ -99,8 +148,8 @@ public abstract class HXSDKHelper {
      *     // do HuanXin related work
      * }
      */
-    public synchronized boolean onInit(Context context) {
-        if (sdkInited) {
+    public synchronized boolean onInit(Context context){
+        if(sdkInited){
             return true;
         }
 
@@ -110,7 +159,7 @@ public abstract class HXSDKHelper {
         hxModel = createModel();
 
         // create a defalut HX SDK model in case subclass did not provide the model
-        if (hxModel == null) {
+        if(hxModel == null){
             hxModel = new DefaultHXSDKModel(appContext);
         }
 
@@ -133,20 +182,28 @@ public abstract class HXSDKHelper {
         EMChat.getInstance().init(context);
 
         // 设置sandbox测试环境
-        // 建议开发者开发时设置此模式
-//        if (hxModel.isSandboxMode()) {
-//            EMChat.getInstance().setEnv(EMEnvMode.EMSandboxMode);
-//        }
+        if(hxModel.isSandboxMode()){
+            EMChat.getInstance().setEnv(EMChatConfig.EMEnvMode.EMSandboxMode);
+        }
 
-        if (hxModel.isDebugMode()) {
+        if(hxModel.isDebugMode()){
             // set debug mode in development process
-            EMChat.getInstance().setDebugMode(false);
+            EMChat.getInstance().setDebugMode(true);
         }
 
         Log.d(TAG, "initialize EMChat SDK");
 
         initHXOptions();
         initListener();
+
+        syncGroupsListeners = new ArrayList<HXSyncListener>();
+        syncContactsListeners = new ArrayList<HXSyncListener>();
+        syncBlackListListeners = new ArrayList<HXSyncListener>();
+
+        isGroupsSyncedWithServer = hxModel.isGroupsSynced();
+        isContactsSyncedWithServer = hxModel.isContactSynced();
+        isBlackListSyncedWithServer = hxModel.isBacklistSynced();
+
         sdkInited = true;
         return true;
     }
@@ -155,38 +212,42 @@ public abstract class HXSDKHelper {
      * get global instance
      * @return
      */
-    public static HXSDKHelper getInstance() {
+    public static HXSDKHelper getInstance(){
         return me;
     }
 
-    public HXSDKModel getModel() {
+    public Context getAppContext(){
+        return appContext;
+    }
+
+    public HXSDKModel getModel(){
         return hxModel;
     }
 
-    public String getHXId() {
-        if (hxId == null && hxModel != null) {
+    public String getHXId(){
+        if(hxId == null){
             hxId = hxModel.getHXId();
         }
         return hxId;
     }
 
-    public String getPassword() {
-        if (password == null) {
+    public String getPassword(){
+        if(password == null){
             password = hxModel.getPwd();
         }
         return password;
     }
 
-    public void setHXId(String hxId) {
+    public void setHXId(String hxId){
         if (hxId != null) {
-            if (hxModel.saveHXId(hxId)) {
+            if(hxModel.saveHXId(hxId)){
                 this.hxId = hxId;
             }
         }
     }
 
-    public void setPassword(String password) {
-        if (hxModel.savePassword(password)) {
+    public void setPassword(String password){
+        if(hxModel.savePassword(password)){
             this.password = password;
         }
     }
@@ -201,7 +262,7 @@ public abstract class HXSDKHelper {
      * please make sure you have to get EMChatOptions by following method and set related options
      *      EMChatOptions options = EMChatManager.getInstance().getChatOptions();
      */
-    protected void initHXOptions() {
+    protected void initHXOptions(){
         Log.d(TAG, "init HuanXin Options");
 
         // 获取到EMChatOptions对象
@@ -210,48 +271,57 @@ public abstract class HXSDKHelper {
         options.setAcceptInvitationAlways(hxModel.getAcceptInvitationAlways());
         // 默认环信是不维护好友关系列表的，如果app依赖环信的好友关系，把这个属性设置为true
         options.setUseRoster(hxModel.getUseHXRoster());
-        // 设置收到消息是否有新消息通知(声音和震动提示)，默认为true
-        options.setNotifyBySoundAndVibrate(hxModel.getSettingMsgNotification());
-        // 设置收到消息是否有声音提示，默认为true
-        options.setNoticeBySound(hxModel.getSettingMsgSound());
-        // 设置收到消息是否震动 默认为true
-        options.setNoticedByVibrate(hxModel.getSettingMsgVibrate());
-        // 设置语音消息播放是否设置为扬声器播放 默认为true
-        options.setUseSpeaker(hxModel.getSettingMsgSpeaker());
         // 设置是否需要已读回执
         options.setRequireAck(hxModel.getRequireReadAck());
         // 设置是否需要已送达回执
         options.setRequireDeliveryAck(hxModel.getRequireDeliveryAck());
-        // 设置notification消息点击时，跳转的intent为自定义的intent
-        options.setOnNotificationClickListener(getNotificationClickListener());
-        options.setNotifyText(getMessageNotifyListener());
+        // 设置从db初始化加载时, 每个conversation需要加载msg的个数
+        options.setNumberOfMessagesLoaded(1);
+
+        notifier = createNotifier();
+        notifier.init(appContext);
+
+        notifier.setNotificationInfoProvider(getNotificationListener());
+    }
+
+    /**
+     * subclass can override this api to return the customer notifier
+     *
+     * @return
+     */
+    protected HXNotifier createNotifier(){
+        return new HXNotifier();
+    }
+
+    public HXNotifier getNotifier(){
+        return notifier;
     }
 
     /**
      * logout HuanXin SDK
      */
-    public void logout(final EMCallBack callback) {
-        EMChatManager.getInstance().logout(new EMCallBack() {
+    public void logout(final boolean unbindDeviceToken,final EMCallBack callback){
+        setPassword(null);
+        reset();
+        EMChatManager.getInstance().logout(unbindDeviceToken,new EMCallBack(){
 
             @Override
             public void onSuccess() {
-                // TODO Auto-generated method stub
-                setPassword(null);
-                if (callback != null) {
+                if(callback != null){
                     callback.onSuccess();
                 }
             }
 
             @Override
             public void onError(int code, String message) {
-                // TODO Auto-generated method stub
-
+                if(callback != null){
+                    callback.onError(code, message);
+                }
             }
 
             @Override
             public void onProgress(int progress, String status) {
-                // TODO Auto-generated method stub
-                if (callback != null) {
+                if(callback != null){
                     callback.onProgress(progress, status);
                 }
             }
@@ -263,33 +333,18 @@ public abstract class HXSDKHelper {
      * 检查是否已经登录过
      * @return
      */
-    public boolean isLogined() {
-        if (hxModel.getHXId() != null && hxModel.getPwd() != null) {
-            return true;
-        }
-
-        return false;
+    public boolean isLogined(){
+        return EMChat.getInstance().isLoggedIn();
     }
 
-    /**
-     * get the message notify listener
-     * @return
-     */
-    protected OnMessageNotifyListener getMessageNotifyListener() {
-        return null;
-    }
-
-    /**
-     *get notification click listener
-     */
-    protected OnNotificationClickListener getNotificationClickListener() {
+    protected HXNotifier.HXNotificationInfoProvider getNotificationListener(){
         return null;
     }
 
     /**
      * init HuanXin listeners
      */
-    protected void initListener() {
+    protected void initListener(){
         Log.d(TAG, "init listener");
 
         // create the global connection listener
@@ -298,9 +353,9 @@ public abstract class HXSDKHelper {
             public void onDisconnected(int error) {
                 if (error == EMError.USER_REMOVED) {
                     onCurrentAccountRemoved();
-                } else if (error == EMError.CONNECTION_CONFLICT) {
+                }else if (error == EMError.CONNECTION_CONFLICT) {
                     onConnectionConflict();
-                } else {
+                }else{
                     onConnectionDisconnected(error);
                 }
             }
@@ -310,35 +365,33 @@ public abstract class HXSDKHelper {
                 onConnectionConnected();
             }
         };
+
+        //注册连接监听
         EMChatManager.getInstance().addConnectionListener(connectionListener);
     }
 
     /**
      * the developer can override this function to handle connection conflict error
      */
-    protected void onConnectionConflict() {
-    }
+    protected void onConnectionConflict(){}
 
 
     /**
      * the developer can override this function to handle user is removed error
      */
-    protected void onCurrentAccountRemoved() {
-    }
+    protected void onCurrentAccountRemoved(){}
 
 
     /**
      * handle the connection connected
      */
-    protected void onConnectionConnected() {
-    }
+    protected void onConnectionConnected(){}
 
     /**
      * handle the connection disconnect
      * @param error see {@link EMError}
      */
-    protected void onConnectionDisconnected(int error) {
-    }
+    protected void onConnectionDisconnected(int error){}
 
     /**
      * check the application process name if process name is not qualified, then we think it is a service process and we will not init SDK
@@ -367,5 +420,254 @@ public abstract class HXSDKHelper {
             }
         }
         return processName;
+    }
+
+
+    public void addSyncGroupListener(HXSyncListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (!syncGroupsListeners.contains(listener)) {
+            syncGroupsListeners.add(listener);
+        }
+    }
+
+    public void removeSyncGroupListener(HXSyncListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (syncGroupsListeners.contains(listener)) {
+            syncGroupsListeners.remove(listener);
+        }
+    }
+
+    public void addSyncContactListener(HXSyncListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (!syncContactsListeners.contains(listener)) {
+            syncContactsListeners.add(listener);
+        }
+    }
+
+    public void removeSyncContactListener(HXSyncListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (syncContactsListeners.contains(listener)) {
+            syncContactsListeners.remove(listener);
+        }
+    }
+
+    public void addSyncBlackListListener(HXSyncListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (!syncBlackListListeners.contains(listener)) {
+            syncBlackListListeners.add(listener);
+        }
+    }
+
+    public void removeSyncBlackListListener(HXSyncListener listener) {
+        if (listener == null) {
+            return;
+        }
+        if (syncBlackListListeners.contains(listener)) {
+            syncBlackListListeners.remove(listener);
+        }
+    }
+
+    /**
+     * 同步操作，从服务器获取群组列表
+     * 该方法会记录更新状态，可以通过isSyncingGroupsFromServer获取是否正在更新
+     * 和HXPreferenceUtils.getInstance().getSettingSyncGroupsFinished()获取是否更新已经完成
+     */
+    public synchronized void asyncFetchGroupsFromServer(final EMCallBack callback){
+        if(isSyncingGroupsWithServer){
+            return;
+        }
+
+        isSyncingGroupsWithServer = true;
+
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    EMGroupManager.getInstance().getGroupsFromServer();
+
+                    // in case that logout already before server returns, we should return immediately
+                    if(!EMChat.getInstance().isLoggedIn()){
+                        return;
+                    }
+
+                    hxModel.setGroupsSynced(true);
+
+                    isGroupsSyncedWithServer = true;
+                    isSyncingGroupsWithServer = false;
+                    if(callback != null){
+                        callback.onSuccess();
+                    }
+                } catch (EaseMobException e) {
+                    hxModel.setGroupsSynced(false);
+                    isGroupsSyncedWithServer = false;
+                    isSyncingGroupsWithServer = false;
+                    if(callback != null){
+                        callback.onError(e.getErrorCode(), e.toString());
+                    }
+                }
+
+            }
+        }.start();
+    }
+
+    public void noitifyGroupSyncListeners(boolean success){
+        for (HXSyncListener listener : syncGroupsListeners) {
+            listener.onSyncSucess(success);
+        }
+    }
+
+    public void asyncFetchContactsFromServer(final EMValueCallBack<List<String>> callback){
+        if(isSyncingContactsWithServer){
+            return;
+        }
+
+        isSyncingContactsWithServer = true;
+
+        new Thread(){
+            @Override
+            public void run(){
+                List<String> usernames = null;
+                try {
+                    usernames = EMContactManager.getInstance().getContactUserNames();
+
+                    // in case that logout already before server returns, we should return immediately
+                    if(!EMChat.getInstance().isLoggedIn()){
+                        return;
+                    }
+
+                    hxModel.setContactSynced(true);
+
+                    isContactsSyncedWithServer = true;
+                    isSyncingContactsWithServer = false;
+                    if(callback != null){
+                        callback.onSuccess(usernames);
+                    }
+                } catch (EaseMobException e) {
+                    hxModel.setContactSynced(false);
+                    isContactsSyncedWithServer = false;
+                    isSyncingContactsWithServer = false;
+                    e.printStackTrace();
+                    if(callback != null){
+                        callback.onError(e.getErrorCode(), e.toString());
+                    }
+                }
+
+            }
+        }.start();
+    }
+
+    public void notifyContactsSyncListener(boolean success){
+        for (HXSyncListener listener : syncContactsListeners) {
+            listener.onSyncSucess(success);
+        }
+    }
+
+    public void asyncFetchBlackListFromServer(final EMValueCallBack<List<String>> callback){
+
+        if(isSyncingBlackListWithServer){
+            return;
+        }
+
+        isSyncingBlackListWithServer = true;
+
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    List<String> usernames = null;
+                    usernames = EMContactManager.getInstance().getBlackListUsernamesFromServer();
+
+                    // in case that logout already before server returns, we should return immediately
+                    if(!EMChat.getInstance().isLoggedIn()){
+                        return;
+                    }
+
+                    hxModel.setBlacklistSynced(true);
+
+                    isBlackListSyncedWithServer = true;
+                    isSyncingBlackListWithServer = false;
+                    if(callback != null){
+                        callback.onSuccess(usernames);
+                    }
+                } catch (EaseMobException e) {
+                    hxModel.setBlacklistSynced(false);
+
+                    isBlackListSyncedWithServer = false;
+                    isSyncingBlackListWithServer = true;
+                    e.printStackTrace();
+
+                    if(callback != null){
+                        callback.onError(e.getErrorCode(), e.toString());
+                    }
+                }
+
+            }
+        }.start();
+    }
+
+    public void notifyBlackListSyncListener(boolean success){
+        for (HXSyncListener listener : syncBlackListListeners) {
+            listener.onSyncSucess(success);
+        }
+    }
+
+    public boolean isSyncingGroupsWithServer() {
+        return isSyncingGroupsWithServer;
+    }
+
+    public boolean isSyncingContactsWithServer() {
+        return isSyncingContactsWithServer;
+    }
+
+    public boolean isSyncingBlackListWithServer() {
+        return isSyncingBlackListWithServer;
+    }
+
+    public boolean isGroupsSyncedWithServer() {
+        return isGroupsSyncedWithServer;
+    }
+
+    public boolean isContactsSyncedWithServer() {
+        return isContactsSyncedWithServer;
+    }
+
+    public boolean isBlackListSyncedWithServer() {
+        return isBlackListSyncedWithServer;
+    }
+
+    public synchronized void notifyForRecevingEvents(){
+        if(alreadyNotified){
+            return;
+        }
+
+        // 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
+        EMChat.getInstance().setAppInited();
+        alreadyNotified = true;
+    }
+
+    synchronized void reset(){
+        isSyncingGroupsWithServer = false;
+        isSyncingContactsWithServer = false;
+        isSyncingBlackListWithServer = false;
+
+        hxModel.setGroupsSynced(false);
+        hxModel.setContactSynced(false);
+        hxModel.setBlacklistSynced(false);
+
+        isGroupsSyncedWithServer = false;
+        isContactsSyncedWithServer = false;
+        isBlackListSyncedWithServer = false;
+
+        alreadyNotified = false;
     }
 }

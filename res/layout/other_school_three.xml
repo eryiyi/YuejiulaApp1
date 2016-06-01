@@ -34,7 +34,7 @@
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:id="@+id/maintitle"
-                    android:textColor="@color/title_font_main"
+                    android:textColor="@color/white"
                     android:textSize="18sp"/>
         </LinearLayout>
     </RelativeLayout>

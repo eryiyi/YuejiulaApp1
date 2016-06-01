@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/Select_the_contact"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"/>
 
         <Button

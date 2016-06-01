@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:layout_centerInParent="true"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:text="赞"
                 android:id="@+id/detail_favour_title"/>

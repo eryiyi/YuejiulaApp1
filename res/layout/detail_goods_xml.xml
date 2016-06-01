@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:gravity="center"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:singleLine="true"
                 android:text="商品详情"
                 android:layout_centerHorizontal="true"

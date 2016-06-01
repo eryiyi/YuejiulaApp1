@@ -29,7 +29,7 @@
                 android:text="与我相关"
                 android:gravity="center_vertical"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:id="@+id/title"
                 />

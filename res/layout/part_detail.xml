@@ -29,7 +29,7 @@
                         android:padding="8dip"
                         android:text="校园招聘"
                         android:id="@+id/part_detail_title"
-                        android:textColor="@color/title_font_main"
+                        android:textColor="@color/white"
                         android:textSize="18sp"/>
             </LinearLayout>
             <ImageView

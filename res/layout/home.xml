@@ -28,7 +28,7 @@
                     android:ellipsize="end"
                     android:maxEms="6"
                     android:id="@+id/home_maintitle"
-                    android:textColor="@color/title_font_main"
+                    android:textColor="@color/white"
                     android:textSize="18sp"/>
             <ImageView
                     android:layout_width="wrap_content"

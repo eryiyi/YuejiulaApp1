@@ -17,7 +17,7 @@
                 android:id="@+id/title"
                 android:layout_centerInParent="true"
                 android:text="童心堂视频"
-                android:textColor="@color/title_font_main"
+                android:textColor="@color/white"
                 android:textSize="18sp"/>
 
         <ImageView

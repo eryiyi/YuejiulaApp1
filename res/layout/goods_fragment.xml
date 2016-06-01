@@ -19,7 +19,7 @@
     <!--android:layout_centerInParent="true"-->
     <!--android:id="@+id/title"-->
     <!--android:text="商城"-->
-    <!--android:textColor="@color/title_font_main"-->
+    <!--android:textColor="@color/white"-->
     <!--android:textSize="18sp"/>-->
 
     <!--</RelativeLayout>-->

@@ -417,6 +417,27 @@
         </activity>
         <!-- 群组列表 -->
         <!-- 新建群组 -->
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.NewGroupActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.PublicGroupsActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide">
+        </activity>
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.PublicGroupsSeachActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide">
+        </activity>
+
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.AlertDialog"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide">
+        </activity>
         <!-- 退出群组提示框 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.ExitGroupDialog"
@@ -430,6 +451,19 @@
                 android:theme="@style/horizontal_slide"
                 android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.GroupSimpleDetailActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.GroupsActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustPan">
+        </activity>
+
         <!-- 地图 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.BaiduMapActivity"
@@ -543,7 +577,7 @@
         <!-- 设置环信应用的appkey -->
         <meta-data
                 android:name="EASEMOB_APPKEY"
-                android:value="liangxun#jianghu"/>
+                android:value="kg58#ddztongxintang"/>
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService"/>
 

@@ -26,6 +26,7 @@ import com.baidu.android.pushservice.PushManager;
 import com.easemob.EMCallBack;
 import com.easemob.EMConnectionListener;
 import com.easemob.EMError;
+import com.easemob.EMValueCallBack;
 import com.easemob.chat.*;
 import com.easemob.util.EMLog;
 import com.easemob.util.HanziToPinyin;
@@ -40,6 +41,7 @@ import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
 import com.liangxun.yuejiula.face.FaceConversionUtil;
 import com.liangxun.yuejiula.fragment.*;
+import com.liangxun.yuejiula.huanxin.applib.controller.HXSDKHelper;
 import com.liangxun.yuejiula.huanxin.chat.HxConstant;
 import com.liangxun.yuejiula.huanxin.chat.activity.ChatActivity;
 import com.liangxun.yuejiula.huanxin.chat.db.HxUserDao;
@@ -132,7 +134,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         if (savedInstanceState != null && savedInstanceState.getBoolean(HxConstant.ACCOUNT_REMOVED, false)) {
             // 防止被移除后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
             // 三个fragment里加的判断同理
-            getMyApp().logout(null);
+            getMyApp().logout(false, null);
             finish();
             startActivity(new Intent(this, LoginActivity.class));
             return;
@@ -359,7 +361,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         pd.setMessage(st);
         pd.setCanceledOnTouchOutside(false);
         pd.show();
-        getMyApp().logout(new EMCallBack() {
+        getMyApp().logout(true,new EMCallBack() {
 
             @Override
             public void onSuccess() {
@@ -390,7 +392,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
      */
     private void showConflictDialog() {
         isConflictDialogShow = true;
-        getMyApp().logout(null);
+        getMyApp().logout(false, null);
         String st = getResources().getString(R.string.Logoff_notification);
         if (!MainActivity.this.isFinishing()) {
             // clear up global variables
@@ -429,7 +431,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
      */
     private void showAccountRemovedDialog() {
         isAccountRemovedDialogShow = true;
-        getMyApp().logout(null);
+        getMyApp().logout(false,null);
         String st5 = getResources().getString(R.string.Remove_the_notification);
         if (!MainActivity.this.isFinishing()) {
             // clear up global variables
@@ -821,6 +823,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         @Override
         public void onConnected() {
+            boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
+            boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
+
+            // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
+            if(groupSynced && contactSynced){
+                new Thread(){
+                    @Override
+                    public void run(){
+                        HXSDKHelper.getInstance().notifyForRecevingEvents();
+                    }
+                }.start();
+            }else{
+                if(!groupSynced){
+                    asyncFetchGroupsFromServer();
+                }
+
+                if(!contactSynced){
+                    asyncFetchContactsFromServer();
+                }
+
+                if(!HXSDKHelper.getInstance().isBlackListSyncedWithServer()){
+                    asyncFetchBlackListFromServer();
+                }
+            }
+
             runOnUiThread(new Runnable() {
 
                 @Override
@@ -847,7 +874,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                         showConflictDialog();
                     } else {
 //                        chatHistoryFragment.errorItem.setVisibility(View.VISIBLE);
-//                        if (NetUtils.hasNetwork(HxMainActivity.this))
+//                        if (NetUtils.hasNetwork(MainActivity.this))
 //                            chatHistoryFragment.errorText.setText(st1);
 //                        else
 //                            chatHistoryFragment.errorText.setText(st2);
@@ -858,6 +885,107 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             });
         }
     }
+
+    static void asyncFetchContactsFromServer(){
+        HXSDKHelper.getInstance().asyncFetchContactsFromServer(new EMValueCallBack<List<String>>(){
+
+            @Override
+            public void onSuccess(List<String> usernames) {
+                Context context = HXSDKHelper.getInstance().getAppContext();
+
+//                System.out.println("----------------"+usernames.toString());
+//                EMLog.d("roster", "contacts size: " + usernames.size());
+//                Map<String, User> userlist = new HashMap<String, User>();
+//                for (String username : usernames) {
+//                    User user = new User();
+//                    user.setUsername(username);
+//                    setUserHearder(username, user);
+//                    userlist.put(username, user);
+//                }
+//                // 添加user"申请与通知"
+//                User newFriends = new User();
+//                newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
+//                String strChat = context.getString(R.string.Application_and_notify);
+//                newFriends.setNick(strChat);
+//
+//                userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
+//                // 添加"群聊"
+//                User groupUser = new User();
+//                String strGroup = context.getString(R.string.group_chat);
+//                groupUser.setUsername(Constant.GROUP_USERNAME);
+//                groupUser.setNick(strGroup);
+//                groupUser.setHeader("");
+//                userlist.put(Constant.GROUP_USERNAME, groupUser);
+//
+//                // 添加"聊天室"
+//                User chatRoomItem = new User();
+//                String strChatRoom = context.getString(R.string.chat_room);
+//                chatRoomItem.setUsername(Constant.CHAT_ROOM);
+//                chatRoomItem.setNick(strChatRoom);
+//                chatRoomItem.setHeader("");
+//                userlist.put(Constant.CHAT_ROOM, chatRoomItem);
+//
+//                // 添加"Robot"
+//                User robotUser = new User();
+//                String strRobot = context.getString(R.string.robot_chat);
+//                robotUser.setUsername(Constant.CHAT_ROBOT);
+//                robotUser.setNick(strRobot);
+//                robotUser.setHeader("");
+//                userlist.put(Constant.CHAT_ROBOT, robotUser);
+//
+//                // 存入内存
+//                ((DemoHXSDKHelper)HXSDKHelper.getInstance()).setContactList(userlist);
+//                // 存入db
+//                UserDao dao = new UserDao(context);
+//                List<User> users = new ArrayList<User>(userlist.values());
+//                dao.saveContactList(users);
+//
+//                HXSDKHelper.getInstance().notifyContactsSyncListener(true);
+//
+//                if(HXSDKHelper.getInstance().isGroupsSyncedWithServer()){
+//                    HXSDKHelper.getInstance().notifyForRecevingEvents();
+//                }
+//
+//                ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().asyncFetchContactInfosFromServer(usernames,new EMValueCallBack<List<User>>() {
+//
+//                    @Override
+//                    public void onSuccess(List<User> uList) {
+//                        ((DemoHXSDKHelper)HXSDKHelper.getInstance()).updateContactList(uList);
+//                        ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().notifyContactInfosSyncListener(true);
+//                    }
+//
+//                    @Override
+//                    public void onError(int error, String errorMsg) {
+//                    }
+//                });
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+                HXSDKHelper.getInstance().notifyContactsSyncListener(false);
+            }
+
+        });
+    }
+
+    static void asyncFetchBlackListFromServer(){
+        HXSDKHelper.getInstance().asyncFetchBlackListFromServer(new EMValueCallBack<List<String>>(){
+
+            @Override
+            public void onSuccess(List<String> value) {
+                EMContactManager.getInstance().saveBlackList(value);
+                HXSDKHelper.getInstance().notifyBlackListSyncListener(true);
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+                HXSDKHelper.getInstance().notifyBlackListSyncListener(false);
+            }
+
+        });
+    }
+
+
 
     /**
      * MyGroupChangeListener
@@ -1219,4 +1347,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         };
         getRequestQueue().add(request);
     }
+
+    public static void asyncFetchGroupsFromServer(){
+        HXSDKHelper.getInstance().asyncFetchGroupsFromServer(new EMCallBack(){
+
+            @Override
+            public void onSuccess() {
+                HXSDKHelper.getInstance().noitifyGroupSyncListeners(true);
+
+                if(HXSDKHelper.getInstance().isContactsSyncedWithServer()){
+                    HXSDKHelper.getInstance().notifyForRecevingEvents();
+                }
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                HXSDKHelper.getInstance().noitifyGroupSyncListeners(false);
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+        });
+    }
+
 }

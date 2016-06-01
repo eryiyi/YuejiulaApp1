@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/title_font_main"/>
+            android:textColor="@color/white"/>
 
     <TextView
             android:id="@+id/set_ok"
