@@ -36,7 +36,7 @@
               android:gravity="center|left"
               android:padding="8dp"
               android:drawableRight="@drawable/in"
-              android:drawableLeft="@drawable/find_news"
+              android:drawableLeft="@drawable/find_item_pk"
               android:layout_below="@+id/line_two"
               android:text="童心堂新闻"
               android:drawablePadding="8dp"

@@ -44,12 +44,12 @@ public class InstructionActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.coalition:
-                Intent Coalition = new Intent(InstructionActivity.this, CoalitionActivity.class);
-                startActivity(Coalition);
+//                Intent Coalition = new Intent(InstructionActivity.this, CoalitionActivity.class);
+//                startActivity(Coalition);
                 break;
             case R.id.user_protocol:
-                Intent User = new Intent(InstructionActivity.this, UserProtocolActivity.class);
-                startActivity(User);
+//                Intent User = new Intent(InstructionActivity.this, UserProtocolActivity.class);
+//                startActivity(User);
                 break;
             case R.id.set_back:
                 finish();
@@ -57,10 +57,7 @@ public class InstructionActivity extends BaseActivity implements View.OnClickLis
 
         }
     }
-        /**
-         * ��ȡ�汾��
-         * @return ��ǰӦ�õİ汾��
-         */
+
     public String getVersion() {
         try {
             PackageManager manager = this.getPackageManager();

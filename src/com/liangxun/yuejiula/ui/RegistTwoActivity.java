@@ -254,6 +254,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 SMSSDK.submitVerificationCode("86", phString, code.getText().toString());
+//                regist();
                 break;
         }
     }
