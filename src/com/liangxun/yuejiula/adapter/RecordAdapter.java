@@ -119,7 +119,7 @@ public class RecordAdapter extends BaseAdapter {
             holder.home_viewed_item_time.setText(cell.getDateLine());
 
             holder.home_item_school.setText(cell.getSchoolName());
-            holder.home_item_mood.setText((cell.getSchool_record_mood_name()==null?"":cell.getSchool_record_mood_name()));
+            holder.home_item_mood.setText("--"+(cell.getSchool_record_mood_name()==null?"":cell.getSchool_record_mood_name()));
             String urlStr = "  >>网页链接";
 
             if (!StringUtil.isNullOrEmpty(cell.getRecordCont())) {
