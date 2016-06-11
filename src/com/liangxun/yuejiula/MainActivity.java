@@ -1,5 +1,6 @@
 package com.liangxun.yuejiula;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.content.pm.ActivityInfo;
@@ -13,6 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,10 +36,7 @@ import com.easemob.util.HanziToPinyin;
 import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
-import com.liangxun.yuejiula.data.EmpsDATA;
-import com.liangxun.yuejiula.data.MineShangjiasDATA;
-import com.liangxun.yuejiula.data.RelateDATA;
-import com.liangxun.yuejiula.data.SchoolRecordMoodData;
+import com.liangxun.yuejiula.data.*;
 import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
@@ -51,6 +50,7 @@ import com.liangxun.yuejiula.huanxin.chat.db.InviteMessgeDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.domain.InviteMessage;
 import com.liangxun.yuejiula.ui.LoginActivity;
+import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
 import com.liangxun.yuejiula.ui.PublishPicActivity;
 import com.liangxun.yuejiula.ui.UpdateProfilePersonalActivity;
 import com.liangxun.yuejiula.util.Constants;
@@ -1276,6 +1276,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     @Override
     public void onItemClick(int index, String str) {
         if("000".equals(str)){
+            if("1".equals(getGson().fromJson(getSp().getString("is_fenghao", ""), String.class))){
+                //如果封号了
+                showMsgFenghao();
+                return;
+            }
             switch (index) {
                 case 0:
                     Intent pic = new Intent(MainActivity.this, PublishPicActivity.class);
@@ -1306,6 +1311,85 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             }
         }
     }
+
+
+    private void showMsgFenghao() {
+        final Dialog picAddDialog = new Dialog(MainActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
+        TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
+        final TextView content = (TextView) picAddInflate.findViewById(R.id.content);
+        content.setText("您被本区域管理员限制发表，快去找他说说好话吧！");
+        //举报提交
+        jubao_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getManagerBySchoolId();
+                picAddDialog.dismiss();
+            }
+        });
+
+        //举报取消
+        TextView jubao_cancle = (TextView) picAddInflate.findViewById(R.id.jubao_cancle);
+        jubao_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picAddDialog.dismiss();
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
+    }
+
+    void getManagerBySchoolId(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_SCHOOL_MANAGER_BY_ID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            ContractSchoolDATA data = getGson().fromJson(s, ContractSchoolDATA.class);
+                            if (data.getCode() == 200) {
+                                List<ContractSchool> contractSchools1 = data.getData();
+                                if(contractSchools1 != null && contractSchools1.size()>0){
+                                    ContractSchool contractSchool = contractSchools1.get(0);
+                                    Intent profileV = new Intent(MainActivity.this, ProfilePersonalActivity.class);
+                                    profileV.putExtra(Constants.EMPID, contractSchool.getEmpId());
+                                    startActivity(profileV);
+                                }
+                            } else {
+                                Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("school_id", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class) );
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
 
     void getMood(){
         StringRequest request = new StringRequest(

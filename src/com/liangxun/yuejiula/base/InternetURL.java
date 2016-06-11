@@ -271,5 +271,16 @@ public class InternetURL {
 
     //发现网址
     public static final String FIND_WWW_URL = INTERNAL + "listFindsApp.do";
+    //根据学校ID查询学校承包商
+    public static final String GET_SCHOOL_MANAGER_BY_ID = INTERNAL + "getManagerById.do";
+
+    //封号
+    public static final String UPDATE_FENGHAO_URL = INTERNAL + "updateEmpIsFenghao.do";
+    //封群
+    public static final String UPDATE_FENGQUN_URL = INTERNAL + "updateEmpIsFengQun.do";
+
+    //查询封号封群的承包商下的会员列表
+    public static final String GET_FENGHAOFENGQUNS_URL = INTERNAL + "getFenghaofengquns.do";
+
 
 }

@@ -28,6 +28,24 @@ public class Emp implements Serializable {
     private String hxUsername;
     private String isInGroup;
     private String groupId;
+    private String is_fenghao;
+    private String is_fengqun;
+
+    public String getIs_fenghao() {
+        return is_fenghao;
+    }
+
+    public void setIs_fenghao(String is_fenghao) {
+        this.is_fenghao = is_fenghao;
+    }
+
+    public String getIs_fengqun() {
+        return is_fengqun;
+    }
+
+    public void setIs_fengqun(String is_fengqun) {
+        this.is_fengqun = is_fengqun;
+    }
 
     public String getGroupId() {
         return groupId;

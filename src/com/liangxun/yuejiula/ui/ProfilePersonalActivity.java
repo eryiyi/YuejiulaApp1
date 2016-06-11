@@ -2,7 +2,11 @@ package com.liangxun.yuejiula.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
 import com.android.volley.AuthFailureError;
@@ -10,22 +14,28 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.AnimateFirstDisplayListener;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.EmpDATA;
 import com.liangxun.yuejiula.data.SuccessData;
+import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.huanxin.chat.activity.ChatActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxAlertDialog;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxAlertYanzheng;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
+import com.liangxun.yuejiula.widget.popview.SelectFenghaoPopWindow;
+import com.liangxun.yuejiula.widget.popview.SelectPhoPopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +71,8 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private LinearLayout mobile_status_liner;//手机号区域
     private View mobile_status_liner_line;//手机号上方的割线
 
+    private ImageView select_fenghq;//封号封群操作
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +82,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         initView();
         getData();
+
     }
 
     private void initView() {
@@ -92,6 +105,9 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         profile_paimai= (LinearLayout) findViewById(R.id.profile_paimai);
         profile_record.setOnClickListener(this);
         profile_paimai.setOnClickListener(this);
+        select_fenghq = (ImageView) this.findViewById(R.id.select_fenghq);
+        select_fenghq.setVisibility(View.GONE);
+        select_fenghq.setOnClickListener(this);
     }
 
     @Override
@@ -116,9 +132,44 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
             case R.id.profile_paimai:
                 //拍卖
                 break;
+            case R.id.select_fenghq:
+                //封号 封群
+                ShowPickDialog();
+                break;
 
         }
     }
+
+    private SelectFenghaoPopWindow deleteWindow;
+    private void ShowPickDialog() {
+        deleteWindow = new SelectFenghaoPopWindow(ProfilePersonalActivity.this, itemsOnClick);
+        //显示窗口
+        deleteWindow.showAtLocation(ProfilePersonalActivity.this.findViewById(R.id.main), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+
+    }
+    //为弹出窗口实现监听类
+    private View.OnClickListener itemsOnClick = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            deleteWindow.dismiss();
+            switch (v.getId()) {
+                case R.id.camera: {
+                    //封号
+                    updateFh();
+                }
+                break;
+                case R.id.mapstorage: {
+                   //封群
+                    updateFq();
+                }
+                break;
+                default:
+                    break;
+            }
+        }
+    };
+
+
 
     //根据用户UUID获取用户信息
     private void getData() {
@@ -210,6 +261,21 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         if (emp.getEmpTypeId().equals("3")) {
             profile_personal_flag.setImageResource(R.drawable.icon_type_official);
         }
+
+
+        boolean flagT = false;
+        if(MainActivity.contractSchools != null){
+            for(ContractSchool contractSchool :MainActivity.contractSchools ){
+                if(emp.getSchoolId().equals(contractSchool.getSchoolId())){
+                    //当前用户学校id  == 承包商学校id 说明这个用户是我管理的
+                    flagT = true;
+                    select_fenghq.setVisibility(View.VISIBLE);
+                    break;
+                }
+            }
+        }
+
+
     }
 
     public void chat(View v) {
@@ -320,4 +386,94 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         };
         getRequestQueue().add(request);
     }
+
+
+    private void updateFh() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.UPDATE_FENGHAO_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                showMsg(ProfilePersonalActivity.this , "封号操作成功！");
+                            } else {
+                                Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", empId);
+                params.put("is_fenghao", "1");
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+    private void updateFq() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.UPDATE_FENGQUN_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                showMsg(ProfilePersonalActivity.this , "封群操作成功！");
+                            } else {
+                                Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", empId);
+                params.put("is_fengqun", "1");
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
 }

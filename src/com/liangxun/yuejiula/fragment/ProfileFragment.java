@@ -267,8 +267,13 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             break;
                         case 3:
                             //pk奖品
-                            Intent prizesView = new Intent(getActivity(), PkPrizesActivity.class);
-                            startActivity(prizesView);
+//                            Intent prizesView = new Intent(getActivity(), PkPrizesActivity.class);
+//                            startActivity(prizesView);
+                        {
+                            //封号封群
+                            Intent fhfq = new Intent(getActivity(), FenghaoFengqunActivity.class);
+                            startActivity(fhfq);
+                        }
                             break;
                         case 4:
                             Intent recordView = new Intent(getActivity(), MineRecordActivity.class);
@@ -386,11 +391,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         }
         if (empType.equals("3")) {//是代理商
             //显示我的商家、学校、推广
-
             pics.add(new MinePicsObj(R.drawable.mine_school_n ,"我的学校"));
             pics.add(new MinePicsObj(R.drawable.mine_shangjia_n ,"我的商家"));
             pics.add(new MinePicsObj(R.drawable.mine_tg_n ,"我的推广"));
-            pics.add(new MinePicsObj(R.drawable.mine_pk_n ,"我的pk"));
+            pics.add(new MinePicsObj(R.drawable.mine_pingbi_n ,"封号封群"));
         }
 
 

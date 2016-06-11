@@ -272,6 +272,8 @@
                   android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.DianpuDetailActivity" android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.FenghaoFengqunActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
 
 
         <activity

@@ -254,6 +254,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         save(Constants.DATELINE, emp.getDateline());
         save(Constants.LEVELNAME, emp.getLevelName());
         save(Constants.UNIVERSITYNAME, emp.getUniversityName());
+
+        save("is_fenghao", emp.getIs_fenghao());
+        save("is_fengqun", emp.getIs_fengqun());
         //类别
         save(Constants.EMPTYPE, emp.getEmpTypeId());
         save(Constants.HX_USERNAME, emp.getHxUsername());
