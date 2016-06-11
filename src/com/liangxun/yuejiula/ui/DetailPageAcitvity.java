@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.*;
 import com.liangxun.yuejiula.base.BaseActivity;
@@ -197,11 +198,23 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         detail_like_liner.setOnClickListener(this);
         detail_delete_liner.setOnClickListener(this);
 
-        if (emp_type.equals("1")) {
-            //是管理员
+
+        boolean flagMine = false;
+        if(MainActivity.contractSchools != null){
+            for(ContractSchool contractSchool:MainActivity.contractSchools){
+                if(record.getRecordSchoolId().equals(contractSchool.getSchoolId())){
+                    //如果包括
+                    flagMine = true;
+                    break;
+                }
+            }
+        }
+        if (emp_type.equals("1") || flagMine) {
+            //是管理员 或者是这个学校的承包商
             detail_delete_liner.setVisibility(View.VISIBLE);
             detail_report_liner.setVisibility(View.GONE);
         }
+
         detail_photo = (ImageView) commentLayout.findViewById(R.id.detail_photo);
         detail_photo.setOnClickListener(this);
         detail_nickname = (TextView) commentLayout.findViewById(R.id.detail_nickname);

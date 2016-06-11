@@ -35,8 +35,10 @@ import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.EmpsDATA;
+import com.liangxun.yuejiula.data.MineShangjiasDATA;
 import com.liangxun.yuejiula.data.RelateDATA;
 import com.liangxun.yuejiula.data.SchoolRecordMoodData;
+import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
 import com.liangxun.yuejiula.face.FaceConversionUtil;
@@ -196,6 +198,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         //查询心情标签
         getMood();
+        //如果是承包商 查询他的学校
+        if("3".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
+            //是代理商
+            getSchoolMine();
+        }
     }
 
     private void initView() {
@@ -1371,6 +1378,51 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             }
 
         });
+    }
+
+
+    //承包商的学校
+    public static  List<ContractSchool> contractSchools = new ArrayList<ContractSchool>();
+    private void getSchoolMine() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_SCHOOLS_BY_JXS_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            MineShangjiasDATA data = getGson().fromJson(s, MineShangjiasDATA.class);
+                            if (data.getCode() == 200) {
+                                contractSchools.clear();
+                                contractSchools.addAll(data.getData());
+                            } else {
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class))){
+                    params.put("empId", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
+                }
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
     }
 
 }
