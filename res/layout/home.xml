@@ -48,10 +48,11 @@
         <!--android:src="@drawable/head"-->
         <!--/>-->
         <ImageView android:layout_width="wrap_content"
-                   android:padding="8dp"
                    android:onClick="onTopHeadButtonClick"
+                   android:layout_marginLeft="8dp"
+                   android:padding="6dp"
                    android:layout_centerVertical="true"
-                   android:src="@drawable/btn_mood_selector"
+                   android:src="@drawable/abv"
                    android:layout_height="wrap_content"/>
         <Button
                 android:id="@+id/home_write"
@@ -61,7 +62,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dip"
                 android:layout_centerVertical="true"
-                android:background="@drawable/icons_others_menu"
+                android:background="@drawable/icon_talk"
                 />
     </RelativeLayout>
 

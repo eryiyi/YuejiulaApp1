@@ -44,6 +44,22 @@
                     android:src="@drawable/back"
                     android:paddingRight="10dp"/>
 
+            <ImageView android:layout_width="wrap_content"
+                       android:src="@drawable/close"
+                       android:id="@+id/close"
+                       android:paddingLeft="10dp"
+                       android:paddingRight="10dp"
+                       android:layout_centerVertical="true"
+                       android:layout_toRightOf="@+id/menu"
+                       android:layout_height="match_parent"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:src="@drawable/icons_others_share"
+                       android:layout_alignParentRight="true"
+                       android:paddingLeft="10dp"
+                       android:paddingRight="15dp"
+                       android:id="@+id/detail_share"
+                    />
         </RelativeLayout>
 
         <LinearLayout android:layout_width="match_parent"

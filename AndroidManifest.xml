@@ -363,7 +363,7 @@
         <!-- 在百度开发者中心查询应用的API Key -->
         <meta-data android:name="push_api_key" android:value="9rc4UmyvXfVgniywpipcbxYW "/>
         <!-- 友盟统计分析 -->
-        <meta-data android:name="UMENG_APPKEY" android:value="573591f167e58ec374000150"/>
+        <meta-data android:name="UMENG_APPKEY" android:value="575a870267e58eee5900096b"/>
         <meta-data android:name="UMENG_CHANNEL" android:value="WANDOUJIA"/>
         <meta-data android:name="UMENG_MESSAGE_SECRET" android:value="64eef779483348c5eff4d2e3bba233ec">
         </meta-data>

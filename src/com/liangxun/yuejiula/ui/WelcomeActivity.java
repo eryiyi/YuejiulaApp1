@@ -56,6 +56,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     List<Emp> emps = new ArrayList<Emp>();
     boolean isMobileNet, isWifiNet;
     private ImageView head;
+    private Ad ad;
 
     //定位
     private AMapLocationClient locationClient = null;
@@ -109,7 +110,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         // 启动定位
         locationClient.startLocation();
         mHandler.sendEmptyMessage(Utils.MSG_LOCATION_START);
-
+        initAd();
         // 启动一个线程
         new Thread(WelcomeActivity.this).start();
     }
@@ -122,35 +123,36 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         try {
             // 3秒后跳转到登录界面
             Thread.sleep(3000);
-//            if (ad != null){
-//                Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
-//                intent.putExtra("ad",ad);
-//                startActivity(intent);
-//                finish();
-//            } else{
+            if (ad != null){
+                Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
+                intent.putExtra("ad",ad);
+                startActivity(intent);
+                finish();
+            } else{
 //                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
 //                finish();
-//            }
-
-            SharedPreferences.Editor editor = getSp().edit();
-            boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
-            if (isFirstRun) {
-                editor.putBoolean("isFirstRun", false);
-                editor.commit();
-                Intent loadIntent = new Intent(WelcomeActivity.this, AboutActivity.class);
-                startActivity(loadIntent);
-                finish();
-            } else {
-                //判断是否登陆过
-                String username = getGson().fromJson(getSp().getString(Constants.EMPMOBILE, ""), String.class);
-                String pwr = getGson().fromJson(getSp().getString(Constants.EMPPASS, ""), String.class);
-                if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
-                    login();
-                }else{
-                    startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                SharedPreferences.Editor editor = getSp().edit();
+                boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
+                if (isFirstRun) {
+                    editor.putBoolean("isFirstRun", false);
+                    editor.commit();
+                    Intent loadIntent = new Intent(WelcomeActivity.this, AboutActivity.class);
+                    startActivity(loadIntent);
                     finish();
+                } else {
+                    //判断是否登陆过
+                    String username = getGson().fromJson(getSp().getString(Constants.EMPMOBILE, ""), String.class);
+                    String pwr = getGson().fromJson(getSp().getString(Constants.EMPPASS, ""), String.class);
+                    if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
+                        login();
+                    }else{
+                        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                        finish();
+                    }
                 }
             }
+
+
 
 
         } catch (InterruptedException e) {
@@ -426,27 +428,27 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
 
 
     //去取广告图片
-//    private void initAd() {
-//        StringRequest request = new StringRequest(
-//                Request.Method.POST,
-//                InternetURL.GET_BIGAD_URL,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String s) {
-//                        if (StringUtil.isJson(s)) {
-//                            AdDATA data = getGson().fromJson(s, AdDATA.class);
-//                            if (data.getCode() == 200) {
-//                                ad = data.getData();
-//                            }else {
+    private void initAd() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_BIGAD_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            AdDATA data = getGson().fromJson(s, AdDATA.class);
+                            if (data.getCode() == 200) {
+                                ad = data.getData();
+                            }else {
 //                                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
 //                                finish();
-//                            }
-//                        }
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError volleyError) {
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
 //                        if (ad != null){
 //                            Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
 //                            intent.putExtra("ad",ad);
@@ -457,24 +459,24 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
 //                            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
 //                            finish();
 //                        }
-//                    }
-//                }
-//        ) {
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                return params;
-//            }
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("Content-Type", "application/x-www-form-urlencoded");
-//                return params;
-//            }
-//        };
-//        getRequestQueue().add(request);
-//    }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 
     // 根据控件的选择，重新设置定位参数
     private void initOption() {

@@ -34,6 +34,7 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.DetailGoodsActivity;
 import com.liangxun.yuejiula.ui.DianpuDetailActivity;
 import com.liangxun.yuejiula.ui.SearchGoodsActivity;
+import com.liangxun.yuejiula.ui.WebViewActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ClassifyGridview;
@@ -57,7 +58,6 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
 
     private ImageView no_record;
 
-    private String schoolId = "";
     private String emp_id = "";//当前登陆者UUID
     private String typeId = "";
     private String type = "";//登陆者类别
@@ -79,7 +79,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dianpu_fragment, null);
-        schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
+//        schoolId = ;
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         initView(view);
         getType();
@@ -109,12 +109,20 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Goodstype goodstype = goodstypeList.get(position);
-                typeId = goodstype.getTypeId();
-                String typeName = goodstype.getTypeName();
-                Intent search = new Intent(getActivity(), SearchGoodsActivity.class);
-                search.putExtra("typeId", typeId);
-                search.putExtra("typeName", typeName);
-                startActivity(search);
+                if("0".equals(goodstype.getLx_goods_type_type())){
+                    //是商城类别
+                    typeId = goodstype.getTypeId();
+                    String typeName = goodstype.getTypeName();
+                    Intent search = new Intent(getActivity(), SearchGoodsActivity.class);
+                    search.putExtra("typeId", typeId);
+                    search.putExtra("typeName", typeName);
+                    startActivity(search);
+                }else if("1".equals(goodstype.getLx_goods_type_type())){
+                    //是第三方网址
+                    Intent webView = new Intent(getActivity(), WebViewActivity.class);
+                    webView.putExtra("strurl", goodstype.getLx_goods_type_url());
+                    startActivity(webView);
+                }
             }
         });
         adaptertype = new ImageAdapter(goodstypeList,getActivity());
@@ -221,7 +229,9 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("keyWords", content);
-                params.put("school_id", schoolId);
+                if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
+                    params.put("school_id", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
+                }
                 params.put("page", String.valueOf(pageIndex));
 //                params.put("typeId", typeId);
 //                params.put("type", "0");
@@ -349,6 +359,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("school_id",  getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
                 return params;
             }
 
