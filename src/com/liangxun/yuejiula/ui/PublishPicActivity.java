@@ -31,7 +31,6 @@ import com.liangxun.yuejiula.adapter.Publish_mood_GridView_Adapter;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.RecordSingleDATA;
-import com.liangxun.yuejiula.entity.Province;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
 import com.liangxun.yuejiula.face.ChatEmoji;
 import com.liangxun.yuejiula.face.FaceAdapter;
@@ -85,6 +84,8 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
     private Uri uri;
     private String schoolId = "";
     private String emp_id = "";//当前登陆者UUID
+
+    private EditText money;
 
     //表情
     /**
@@ -231,7 +232,18 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
         provinces_names.clear();
         provinces_names.add("请选择标签");
         for (SchoolRecordMood pro : provinces) {
-            provinces_names.add(pro.getSchool_record_mood_name());
+
+            if("0".equals(pro.getSchool_record_mood_type())){
+                provinces_names.add("心情-"+pro.getSchool_record_mood_name());
+            }else
+            if("1".equals(pro.getSchool_record_mood_type())){
+                provinces_names.add("求助-"+pro.getSchool_record_mood_name());
+            }else
+            if("2".equals(pro.getSchool_record_mood_type())){
+                provinces_names.add("拍卖-"+pro.getSchool_record_mood_name());
+            }else {
+                provinces_names.add("全部");
+            }
         }
         provinceAdapter.notifyDataSetChanged();
     }
@@ -413,6 +425,12 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                 params.put("recordSchoolId", schoolId);
                 if(schoolRecordMood != null && !StringUtil.isNullOrEmpty(schoolRecordMood.getSchool_record_mood_id())){
                     params.put("school_record_mood_id", schoolRecordMood.getSchool_record_mood_id());
+                    if("2".equals(schoolRecordMood.getSchool_record_mood_type())){
+                        params.put("is_paimai", "1");
+                    }
+                }
+                if(!StringUtil.isNullOrEmpty(money.getText().toString())){
+                    params.put("money", money.getText().toString());
                 }
                 return params;
             }
@@ -481,7 +499,14 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                 params.put("recordSchoolId", schoolId);
                 if(schoolRecordMood != null && !StringUtil.isNullOrEmpty(schoolRecordMood.getSchool_record_mood_id())){
                     params.put("school_record_mood_id", schoolRecordMood.getSchool_record_mood_id());
+                    if("2".equals(schoolRecordMood.getSchool_record_mood_type())){
+                        params.put("is_paimai", "1");
+                    }
                 }
+                if(!StringUtil.isNullOrEmpty(money.getText().toString())){
+                    params.put("money", money.getText().toString());
+                }
+
                 return params;
             }
 
@@ -601,7 +626,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
      */
     private void Init_View() {
         vp_face = (ViewPager) findViewById(R.id.vp_contains);
-
+        money = (EditText) this.findViewById(R.id.money);
         et_sendmessage = (EditText) findViewById(R.id.face_content);
 //        et_sendmessage.addTextChangedListener(textWatcher);
         et_sendmessage_count = (TextView) findViewById(R.id.count);

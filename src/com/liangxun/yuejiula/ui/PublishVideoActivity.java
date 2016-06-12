@@ -156,7 +156,7 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
     private ArrayList<String> provinces_names = new ArrayList<String>();
     private ArrayAdapter<String> provinceAdapter;
     SchoolRecordMood schoolRecordMood;//选中的那个额
-
+    private EditText money;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -196,6 +196,7 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
     }
 
     private void initView() {
+        money = (EditText) this.findViewById(R.id.money);
         back = (ImageView) findViewById(R.id.publis_video_back);
         publish = (TextView) findViewById(R.id.publish_video_run);
         back.setOnClickListener(this);
@@ -221,7 +222,17 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
         provinces_names.clear();
         provinces_names.add("请选择标签");
         for (SchoolRecordMood pro : provinces) {
-            provinces_names.add(pro.getSchool_record_mood_name());
+            if("0".equals(pro.getSchool_record_mood_type())){
+                provinces_names.add("心情-"+pro.getSchool_record_mood_name());
+            }else
+            if("1".equals(pro.getSchool_record_mood_type())){
+                provinces_names.add("求助-"+pro.getSchool_record_mood_name());
+            }else
+            if("2".equals(pro.getSchool_record_mood_type())){
+                provinces_names.add("拍卖-"+pro.getSchool_record_mood_name());
+            }else {
+                provinces_names.add("全部");
+            }
         }
         provinceAdapter.notifyDataSetChanged();
     }
@@ -399,7 +410,14 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
                 params.put("recordSchoolId", schoolId);
                 if(schoolRecordMood != null && !StringUtil.isNullOrEmpty(schoolRecordMood.getSchool_record_mood_id())){
                     params.put("school_record_mood_id", schoolRecordMood.getSchool_record_mood_id());
+                    if("2".equals(schoolRecordMood.getSchool_record_mood_type())){
+                        params.put("is_paimai", "1");
+                    }
                 }
+                if(!StringUtil.isNullOrEmpty(money.getText().toString())){
+                    params.put("money", money.getText().toString());
+                }
+
                 return params;
             }
 

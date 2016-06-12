@@ -7,6 +7,15 @@ public class SchoolRecordMood {
     private String school_record_mood_id;
     private String school_record_mood_name;
     private String top_num;
+    private String school_record_mood_type;
+
+    public String getSchool_record_mood_type() {
+        return school_record_mood_type;
+    }
+
+    public void setSchool_record_mood_type(String school_record_mood_type) {
+        this.school_record_mood_type = school_record_mood_type;
+    }
 
     public String getSchool_record_mood_id() {
         return school_record_mood_id;

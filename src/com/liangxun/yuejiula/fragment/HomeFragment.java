@@ -417,6 +417,21 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 recordList.add(0, record1);
                 adapter.notifyDataSetChanged();
             }
+
+            if (action.equals("record_jp_success")) {
+                String money1 =  intent.getExtras().getString("money");
+                String record_id =  intent.getExtras().getString("record_id");
+                for(int i=0;i<recordList.size();i++){
+                    Record record1 = recordList.get(i);
+                    if(record1.getRecordId().equals(record_id)){
+                        recordList.get(i).setMoney(String.valueOf(Integer.parseInt(record.getMoney()) + Integer.parseInt(money1)));
+                        break;
+                    }
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+
         }
     };
 
@@ -428,6 +443,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         myIntentFilter.addAction(Constants.SEND_COMMENT_RECORD_SUCCESS);//动态评论添加  更新评论数量
         myIntentFilter.addAction(Constants.SEND_DELETE_RECORD_SUCCESS);//动态详情页删除动态，更新首页
         myIntentFilter.addAction(Constants.SEND_INDEX_SUCCESS);//添加说说和添加视频成功，刷新首页
+        myIntentFilter.addAction("record_jp_success");
         //注册广播
         getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
     }

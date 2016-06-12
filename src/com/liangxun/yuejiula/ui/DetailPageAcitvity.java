@@ -87,6 +87,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private ImageView detail_video_pic;//视频图片
     private ImageView detail_player_icon_video;//视频播放按钮
     private ImageView picone;//单一图片的时候使用
+    private TextView money;//价格
 
     private ImageView detail_ad_image;//广告图片
     private TextView pl_text;//评论数量
@@ -114,6 +115,8 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     String shareParams = "";
     String appID = "wx198fc23a0fae697a";
     private DeletePopWindow deleteWindow;
+
+    private TextView text_comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +187,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private void initView() {
         commentLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.detail_header, null);
         detail_back = (ImageView) this.findViewById(R.id.detail_back);
+        text_comment = (TextView) this.findViewById(R.id.text_comment);
         detail_back.setOnClickListener(this);
         detail_share = (ImageView) this.findViewById(R.id.detail_share);
         detail_share.setOnClickListener(this);
@@ -228,7 +232,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         detail_player_icon_video = (ImageView) commentLayout.findViewById(R.id.detail_player_icon_video);
         picone = (ImageView) commentLayout.findViewById(R.id.picone);
         detail_player_icon_video.setOnClickListener(this);
-
+        money = (TextView) commentLayout.findViewById(R.id.money);
 //        commentLayoutfoot = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.detail_foot, null);
         detail_ad_image = (ImageView) commentLayout.findViewById(R.id.detail_ad_image);
         detail_ad_image.setOnClickListener(this);
@@ -356,6 +360,15 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         }else{
             sharePic = record.getEmpCover();
         }
+        if("1".equals(record.getIs_paimai())){
+            //说明是拍卖
+            money.setVisibility(View.VISIBLE);
+            money.setText("竞拍价："+record.getMoney());
+            text_comment.setText("出价");
+        }else {
+            money.setVisibility(View.GONE);
+            text_comment.setText("评论");
+        }
     }
 
     private void startImageActivity(String[] urls, int position) {
@@ -381,14 +394,23 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
             case R.id.detail_report_liner://举报
                 showJubao();
                 break;
-            case R.id.detail_comment_liner://回复评论
-                Intent comment = new Intent(DetailPageAcitvity.this, PublishCommentAcitvity.class);
-                comment.putExtra(Constants.FATHER_PERSON_NAME, "");
-                comment.putExtra(Constants.FATHER_UUID, "0");
-                comment.putExtra(Constants.RECORD_UUID, record.getRecordId());
-                comment.putExtra(Constants.FATHER_PERSON_UUID, record.getRecordEmpId());
-                comment.putExtra("fplempid", "");
-                startActivity(comment);
+            case R.id.detail_comment_liner:
+                if("1".equals(record.getIs_paimai())){
+                    //出价
+                    Intent recordV = new Intent(DetailPageAcitvity.this, AddRecordJpActivity.class);
+                    recordV.putExtra("record", record);
+                    startActivity(recordV);
+                }else {
+                    //评论
+                    Intent comment = new Intent(DetailPageAcitvity.this, PublishCommentAcitvity.class);
+                    comment.putExtra(Constants.FATHER_PERSON_NAME, "");
+                    comment.putExtra(Constants.FATHER_UUID, "0");
+                    comment.putExtra(Constants.RECORD_UUID, record.getRecordId());
+                    comment.putExtra(Constants.FATHER_PERSON_UUID, record.getRecordEmpId());
+                    comment.putExtra("fplempid", "");
+                    startActivity(comment);
+                }
+
                 break;
             case R.id.detail_like_liner://点赞
                 progressDialog = new ProgressDialog(this);
@@ -831,6 +853,11 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
             if (action.equals(Constants.SEND_FAVOUR_SUCCESS)) {
                 getFavour();
             }
+            if (action.equals("record_jp_success")) {
+                String money1 =  intent.getExtras().getString("money");
+                record.setMoney(String.valueOf(Integer.parseInt(record.getMoney()) + Integer.parseInt(money1)));
+                money.setText("竞拍价："+ record.getMoney());
+            }
         }
 
     };
@@ -840,6 +867,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         IntentFilter myIntentFilter = new IntentFilter();
         myIntentFilter.addAction(Constants.SEND_COMMENT_SUCCESS);//评论成功，刷新评论列表
         myIntentFilter.addAction(Constants.SEND_FAVOUR_SUCCESS);//点赞成功，刷新赞列表
+        myIntentFilter.addAction("record_jp_success");
         //注册广播
         registerReceiver(mBroadcastReceiver, myIntentFilter);
     }

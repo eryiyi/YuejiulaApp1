@@ -22,6 +22,24 @@ public class Record implements Serializable {
     private String dateLine;
     private String school_record_mood_id;
     private String school_record_mood_name;
+    private String money;
+    private String is_paimai;
+
+    public String getIs_paimai() {
+        return is_paimai;
+    }
+
+    public void setIs_paimai(String is_paimai) {
+        this.is_paimai = is_paimai;
+    }
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
 
     public String getSchool_record_mood_name() {
         return school_record_mood_name;

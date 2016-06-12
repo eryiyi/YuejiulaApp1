@@ -282,5 +282,10 @@ public class InternetURL {
     //查询封号封群的承包商下的会员列表
     public static final String GET_FENGHAOFENGQUNS_URL = INTERNAL + "getFenghaofengquns.do";
 
+    //竞价保存 查询  单个查询
+    public static final String SAVE_RECORDJP_URL = INTERNAL + "saveRecordJp.do";
+    public static final String GET_LISTS_RECORDJPS_URL = INTERNAL + "listRecordJps.do";
+    public static final String GET_SINGLE_RECORDJP_URL = INTERNAL + "getSingleRecordJpById.do";
+
 
 }

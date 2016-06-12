@@ -80,6 +80,7 @@ public class RecordAdapter extends BaseAdapter {
             holder.home_item_school = (TextView) convertView.findViewById(R.id.home_item_school);
             holder.home_photo_item_delete = (TextView) convertView.findViewById(R.id.home_photo_item_delete);
             holder.home_item_mood = (TextView) convertView.findViewById(R.id.home_item_mood);
+            holder.money = (TextView) convertView.findViewById(R.id.money);
             holder.home_player_icon_video = (ImageView) convertView.findViewById(R.id.home_player_icon_video);
             convertView.setTag(holder);
         } else {
@@ -96,6 +97,12 @@ public class RecordAdapter extends BaseAdapter {
         holder.home_viewed_item_time.setTextColor(mContext.getResources().getColor(R.color.textColortwo));
         final Record cell = records.get(position);//获得元素
         if (cell != null) {
+            if("1".equals(cell.getIs_paimai())){
+                holder.money.setVisibility(View.VISIBLE);
+                holder.money.setText("竞拍价："+cell.getMoney());
+            }else {
+                holder.money.setVisibility(View.GONE);
+            }
             if (mEmp_id.equals(cell.getRecordEmpId())) {//是发布者本人的动态
                 holder.home_photo_item_delete.setVisibility(View.VISIBLE);//显示删除按钮
                 holder.home_photo_item_level.setVisibility(View.GONE);//隐藏等级区域
@@ -268,6 +275,7 @@ public class RecordAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView home_viewed_item_cover;//头像
         TextView home_viewed_item_name;//昵称
+        TextView money;
         TextView home_item_mood;//mood
         TextView home_viewed_item_time;//日期
         TextView home_viewed_item_cont;//内容
