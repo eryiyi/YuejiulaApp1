@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:orientation="horizontal"
+              android:background="@drawable/zhuye_item_select">
+
+    <com.liangxun.yuejiula.widget.CircleImageView
+            android:layout_width="45dp"
+            android:id="@+id/head"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/default_avatar"
+             android:layout_height="45dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:text="张三"
+              android:id="@+id/name"
+              android:layout_weight="1"
+              android:layout_gravity="center_vertical"
+              android:gravity="center_vertical"
+              android:layout_marginLeft="8dp"
+              android:textColor="@color/textColor"
+              android:textSize="16sp"
+              android:layout_height="match_parent"/>
+    <TextView android:layout_width="wrap_content"
+              android:text="加价：100"
+              android:layout_marginRight="8dp"
+              android:gravity="center_vertical"
+              android:id="@+id/money"
+              android:textSize="16sp"
+              android:textColor="@color/red"
+              android:layout_height="match_parent"/>
+    <TextView android:layout_width="wrap_content"
+              android:text="前天"
+              android:gravity="center_vertical"
+              android:id="@+id/dateline"
+              android:layout_marginRight="8dp"
+              android:padding="6dp"
+              android:textColor="@color/textColortwo"
+              android:layout_height="match_parent"/>
+</LinearLayout>

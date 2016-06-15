@@ -80,6 +80,7 @@ public class MineRecordAdapter extends BaseAdapter {
             holder.home_photo_item_like_count = (TextView) convertView.findViewById(R.id.home_photo_item_like_count);
             holder.home_item_school = (TextView) convertView.findViewById(R.id.home_item_school);
             holder.home_player_icon_video = (ImageView) convertView.findViewById(R.id.home_player_icon_video);
+            holder.money = (TextView) convertView.findViewById(R.id.money);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -94,6 +95,13 @@ public class MineRecordAdapter extends BaseAdapter {
         holder.home_viewed_item_cont.setVisibility(View.GONE);
         final Record cell = records.get(position);//获得元素
         if (cell != null) {
+            if("1".equals(cell.getIs_paimai())){
+                holder.money.setVisibility(View.VISIBLE);
+                holder.money.setText("竞拍价："+cell.getMoney());
+            }else {
+                holder.money.setVisibility(View.GONE);
+            }
+
             imageLoader.displayImage(cell.getEmpCover(), holder.home_viewed_item_cover, UniversityApplication.txOptions, animateFirstListener);
             holder.home_photo_item_comment_count.setText(cell.getPlNum());
             holder.home_viewed_item_name.setText(cell.getEmpName());
@@ -219,6 +227,7 @@ public class MineRecordAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
+        TextView money;
         ImageView home_viewed_item_cover;//头像
         TextView home_viewed_item_name;//昵称
         TextView home_viewed_item_time;//日期

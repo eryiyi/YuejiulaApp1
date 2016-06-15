@@ -276,6 +276,8 @@
                   android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.AddRecordJpActivity" android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailJingpaiActivity" android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
 
 
         <activity

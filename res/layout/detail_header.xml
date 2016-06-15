@@ -80,22 +80,35 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/red"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:textIsSelectable="true"
-                    android:layout_marginTop="12dp"
-                    android:id="@+id/money"/>
+           <LinearLayout android:layout_width="match_parent"
+                         android:orientation="horizontal"
+                         android:layout_marginLeft="12dp"
+                         android:layout_marginRight="12dp"
+                         android:id="@+id/liner_jp"
+                         android:layout_marginTop="12dp"
+                         android:layout_height="wrap_content">
+               <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textColor="@color/red"
+                       android:textSize="16sp"
+                       android:layout_weight="1"
+                       android:padding="8dp"
+                       android:text="120"
+                       android:id="@+id/money"/>
+               <TextView android:layout_width="wrap_content"
+                         android:text="点此查看竞拍详情"
+                         android:textColor="@color/white"
+                         android:padding="8dp"
+                         android:id="@+id/detail_jp"
+                         android:background="@color/nickname_color"
+                         android:layout_height="wrap_content"/>
+           </LinearLayout>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textColor"
                     android:textSize="16sp"
-                    android:text="这是内这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容容"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:textIsSelectable="true"

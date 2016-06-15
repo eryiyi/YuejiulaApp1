@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         EMChat.getInstance().setAppInited();
         PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, Utils.getMetaValue(MainActivity.this, "push_api_key"));
 
-        arrayMenu.add("冒泡");
+        arrayMenu.add("文字");
         arrayMenu.add("秒拍");
         arrayMenu.add("相机");
 
@@ -1497,19 +1497,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                                     Intent profileV = new Intent(MainActivity.this, ProfilePersonalActivity.class);
                                     profileV.putExtra(Constants.EMPID, contractSchool.getEmpId());
                                     startActivity(profileV);
+                                }else{
+                                    showMsg(MainActivity.this,"暂无管理员");
                                 }
                             } else {
-                                Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                                showMsg(MainActivity.this,"暂无管理员");
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            showMsg(MainActivity.this, "暂无管理员");
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        showMsg(MainActivity.this,"暂无管理员");
                     }
                 }
         ) {

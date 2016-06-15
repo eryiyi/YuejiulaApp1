@@ -118,6 +118,9 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
 
     private TextView text_comment;
 
+    private LinearLayout liner_jp;
+    private TextView detail_jp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,6 +189,9 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
 
     private void initView() {
         commentLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.detail_header, null);
+        liner_jp = (LinearLayout) commentLayout.findViewById(R.id.liner_jp);
+        detail_jp = (TextView) commentLayout.findViewById(R.id.detail_jp);
+        detail_jp.setOnClickListener(this);
         detail_back = (ImageView) this.findViewById(R.id.detail_back);
         text_comment = (TextView) this.findViewById(R.id.text_comment);
         detail_back.setOnClickListener(this);
@@ -362,11 +368,11 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         }
         if("1".equals(record.getIs_paimai())){
             //说明是拍卖
-            money.setVisibility(View.VISIBLE);
+            liner_jp.setVisibility(View.VISIBLE);
             money.setText("竞拍价："+record.getMoney());
             text_comment.setText("出价");
         }else {
-            money.setVisibility(View.GONE);
+            liner_jp.setVisibility(View.GONE);
             text_comment.setText("评论");
         }
     }
@@ -471,6 +477,11 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
                     startActivity(webView);
                 }
             }
+                break;
+            case R.id.detail_jp:
+                Intent jpV = new Intent(DetailPageAcitvity.this, DetailJingpaiActivity.class);
+                jpV.putExtra("record", record);
+                startActivity(jpV);
                 break;
 
         }
