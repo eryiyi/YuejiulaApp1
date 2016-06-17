@@ -31,7 +31,7 @@
                     android:padding="8dip"
                     android:text="其他大学"
                     android:id="@+id/maintitle"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"/>
         </LinearLayout>
     </RelativeLayout>

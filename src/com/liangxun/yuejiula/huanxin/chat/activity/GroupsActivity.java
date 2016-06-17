@@ -124,7 +124,7 @@ public class GroupsActivity extends BaseActivity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				if (position == 1) {
+				if (position == 0) {
 					// 新建群聊
 					//先判断是否是承包商  只有承包商可以新建群
 					if("3".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
@@ -134,16 +134,18 @@ public class GroupsActivity extends BaseActivity {
 						showMsg(GroupsActivity.this, "您不是承包商，没有权限新建群组！");
 					}
 
-				} else if (position == 2) {
-					// 添加公开群
-					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
-						//如果fengqun了
-						showMsgFenghao();
-					}else {
-						startActivityForResult(new Intent(GroupsActivity.this, PublicGroupsActivity.class), 0);
-					}
-
-				} else {
+				}
+//				else if (position == 1) {
+//					// 添加公开群
+//					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
+//						//如果fengqun了
+//						showMsgFenghao();
+//					}else {
+//						startActivityForResult(new Intent(GroupsActivity.this, PublicGroupsActivity.class), 0);
+//					}
+//
+//				}
+				else {
 					// 进入群聊
 
 					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
@@ -153,7 +155,7 @@ public class GroupsActivity extends BaseActivity {
 						Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);
 						// it is group chat
 						intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-						intent.putExtra("groupId", groupAdapter.getItem(position - 3).getGroupId());
+						intent.putExtra("groupId", groupAdapter.getItem(position - 1).getGroupId());
 						startActivityForResult(intent, 0);
 					}
 

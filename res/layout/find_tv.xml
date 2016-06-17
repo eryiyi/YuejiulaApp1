@@ -28,7 +28,7 @@
                         android:padding="8dip"
                         android:text="第一视听"
                         android:id="@+id/notice_detail_title"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18sp"/>
             </LinearLayout>
             <ImageView

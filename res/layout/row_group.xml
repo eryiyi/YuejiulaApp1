@@ -13,11 +13,11 @@
     <!--android:padding="5dp"-->
     <!--android:layout_marginLeft="4dp"-->
     <!--android:src="@drawable/group_icon" />-->
-    <com.liangxun.yuejiula.widget.CircleImageView
+    <ImageView
             android:id="@+id/avatar"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/head"
+            android:src="@drawable/groups_icon"
             android:padding="5dp"
             android:layout_marginLeft="15dp"
             android:layout_alignParentLeft="true"/>

@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/session"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"/>
         <ImageView
                 android:id="@+id/add_contact"
@@ -36,7 +36,7 @@
                 android:background="@drawable/common_tab_bg"
                 android:clickable="true"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_groupinfo"/>
+                android:src="@drawable/icons_others_allusers"/>
     </RelativeLayout>
 
     <include

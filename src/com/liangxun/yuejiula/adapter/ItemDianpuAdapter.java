@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.amap.api.maps.model.LatLng;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.entity.EmpDianpu;
 import com.liangxun.yuejiula.entity.PaopaoGoods;
+import com.liangxun.yuejiula.util.StringUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
@@ -85,8 +87,9 @@ public class ItemDianpuAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_dianpu, null);
             holder.item_cover = (ImageView) convertView.findViewById(R.id.item_cover);
+            holder.deng = (ImageView) convertView.findViewById(R.id.deng);
             holder.item_title = (TextView) convertView.findViewById(R.id.item_title);
-            holder.item_location = (ImageView) convertView.findViewById(R.id.item_location);
+            holder.item_location = (TextView) convertView.findViewById(R.id.item_location);
             holder.head = (ImageView) convertView.findViewById(R.id.head);
             holder.item_address = (TextView) convertView.findViewById(R.id.item_address);
             holder.item_nickname = (TextView) convertView.findViewById(R.id.item_nickname);
@@ -101,14 +104,28 @@ public class ItemDianpuAdapter extends BaseAdapter {
         //加载图片
         imageLoader.displayImage(cell.getCompany_pic(), holder.item_cover, UniversityApplication.options, animateFirstListener);
         imageLoader.displayImage(cell.getEmpCover(), holder.head, UniversityApplication.txOptions, animateFirstListener);
+
+        LatLng latLng = new LatLng(Double.valueOf(UniversityApplication.lat), Double.valueOf(UniversityApplication.lng));
+        LatLng latLng1 = new LatLng(Double.valueOf(cell.getLat_company()), Double.valueOf(cell.getLng_company()));
+        String distance = StringUtil.getDistance(latLng, latLng1);
+        holder.item_location.setText(distance + "km");
+        if(!StringUtil.isNullOrEmpty(cell.getYingye_time_start()) && !StringUtil.isNullOrEmpty(cell.getYingye_time_end())){
+            if(StringUtil.betweenTwoNumber(Integer.parseInt(cell.getYingye_time_start()), Integer.parseInt(cell.getYingye_time_end()))){
+                holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_open));
+            }else {
+                holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_close));
+            }
+        }
+
         return convertView;
     }
 
     class ViewHolder {
         ImageView item_cover;
         TextView item_title;
-        ImageView item_location;
+        TextView item_location;
         ImageView head;
+        ImageView deng;
         TextView item_nickname;
         TextView item_address;
     }

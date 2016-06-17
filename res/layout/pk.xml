@@ -24,10 +24,10 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="校园PK"
+                android:text="PK"
                 android:gravity="center_vertical"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 />
         <ImageView

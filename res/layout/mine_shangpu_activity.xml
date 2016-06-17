@@ -12,7 +12,7 @@
                 android:drawablePadding="8dp"
                 android:onClick="back"
                 android:background="@null"
-                android:textColor="@color/black_text_color"
+                android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:drawableLeft="@drawable/back"

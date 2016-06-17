@@ -30,7 +30,7 @@
                 android:text="处理举报"
                 android:gravity="center_vertical"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 />
     </RelativeLayout>

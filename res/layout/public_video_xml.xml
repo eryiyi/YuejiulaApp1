@@ -23,7 +23,7 @@
                     android:layout_height="wrap_content"
                     android:padding="8dip"
                     android:text="发视频"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"/>
         </LinearLayout>
 
@@ -91,35 +91,21 @@
                     android:gravity="top"
                     android:background="@drawable/et_bule_bg"
                     android:hint="说点儿什么吧..."/>
-            <EditText
-                    android:id="@+id/money"
-                    android:layout_width="match_parent"
-                    android:layout_below="@+id/face_content"
-                    android:layout_height="wrap_content"
-                    android:maxHeight="100dp"
-                    android:paddingLeft="5dp"
-                    android:numeric="integer"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/et_bule_bg"
-                    android:textSize="14sp"
-                    android:hint="起价数，只在选择拍卖标签时起作用"
-                    android:padding="10dp"
-                    android:textColor="#ff000000"/>
+
             <RelativeLayout
                     android:id="@+id/preview_video_parent"
                     android:layout_width="match_parent"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_height="200dp"
                     android:layout_alignParentTop="true">
 
                 <TextureView
                         android:id="@+id/preview_video"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="200dp"/>
 
                 <ImageView
                         android:id="@+id/previre_play"

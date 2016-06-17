@@ -85,7 +85,6 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
     private String schoolId = "";
     private String emp_id = "";//当前登陆者UUID
 
-    private EditText money;
 
     //表情
     /**
@@ -161,7 +160,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
     private ArrayList<SchoolRecordMood> provinces = new ArrayList<SchoolRecordMood>();
     private ArrayList<String> provinces_names = new ArrayList<String>();
     private ArrayAdapter<String> provinceAdapter;
-    SchoolRecordMood schoolRecordMood;//选中的那个额
+    SchoolRecordMood schoolRecordMood = null;//选中的那个额
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,7 +218,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
         provinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
-                    schoolRecordMood = provinces.get(position - 1);
+                    schoolRecordMood = provinces.get(position );
                 }
             }
             @Override
@@ -231,6 +230,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
         provinces.addAll(MainActivity.arrayMood);
         provinces_names.clear();
         provinces_names.add("请选择标签");
+
         for (SchoolRecordMood pro : provinces) {
 
             if("0".equals(pro.getSchool_record_mood_type())){
@@ -241,8 +241,6 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
             }else
             if("2".equals(pro.getSchool_record_mood_type())){
                 provinces_names.add("拍卖-"+pro.getSchool_record_mood_name());
-            }else {
-                provinces_names.add("全部");
             }
         }
         provinceAdapter.notifyDataSetChanged();
@@ -262,7 +260,12 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.publish_pic_run:
                 uploadPaths.clear();
+                if(schoolRecordMood == null){
+                    Toast.makeText(this, "请选择标签", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (dataList.size() == 0) {
+
                     if (StringUtil.isNullOrEmpty(et_sendmessage.getText().toString())) {
                         Toast.makeText(this, R.string.commetn_isnull, Toast.LENGTH_SHORT).show();
                         return;
@@ -429,9 +432,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                         params.put("is_paimai", "1");
                     }
                 }
-                if(!StringUtil.isNullOrEmpty(money.getText().toString())){
-                    params.put("money", money.getText().toString());
-                }
+
                 return params;
             }
 
@@ -503,9 +504,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                         params.put("is_paimai", "1");
                     }
                 }
-                if(!StringUtil.isNullOrEmpty(money.getText().toString())){
-                    params.put("money", money.getText().toString());
-                }
+
 
                 return params;
             }
@@ -626,7 +625,6 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
      */
     private void Init_View() {
         vp_face = (ViewPager) findViewById(R.id.vp_contains);
-        money = (EditText) this.findViewById(R.id.money);
         et_sendmessage = (EditText) findViewById(R.id.face_content);
 //        et_sendmessage.addTextChangedListener(textWatcher);
         et_sendmessage_count = (TextView) findViewById(R.id.count);

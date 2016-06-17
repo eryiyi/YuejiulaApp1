@@ -16,8 +16,8 @@
                 android:layout_height="match_parent"
                 android:padding="8dip"
                 android:gravity="center"
-                android:text="关于良讯"
-                android:textColor="@color/white"
+                android:text=""
+                android:textColor="@color/black"
                 android:textSize="18sp"/>
 
         <ImageView

@@ -23,7 +23,7 @@
                     android:padding="8dip"
                     android:id="@+id/title"
                     android:text="童心堂市场"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"/>
         </LinearLayout>
 

@@ -32,7 +32,7 @@
                         android:text="童心堂新闻"
                         android:id="@+id/part_news_title"
                         android:singleLine="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18sp"/>
             </LinearLayout>
             <ImageView

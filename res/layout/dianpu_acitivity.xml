@@ -19,7 +19,7 @@
                 android:layout_centerInParent="true"
                 android:id="@+id/title"
                 android:text="店铺详情"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"/>
         <ImageView
                 android:layout_width="wrap_content"

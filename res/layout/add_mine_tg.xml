@@ -17,7 +17,7 @@
                 android:gravity="center"
                 android:padding="8dip"
                 android:text="添加推广"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"/>
 
         <ImageView

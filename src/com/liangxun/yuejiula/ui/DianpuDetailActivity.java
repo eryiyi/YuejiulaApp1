@@ -51,7 +51,6 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
 
     private LinearLayout headView;
 
-
     //导航
     private AdViewPagerAdapter adapterAd;
     private ImageView dot, dots[];
@@ -70,13 +69,12 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     private TextView nickname;
     private TextView tel;
     private TextView address;
-    private ImageView location;
     private TextView zixun;
     private TextView favour;
     private TextView yingyetime;
     private TextView youhui;
     private TextView content;
-
+    private TextView location;
 
     private RelativeLayout detail_like_liner_layout;//赞区域
     private GridView gridView;
@@ -143,12 +141,13 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 }
             }
         });
-        //查询个人广告位
-        getSlide();
+
         //查询个人店铺信息
         getManagerInfo();
         //个人商品
         initData();
+        //查询个人广告位
+        getSlide();
     }
 
     void initView(){
@@ -157,12 +156,12 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         nickname = (TextView) headView.findViewById(R.id.nickname);
         tel = (TextView) headView.findViewById(R.id.tel);
         address = (TextView) headView.findViewById(R.id.address);
-        location = (ImageView) headView.findViewById(R.id.location);
         zixun = (TextView) headView.findViewById(R.id.zixun);
         favour = (TextView) headView.findViewById(R.id.favour);
         yingyetime = (TextView) headView.findViewById(R.id.yingyetime);
         youhui = (TextView) headView.findViewById(R.id.youhui);
         content = (TextView) headView.findViewById(R.id.content);
+        location = (TextView) headView.findViewById(R.id.location);
         location.setOnClickListener(this);
         zixun.setOnClickListener(this);
         favour.setOnClickListener(this);
@@ -178,9 +177,6 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
             case R.id.detail_back:
                 finish();
                 break;
-            case R.id.location:
-                //地址
-                break;
             case R.id.zixun:
                 //咨询
                 if(!StringUtil.isNullOrEmpty(managerInfo.getCompany_tel())){
@@ -192,6 +188,15 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.favour:
                 //收藏本店
+                break;
+            case R.id.location:
+                //导航
+                if(managerInfo != null && !StringUtil.isNullOrEmpty(managerInfo.getLat_company())  && !StringUtil.isNullOrEmpty(managerInfo.getLng_company()) && !StringUtil.isNullOrEmpty(UniversityApplication.lat) && !StringUtil.isNullOrEmpty(UniversityApplication.lng)){
+                    Intent naviV = new Intent(DianpuDetailActivity.this, GPSNaviActivity.class);
+                    naviV.putExtra("lat_end", managerInfo.getLat_company());
+                    naviV.putExtra("lng_end", managerInfo.getLng_company());
+                    startActivity(naviV);
+                }
                 break;
         }
     }
@@ -468,6 +473,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                             ManagerInfoData data = getGson().fromJson(s, ManagerInfoData.class);
                             if (data.getCode() == 200) {
                                managerInfo = data.getData();
+                                //
                                 initDataProfile();
                             } else {
                                 Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
@@ -513,6 +519,14 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         yingyetime.setText("营业时间:"+managerInfo.getYingye_time_start() + "-" + managerInfo.getYingye_time_end());
         youhui.setText("优惠承诺:"+managerInfo.getShouhui());
         content.setText(managerInfo.getCompany_detail());
+        //AdObj
+        AdObj adObj = new AdObj();
+        adObj.setEmp_id(managerInfo.getEmp_id());
+        adObj.setMm_ad_id("");
+        adObj.setMm_ad_url("");
+        adObj.setMm_ad_title("");
+        adObj.setMm_ad_pic(managerInfo.getCompany_pic());
+        lists.add(adObj);
     }
 
     //获得商品列表

@@ -33,7 +33,7 @@
                     android:text="个人动态"
                     android:gravity="center_vertical"
                     android:layout_centerHorizontal="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:id="@+id/title"
                     />

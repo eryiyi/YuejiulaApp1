@@ -27,7 +27,7 @@
                 android:text="@string/mine_cart_title"
                 android:gravity="center_vertical"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:id="@+id/title"
                 />

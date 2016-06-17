@@ -156,7 +156,6 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
     private ArrayList<String> provinces_names = new ArrayList<String>();
     private ArrayAdapter<String> provinceAdapter;
     SchoolRecordMood schoolRecordMood;//选中的那个额
-    private EditText money;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,9 +178,9 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
         RelativeLayout preview_video_parent = (RelativeLayout) findViewById(R.id.preview_video_parent);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) preview_video_parent
                 .getLayoutParams();
-        layoutParams.width = displaymetrics.widthPixels;
-        layoutParams.height = displaymetrics.widthPixels;
-        preview_video_parent.setLayoutParams(layoutParams);
+//        layoutParams.width = displaymetrics.widthPixels;
+//        layoutParams.height = displaymetrics.widthPixels;
+//        preview_video_parent.setLayoutParams(layoutParams);
 
         surfaceView.setSurfaceTextureListener(this);
         surfaceView.setOnClickListener(this);
@@ -196,7 +195,6 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
     }
 
     private void initView() {
-        money = (EditText) this.findViewById(R.id.money);
         back = (ImageView) findViewById(R.id.publis_video_back);
         publish = (TextView) findViewById(R.id.publish_video_run);
         back.setOnClickListener(this);
@@ -209,7 +207,7 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
         provinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
-                    schoolRecordMood = provinces.get(position - 1);
+                    schoolRecordMood = provinces.get(position );
                 }
             }
             @Override
@@ -230,8 +228,6 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
             }else
             if("2".equals(pro.getSchool_record_mood_type())){
                 provinces_names.add("拍卖-"+pro.getSchool_record_mood_name());
-            }else {
-                provinces_names.add("全部");
             }
         }
         provinceAdapter.notifyDataSetChanged();
@@ -263,6 +259,10 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
                         Toast.makeText(this, R.string.publish_video_error, Toast.LENGTH_SHORT).show();
                         return;
                     }
+                }
+                if(schoolRecordMood == null){
+                    Toast.makeText(this, "请选择标签", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 progressDialog = new ProgressDialog(PublishVideoActivity.this );
 
@@ -414,10 +414,6 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
                         params.put("is_paimai", "1");
                     }
                 }
-                if(!StringUtil.isNullOrEmpty(money.getText().toString())){
-                    params.put("money", money.getText().toString());
-                }
-
                 return params;
             }
 

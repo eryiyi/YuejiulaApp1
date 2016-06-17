@@ -269,9 +269,13 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(add_intent);
                 break;
             case R.id.dating:
-                if (getMyApp().getCurrentEmp() != null) {
-                    stepIntoGroup(getMyApp().getCurrentEmp());
-                }
+//                if (getMyApp().getCurrentEmp() != null) {
+//                    stepIntoGroup(getMyApp().getCurrentEmp());
+//                }
+            {
+                Intent groupV = new Intent(getActivity(), GroupsActivity.class);
+                startActivity(groupV);
+            }
                 break;
             case R.id.tongxunlu:
                 Intent intent = new Intent(getActivity(), ContactlistActivity.class);
@@ -279,8 +283,10 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.add_group:
                 //dating
+            {
                 Intent groupV = new Intent(getActivity(), GroupsActivity.class);
                 startActivity(groupV);
+            }
                 break;
         }
     }

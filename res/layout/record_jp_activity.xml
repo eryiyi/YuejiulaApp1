@@ -17,7 +17,7 @@
                 android:gravity="center"
                 android:padding="8dip"
                 android:text="竞价"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"/>
         <ImageView
                 android:layout_width="wrap_content"

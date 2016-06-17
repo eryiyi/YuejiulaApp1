@@ -51,3 +51,25 @@
 -keep class com.alipay.sdk.app.AuthTask{ public *;}
 
 -android.library.reference.1=../VitamioRecorderLibrary
+
+-libraryjars libs/AMap3DMap_3.3.2_AMapNavi_1.8.0_AMapSearch_3.2.1_AMapLocation_2.5.0_20160526.jar
+# As described in tools/proguard/examples/android.pro - ignore all warnings.
+-dontwarn android.support.v4.**
+#如果有其它包有warning，在报出warning的包加入下面类似的-dontwarn 报名
+-dontwarn com.amap.api.**
+-dontwarn com.aps.**
+#高德相关混淆文件
+#3D 地图
+-keep class com.amap.api.maps.**{*;}
+-keep class com.autonavi.amap.mapcore.*{*;}
+#2D地图
+-keep class com.amap.api.maps2d.**{*;}
+-keep class com.amap.api.mapcore2d.**{*;}
+#Location
+-keep   class com.amap.api.location.**{*;}
+-keep   class com.aps.**{*;}
+#Service
+-keep class com.amap.api.services.**{*;}
+#导航
+-keep class com.amap.api.navi.**{*;}
+-keep class com.autonavi.**{*;}

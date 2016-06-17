@@ -24,7 +24,6 @@ import com.google.gson.Gson;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.huanxin.chat.utils.CommonUtils;
-import com.liangxun.yuejiula.upload.MultiPartStringRequest;
 import com.umeng.analytics.MobclickAgent;
 import com.yixia.camera.demo.UniversityApplication;
 
@@ -183,34 +182,7 @@ public class BaseActivity extends FragmentActivity {
 
 
 
-    public void addPutUploadFileRequest(final String url,
-                                        final Map<String, File> files, final Map<String, String> params,
-                                        final Response.Listener<String> responseListener, final Response.ErrorListener errorListener,
-                                        final Object tag) {
-        if (null == url || null == responseListener) {
-            return;
-        }
 
-        MultiPartStringRequest multiPartRequest = new MultiPartStringRequest(
-                Request.Method.POST, url, responseListener, errorListener) {
-
-            @Override
-            public Map<String, File> getFileUploads() {
-                return files;
-            }
-
-            @Override
-            public Map<String, String> getStringUploads() {
-                return params;
-            }
-
-        };
-        multiPartRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        getRequestQueue().add(multiPartRequest);
-    }
 
     protected void onDestroy() {
         ActivityTack.getInstanse().removeActivity(this);
