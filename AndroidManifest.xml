@@ -284,8 +284,8 @@
                   android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.GPSNaviActivity" android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.liangxun.yuejiula.ui.MineFavoursDianpuActivity" android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineFavoursDianpuActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.SelectCollegeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
 
         <activity

@@ -1,21 +1,20 @@
 package com.liangxun.yuejiula.ui;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.*;
 import com.easemob.EMCallBack;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxSetActivity;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.StringUtil;
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
@@ -36,6 +35,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout update;//检查更新
     private LinearLayout chat_set;//聊天设置
     private LinearLayout find_aboutus;//关于我们
+    private LinearLayout qiehuan_school;//切换学校
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +54,13 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         setpass = (LinearLayout) this.findViewById(R.id.setpass);
         setpass.setOnClickListener(this);
         update = (LinearLayout) this.findViewById(R.id.update);
+        qiehuan_school = (LinearLayout) this.findViewById(R.id.qiehuan_school);
         update.setOnClickListener(this);
         chat_set = (LinearLayout) this.findViewById(R.id.chat_set);
         chat_set.setOnClickListener(this);
         find_aboutus = (LinearLayout) this.findViewById(R.id.find_aboutus);
         find_aboutus.setOnClickListener(this);
+        qiehuan_school.setOnClickListener(this);
     }
 
     @Override
@@ -112,7 +114,42 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 Intent about = new Intent(SetActivity.this, InstructionActivity.class);
                 startActivity(about);
                 break;
+            case R.id.qiehuan_school:
+            {
+                //切换学校
+                showMsg();
+            }
+                break;
         }
+    }
+
+
+    private void showMsg() {
+        final Dialog picAddDialog = new Dialog(SetActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
+        TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
+        final TextView jubao_cont = (TextView) picAddInflate.findViewById(R.id.content);
+        jubao_cont.setText("确定切换学校？");
+        //举报提交
+        jubao_sure.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent selectV = new Intent(SetActivity.this, SelectCollegeActivity.class);
+                startActivity(selectV);
+                picAddDialog.dismiss();
+            }
+        });
+
+        TextView jubao_cancle = (TextView) picAddInflate.findViewById(R.id.jubao_cancle);
+        jubao_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picAddDialog.dismiss();
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
     }
 
 
