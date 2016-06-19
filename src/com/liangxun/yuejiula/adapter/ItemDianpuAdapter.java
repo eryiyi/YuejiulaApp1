@@ -104,11 +104,13 @@ public class ItemDianpuAdapter extends BaseAdapter {
         //加载图片
         imageLoader.displayImage(cell.getCompany_pic(), holder.item_cover, UniversityApplication.options, animateFirstListener);
         imageLoader.displayImage(cell.getEmpCover(), holder.head, UniversityApplication.txOptions, animateFirstListener);
+        if(!StringUtil.isNullOrEmpty(UniversityApplication.lat) && !StringUtil.isNullOrEmpty(UniversityApplication.lng) && !StringUtil.isNullOrEmpty(cell.getLat_company()) && !StringUtil.isNullOrEmpty(cell.getLng_company())){
+            LatLng latLng = new LatLng(Double.valueOf(UniversityApplication.lat), Double.valueOf(UniversityApplication.lng));
+            LatLng latLng1 = new LatLng(Double.valueOf(cell.getLat_company()), Double.valueOf(cell.getLng_company()));
+            String distance = StringUtil.getDistance(latLng, latLng1);
+            holder.item_location.setText(distance + "km");
+        }
 
-        LatLng latLng = new LatLng(Double.valueOf(UniversityApplication.lat), Double.valueOf(UniversityApplication.lng));
-        LatLng latLng1 = new LatLng(Double.valueOf(cell.getLat_company()), Double.valueOf(cell.getLng_company()));
-        String distance = StringUtil.getDistance(latLng, latLng1);
-        holder.item_location.setText(distance + "km");
         if(!StringUtil.isNullOrEmpty(cell.getYingye_time_start()) && !StringUtil.isNullOrEmpty(cell.getYingye_time_end())){
             if(StringUtil.betweenTwoNumber(Integer.parseInt(cell.getYingye_time_start()), Integer.parseInt(cell.getYingye_time_end()))){
                 holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_open));

@@ -116,8 +116,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     private TextView msg_find;
     private TextView msg_mine;
 
-    public String[] PROVINCES = new String[3];
-    public String[][] CITYIES = null;
+//    public String[] PROVINCES = new String[3];
+//    public String[][] CITYIES = null;
 
 
     /**
@@ -1276,143 +1276,143 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     public void onTopHeadButtonClick(View view){
 //        Intent profile = new Intent(MainActivity.this, UpdateProfilePersonalActivity.class);
 //        startActivity(profile);
-//        moodMenu = new MoodPopMenu(MainActivity.this, arrayMood);
-//        moodMenu.setOnItemClickListener(this);
-//        moodMenu.showAsDropDown(view);
-        View view1 = dialogm();
-        final MyAlertDialog dialog1 = new MyAlertDialog(MainActivity.this)
-                .builder()
-                .setTitle("请选择标签")
-                .setView(view1)
-                .setNegativeButton("全部", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        school_record_mood_id = "";
-                        //发通知  更新朋友圈
-                        homeFragment.IS_REFRESH = true;
-                        homeFragment.initData();
-                    }
-                });
-        dialog1.setPositiveButton("确定", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //根据心情查询动态
-                for(SchoolRecordMood schoolRecordMood1:arrayMood){
-                    if(schoolRecordMood1.getSchool_record_mood_name().equals(biaoqian)){
-                        //如果是当前选择的那个
-                        if(schoolRecordMood1 != null){
-                            school_record_mood_id = schoolRecordMood1.getSchool_record_mood_id();
-                            //发通知  更新朋友圈
-                            homeFragment.IS_REFRESH = true;
-                            homeFragment.initData();
-                        }
-                        break;
-                    }
-                }
-            }
-        });
-        dialog1.show();
+        moodMenu = new MoodPopMenu(MainActivity.this, arrayMood);
+        moodMenu.setOnItemClickListener(this);
+        moodMenu.showAsDropDown(view);
+//        View view1 = dialogm();
+//        final MyAlertDialog dialog1 = new MyAlertDialog(MainActivity.this)
+//                .builder()
+//                .setTitle("请选择标签")
+//                .setView(view1)
+//                .setNegativeButton("全部", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        school_record_mood_id = "";
+//                        //发通知  更新朋友圈
+//                        homeFragment.IS_REFRESH = true;
+//                        homeFragment.initData();
+//                    }
+//                });
+//        dialog1.setPositiveButton("确定", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //根据心情查询动态
+//                for(SchoolRecordMood schoolRecordMood1:arrayMood){
+//                    if(schoolRecordMood1.getSchool_record_mood_name().equals(biaoqian)){
+//                        //如果是当前选择的那个
+//                        if(schoolRecordMood1 != null){
+//                            school_record_mood_id = schoolRecordMood1.getSchool_record_mood_id();
+//                            //发通知  更新朋友圈
+//                            homeFragment.IS_REFRESH = true;
+//                            homeFragment.initData();
+//                        }
+//                        break;
+//                    }
+//                }
+//            }
+//        });
+//        dialog1.show();
     }
 
 
-    private View dialogm() {
-        View contentView = LayoutInflater.from(this).inflate(
-                R.layout.wheelcity_cities_layout, null);
-        final WheelView country = (WheelView) contentView
-                .findViewById(R.id.wheelcity_country);
-        country.setVisibleItems(2);
-        country.setViewAdapter(new CountryAdapter(this));
+//    private View dialogm() {
+//        View contentView = LayoutInflater.from(this).inflate(
+//                R.layout.wheelcity_cities_layout, null);
+//        final WheelView country = (WheelView) contentView
+//                .findViewById(R.id.wheelcity_country);
+//        country.setVisibleItems(2);
+//        country.setViewAdapter(new CountryAdapter(this));
+//
+//        final String cities[][] = CITYIES;
+//        final WheelView city = (WheelView) contentView
+//                .findViewById(R.id.wheelcity_city);
+//        city.setVisibleItems(1);
+//
+//
+//        country.addChangingListener(new OnWheelChangedListener() {
+//            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+//                updateCities(city, cities, newValue);
+//                biaoqian = CITYIES[country.getCurrentItem()][city
+//                        .getCurrentItem()];
+////                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+////                        + " | "
+////                        + AddressData.CITIES[country.getCurrentItem()][city
+////                        .getCurrentItem()]
+////                        + " | "
+////                        + AddressData.COUNTIES[country.getCurrentItem()][city
+////                        .getCurrentItem()][ccity.getCurrentItem()];
+//            }
+//        });
+//
+//        city.addChangingListener(new OnWheelChangedListener() {
+//            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+//                biaoqian = CITYIES[country.getCurrentItem()][city
+//                        .getCurrentItem()];
+////                    showMsg(MainActivity.this, biaoqian);
+//
+////                updatecCities(ccity, ccities, country.getCurrentItem(),
+////                        newValue);
+////                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+////                        + " | "
+////                        + AddressData.CITIES[country.getCurrentItem()][city
+////                        .getCurrentItem()]
+////                        + " | "
+////                        + AddressData.COUNTIES[country.getCurrentItem()][city
+////                        .getCurrentItem()][ccity.getCurrentItem()];
+//            }
+//        });
+//
+//
+//        country.setCurrentItem(0);
+//        updateCities(city, cities, 0);
+//        city.setCurrentItem(0);
+//        return contentView;
+//    }
 
-        final String cities[][] = CITYIES;
-        final WheelView city = (WheelView) contentView
-                .findViewById(R.id.wheelcity_city);
-        city.setVisibleItems(1);
 
-
-        country.addChangingListener(new OnWheelChangedListener() {
-            public void onChanged(WheelView wheel, int oldValue, int newValue) {
-                updateCities(city, cities, newValue);
-                biaoqian = CITYIES[country.getCurrentItem()][city
-                        .getCurrentItem()];
-//                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
-//                        + " | "
-//                        + AddressData.CITIES[country.getCurrentItem()][city
-//                        .getCurrentItem()]
-//                        + " | "
-//                        + AddressData.COUNTIES[country.getCurrentItem()][city
-//                        .getCurrentItem()][ccity.getCurrentItem()];
-            }
-        });
-
-        city.addChangingListener(new OnWheelChangedListener() {
-            public void onChanged(WheelView wheel, int oldValue, int newValue) {
-                biaoqian = CITYIES[country.getCurrentItem()][city
-                        .getCurrentItem()];
-//                    showMsg(MainActivity.this, biaoqian);
-
-//                updatecCities(ccity, ccities, country.getCurrentItem(),
-//                        newValue);
-//                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
-//                        + " | "
-//                        + AddressData.CITIES[country.getCurrentItem()][city
-//                        .getCurrentItem()]
-//                        + " | "
-//                        + AddressData.COUNTIES[country.getCurrentItem()][city
-//                        .getCurrentItem()][ccity.getCurrentItem()];
-            }
-        });
-
-
-        country.setCurrentItem(0);
-        updateCities(city, cities, 0);
-        city.setCurrentItem(0);
-        return contentView;
-    }
-
-
-    /**
-     * Updates the city wheel
-     */
-    private void updateCities(WheelView city, String cities[][], int index) {
-        ArrayWheelAdapter<String> adapter = new ArrayWheelAdapter<String>(this,
-                cities[index]);
-        adapter.setTextSize(18);
-        city.setViewAdapter(adapter);
-        city.setCurrentItem(0);
-    }
+//    /**
+//     * Updates the city wheel
+//     */
+//    private void updateCities(WheelView city, String cities[][], int index) {
+//        ArrayWheelAdapter<String> adapter = new ArrayWheelAdapter<String>(this,
+//                cities[index]);
+//        adapter.setTextSize(18);
+//        city.setViewAdapter(adapter);
+//        city.setCurrentItem(0);
+//    }
 
 
     /**
      * Adapter for countries
      */
-    private class CountryAdapter extends AbstractWheelTextAdapter {
-        // Countries names
-        private String countries[] = PROVINCES;
-
-        /**
-         * Constructor
-         */
-        protected CountryAdapter(Context context) {
-            super(context, R.layout.wheelcity_country_layout, NO_RESOURCE);
-            setItemTextResource(R.id.wheelcity_country_name);
-        }
-
-        @Override
-        public View getItem(int index, View cachedView, ViewGroup parent) {
-            View view = super.getItem(index, cachedView, parent);
-            return view;
-        }
-
-        @Override
-        public int getItemsCount() {
-            return countries.length;
-        }
-
-        @Override
-        protected CharSequence getItemText(int index) {
-            return countries[index];
-        }
-    }
+//    private class CountryAdapter extends AbstractWheelTextAdapter {
+//        // Countries names
+//        private String countries[] = PROVINCES;
+//
+//        /**
+//         * Constructor
+//         */
+//        protected CountryAdapter(Context context) {
+//            super(context, R.layout.wheelcity_country_layout, NO_RESOURCE);
+//            setItemTextResource(R.id.wheelcity_country_name);
+//        }
+//
+//        @Override
+//        public View getItem(int index, View cachedView, ViewGroup parent) {
+//            View view = super.getItem(index, cachedView, parent);
+//            return view;
+//        }
+//
+//        @Override
+//        public int getItemsCount() {
+//            return countries.length;
+//        }
+//
+//        @Override
+//        protected CharSequence getItemText(int index) {
+//            return countries[index];
+//        }
+//    }
 
     @Override
     public void onItemClick(int index, String str) {
@@ -1532,8 +1532,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         getRequestQueue().add(request);
     }
 
-
-
     void getMood(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -1551,29 +1549,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                                 schoolRecordMood.setTop_num("");
                                 arrayMood.add(schoolRecordMood);
                                 arrayMood.addAll(data.getData());
-                                PROVINCES[0] = "心情";
-                                PROVINCES[1] = "求助";
-                                PROVINCES[2] = "拍卖";
-                                CITYIES = new String[3][arrayMood.size()];
-                                if(arrayMood != null){
-                                    int i=0;
-                                    int j = 0;
-                                    int w = 0;
-                                    for(SchoolRecordMood schoolRecordMood1:arrayMood){
-                                        if ("0".equals(schoolRecordMood1.getSchool_record_mood_type())){
-                                            CITYIES[0][i] = schoolRecordMood1.getSchool_record_mood_name();
-                                            i++;
-                                        }
-                                        if ("1".equals(schoolRecordMood1.getSchool_record_mood_type())){
-                                            CITYIES[1][j] = schoolRecordMood1.getSchool_record_mood_name();
-                                            j++;
-                                        }
-                                        if ("2".equals(schoolRecordMood1.getSchool_record_mood_type())){
-                                            CITYIES[2][w] = schoolRecordMood1.getSchool_record_mood_name();
-                                            w++;
-                                        }
-                                    }
-                                }
+//                                PROVINCES[0] = "心情";
+//                                PROVINCES[1] = "求助";
+//                                CITYIES = new String[2][arrayMood.size()];
+//                                if(arrayMood != null){
+//                                    int i=0;
+//                                    int j = 0;
+//                                    int w = 0;
+//                                    for(SchoolRecordMood schoolRecordMood1:arrayMood){
+//                                        if ("0".equals(schoolRecordMood1.getSchool_record_mood_type())){
+//                                            CITYIES[0][i] = schoolRecordMood1.getSchool_record_mood_name();
+//                                            i++;
+//                                        }
+//                                        if ("1".equals(schoolRecordMood1.getSchool_record_mood_type())){
+//                                            CITYIES[1][j] = schoolRecordMood1.getSchool_record_mood_name();
+//                                            j++;
+//                                        }
+//                                    }
+//                                }
                             } else {
                                 Toast.makeText(MainActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }

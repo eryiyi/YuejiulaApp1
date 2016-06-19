@@ -117,7 +117,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     public void run() {
         try {
             // 3秒后跳转到登录界面
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             if (ad != null){
                 Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
                 intent.putExtra("ad",ad);

@@ -70,7 +70,6 @@
                    android:layout_marginRight="3dp"
                    android:layout_alignParentRight="true"
                    android:layout_marginLeft="8dp"
-                   android:text="112KM"
                    android:layout_marginTop="2dp"
                    android:textSize="14sp"
                    android:textColor="@color/black"

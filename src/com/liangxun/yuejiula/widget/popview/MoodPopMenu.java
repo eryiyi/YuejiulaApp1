@@ -72,8 +72,16 @@ public class MoodPopMenu implements AdapterView.OnItemClickListener {
 
     // 批量添加菜单项
     public void addItems( List<SchoolRecordMood> items) {
-        for (SchoolRecordMood s : items)
-            itemList.add(s.getSchool_record_mood_name());
+        for (SchoolRecordMood s : items){
+            if("0".equals(s.getSchool_record_mood_type())){
+                itemList.add("心情-"+s.getSchool_record_mood_name());
+            }else
+            if("1".equals(s.getSchool_record_mood_type())){
+                itemList.add("求助-"+s.getSchool_record_mood_name());
+            }else{
+                itemList.add(s.getSchool_record_mood_name());
+            }
+        }
     }
 
     // 单个添加菜单项

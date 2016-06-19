@@ -92,7 +92,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
 
         //头部文件
         headView = (LinearLayout) LayoutInflater.from(DianpuDetailActivity.this).inflate(R.layout.dianpu_head, null);
-        initViewPager();
+
         initView();
         lstv = (PullToRefreshListView) this.findViewById(R.id.lstv);//列表
 
@@ -146,8 +146,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         getManagerInfo();
         //个人商品
         initData();
-        //查询个人广告位
-        getSlide();
+
     }
 
     void initView(){
@@ -188,6 +187,9 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.favour:
                 //收藏本店
+            {
+                saveFavour();
+            }
                 break;
             case R.id.location:
                 //导航
@@ -240,7 +242,8 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                             AdObjData data = getGson().fromJson(s, AdObjData.class);
                             if (data.getCode() == 200) {
                                 lists.addAll(data.getData());
-                                adapterAd.notifyDataSetChanged();
+//                                adapterAd.notifyDataSetChanged();
+                                initViewPager();
                             } else {
                                 Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
@@ -527,6 +530,9 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         adObj.setMm_ad_title("");
         adObj.setMm_ad_pic(managerInfo.getCompany_pic());
         lists.add(adObj);
+        //查询个人广告位
+        getSlide();
+
     }
 
     //获得商品列表
@@ -571,6 +577,53 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 params.put("type", "0");
                 params.put("empId", emp_id);
                 params.put("isMine", "");
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+    void saveFavour(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.SAVE_FAVOUR_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                showMsg(DianpuDetailActivity.this, "收藏店铺成功！");
+                            } else if(data.getCode() == 2){
+                                showMsg(DianpuDetailActivity.this, "已经收藏了！");
+                            }
+                            else {
+                                Toast.makeText(DianpuDetailActivity.this, "收藏店铺失败", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(DianpuDetailActivity.this, "收藏店铺失败", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(DianpuDetailActivity.this, "收藏店铺失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", emp_id);
+                params.put("emp_id_favour", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
                 return params;
             }
 

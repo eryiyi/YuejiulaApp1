@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UniversityApp.iml" filepath="$PROJECT_DIR$/UniversityApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/../VitamioRecorderLibrary/VitamioRecorderLibrary.iml" filepath="$PROJECT_DIR$/../VitamioRecorderLibrary/VitamioRecorderLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/YuejiulaApp1.iml" filepath="$PROJECT_DIR$/YuejiulaApp1.iml" />
     </modules>

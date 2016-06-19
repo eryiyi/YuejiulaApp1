@@ -288,4 +288,9 @@ public class InternetURL {
     public static final String GET_SINGLE_RECORDJP_URL = INTERNAL + "getSingleRecordJpById.do";
 
 
+
+    public static final String DELETE_DIANPU_FAVOUR_URL = INTERNAL + "deleteDianpuFavour.do";
+    public static final String SAVE_FAVOUR_URL = INTERNAL + "saveDianpuFavour.do";
+    public static final String APP_GET_FAVOUR_DIANPU_URL = INTERNAL + "appGetDianpuFavour.do";
+
 }

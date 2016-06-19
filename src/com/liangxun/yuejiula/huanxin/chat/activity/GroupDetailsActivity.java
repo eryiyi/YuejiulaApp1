@@ -775,11 +775,11 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                             adapter.notifyDataSetChanged();
                             if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
                                 // 显示解散按钮
-//								exitBtn.setVisibility(View.GONE);
+								exitBtn.setVisibility(View.GONE);
                                 deleteBtn.setVisibility(View.VISIBLE);
                             } else {
                                 // 显示退出按钮
-//								exitBtn.setVisibility(View.VISIBLE);
+								exitBtn.setVisibility(View.VISIBLE);
                                 deleteBtn.setVisibility(View.GONE);
 
                             }

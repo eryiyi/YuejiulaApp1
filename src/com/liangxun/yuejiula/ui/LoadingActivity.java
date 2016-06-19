@@ -75,7 +75,7 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
     public void run() {
         try {
             // 3秒后跳转到登录界面
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             SharedPreferences.Editor editor = getSp().edit();
             boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
             if (isFirstRun) {

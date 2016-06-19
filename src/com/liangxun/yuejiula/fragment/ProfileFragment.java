@@ -115,7 +115,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             break;
                         case 3:
                             //收藏
-                            Intent favourView = new Intent(getActivity(), MineFavoursActivity.class);
+                            Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
                         case 4:
@@ -168,7 +168,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             break;
                         case 5:
                             //收藏
-                            Intent favourView = new Intent(getActivity(), MineFavoursActivity.class);
+                            Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
                         case 6:
@@ -222,7 +222,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             break;
                         case 5:
                             //收藏
-                            Intent favourView = new Intent(getActivity(), MineFavoursActivity.class);
+                            Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
                         case 6:
@@ -289,7 +289,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             break;
                         case 7:
                             //收藏
-                            Intent favourView = new Intent(getActivity(), MineFavoursActivity.class);
+                            Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
                         case 8:
