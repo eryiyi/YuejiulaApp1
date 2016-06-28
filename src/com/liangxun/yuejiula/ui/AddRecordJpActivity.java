@@ -16,7 +16,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
-import com.liangxun.yuejiula.data.RecordDATA;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.Record;
 import com.liangxun.yuejiula.util.Constants;

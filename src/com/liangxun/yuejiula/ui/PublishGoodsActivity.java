@@ -27,10 +27,10 @@ import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.GoodsTypeDATA;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.Goodstype;
+import com.liangxun.yuejiula.util.*;
 import com.liangxun.yuejiula.widget.NoScrollGridView;
 import com.liangxun.yuejiula.widget.popview.CustomerSpinner;
 import com.liangxun.yuejiula.widget.popview.SelectPhoTwoPopWindow;
-import com.liangxun.yuejiula.util.*;
 
 import java.io.File;
 import java.util.ArrayList;

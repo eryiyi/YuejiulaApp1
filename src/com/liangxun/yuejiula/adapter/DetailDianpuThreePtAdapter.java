@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liangxun.yuejiula.R;
-import com.liangxun.yuejiula.entity.Favour;
 import com.liangxun.yuejiula.entity.SchoolThreeTingtaiBd;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;

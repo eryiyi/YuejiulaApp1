@@ -13,8 +13,6 @@
  */
 package com.liangxun.yuejiula.huanxin.chat.activity;
 
-import java.io.File;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -24,12 +22,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.easemob.util.ImageUtils;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.huanxin.chat.task.DownloadImageTask;
 import com.liangxun.yuejiula.huanxin.chat.utils.ImageCache;
+
+import java.io.File;
 
 public class AlertDialog extends BaseActivity {
 	private TextView mTextView;

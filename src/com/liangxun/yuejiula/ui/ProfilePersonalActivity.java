@@ -2,10 +2,7 @@ package com.liangxun.yuejiula.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
@@ -28,14 +25,11 @@ import com.liangxun.yuejiula.huanxin.chat.activity.HxAlertDialog;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxAlertYanzheng;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
-import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.SelectFenghaoPopWindow;
-import com.liangxun.yuejiula.widget.popview.SelectPhoPopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -405,7 +399,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                         if (StringUtil.isJson(s)) {
                             SuccessData data = getGson().fromJson(s, SuccessData.class);
                             if (data.getCode() == 200) {
-                                showMsg(ProfilePersonalActivity.this , "封号操作成功！");
+                                showMsg(ProfilePersonalActivity.this , "禁发帖操作成功！");
                             } else {
                                 Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
@@ -448,7 +442,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                         if (StringUtil.isJson(s)) {
                             SuccessData data = getGson().fromJson(s, SuccessData.class);
                             if (data.getCode() == 200) {
-                                showMsg(ProfilePersonalActivity.this , "封群操作成功！");
+                                showMsg(ProfilePersonalActivity.this , "禁群聊操作成功！");
                             } else {
                                 Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }

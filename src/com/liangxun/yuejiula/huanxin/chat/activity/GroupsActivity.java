@@ -13,10 +13,6 @@
  */
 package com.liangxun.yuejiula.huanxin.chat.activity;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,16 +29,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
-import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
@@ -56,10 +49,15 @@ import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class GroupsActivity extends BaseActivity {
 	public static final String TAG = "GroupsActivity";
 	private ListView groupListView;
-	protected List<EMGroup> grouplist;
+	protected List<EMGroup> grouplist = new ArrayList<EMGroup>();
 	private GroupAdapter groupAdapter;
 	private InputMethodManager inputMethodManager;
 	public static GroupsActivity instance;
@@ -104,7 +102,14 @@ public class GroupsActivity extends BaseActivity {
 
 		instance = this;
 		inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		grouplist = EMGroupManager.getInstance().getAllGroups();
+		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
+		//过滤下  只要当前管理员建设的群
+		grouplist.clear();
+		for(EMGroup emGroup:lists){
+			if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
+				grouplist.add(emGroup);
+			}
+		}
 		groupListView = (ListView) findViewById(R.id.list);
 		
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
@@ -205,7 +210,15 @@ public class GroupsActivity extends BaseActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		grouplist = EMGroupManager.getInstance().getAllGroups();
+		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
+		//过滤下  只要当前管理员建设的群
+		grouplist.clear();
+		for(EMGroup emGroup:lists){
+			if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
+				grouplist.add(emGroup);
+			}
+		}
+
 		groupAdapter = new GroupAdapter(this, 1, grouplist);
 		groupListView.setAdapter(groupAdapter);
 		groupAdapter.notifyDataSetChanged();
@@ -223,7 +236,14 @@ public class GroupsActivity extends BaseActivity {
 	
 	public void refresh() {
 		if (groupListView != null && groupAdapter != null) {
-			grouplist = EMGroupManager.getInstance().getAllGroups();
+			List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
+			//过滤下  只要当前管理员建设的群
+			grouplist.clear();
+			for(EMGroup emGroup:lists){
+				if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
+					grouplist.add(emGroup);
+				}
+			}
 			groupAdapter = new GroupAdapter(GroupsActivity.this, 1,
 					grouplist);
 			groupListView.setAdapter(groupAdapter);

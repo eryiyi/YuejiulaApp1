@@ -1,7 +1,6 @@
 package com.liangxun.yuejiula.ui;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.FenghaofengqAdapter;
-import com.liangxun.yuejiula.adapter.OnClickContentItemListener;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.EmpsDATA;

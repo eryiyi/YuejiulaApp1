@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.entity.AdObj;
-import com.liangxun.yuejiula.entity.Slide;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;

@@ -50,18 +50,17 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 
     String longClickUsername = null;
 
-    private ExpandGridView userGridview;
     private String groupId;
     private ProgressBar loadingPB;
     private Button exitBtn;
     private Button deleteBtn;
     private EMGroup group;
-    private GridAdapter adapter;
+//    private GridAdapter adapter;
     private int referenceWidth;
     private int referenceHeight;
 
     private RelativeLayout rl_switch_block_groupmsg;
-    private RelativeLayout rl_switch_block_groupmsg_sound;
+//    private RelativeLayout rl_switch_block_groupmsg_sound;
     /**
      * 屏蔽群消息imageView
      */
@@ -78,6 +77,11 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     String st = "";
     // 清空所有聊天记录
     private RelativeLayout clearAllHistory;
+    //修改群昵称
+    private RelativeLayout blacklistLayout;
+    private RelativeLayout changeGroupNameLayout;
+
+//    private ExpandGridView userGridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,24 +90,26 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         instance = this;
         st = getResources().getString(R.string.people);
         clearAllHistory = (RelativeLayout) findViewById(R.id.clear_all_history);
-        userGridview = (ExpandGridView) findViewById(R.id.gridview);
+//        userGridview = (ExpandGridView) findViewById(R.id.gridview);
         loadingPB = (ProgressBar) findViewById(R.id.progressBar);
         exitBtn = (Button) findViewById(R.id.btn_exit_grp);
         deleteBtn = (Button) findViewById(R.id.btn_exitdel_grp);
 
         rl_switch_block_groupmsg = (RelativeLayout) findViewById(R.id.rl_switch_block_groupmsg);
+        blacklistLayout = (RelativeLayout) findViewById(R.id.rl_blacklist);
+        changeGroupNameLayout = (RelativeLayout) findViewById(R.id.rl_change_group_name);
 
         iv_switch_block_groupmsg = (ImageView) findViewById(R.id.iv_switch_block_groupmsg);
         iv_switch_unblock_groupmsg = (ImageView) findViewById(R.id.iv_switch_unblock_groupmsg);
 
         rl_switch_block_groupmsg.setOnClickListener(this);
 
-        rl_switch_block_groupmsg_sound = (RelativeLayout) findViewById(R.id.rl_switch_block_groupmsg_sound);
+//        rl_switch_block_groupmsg_sound = (RelativeLayout) findViewById(R.id.rl_switch_block_groupmsg_sound);
 
-        iv_switch_block_groupmsg_sound = (ImageView) findViewById(R.id.iv_switch_block_groupmsg_sound);
-        iv_switch_unblock_groupmsg_sound = (ImageView) findViewById(R.id.iv_switch_unblock_groupmsg_sound);
+//        iv_switch_block_groupmsg_sound = (ImageView) findViewById(R.id.iv_switch_block_groupmsg_sound);
+//        iv_switch_unblock_groupmsg_sound = (ImageView) findViewById(R.id.iv_switch_unblock_groupmsg_sound);
 
-        rl_switch_block_groupmsg_sound.setOnClickListener(this);
+//        rl_switch_block_groupmsg_sound.setOnClickListener(this);
 
         Drawable referenceDrawable = getResources().getDrawable(R.drawable.smiley_add_btn);
         referenceWidth = referenceDrawable.getIntrinsicWidth();
@@ -117,7 +123,10 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 || !group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
             exitBtn.setVisibility(View.GONE);
             deleteBtn.setVisibility(View.GONE);
+            blacklistLayout.setVisibility(View.GONE);
+            changeGroupNameLayout.setVisibility(View.GONE);
         }
+
         // 如果自己是群主，显示解散按钮
         if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
             exitBtn.setVisibility(View.GONE);
@@ -125,34 +134,38 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         }
 
         ((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount() + st);
-        adapter = new GridAdapter(this, R.layout.grid, group.getMembers());
-        userGridview.setAdapter(adapter);
+        List<String> members = new ArrayList<String>();
+        members.addAll(group.getMembers());
+
+//        adapter = new GridAdapter(this, R.layout.grid, group.getMembers());
+//        userGridview.setAdapter(adapter);
 
         // 保证每次进详情看到的都是最新的group
-        updateGroup();
+//        updateGroup();
 
         // 设置OnTouchListener
-        userGridview.setOnTouchListener(new OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        if (adapter.isInDeleteMode) {
-                            adapter.isInDeleteMode = false;
-                            adapter.notifyDataSetChanged();
-                            return true;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                return false;
-            }
-        });
+//        userGridview.setOnTouchListener(new OnTouchListener() {
+//
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        if (adapter.isInDeleteMode) {
+//                            adapter.isInDeleteMode = false;
+//                            adapter.notifyDataSetChanged();
+//                            return true;
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
 
         clearAllHistory.setOnClickListener(this);
-
+        blacklistLayout.setOnClickListener(this);
+        changeGroupNameLayout.setOnClickListener(this);
     }
 
     @Override
@@ -242,7 +255,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                                 EMGroupManager.getInstance().blockUser(groupId, longClickUsername);
                                 runOnUiThread(new Runnable() {
                                     public void run() {
-                                        adapter.notifyDataSetChanged();
+//                                        adapter.notifyDataSetChanged();
                                         progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), stsuccess, Toast.LENGTH_SHORT).show();
                                     }
@@ -381,7 +394,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     }
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            adapter.notifyDataSetChanged();
+//                            adapter.notifyDataSetChanged();
                             ((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount()
                                     + st);
                             progressDialog.dismiss();
@@ -408,12 +421,9 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         switch (v.getId()) {
             case R.id.rl_switch_block_groupmsg: // 屏蔽群组
                 if (iv_switch_block_groupmsg.getVisibility() == View.VISIBLE) {
-                    System.out.println("change to unblock group msg");
+                    EMLog.d(TAG, "change to unblock group msg");
                     if (progressDialog == null) {
-                        progressDialog = new ProgressDialog(this);
-                        progressDialog.setCancelable(false);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.show();
+                        progressDialog = new ProgressDialog(GroupDetailsActivity.this);
                         progressDialog.setCanceledOnTouchOutside(false);
                     }
                     progressDialog.setMessage(st6);
@@ -434,7 +444,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                                 runOnUiThread(new Runnable() {
                                     public void run() {
                                         progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), st7, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), st7, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -445,12 +455,9 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 } else {
                     String st8 = getResources().getString(R.string.group_is_blocked);
                     final String st9 = getResources().getString(R.string.group_of_shielding);
-                    System.out.println("change to block group msg");
+                    EMLog.d(TAG, "change to block group msg");
                     if (progressDialog == null) {
-                        progressDialog = new ProgressDialog(this );
-                        progressDialog.setCancelable(false);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.show();
+                        progressDialog = new ProgressDialog(GroupDetailsActivity.this);
                         progressDialog.setCanceledOnTouchOutside(false);
                     }
                     progressDialog.setMessage(st8);
@@ -471,7 +478,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                                 runOnUiThread(new Runnable() {
                                     public void run() {
                                         progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), st9, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), st9, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -480,80 +487,80 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     }).start();
                 }
                 break;
-            case R.id.rl_switch_block_groupmsg_sound: // 屏蔽群组声音提示
-                if (iv_switch_block_groupmsg_sound.getVisibility() == View.VISIBLE) {
-                    if (progressDialog == null) {
-                        progressDialog = new ProgressDialog(this);
-                        progressDialog.setCancelable(false);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.show();
-                        progressDialog.setCanceledOnTouchOutside(false);
-                    }
-                    progressDialog.setMessage(st6);
-                    progressDialog.show();
-                    new Thread(new Runnable() {
-                        public void run() {
-                            try {
-                                EMChatManager.getInstance().getChatOptions().setReceiveNotNoifyGroup(null);
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        iv_switch_block_groupmsg_sound.setVisibility(View.INVISIBLE);
-                                        iv_switch_unblock_groupmsg_sound.setVisibility(View.VISIBLE);
-                                        progressDialog.dismiss();
-                                    }
-                                });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), st11, Toast.LENGTH_LONG).show();
-                                    }
-                                });
-
-                            }
-                        }
-                    }).start();
-
-                } else {
-                    String st8 = getResources().getString(R.string.group_is_blocked_sound);
-                    final String st9 = getResources().getString(R.string.group_of_shielding_sound);
-                    if (progressDialog == null) {
-                        progressDialog = new ProgressDialog(this);
-                        progressDialog.setCancelable(false);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.show();
-                        progressDialog.setCanceledOnTouchOutside(false);
-                    }
-                    progressDialog.setMessage(st8);
-                    progressDialog.show();
-                    new Thread(new Runnable() {
-                        public void run() {
-                            try {
-                                List<String> list=new ArrayList<String>();
-                                list.add(groupId);
-                                EMChatManager.getInstance().getChatOptions().setReceiveNotNoifyGroup(list);
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        iv_switch_block_groupmsg_sound.setVisibility(View.VISIBLE);
-                                        iv_switch_unblock_groupmsg_sound.setVisibility(View.INVISIBLE);
-                                        progressDialog.dismiss();
-                                    }
-                                });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), st9, Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                            }
-
-                        }
-                    }).start();
-                }
-                break;
+//            case R.id.rl_switch_block_groupmsg_sound: // 屏蔽群组声音提示
+//                if (iv_switch_block_groupmsg_sound.getVisibility() == View.VISIBLE) {
+//                    if (progressDialog == null) {
+//                        progressDialog = new ProgressDialog(this);
+//                        progressDialog.setCancelable(false);
+//                        progressDialog.setIndeterminate(true);
+//                        progressDialog.show();
+//                        progressDialog.setCanceledOnTouchOutside(false);
+//                    }
+//                    progressDialog.setMessage(st6);
+//                    progressDialog.show();
+//                    new Thread(new Runnable() {
+//                        public void run() {
+//                            try {
+//                                EMChatManager.getInstance().getChatOptions().setReceiveNotNoifyGroup(null);
+//                                runOnUiThread(new Runnable() {
+//                                    public void run() {
+//                                        iv_switch_block_groupmsg_sound.setVisibility(View.INVISIBLE);
+//                                        iv_switch_unblock_groupmsg_sound.setVisibility(View.VISIBLE);
+//                                        progressDialog.dismiss();
+//                                    }
+//                                });
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                                runOnUiThread(new Runnable() {
+//                                    public void run() {
+//                                        progressDialog.dismiss();
+//                                        Toast.makeText(getApplicationContext(), st11, Toast.LENGTH_LONG).show();
+//                                    }
+//                                });
+//
+//                            }
+//                        }
+//                    }).start();
+//
+//                } else {
+//                    String st8 = getResources().getString(R.string.group_is_blocked_sound);
+//                    final String st9 = getResources().getString(R.string.group_of_shielding_sound);
+//                    if (progressDialog == null) {
+//                        progressDialog = new ProgressDialog(this);
+//                        progressDialog.setCancelable(false);
+//                        progressDialog.setIndeterminate(true);
+//                        progressDialog.show();
+//                        progressDialog.setCanceledOnTouchOutside(false);
+//                    }
+//                    progressDialog.setMessage(st8);
+//                    progressDialog.show();
+//                    new Thread(new Runnable() {
+//                        public void run() {
+//                            try {
+//                                List<String> list=new ArrayList<String>();
+//                                list.add(groupId);
+//                                EMChatManager.getInstance().getChatOptions().setReceiveNotNoifyGroup(list);
+//                                runOnUiThread(new Runnable() {
+//                                    public void run() {
+//                                        iv_switch_block_groupmsg_sound.setVisibility(View.VISIBLE);
+//                                        iv_switch_unblock_groupmsg_sound.setVisibility(View.INVISIBLE);
+//                                        progressDialog.dismiss();
+//                                    }
+//                                });
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                                runOnUiThread(new Runnable() {
+//                                    public void run() {
+//                                        progressDialog.dismiss();
+//                                        Toast.makeText(getApplicationContext(), st9, Toast.LENGTH_LONG).show();
+//                                    }
+//                                });
+//                            }
+//
+//                        }
+//                    }).start();
+//                }
+//                break;
 
             case R.id.clear_all_history: // 清空聊天记录
                 String st9 = getResources().getString(R.string.sure_to_empty_this);
@@ -562,6 +569,13 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 intent.putExtra("titleIsCancel", true);
                 intent.putExtra("msg", st9);
                 startActivityForResult(intent, REQUEST_CODE_CLEAR_ALL_HISTORY);
+                break;
+            case R.id.rl_blacklist: // 黑名单列表
+                startActivity(new Intent(GroupDetailsActivity.this, GroupBlacklistActivity.class).putExtra("groupId", groupId));
+                break;
+
+            case R.id.rl_change_group_name:
+                startActivityForResult(new Intent(this, EditActivity.class).putExtra("data", group.getGroupName()), REQUEST_CODE_EDIT_GROUPNAME);
                 break;
             default:
                 break;
@@ -758,47 +772,313 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
             return super.getCount() + 2;
         }
     }
+//
+//    protected void updateGroup() {
+//        new Thread(new Runnable() {
+//            public void run() {
+//                try {
+//                    EMGroup returnGroup = EMGroupManager.getInstance().getGroup(groupId);
+//                    // 更新本地数据
+//                    EMGroupManager.getInstance().createOrUpdateLocalGroup(returnGroup);
+//
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            ((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount()
+//                                    + "人)");
+//                            loadingPB.setVisibility(View.INVISIBLE);
+//                            adapter.notifyDataSetChanged();
+//                            if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
+//                                // 显示解散按钮
+//								exitBtn.setVisibility(View.GONE);
+//                                deleteBtn.setVisibility(View.VISIBLE);
+//                            } else {
+//                                // 显示退出按钮
+//								exitBtn.setVisibility(View.VISIBLE);
+//                                deleteBtn.setVisibility(View.GONE);
+//
+//                            }
+//
+//                            // update block
+//                            System.out.println("group msg is blocked:" + group.getMsgBlocked());
+//                            if (group.getMsgBlocked()) {
+//                                iv_switch_block_groupmsg.setVisibility(View.VISIBLE);
+//                                iv_switch_unblock_groupmsg.setVisibility(View.INVISIBLE);
+//                            } else {
+//                                iv_switch_block_groupmsg.setVisibility(View.INVISIBLE);
+//                                iv_switch_unblock_groupmsg.setVisibility(View.VISIBLE);
+//                            }
+//                            if (EMChatManager.getInstance().getChatOptions().getReceiveNoNotifyGroup()!=null) {
+//                                iv_switch_block_groupmsg_sound.setVisibility(View.VISIBLE);
+//                                iv_switch_unblock_groupmsg_sound.setVisibility(View.INVISIBLE);
+//                            } else {
+//                                iv_switch_block_groupmsg_sound.setVisibility(View.INVISIBLE);
+//                                iv_switch_unblock_groupmsg_sound.setVisibility(View.VISIBLE);
+//                            }
+//                        }
+//                    });
+//
+//                } catch (Exception e) {
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            loadingPB.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//                }
+//            }
+//        }).start();
+//    }
+//
+//    public void back(View view) {
+//        setResult(RESULT_OK);
+//        finish();
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        setResult(RESULT_OK);
+//        finish();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        instance = null;
+//    }
+//    /**
+//     * 群组成员gridadapter
+//     *
+//     * @author admin_new
+//     *
+//     */
+//    private class GridAdapter extends ArrayAdapter<String> {
+//
+//        private int res;
+//        public boolean isInDeleteMode;
+//        private List<String> objects;
+//
+//        public GridAdapter(Context context, int textViewResourceId, List<String> objects) {
+//            super(context, textViewResourceId, objects);
+//            this.objects = objects;
+//            res = textViewResourceId;
+//            isInDeleteMode = false;
+//        }
+//
+//        @Override
+//        public View getView(final int position, View convertView, final ViewGroup parent) {
+//            ViewHolder holder = null;
+//            if (convertView == null) {
+//                holder = new ViewHolder();
+//                convertView = LayoutInflater.from(getContext()).inflate(res, null);
+//                holder.imageView = (ImageView) convertView.findViewById(R.id.iv_avatar);
+//                holder.textView = (TextView) convertView.findViewById(R.id.tv_name);
+//                holder.badgeDeleteView = (ImageView) convertView.findViewById(R.id.badge_delete);
+//                convertView.setTag(holder);
+//            }else{
+//                holder = (ViewHolder) convertView.getTag();
+//            }
+//            final LinearLayout button = (LinearLayout) convertView.findViewById(R.id.button_avatar);
+//            // 最后一个item，减人按钮
+//            if (position == getCount() - 1) {
+//                holder.textView.setText("");
+//                // 设置成删除按钮
+//                holder.imageView.setImageResource(R.drawable.smiley_minus_btn);
+////				button.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.smiley_minus_btn, 0, 0);
+//                // 如果不是创建者或者没有相应权限，不提供加减人按钮
+//                if (!group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
+//                    // if current user is not group admin, hide add/remove btn
+//                    convertView.setVisibility(View.INVISIBLE);
+//                } else { // 显示删除按钮
+//                    if (isInDeleteMode) {
+//                        // 正处于删除模式下，隐藏删除按钮
+//                        convertView.setVisibility(View.INVISIBLE);
+//                    } else {
+//                        // 正常模式
+//                        convertView.setVisibility(View.VISIBLE);
+//                        convertView.findViewById(R.id.badge_delete).setVisibility(View.INVISIBLE);
+//                    }
+//                    final String st10 = getResources().getString(R.string.The_delete_button_is_clicked);
+//                    button.setOnClickListener(new OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            EMLog.d(TAG, st10);
+//                            isInDeleteMode = true;
+//                            notifyDataSetChanged();
+//                        }
+//                    });
+//                }
+//            } else if (position == getCount() - 2) { // 添加群组成员按钮
+//                holder.textView.setText("");
+//                holder.imageView.setImageResource(R.drawable.smiley_add_btn);
+////				button.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.smiley_add_btn, 0, 0);
+//                // 如果不是创建者或者没有相应权限
+//                if (!group.isAllowInvites() && !group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
+//                    // if current user is not group admin, hide add/remove btn
+//                    convertView.setVisibility(View.INVISIBLE);
+//                } else {
+//                    // 正处于删除模式下,隐藏添加按钮
+//                    if (isInDeleteMode) {
+//                        convertView.setVisibility(View.INVISIBLE);
+//                    } else {
+//                        convertView.setVisibility(View.VISIBLE);
+//                        convertView.findViewById(R.id.badge_delete).setVisibility(View.INVISIBLE);
+//                    }
+//                    final String st11 = getResources().getString(R.string.Add_a_button_was_clicked);
+//                    button.setOnClickListener(new OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            EMLog.d(TAG, st11);
+//                            // 进入选人页面
+//                            startActivityForResult(
+//                                    (new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class).putExtra("groupId", groupId)),
+//                                    REQUEST_CODE_ADD_USER);
+//                        }
+//                    });
+//                }
+//            } else { // 普通item，显示群组成员
+//                final String username = getItem(position);
+//                convertView.setVisibility(View.VISIBLE);
+//                button.setVisibility(View.VISIBLE);
+////				Drawable avatar = getResources().getDrawable(R.drawable.default_avatar);
+////				avatar.setBounds(0, 0, referenceWidth, referenceHeight);
+////				button.setCompoundDrawables(null, avatar, null, null);
+//                holder.textView.setText(username);
+//                UserUtils.setUserAvatar(getContext(), username, holder.imageView);
+//                // demo群组成员的头像都用默认头像，需由开发者自己去设置头像
+//                if (isInDeleteMode) {
+//                    // 如果是删除模式下，显示减人图标
+//                    convertView.findViewById(R.id.badge_delete).setVisibility(View.VISIBLE);
+//                } else {
+//                    convertView.findViewById(R.id.badge_delete).setVisibility(View.INVISIBLE);
+//                }
+//                final String st12 = getResources().getString(R.string.not_delete_myself);
+//                final String st13 = getResources().getString(R.string.Are_removed);
+//                final String st14 = getResources().getString(R.string.Delete_failed);
+//                final String st15 = getResources().getString(R.string.confirm_the_members);
+//                button.setOnClickListener(new OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (isInDeleteMode) {
+//                            // 如果是删除自己，return
+//                            if (EMChatManager.getInstance().getCurrentUser().equals(username)) {
+//                                startActivity(new Intent(GroupDetailsActivity.this, AlertDialog.class).putExtra("msg", st12));
+//                                return;
+//                            }
+//                            if (!NetUtils.hasNetwork(getApplicationContext())) {
+//                                Toast.makeText(getApplicationContext(), getString(R.string.network_unavailable), 0).show();
+//                                return;
+//                            }
+//                            EMLog.d("group", "remove user from group:" + username);
+//                            deleteMembersFromGroup(username);
+//                        } else {
+//                            // 正常情况下点击user，可以进入用户详情或者聊天页面等等
+//                            // startActivity(new
+//                            // Intent(GroupDetailsActivity.this,
+//                            // ChatActivity.class).putExtra("userId",
+//                            // user.getUsername()));
+//
+//                        }
+//                    }
+//
+//                    /**
+//                     * 删除群成员
+//                     *
+//                     * @param username
+//                     */
+//                    protected void deleteMembersFromGroup(final String username) {
+//                        final ProgressDialog deleteDialog = new ProgressDialog(GroupDetailsActivity.this);
+//                        deleteDialog.setMessage(st13);
+//                        deleteDialog.setCanceledOnTouchOutside(false);
+//                        deleteDialog.show();
+//                        new Thread(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                try {
+//                                    // 删除被选中的成员
+//                                    EMGroupManager.getInstance().removeUserFromGroup(groupId, username);
+//                                    isInDeleteMode = false;
+//                                    runOnUiThread(new Runnable() {
+//
+//                                        @Override
+//                                        public void run() {
+//                                            deleteDialog.dismiss();
+//                                            refreshMembers();
+//                                            ((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "("
+//                                                    + group.getAffiliationsCount() + st);
+//                                        }
+//                                    });
+//                                } catch (final Exception e) {
+//                                    deleteDialog.dismiss();
+//                                    runOnUiThread(new Runnable() {
+//                                        public void run() {
+//                                            Toast.makeText(getApplicationContext(), st14 + e.getMessage(), 1).show();
+//                                        }
+//                                    });
+//                                }
+//
+//                            }
+//                        }).start();
+//                    }
+//                });
+//
+//                button.setOnLongClickListener(new OnLongClickListener() {
+//
+//                    @Override
+//                    public boolean onLongClick(View v) {
+//                        if(EMChatManager.getInstance().getCurrentUser().equals(username))
+//                            return true;
+//                        if (group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
+//                            Intent intent = new Intent(GroupDetailsActivity.this, AlertDialog.class);
+//                            intent.putExtra("msg", st15);
+//                            intent.putExtra("cancel", true);
+//                            startActivityForResult(intent, REQUEST_CODE_ADD_TO_BALCKLIST);
+//                            longClickUsername = username;
+//                        }
+//                        return false;
+//                    }
+//                });
+//            }
+//            return convertView;
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return super.getCount() + 2;
+//        }
+//    }
 
     protected void updateGroup() {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    EMGroup returnGroup = EMGroupManager.getInstance().getGroup(groupId);
+                    final EMGroup returnGroup = EMGroupManager.getInstance().getGroupFromServer(groupId);
                     // 更新本地数据
                     EMGroupManager.getInstance().createOrUpdateLocalGroup(returnGroup);
 
                     runOnUiThread(new Runnable() {
                         public void run() {
                             ((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount()
-                                    + "人)");
+                                    + ")");
                             loadingPB.setVisibility(View.INVISIBLE);
-                            adapter.notifyDataSetChanged();
+//                            refreshMembers();
                             if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
                                 // 显示解散按钮
-								exitBtn.setVisibility(View.GONE);
+                                exitBtn.setVisibility(View.GONE);
                                 deleteBtn.setVisibility(View.VISIBLE);
                             } else {
                                 // 显示退出按钮
-								exitBtn.setVisibility(View.VISIBLE);
+                                exitBtn.setVisibility(View.VISIBLE);
                                 deleteBtn.setVisibility(View.GONE);
-
                             }
 
                             // update block
-                            System.out.println("group msg is blocked:" + group.getMsgBlocked());
-                            if (group.getMsgBlocked()) {
+                            EMLog.d(TAG, "group msg is blocked:" + group.getMsgBlocked());
+                            if (group.isMsgBlocked()) {
                                 iv_switch_block_groupmsg.setVisibility(View.VISIBLE);
                                 iv_switch_unblock_groupmsg.setVisibility(View.INVISIBLE);
                             } else {
                                 iv_switch_block_groupmsg.setVisibility(View.INVISIBLE);
                                 iv_switch_unblock_groupmsg.setVisibility(View.VISIBLE);
-                            }
-                            if (EMChatManager.getInstance().getChatOptions().getReceiveNoNotifyGroup()!=null) {
-                                iv_switch_block_groupmsg_sound.setVisibility(View.VISIBLE);
-                                iv_switch_unblock_groupmsg_sound.setVisibility(View.INVISIBLE);
-                            } else {
-                                iv_switch_block_groupmsg_sound.setVisibility(View.INVISIBLE);
-                                iv_switch_unblock_groupmsg_sound.setVisibility(View.VISIBLE);
                             }
                         }
                     });
@@ -813,6 +1093,16 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
             }
         }).start();
     }
+
+//    private void refreshMembers(){
+//        adapter.clear();
+//
+//        List<String> members = new ArrayList<String>();
+//        members.addAll(group.getMembers());
+//        adapter.addAll(members);
+//
+//        adapter.notifyDataSetChanged();
+//    }
 
     public void back(View view) {
         setResult(RESULT_OK);
@@ -830,5 +1120,12 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         super.onDestroy();
         instance = null;
     }
+
+    private static class ViewHolder{
+        ImageView imageView;
+        TextView textView;
+        ImageView badgeDeleteView;
+    }
+
 
 }

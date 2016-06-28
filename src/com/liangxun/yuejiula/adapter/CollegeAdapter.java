@@ -5,14 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.liangxun.yuejiula.R;
-import com.liangxun.yuejiula.entity.Favour;
 import com.liangxun.yuejiula.entity.Univerty;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.List;
 

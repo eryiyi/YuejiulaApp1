@@ -2,7 +2,6 @@ package com.liangxun.yuejiula.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.amap.api.maps.model.LatLng;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.entity.EmpDianpu;
-import com.liangxun.yuejiula.entity.PaopaoGoods;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;

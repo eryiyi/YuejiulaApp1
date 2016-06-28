@@ -35,7 +35,7 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="封号"
+                        android:text="禁发帖"
                         android:id="@+id/camera"
                         android:textColor="@color/main"
                         android:textSize="20sp"/>
@@ -58,7 +58,7 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="封群"
+                        android:text="禁群聊"
                         android:id="@+id/mapstorage"
                         android:textColor="@color/main"
                         android:textSize="20sp"/>

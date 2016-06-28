@@ -25,10 +25,9 @@ import com.liangxun.yuejiula.data.EmpDATA;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.entity.MinePicsObj;
 import com.liangxun.yuejiula.huanxin.chat.activity.ContactlistActivity;
+import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
-import com.liangxun.yuejiula.widget.PictureGridview;
-import com.liangxun.yuejiula.ui.*;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
@@ -394,7 +393,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             pics.add(new MinePicsObj(R.drawable.mine_school_n ,"我的学校"));
             pics.add(new MinePicsObj(R.drawable.mine_shangjia_n ,"我的商家"));
             pics.add(new MinePicsObj(R.drawable.mine_tg_n ,"我的推广"));
-            pics.add(new MinePicsObj(R.drawable.mine_pingbi_n ,"封号封群"));
+            pics.add(new MinePicsObj(R.drawable.mine_pingbi_n ,"禁帖禁群"));
         }
 
 

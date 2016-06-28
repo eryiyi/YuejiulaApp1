@@ -34,7 +34,6 @@ import com.liangxun.yuejiula.huanxin.chat.db.HxUserDao;
 import com.liangxun.yuejiula.huanxin.chat.db.InviteMessgeDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.widget.Sidebar;
-import com.liangxun.yuejiula.ui.PaoPaokefuActivity;
 
 import java.util.*;
 import java.util.Map.Entry;

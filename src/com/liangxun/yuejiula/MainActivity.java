@@ -13,9 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,10 +34,7 @@ import com.easemob.util.HanziToPinyin;
 import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
-import com.liangxun.yuejiula.data.ContractSchoolDATA;
-import com.liangxun.yuejiula.data.EmpsDATA;
-import com.liangxun.yuejiula.data.MineShangjiasDATA;
-import com.liangxun.yuejiula.data.SchoolRecordMoodData;
+import com.liangxun.yuejiula.data.*;
 import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
@@ -58,12 +53,10 @@ import com.liangxun.yuejiula.ui.PublishPicActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.util.Utils;
-import com.liangxun.yuejiula.widget.*;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
 import com.umeng.update.UmengUpdateAgent;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
-import org.bitlet.weupnp.Main;
 
 import java.util.*;
 
@@ -211,6 +204,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             //是代理商
             getSchoolMine();
         }
+
+        //查询承包商信息
+        if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
+            getManager();
+        }
+
     }
 
     private void initView() {
@@ -1654,6 +1653,50 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                 Map<String, String> params = new HashMap<String, String>();
                 if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class))){
                     params.put("empId", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
+                }
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+    void getManager(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_MANAGER_COLLEGE_BY_EMPID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            EmpDATA data = getGson().fromJson(s, EmpDATA.class);
+                            if (data.getCode() == 200) {
+                                Emp emp1 = data.getData();
+                                if(emp1 != null){
+                                    save("manager_hxusername", emp1.getHxUsername());
+                                    save("manager_empid", emp1.getEmpId());
+                                }
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
+                    params.put("school_id", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
                 }
                 return params;
             }

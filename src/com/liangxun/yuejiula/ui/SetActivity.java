@@ -14,7 +14,6 @@ import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxSetActivity;
 import com.liangxun.yuejiula.util.Constants;
-import com.liangxun.yuejiula.util.StringUtil;
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;

@@ -14,10 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.easemob.chat.EMMessage;
 import com.easemob.util.EasyUtils;
 import com.google.gson.Gson;
@@ -27,8 +24,6 @@ import com.liangxun.yuejiula.huanxin.chat.utils.CommonUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.yixia.camera.demo.UniversityApplication;
 
-import java.io.File;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -71,7 +66,6 @@ public class BaseActivity extends FragmentActivity {
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0,0);//设置居中
         toast.show();//显示,(缺了这句不显示)
     }
-
 
     /**
      * 获取当前Application
@@ -179,10 +173,6 @@ public class BaseActivity extends FragmentActivity {
     public ExecutorService getLxThread() {
         return getMyApp().getLxThread();
     }
-
-
-
-
 
     protected void onDestroy() {
         ActivityTack.getInstanse().removeActivity(this);

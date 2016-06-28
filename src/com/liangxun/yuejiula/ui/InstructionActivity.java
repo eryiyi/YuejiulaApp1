@@ -1,6 +1,5 @@
 package com.liangxun.yuejiula.ui;
 
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;

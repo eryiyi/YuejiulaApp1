@@ -31,12 +31,9 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
-import com.liangxun.yuejiula.widget.CircleImageView;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.yixia.camera.demo.UniversityApplication;
-import org.bitlet.weupnp.Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;

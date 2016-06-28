@@ -11,10 +11,6 @@
  */
 package com.liangxun.yuejiula.huanxin.applib.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -28,12 +24,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
-
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.util.EMLog;
 import com.easemob.util.EasyUtils;
 import com.liangxun.yuejiula.huanxin.applib.controller.HXSDKHelper;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * 新消息提醒class

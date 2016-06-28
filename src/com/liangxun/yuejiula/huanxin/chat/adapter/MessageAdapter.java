@@ -49,13 +49,13 @@ import com.liangxun.yuejiula.data.EmpsDATA;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.face.FaceConversionUtil;
 import com.liangxun.yuejiula.huanxin.chat.HxConstant;
+import com.liangxun.yuejiula.huanxin.chat.activity.*;
 import com.liangxun.yuejiula.huanxin.chat.db.HxUserDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.task.LoadImageTask;
 import com.liangxun.yuejiula.huanxin.chat.task.LoadVideoImageTask;
 import com.liangxun.yuejiula.huanxin.chat.utils.ImageCache;
 import com.liangxun.yuejiula.util.StringUtil;
-import com.liangxun.yuejiula.huanxin.chat.activity.*;
 import com.yixia.camera.demo.UniversityApplication;
 
 import java.io.File;

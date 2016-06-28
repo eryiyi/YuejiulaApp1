@@ -9,7 +9,6 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
-import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.util.Constants;
 import com.umeng.socialize.bean.RequestType;
 import com.umeng.socialize.controller.UMServiceFactory;

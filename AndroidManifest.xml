@@ -288,6 +288,7 @@
         <activity android:name="com.liangxun.yuejiula.ui.SelectCollegeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
 
+
         <activity
                 android:name="com.yixia.camera.demo.ui.record.MediaRecorderActivity"
                 android:hardwareAccelerated="true"
@@ -473,6 +474,12 @@
         </activity>
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.GroupsActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+                android:name="com.liangxun.yuejiula.huanxin.chat.activity.EditActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide"
                 android:windowSoftInputMode="adjustPan">
