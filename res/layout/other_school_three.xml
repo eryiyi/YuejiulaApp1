@@ -10,7 +10,7 @@
             android:layout_height="@dimen/height_top_bar"
             android:background="@drawable/global_top_background">
         <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:id="@+id/other_back"

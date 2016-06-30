@@ -10,7 +10,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_height="@dimen/height_top_bar">
         <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:onClick="back"

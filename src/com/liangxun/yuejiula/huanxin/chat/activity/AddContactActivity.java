@@ -33,6 +33,7 @@ import com.liangxun.yuejiula.data.EmpsDATA;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.huanxin.chat.adapter.ContactsListAdapter;
 import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
+import com.liangxun.yuejiula.ui.UpdateProfilePersonalActivity;
 import com.liangxun.yuejiula.util.Constants;
 
 import java.util.HashMap;
@@ -192,8 +193,14 @@ public class AddContactActivity extends BaseActivity implements AdapterView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final Emp emp = friends.get(position);
-        Intent intent = new Intent(this, ProfilePersonalActivity.class);
-        intent.putExtra(Constants.EMPID, emp.getEmpId());
-        startActivity(intent);
+        //判断
+        if (!getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class).equals(emp.getEmpId())) {
+            Intent intent = new Intent(this, ProfilePersonalActivity.class);
+            intent.putExtra(Constants.EMPID, emp.getEmpId());
+            startActivity(intent);
+        } else {
+            Intent profile = new Intent(this, UpdateProfilePersonalActivity.class);
+            startActivity(profile);
+        }
     }
 }

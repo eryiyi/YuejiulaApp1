@@ -32,7 +32,6 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
 
     private static final String APP_CACAHE_DIRNAME = "/webcache";
 
-
     UMSocialService mController;
     String shareCont = "";//内容
     String shareUrl = "";
@@ -66,9 +65,6 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
 
         detail_webview.loadUrl(strurl);
         detail_webview.setWebViewClient(new HelloWebViewClient());
-
-
-
     }
 
     private void initView() {

@@ -93,7 +93,7 @@
                       android:padding="8dp"
                       android:id="@+id/zixun"
                       android:textColor="@color/white"
-                      android:background="@color/btn_blue_normal"
+                      android:background="@drawable/btn_blue_shap"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
                       android:text="收藏本店"
@@ -104,7 +104,7 @@
                       android:padding="8dp"
                       android:id="@+id/favour"
                       android:textColor="@color/white"
-                      android:background="@color/btn_blue_normal"
+                      android:background="@drawable/btn_blue_shap"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
                       android:text="地图导航"
@@ -115,7 +115,7 @@
                       android:padding="8dp"
                       android:id="@+id/location"
                       android:textColor="@color/white"
-                      android:background="@color/btn_blue_normal"
+                      android:background="@drawable/btn_blue_shap"
                       android:layout_height="wrap_content"/>
 
             <TextView android:layout_width="wrap_content"

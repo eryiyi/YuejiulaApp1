@@ -18,12 +18,12 @@
                 android:onClick="back">
 
             <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="9dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/back"/>
+                    android:src="@drawable/mm_title_back"/>
         </LinearLayout>
 
         <TextView

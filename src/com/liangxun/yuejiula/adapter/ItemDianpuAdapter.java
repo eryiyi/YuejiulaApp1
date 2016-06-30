@@ -17,6 +17,8 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author: ${zhanghailong}
@@ -110,9 +112,17 @@ public class ItemDianpuAdapter extends BaseAdapter {
         }
 
         if(!StringUtil.isNullOrEmpty(cell.getYingye_time_start()) && !StringUtil.isNullOrEmpty(cell.getYingye_time_end())){
-            if(StringUtil.betweenTwoNumber(Integer.parseInt(cell.getYingye_time_start()), Integer.parseInt(cell.getYingye_time_end()))){
-                holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_open));
-            }else {
+
+             Pattern pattern = Pattern.compile("[0-9]+");
+             Matcher matcher = pattern.matcher((CharSequence) cell.getYingye_time_start());
+             Matcher matcher2 = pattern.matcher((CharSequence) cell.getYingye_time_end());
+            if ( matcher.matches() && matcher2.matches()) {
+                if(StringUtil.betweenTwoNumber(Integer.parseInt(cell.getYingye_time_start()), Integer.parseInt(cell.getYingye_time_end()))){
+                    holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_open));
+                }else {
+                    holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_close));
+                }
+            } else {
                 holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_close));
             }
         }

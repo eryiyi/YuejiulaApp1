@@ -8,14 +8,14 @@
     <RelativeLayout android:layout_width="match_parent"
                     android:background="@drawable/global_top_background"
                     android:layout_height="@dimen/height_top_bar">
-        <Button android:layout_width="wrap_content"
+        <Button android:layout_width="40dp"
                 android:drawablePadding="8dp"
                 android:onClick="back"
                 android:background="@null"
                 android:textColor="@color/black_text_color"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
-                android:drawableLeft="@drawable/back"
+                android:drawableLeft="@drawable/mm_title_back"
                 android:layout_height="match_parent"/>
     </RelativeLayout>
     <LinearLayout android:layout_width="match_parent"

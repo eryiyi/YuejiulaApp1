@@ -15,7 +15,7 @@
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
-                android:drawableLeft="@drawable/back"
+                android:drawableLeft="@drawable/mm_title_back"
                 android:layout_height="match_parent"/>
     </RelativeLayout>
     <RelativeLayout android:layout_width="match_parent"
