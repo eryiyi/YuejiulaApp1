@@ -394,9 +394,9 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         AdObj slide = lists.get(position);
         switch (flag){
             case 1:
-                    Intent adView =  new Intent(DianpuDetailActivity.this, WebViewActivity.class);
-                    adView.putExtra("strurl", slide.getMm_ad_url());
-                    startActivity(adView);
+//                    Intent adView =  new Intent(DianpuDetailActivity.this, WebViewActivity.class);
+//                    adView.putExtra("strurl", slide.getMm_ad_url());
+//                    startActivity(adView);
                 break;
         }
     }

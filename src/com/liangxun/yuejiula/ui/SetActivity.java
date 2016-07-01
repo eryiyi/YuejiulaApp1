@@ -134,7 +134,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onClick(View v) {
-                Intent selectV = new Intent(SetActivity.this, SelectCollegeActivity.class);
+                Intent selectV = new Intent(SetActivity.this, SelectProvinceActivity.class);
                 startActivity(selectV);
                 picAddDialog.dismiss();
             }

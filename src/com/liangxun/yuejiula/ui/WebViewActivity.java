@@ -1,5 +1,6 @@
 package com.liangxun.yuejiula.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,7 +26,7 @@ import com.umeng.socialize.weixin.media.WeiXinShareContent;
 /**
  * Created by Administrator on 2015/5/14.
  */
-public class WebViewActivity extends BaseActivity implements View.OnClickListener {
+public class WebViewActivity extends BaseActivity implements View.OnClickListener,Runnable {
     private WebView detail_webview;
     private ImageView menu;
     private String strurl;
@@ -44,6 +45,11 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
         strurl = getIntent().getExtras().getString("strurl");
+        progressDialog = new ProgressDialog(WebViewActivity.this );
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
+
         initView();
         detail_webview.getSettings().setJavaScriptEnabled(true);
         shareUrl = strurl;
@@ -65,6 +71,9 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
 
         detail_webview.loadUrl(strurl);
         detail_webview.setWebViewClient(new HelloWebViewClient());
+
+        // 启动一个线程
+        new Thread(WebViewActivity.this).start();
     }
 
     private void initView() {
@@ -132,6 +141,19 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(3000);
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private class HelloWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {

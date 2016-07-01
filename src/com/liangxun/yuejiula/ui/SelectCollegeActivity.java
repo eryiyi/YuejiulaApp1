@@ -33,10 +33,12 @@ public class SelectCollegeActivity extends BaseActivity implements View.OnClickL
     private ListView lstv;
     private CollegeAdapter adapter;
     List<Univerty> lists  = new ArrayList<Univerty>();
+    private String province_uuid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_qiehuan_activity);
+        province_uuid = getIntent().getExtras().getString(Constants.OTHER_PROVINCE);
         getUniversity();
         initView();
     }
@@ -87,6 +89,7 @@ public class SelectCollegeActivity extends BaseActivity implements View.OnClickL
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("provinceId", province_uuid);
                 return params;
             }
 

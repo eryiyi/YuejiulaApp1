@@ -42,7 +42,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout headView;
 
     //下拉刷新
-    private PullToRefreshListView lstv ;
+    private ListView lstv ;
     private ItemFindAdapter adapter;
     private int pageIndex = 1;
     private static boolean IS_REFRESH = true;
@@ -80,40 +80,10 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
 //        find_pk_img = (ImageView) headView.findViewById(R.id.find_pk_img);
 //        find_pk_img.setOnClickListener(this);
 
-        lstv = (PullToRefreshListView) view.findViewById(R.id.lstv);//列表
-
-        ListView listView = lstv.getRefreshableView();
-
-        listView.addHeaderView(headView);
-
+        lstv = (ListView) view.findViewById(R.id.lstv);//列表
+        lstv.addHeaderView(headView);
         adapter = new ItemFindAdapter(listgoods, getActivity());
         lstv.setAdapter(adapter);
-        lstv.setMode(PullToRefreshBase.Mode.BOTH);
-        lstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(getActivity().getApplicationContext(), System.currentTimeMillis(),
-                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                IS_REFRESH = true;
-                pageIndex = 1;
-                lstv.onRefreshComplete();
-//                initData();
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(getActivity().getApplicationContext(), System.currentTimeMillis(),
-                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                IS_REFRESH = false;
-                pageIndex++;
-                lstv.onRefreshComplete();
-//                initData();
-            }
-        });
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -129,7 +99,6 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 }
             }
         });
-
 
     }
 
@@ -180,7 +149,6 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                                 }
                                 listgoods.addAll(data.getData());
                                 adapter.notifyDataSetChanged();
-                                lstv.onRefreshComplete();
                             } else {
                                 Toast.makeText(getActivity(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
