@@ -163,6 +163,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, Vers
     private OnPhotoTapListener mPhotoTapListener;
     private OnViewTapListener mViewTapListener;
     private OnLongClickListener mLongClickListener;
+    private View.OnClickListener mOnClickListener;
 
     private int mIvTop, mIvRight, mIvBottom, mIvLeft;
     private FlingRunnable mCurrentFlingRunnable;
@@ -196,6 +197,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, Vers
                                 mLongClickListener.onLongClick(mImageView.get());
                             }
                         }
+
                     });
 
             mGestureDetector.setOnDoubleTapListener(this);
@@ -215,7 +217,6 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, Vers
      * when the ImageView is no longer used. A good example is from
      * {@link View#onDetachedFromWindow()} or from
      * {@link android.app.Activity#onDestroy()}. This is automatically called if
-     * you are using {@link uk.co.senab.photoview.PhotoView}.
      */
     @SuppressLint("NewApi")
     @SuppressWarnings("deprecation")
@@ -517,6 +518,10 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, Vers
     @Override
     public final void setOnLongClickListener(OnLongClickListener listener) {
         mLongClickListener = listener;
+    }
+
+    public final void setmOnClickListener(View.OnClickListener onClickListener){
+        mOnClickListener = onClickListener;
     }
 
     @Override

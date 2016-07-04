@@ -16,6 +16,7 @@ package com.liangxun.yuejiula.huanxin.chat.activity;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import com.easemob.chat.EMChatConfig;
 import com.easemob.cloud.CloudOperationCallback;
@@ -31,12 +33,19 @@ import com.easemob.cloud.HttpFileManager;
 import com.easemob.util.ImageUtils;
 import com.easemob.util.PathUtil;
 import com.liangxun.yuejiula.R;
+import com.liangxun.yuejiula.adapter.AnimateFirstDisplayListener;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.huanxin.chat.task.LoadLocalBigImgTask;
+import com.liangxun.yuejiula.huanxin.chat.task.LoadLocalBigImgTask2;
 import com.liangxun.yuejiula.huanxin.chat.utils.ImageCache;
 import com.liangxun.yuejiula.huanxin.chat.widget.photoview.PhotoView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.yixia.camera.demo.UniversityApplication;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +56,7 @@ import java.util.Map;
 public class ShowBigImage extends BaseActivity {
 
     private ProgressDialog pd;
-    private PhotoView image;
+    private ImageView image;
     private int default_res = R.drawable.default_image;
     private String localFilePath;
     private Bitmap bitmap;
@@ -60,7 +69,14 @@ public class ShowBigImage extends BaseActivity {
         setContentView(R.layout.activity_show_big_image);
         super.onCreate(savedInstanceState);
 
-        image = (PhotoView) findViewById(R.id.image);
+        image = (ImageView) findViewById(R.id.image);
+        image.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         loadLocalPb = (ProgressBar) findViewById(R.id.pb_load_local);
         default_res = getIntent().getIntExtra("default_image", R.drawable.head);
         Uri uri = getIntent().getParcelableExtra("uri");
@@ -68,7 +84,7 @@ public class ShowBigImage extends BaseActivity {
         String secret = getIntent().getExtras().getString("secret");
         System.err.println("show big image uri:" + uri + " remotepath:" + remotepath);
 
-        //本地存在，直接显示本地的图片
+//        //本地存在，直接显示本地的图片
         if (uri != null && new File(uri.getPath()).exists()) {
             System.err.println("showbigimage file exists. directly show it");
             DisplayMetrics metrics = new DisplayMetrics();
@@ -77,7 +93,7 @@ public class ShowBigImage extends BaseActivity {
             // int screenHeight =metrics.heightPixels;
             bitmap = ImageCache.getInstance().get(uri.getPath());
             if (bitmap == null) {
-                LoadLocalBigImgTask task = new LoadLocalBigImgTask(this, uri.getPath(), image, loadLocalPb, ImageUtils.SCALE_IMAGE_WIDTH,
+                LoadLocalBigImgTask2 task = new LoadLocalBigImgTask2(this, uri.getPath(), image, loadLocalPb, ImageUtils.SCALE_IMAGE_WIDTH,
                         ImageUtils.SCALE_IMAGE_HEIGHT);
                 if (android.os.Build.VERSION.SDK_INT > 10) {
                     task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -98,12 +114,23 @@ public class ShowBigImage extends BaseActivity {
             image.setImageResource(default_res);
         }
 
-        image.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
+    }
+
+    /**
+     * 加载本地图片
+     * http://bbs.3gstdy.com
+     * @param url
+     * @return
+     */
+    public static Bitmap getLoacalBitmap(String url) {
+        try {
+            FileInputStream fis = new FileInputStream(url);
+            return BitmapFactory.decodeStream(fis);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -204,4 +231,5 @@ public class ShowBigImage extends BaseActivity {
             setResult(RESULT_OK);
         finish();
     }
+
 }

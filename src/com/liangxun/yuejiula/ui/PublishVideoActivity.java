@@ -373,18 +373,32 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
                     @Override
                     public void onResponse(String s) {
                         if (StringUtil.isJson(s)) {
-                            RecordSingleDATA data = getGson().fromJson(s, RecordSingleDATA.class);
-                            if (data.getCode() == 200) {
-                                if (progressDialog != null) {
-                                    progressDialog.dismiss();
+                            try {
+                                JSONObject jo  = new JSONObject(s);
+                                String code = jo.getString("code");
+                                if (Integer.parseInt(code) == 200) {
+                                    RecordSingleDATA data = getGson().fromJson(s, RecordSingleDATA.class);
+                                    Toast.makeText(PublishVideoActivity.this, R.string.publish_success, Toast.LENGTH_SHORT).show();
+                                    //调用广播，刷新主页
+                                    Intent intent1 = new Intent(Constants.SEND_INDEX_SUCCESS);
+                                    intent1.putExtra("addRecord", data.getData());
+                                    sendBroadcast(intent1);
+                                    finish();
+                                }else if(Integer.parseInt(code) == 1){
+                                    showMsg(PublishVideoActivity.this, "发布失败！");
+                                } else if(Integer.parseInt(code) == 2){
+                                    showMsg(PublishVideoActivity.this, "发布失败，不能重复发布！");
+                                }else if(Integer.parseInt(code) == 3){
+                                    showMsg(PublishVideoActivity.this, "发布失败，您已被封号！");
+                                }else {
+                                    showMsg(PublishVideoActivity.this, "发布失败，请稍后重试！");
                                 }
-                                Toast.makeText(PublishVideoActivity.this, R.string.publish_success, Toast.LENGTH_SHORT).show();
-                                //调用广播，刷新主页
-                                Intent intent1 = new Intent(Constants.SEND_INDEX_SUCCESS);
-                                intent1.putExtra("addRecord", data.getData());
-                                sendBroadcast(intent1);
-                                ActivityTack.getInstanse().popUntilActivity(MainActivity.class);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
                         }
                     }
                 },

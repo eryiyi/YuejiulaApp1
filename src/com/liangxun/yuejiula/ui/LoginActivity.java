@@ -281,7 +281,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
                     // ** manually load all local groups and
                     // conversations in case we are auto login
-                    EMGroupManager.getInstance().loadAllGroups();
+                    EMGroupManager.getInstance().getAllGroups();
+//                    EMGroupManager.getInstance().getGroupsFromServer();
                     EMChatManager.getInstance().loadAllConversations();
                     //处理好友和群组
                     processContactsAndGroups();

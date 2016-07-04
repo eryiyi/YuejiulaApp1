@@ -28,6 +28,7 @@ import com.liangxun.yuejiula.huanxin.chat.adapter.ChatAllHistoryAdapter;
 import com.liangxun.yuejiula.huanxin.chat.db.InviteMessgeDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.my.MyEMConversation;
+import com.liangxun.yuejiula.ui.AndMeAcitvity;
 import com.liangxun.yuejiula.util.StringUtil;
 
 import java.util.*;
@@ -51,6 +52,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout tongxunlu;//通讯录
     private TextView unread_qun;
     private TextView unread_shenqing;
+    private TextView unread_andme_number;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_conversation_history, container, false);
@@ -72,6 +74,8 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
         listViewHead = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.chatheader, null);
         unread_qun = (TextView) listViewHead.findViewById(R.id.unread_msg_number);
         unread_shenqing = (TextView) listViewHead.findViewById(R.id.unread_address_number);
+        unread_andme_number = (TextView) listViewHead.findViewById(R.id.unread_andme_number);
+        listViewHead.findViewById(R.id.andme).setOnClickListener(this);
         listView.addHeaderView(listViewHead);
 
         dating = (RelativeLayout) listViewHead.findViewById(R.id.dating);
@@ -287,6 +291,12 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
 //                startActivity(groupV);
 //            }
 //                break;
+            case R.id.andme:
+            {
+                Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
+                startActivity(relateView);
+            }
+                break;
         }
     }
 

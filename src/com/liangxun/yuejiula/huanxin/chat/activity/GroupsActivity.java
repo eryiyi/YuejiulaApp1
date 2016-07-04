@@ -191,7 +191,7 @@ public class GroupsActivity extends BaseActivity {
 		} else {
 			progressBar.setVisibility(View.GONE);
 		}
-		
+
 		refresh();
 	}
 

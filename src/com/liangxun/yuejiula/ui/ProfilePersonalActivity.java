@@ -11,6 +11,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.easemob.chat.EMContactManager;
+import com.easemob.exceptions.EaseMobException;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.AnimateFirstDisplayListener;
@@ -31,6 +33,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,17 +118,40 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                 break;
             case R.id.profile_personal_cover:
                 //点击头像
-                final String[] picUrls = {emp.getEmpCover()};
-                Intent intent = new Intent(this, GalleryUrlActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                intent.putExtra(Constants.IMAGE_URLS, picUrls);
-                intent.putExtra(Constants.IMAGE_POSITION, 0);
-                startActivity(intent);
+//                final String[] picUrls = {emp.getEmpCover()};
+//                Intent intent = new Intent(this, GalleryUrlActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//                intent.putExtra(Constants.IMAGE_URLS, picUrls);
+//                intent.putExtra(Constants.IMAGE_POSITION, 0);
+//                startActivity(intent);
+            {
+                //判断是否在黑名单
+                // 从本地获取黑名单
+                List<String> blacklist = EMContactManager.getInstance().getBlackListUsernames();
+                boolean flag = false;//默认不在黑名单中
+                if(blacklist != null){
+                    for(String str:blacklist){
+                        if(str.equals(emp.getHxUsername())){
+                            flag = true;//说明已经在黑名单中了
+                            break;
+                        }
+                    }
+                }
+                if(flag){
+                    //移除黑名单
+                    delBlack();
+                }else{
+                    //添加到黑名单
+                    addBlack();
+                }
+
+            }
                 break;
             case R.id.profile_record:
                 Intent dynamic=new Intent(ProfilePersonalActivity.this,ProfileDynamicActivity.class);
                 dynamic.putExtra(Constants.EMPID,empId);//我要查询的那个人的 EMPID
                 startActivity(dynamic);
+                break;
             case R.id.select_fenghq:
                 //封号 封群
                 ShowPickDialog();
@@ -133,6 +159,97 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
 
         }
     }
+
+    // 加入黑名单
+    private void addBlack() {
+        final Dialog picAddDialog = new Dialog(ProfilePersonalActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
+        TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
+        final TextView jubao_cont = (TextView) picAddInflate.findViewById(R.id.content);
+        jubao_cont.setText("加入黑名单？");
+        jubao_sure.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                addUserToBlacklist(emp.getHxUsername());
+                picAddDialog.dismiss();
+            }
+        });
+
+        TextView jubao_cancle = (TextView) picAddInflate.findViewById(R.id.jubao_cancle);
+        jubao_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picAddDialog.dismiss();
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
+    }
+    private void delBlack() {
+        final Dialog picAddDialog = new Dialog(ProfilePersonalActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
+        TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
+        final TextView jubao_cont = (TextView) picAddInflate.findViewById(R.id.content);
+        jubao_cont.setText("移出黑名单？");
+        jubao_sure.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // 把目标user移出黑名单
+                removeOutBlacklist(emp.getHxUsername());
+                picAddDialog.dismiss();
+            }
+        });
+
+        TextView jubao_cancle = (TextView) picAddInflate.findViewById(R.id.jubao_cancle);
+        jubao_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picAddDialog.dismiss();
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
+    }
+
+    /**
+     * 加入到黑名单
+     *
+     * @param username
+     */
+    private void addUserToBlacklist(String username) {
+        String st11 = getResources().getString(R.string.Move_into_blacklist_success);
+        String st12 = getResources().getString(R.string.Move_into_blacklist_failure);
+        try {
+            EMContactManager.getInstance().addUserToBlackList(username, false);
+            Toast.makeText(getApplicationContext(), st11, Toast.LENGTH_SHORT).show();
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), st12, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 移出黑民单
+     *
+     * @param tobeRemoveUser
+     */
+    void removeOutBlacklist(final String tobeRemoveUser) {
+        try {
+            // 移出黑民单
+            EMContactManager.getInstance().deleteUserFromBlackList(tobeRemoveUser);
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    String str2 = getResources().getString(R.string.Removed_from_the_failure);
+                    Toast.makeText(getApplicationContext(), str2, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 
     private SelectFenghaoPopWindow deleteWindow;
     private void ShowPickDialog() {

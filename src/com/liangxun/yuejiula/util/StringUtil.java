@@ -167,11 +167,11 @@ public class StringUtil {
     }
 
     public static boolean betweenTwoNumber(int start,int end){
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("HH");
+        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("HH:mm");
         Date   curDate   =   new Date(System.currentTimeMillis());//获取当前时间
         String   str   =   formatter.format(curDate);
-        if(!StringUtil.isNullOrEmpty(str)){
-            int strInt = Integer.parseInt(str);
+        if(!StringUtil.isNullOrEmpty(str.replace(":",""))){
+            int strInt = Integer.parseInt(str.replace(":",""));
             if(strInt>start && strInt<end){
                 return true;
             }else {

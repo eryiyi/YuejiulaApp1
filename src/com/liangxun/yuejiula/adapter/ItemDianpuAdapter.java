@@ -113,18 +113,18 @@ public class ItemDianpuAdapter extends BaseAdapter {
 
         if(!StringUtil.isNullOrEmpty(cell.getYingye_time_start()) && !StringUtil.isNullOrEmpty(cell.getYingye_time_end())){
 
-             Pattern pattern = Pattern.compile("[0-9]+");
-             Matcher matcher = pattern.matcher((CharSequence) cell.getYingye_time_start());
-             Matcher matcher2 = pattern.matcher((CharSequence) cell.getYingye_time_end());
-            if ( matcher.matches() && matcher2.matches()) {
-                if(StringUtil.betweenTwoNumber(Integer.parseInt(cell.getYingye_time_start()), Integer.parseInt(cell.getYingye_time_end()))){
+//             Pattern pattern = Pattern.compile("[0-9]+");
+//             Matcher matcher = pattern.matcher((CharSequence) cell.getYingye_time_start());
+//             Matcher matcher2 = pattern.matcher((CharSequence) cell.getYingye_time_end());
+//            if ( matcher.matches() && matcher2.matches()) {
+                if(StringUtil.betweenTwoNumber(Integer.parseInt(cell.getYingye_time_start().replaceAll(":","")), Integer.parseInt(cell.getYingye_time_end().replaceAll(":","")))){
                     holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_open));
                 }else {
                     holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_close));
                 }
-            } else {
-                holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_close));
-            }
+//            } else {
+//                holder.deng.setImageDrawable(res.getDrawable(R.drawable.light_close));
+//            }
         }
 
         return convertView;

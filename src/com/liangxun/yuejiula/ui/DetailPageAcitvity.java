@@ -208,7 +208,6 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         detail_like_liner.setOnClickListener(this);
         detail_delete_liner.setOnClickListener(this);
 
-
         boolean flagMine = false;
         if(MainActivity.contractSchools != null){
             for(ContractSchool contractSchool:MainActivity.contractSchools){

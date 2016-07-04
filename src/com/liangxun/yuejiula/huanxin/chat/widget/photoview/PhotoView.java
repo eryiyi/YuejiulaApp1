@@ -48,6 +48,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 
 public class PhotoView extends ImageView implements IPhotoView {
@@ -166,9 +167,16 @@ public class PhotoView extends ImageView implements IPhotoView {
     }
 
     @Override
+    public void setOnClickListener(OnClickListener l) {
+        mAttacher.setmOnClickListener(l);
+    }
+
+    @Override
     public void setOnPhotoTapListener(PhotoViewAttacher.OnPhotoTapListener listener) {
         mAttacher.setOnPhotoTapListener(listener);
     }
+
+
 
     @Override
     public void setOnViewTapListener(PhotoViewAttacher.OnViewTapListener listener) {

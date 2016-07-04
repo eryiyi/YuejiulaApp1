@@ -47,6 +47,7 @@
     <com.liangxun.yuejiula.widget.ReboundScrollView
             android:layout_width="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/bg_two"
             android:layout_height="wrap_content">
         <LinearLayout android:layout_width="match_parent"
                       android:orientation="vertical"
@@ -88,25 +89,23 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:padding="10dp"
                               android:paddingRight="10dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="昵称"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                               android:src="@drawable/part_type_person"/>
 
                     <EditText
                             android:singleLine="true"
                             android:layout_weight="1"
-                            android:background="@drawable/et_bule_bg"
+                            android:textColorHint="@color/white"
+                            android:background="@null"
                             android:id="@+id/profile_personal_nickname"
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:gravity="center|left"
@@ -121,19 +120,15 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:padding="10dp"
                               android:paddingRight="10dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="学校"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                               android:src="@drawable/part_type_persons"/>
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -142,7 +137,7 @@
                               android:paddingLeft="10dp"
                               android:singleLine="true"
                               android:textSize="14sp"
-                              android:textColor="@color/profile_font_color"
+                              android:textColor="@color/white"
                               android:id="@+id/profile_personal_school"/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
@@ -151,20 +146,17 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:padding="10dp"
                               android:paddingRight="10dp"
                               android:paddingTop="5dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="性别"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:src="@drawable/icon_sex_female"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                            />
                     <com.liangxun.yuejiula.util.SexRadioGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -200,20 +192,18 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:paddingRight="10dp"
                               android:padding="10dp"
                               android:paddingTop="5dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="Q  Q"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:src="@drawable/part_type_qq"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                            />
+
                     <EditText
                             android:singleLine="true"
                             android:layout_weight="1"
@@ -221,11 +211,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:gravity="center|left"
+                            android:textColor="@color/white"
                             android:paddingLeft="10dp"
                             android:phoneNumber="true"
                             android:hint="请输入您的QQ号码"
+                            android:textColorHint="@color/white"
                             android:textSize="14sp"
-                            android:background="@drawable/et_bule_bg"
+                            android:background="@null"
                             android:text=""/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
@@ -234,20 +226,16 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:padding="10dp"
                               android:paddingRight="10dp"
                               android:paddingTop="5dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="手机"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                               android:src="@drawable/part_type_tel"/>
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -255,7 +243,7 @@
                               android:singleLine="true"
                               android:text=""
                               android:paddingLeft="10dp"
-                              android:textColor="@color/profile_font_color"
+                              android:textColor="@color/white"
                               android:textSize="14sp"
                               android:id="@+id/profile_personal_mobile"/>
 
@@ -296,20 +284,16 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:paddingRight="10dp"
                               android:paddingTop="5dp"
                               android:padding="10dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="积分"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                               android:src="@drawable/part_type_moneyt"/>
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_weight="1"
@@ -319,7 +303,7 @@
                               android:text=""
                               android:paddingLeft="10dp"
                               android:textSize="14sp"
-                              android:textColor="@color/profile_font_color"
+                              android:textColor="@color/white"
                               android:id="@+id/profile_count"/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
@@ -328,20 +312,16 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:padding="10dp"
                               android:paddingRight="10dp"
                               android:paddingTop="5dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="等级"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="10dp"
+                               android:src="@drawable/part_type_title"/>
 
                     <TextView android:layout_width="wrap_content"
                               android:layout_weight="1"
@@ -351,7 +331,7 @@
                               android:singleLine="true"
                               android:text="初入"
                               android:textSize="14sp"
-                              android:textColor="@color/profile_font_color"
+                              android:textColor="@color/white"
                               android:id="@+id/profile_dengji"/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
@@ -361,20 +341,17 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="40dp"
                               android:orientation="horizontal"
-                              android:background="@drawable/zhuye_item_select"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:paddingRight="10dp"
                               android:paddingTop="5dp"
                               android:padding="10dp"
                               android:paddingBottom="5dp">
-                    <TextView android:layout_width="70dp"
-                              android:layout_height="wrap_content"
-                              android:textSize="16sp"
-                              android:gravity="left"
-                              android:layout_marginLeft="10dp"
-                              android:textColor="@color/foot_font_color"
-                              android:text="签名"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="@drawable/part_type_detail"
+                               android:layout_marginLeft="10dp"
+                            />
 
                     <EditText
                             android:singleLine="true"
@@ -383,14 +360,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:gravity="center|left"
+                            android:textColor="@color/white"
                             android:paddingLeft="10dp"
                             android:textSize="14sp"
-                            android:background="@drawable/et_bule_bg"
+                            android:textColorHint="@color/white"
+                            android:background="@null"
                             android:text="青春无悔，童心堂"/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
                       android:layout_height="0.5dp"
                       android:background="#e9e9e9"/>
+                <TextView android:layout_width="wrap_content"
+                          android:padding="8dp"
+                          android:textColor="@color/red"
+                          android:text="*我的设置可切换圈子"
+                          android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
     </com.liangxun.yuejiula.widget.ReboundScrollView>

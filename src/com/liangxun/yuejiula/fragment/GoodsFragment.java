@@ -58,9 +58,9 @@ public class GoodsFragment extends BaseFragment implements ContentListView.OnRef
     private List<Goodstype> goodstypeList = new ArrayList<Goodstype>();
     private ImageAdapter adaptertype;
 
-    private EditText searchText;//搜索框
-    private ImageView soubtn;
-    private String content = "";
+//    private EditText searchText;//搜索框
+//    private ImageView soubtn;
+//    private String content = "";
 
     //导航
 //    private ViewPagerAdapter adapterAd;
@@ -94,19 +94,19 @@ public class GoodsFragment extends BaseFragment implements ContentListView.OnRef
     private void initView(View view) {
         //头部文件
         headView = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.goodshead, null);
-        searchText = (EditText) headView.findViewById(R.id.searchText);
-        soubtn = (ImageView) headView.findViewById(R.id.soubtn);
-        soubtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                content = searchText.getText().toString();//要搜的内容
-                IS_REFRESH = true;
-                pageIndex = 1;
-                initData();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-            }
-        });
+//        searchText = (EditText) headView.findViewById(R.id.searchText);
+//        soubtn = (ImageView) headView.findViewById(R.id.soubtn);
+//        soubtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                content = searchText.getText().toString();//要搜的内容
+//                IS_REFRESH = true;
+//                pageIndex = 1;
+//                initData();
+//                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+//            }
+//        });
 
         parttimetyupeGridview = (ClassifyGridview) headView.findViewById(R.id.moreparttimetyupeGridview);
         parttimetyupeGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -210,7 +210,7 @@ public class GoodsFragment extends BaseFragment implements ContentListView.OnRef
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("cont", content);
+                params.put("cont", "");
                 params.put("schoolId", schoolId);
                 params.put("page", String.valueOf(pageIndex));
                 params.put("typeId", typeId);

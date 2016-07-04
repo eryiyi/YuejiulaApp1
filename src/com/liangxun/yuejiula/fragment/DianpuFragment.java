@@ -24,8 +24,10 @@ import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.DianpuData;
 import com.liangxun.yuejiula.data.GoodSingleDATA;
 import com.liangxun.yuejiula.data.GoodsTypeDATA;
+import com.liangxun.yuejiula.data.MsgAdData;
 import com.liangxun.yuejiula.entity.EmpDianpu;
 import com.liangxun.yuejiula.entity.Goodstype;
+import com.liangxun.yuejiula.entity.MsgAd;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.DetailGoodsActivity;
@@ -35,6 +37,7 @@ import com.liangxun.yuejiula.ui.WebViewActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ClassifyGridview;
+import com.liangxun.yuejiula.widget.MarqueeButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,9 +66,12 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     private List<Goodstype> goodstypeList = new ArrayList<Goodstype>();
     private ImageAdapter adaptertype;
 
-    private EditText searchText;//搜索框
-    private ImageView soubtn;
-    private String content = "";
+//    private EditText searchText;//搜索框
+//    private ImageView soubtn;
+//    private String content = "";
+
+    private MarqueeButton btSecond;
+    MsgAd msgAd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,26 +86,27 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
         initView(view);
         getType();
         initData();
+        getDataMsgAd();
         return view;
     }
 
     private void initView(View view) {
         //头部文件
         headView = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.goodshead, null);
-        searchText = (EditText) headView.findViewById(R.id.searchText);
-        soubtn = (ImageView) headView.findViewById(R.id.soubtn);
-        soubtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                content = searchText.getText().toString();//要搜的内容
-                IS_REFRESH = true;
-                pageIndex = 1;
-                initData();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-            }
-        });
-
+//        searchText = (EditText) headView.findViewById(R.id.searchText);
+//        soubtn = (ImageView) headView.findViewById(R.id.soubtn);
+//        soubtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                content = searchText.getText().toString();//要搜的内容
+//                IS_REFRESH = true;
+//                pageIndex = 1;
+//                initData();
+//                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+//            }
+//        });
+        btSecond = (MarqueeButton) headView.findViewById(R.id.btSecond);
         parttimetyupeGridview = (ClassifyGridview) headView.findViewById(R.id.moreparttimetyupeGridview);
         parttimetyupeGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -224,7 +231,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("keyWords", content);
+                params.put("keyWords", "");
                 if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
                     params.put("school_id", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
                 }
@@ -246,6 +253,54 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
         getRequestQueue().add(request);
     }
 
+
+    void getDataMsgAd(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.MANAGER_MSG_AD_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            MsgAdData data = getGson().fromJson(s, MsgAdData.class);
+                            if (data.getCode() == 200) {
+                                msgAd = data.getData();
+                                if(msgAd != null){
+                                    btSecond.setText("欢迎进入" + msgAd.getSchoolName() + "，当前活跃人数："+msgAd.getNumberEmp() +"，"+ msgAd.getMsg_ad_title());
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(getActivity(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
+                    params.put("school_id", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
+                }
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 
 //    @Override
 //    public void onClickContentItem(int position, int flag, Object object) {

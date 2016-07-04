@@ -55,6 +55,9 @@ import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.task.LoadImageTask;
 import com.liangxun.yuejiula.huanxin.chat.task.LoadVideoImageTask;
 import com.liangxun.yuejiula.huanxin.chat.utils.ImageCache;
+import com.liangxun.yuejiula.ui.GalleryUrlActivity;
+import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.PicUtil;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.yixia.camera.demo.UniversityApplication;
 
@@ -1259,6 +1262,8 @@ public class MessageAdapter extends BaseAdapter {
             iv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final String[] pics = {localFullSizePath};
+//                    startImageActivity(pics,0);
                     System.err.println("image view on click");
                     Intent intent = new Intent(activity, ShowBigImage.class);
                     File file = new File(localFullSizePath);
@@ -1294,6 +1299,16 @@ public class MessageAdapter extends BaseAdapter {
             return true;
         }
 
+    }
+
+    private void startImageActivity(String[] urls, int position) {
+        if (!PicUtil.hasSDCard()) {
+            return;
+        }
+        Intent intent = new Intent(activity, GalleryUrlActivity.class);
+        intent.putExtra(Constants.IMAGE_URLS, urls);
+        intent.putExtra(Constants.IMAGE_POSITION, position);
+        activity.startActivity(intent);
     }
 
     /**

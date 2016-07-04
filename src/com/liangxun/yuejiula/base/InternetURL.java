@@ -299,4 +299,7 @@ public class InternetURL {
     public static final String GET_MANAGER_COLLEGE_BY_EMPID = INTERNAL + "getManagerCollegeByEmpId.do";
 //    public static final String GET_MANAGER_COLLEGE_BY_EMPID = INTERNAL + "getManagerCollegeByEmpId.do";
 
+    //承包商广告语
+    public static final String MANAGER_MSG_AD_URL = INTERNAL + "listsMsgAds.do";
+
 }

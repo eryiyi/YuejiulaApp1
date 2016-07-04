@@ -193,6 +193,7 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
                     // ** manually load all local groups and
                     // conversations in case we are auto login
                     EMGroupManager.getInstance().loadAllGroups();
+//                    EMGroupManager.getInstance().getGroupsFromServer();
                     EMChatManager.getInstance().loadAllConversations();
                     //处理好友和群组
                     processContactsAndGroups();
@@ -353,6 +354,7 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
             // 获取群聊列表(群聊里只有groupid和groupname等简单信息，不包含members),sdk会把群组存入到内存和db中
 //            EMGroupManager.getInstance().getGroupsFromServer();
             EMGroupManager.getInstance().getAllGroups();
+//            EMGroupManager.getInstance().getGroupsFromServer();
 
             Intent main = new Intent(LoadingActivity.this, MainActivity.class);
             main.putExtra(Constants.ACCOUNT_KEY, empTmp);
