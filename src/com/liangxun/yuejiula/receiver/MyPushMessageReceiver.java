@@ -27,25 +27,27 @@ import java.util.List;
  * Created by zhanghl on 2015/1/6.
  */
 public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
-    @Override
 
+
+
+    @Override
     public void onBind(Context context, int errorCode, String appid, String userId, String channelId, String requestId) {
-        updateChanelId(context, channelId, userId);
+        updateChanelId(context, channelId, userId);//程序一运行就执行
     }
 
     @Override
     public void onUnbind(Context context, int i, String s) {
-
+        Log.e("Message", s);
     }
 
     @Override
     public void onSetTags(Context context, int i, List<String> strings, List<String> strings2, String s) {
-
+        Log.e("Message", s);
     }
 
     @Override
     public void onDelTags(Context context, int i, List<String> strings, List<String> strings2, String s) {
-
+        Log.e("Message", s);
     }
 
     @Override
@@ -77,7 +79,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
                     context.sendBroadcast(msg_notice);
                     intent.setClass(context.getApplicationContext(), NoticeActivity.class);
                     break;
-                case 2://赞
+                case 2://与我相关
                     Intent msg_record = new Intent("_msg_record");
                     context.sendBroadcast(msg_record);
                     intent.setClass(context.getApplicationContext(), AndMeAcitvity.class);

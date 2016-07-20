@@ -24,6 +24,7 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
+import com.liangxun.yuejiula.util.Constants;
 
 public class NewGroupActivity extends BaseActivity {
 	private EditText groupNameEditText;
@@ -94,8 +95,9 @@ public class NewGroupActivity extends BaseActivity {
 					try {
 						if(checkBox.isChecked()){
 							//创建公开群，此种方式创建的群，可以自由加入
-							//创建公开群，此种方式创建的群，用户需要申请，等群主同意后才能加入此群
-						    EMGroupManager.getInstance().createPublicGroup(groupName, desc, members, true,200);
+							EMGroupManager.getInstance().createPublicGroup(groupName, desc, members, false, 2000);//需异步处理
+							Intent intent1 = new Intent("add_new_group_success");
+							sendBroadcast(intent1);
 						}else{
 							//创建不公开群
 						    EMGroupManager.getInstance().createPrivateGroup(groupName, desc, members, memberCheckbox.isChecked(),200);

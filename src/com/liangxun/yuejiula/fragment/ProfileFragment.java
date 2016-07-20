@@ -108,21 +108,21 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                            Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
 //                            startActivity(relateView);
 //                            break;
-//                        case 2:
-//                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
-//                            startActivity(friendView);
-//                            break;
                         case 1:
+                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
+                            startActivity(friendView);
+                            break;
+                        case 2:
                             //收藏
                             Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
-                        case 2:
+                        case 3:
                             //订单
                             Intent orderView = new Intent(getActivity(), MineOrdersActivity.class);
                             startActivity(orderView);
                             break;
-                        case 3:
+                        case 4:
                             //购物车
                             Intent cartView = new Intent(getActivity(), MineCartActivity.class);
                             startActivity(cartView);
@@ -130,12 +130,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                        case 6:
 //                            //帮助与反馈
 //                            break;
-                        case 4:
+                        case 5:
                             //我的收货地址
                             Intent addressView = new Intent(getActivity(), MineAddressActivity.class);
                             startActivity(addressView);
                             break;
-                        case 5:
+                        case 6:
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
@@ -161,21 +161,21 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                            Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
 //                            startActivity(relateView);
 //                            break;
-//                        case 4:
-//                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
-//                            startActivity(friendView);
-//                            break;
                         case 3:
+                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
+                            startActivity(friendView);
+                            break;
+                        case 4:
                             //收藏
                             Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
-                        case 4:
+                        case 5:
                             //订单
                             Intent orderView = new Intent(getActivity(), MineOrdersActivity.class);
                             startActivity(orderView);
                             break;
-                        case 5:
+                        case 6:
                             //购物车
                             Intent cartView = new Intent(getActivity(), MineCartActivity.class);
                             startActivity(cartView);
@@ -183,12 +183,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                        case 8:
 //                            //帮助与反馈
 //                            break;
-                        case 6:
+                        case 7:
                             //我的收货地址
                             Intent addressView = new Intent(getActivity(), MineAddressActivity.class);
                             startActivity(addressView);
                             break;
-                        case 7:
+                        case 8:
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
@@ -215,21 +215,21 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                            Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
 //                            startActivity(relateView);
 //                            break;
-//                        case 4:
-//                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
-//                            startActivity(friendView);
-//                            break;
                         case 3:
+                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
+                            startActivity(friendView);
+                            break;
+                        case 4:
                             //收藏
                             Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
-                        case 4:
+                        case 5:
                             //订单
                             Intent orderView = new Intent(getActivity(), MineOrdersActivity.class);
                             startActivity(orderView);
                             break;
-                        case 5:
+                        case 6:
                             //购物车
                             Intent cartView = new Intent(getActivity(), MineCartActivity.class);
                             startActivity(cartView);
@@ -237,12 +237,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                        case 8:
 //                            //帮助与反馈
 //                            break;
-                        case 6:
+                        case 7:
                             //我的收货地址
                             Intent addressView = new Intent(getActivity(), MineAddressActivity.class);
                             startActivity(addressView);
                             break;
-                        case 7:
+                        case 8:
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
@@ -282,21 +282,21 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                            Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
 //                            startActivity(relateView);
 //                            break;
-//                        case 6:
-//                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
-//                            startActivity(friendView);
-//                            break;
                         case 5:
+                            Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
+                            startActivity(friendView);
+                            break;
+                        case 6:
                             //收藏
                             Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
-                        case 6:
+                        case 7:
                             //订单
                             Intent orderView = new Intent(getActivity(), MineOrdersActivity.class);
                             startActivity(orderView);
                             break;
-                        case 7:
+                        case 8:
                             //购物车
                             Intent cartView = new Intent(getActivity(), MineCartActivity.class);
                             startActivity(cartView);
@@ -304,12 +304,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                        case 10:
 //                            //帮助与反馈
 //                            break;
-                        case 8:
+                        case 9:
                             //我的收货地址
                             Intent addressView = new Intent(getActivity(), MineAddressActivity.class);
                             startActivity(addressView);
                             break;
-                        case 9:
+                        case 10:
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
@@ -399,7 +399,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         pics.add(new MinePicsObj(R.drawable.mine_record_n ,"我的动态"));
 //        pics.add(new MinePicsObj(R.drawable.mine_relate_n ,"与我相关"));
-//        pics.add(new MinePicsObj(R.drawable.mine_friends_n ,"我的朋友"));
+        pics.add(new MinePicsObj(R.drawable.mine_friends_n ,"我的好友"));
 
         pics.add( new MinePicsObj(R.drawable.mine_favour_n ,"我的收藏"));
         pics.add(new MinePicsObj(R.drawable.mine_order_n ,"我的订单"));

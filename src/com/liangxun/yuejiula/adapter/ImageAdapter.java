@@ -24,6 +24,14 @@ public class ImageAdapter extends BaseAdapter {
     private List<Goodstype> goodstypes;
     private Context mContext;
 
+
+    private OnClickContentItemListener onClickContentItemListener;
+
+    public void setOnClickContentItemListener(OnClickContentItemListener onClickContentItemListener) {
+        this.onClickContentItemListener = onClickContentItemListener;
+    }
+
+
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
 
@@ -49,7 +57,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.grid_image_item, parent, false);
@@ -64,6 +72,19 @@ public class ImageAdapter extends BaseAdapter {
             imageLoader.displayImage(cell.getTypeCover(), holder.goodstype_item_cover, UniversityApplication.txOptions, animateFirstListener);
             holder.goodstype_item_title.setText(cell.getTypeName());
         }
+        holder.goodstype_item_cover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickContentItemListener.onClickContentItem(position, 1, null);
+            }
+        });
+        holder.goodstype_item_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickContentItemListener.onClickContentItem(position, 1, null);
+            }
+        });
+
         return convertView;
     }
 

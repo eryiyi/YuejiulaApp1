@@ -33,9 +33,11 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.easemob.util.NetUtils;
+import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.huanxin.chat.widget.ExpandGridView;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,11 +52,11 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 
     String longClickUsername = null;
 
-    private String groupId;
+
     private ProgressBar loadingPB;
     private Button exitBtn;
     private Button deleteBtn;
-    private EMGroup group;
+    private  EMGroup group;
 //    private GridAdapter adapter;
     private int referenceWidth;
     private int referenceHeight;
@@ -116,9 +118,14 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         referenceHeight = referenceDrawable.getIntrinsicHeight();
 
         // 获取传过来的groupid
-        groupId = getIntent().getStringExtra("groupId");
-        group = EMGroupManager.getInstance().getGroup(groupId);
-
+        String groupId =  getIntent().getExtras().getString("groupId");
+        //根据groupId 查找群
+        for(EMGroup emGroup: MainActivity.grouplist){
+            if(emGroup.getGroupId().equals(groupId)){
+                group = emGroup;
+                break;
+            }
+        }
         if (group.getOwner() == null || "".equals(group.getOwner())
                 || !group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
             exitBtn.setVisibility(View.GONE);
@@ -223,7 +230,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                         new Thread(new Runnable() {
                             public void run() {
                                 try {
-                                    EMGroupManager.getInstance().changeGroupName(groupId, returnData);
+                                    EMGroupManager.getInstance().changeGroupName(group.getGroupId(), returnData);
                                     runOnUiThread(new Runnable() {
                                         public void run() {
                                             ((TextView) findViewById(R.id.group_name)).setText(returnData + "(" + group.getAffiliationsCount()
@@ -252,7 +259,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     new Thread(new Runnable() {
                         public void run() {
                             try {
-                                EMGroupManager.getInstance().blockUser(groupId, longClickUsername);
+                                EMGroupManager.getInstance().blockUser(group.getGroupId(), longClickUsername);
                                 runOnUiThread(new Runnable() {
                                     public void run() {
 //                                        adapter.notifyDataSetChanged();
@@ -320,7 +327,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    EMGroupManager.getInstance().exitFromGroup(groupId);
+                    EMGroupManager.getInstance().exitFromGroup(group.getGroupId());
                     runOnUiThread(new Runnable() {
                         public void run() {
                             progressDialog.dismiss();
@@ -352,7 +359,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    EMGroupManager.getInstance().exitAndDeleteGroup(groupId);
+                    EMGroupManager.getInstance().exitAndDeleteGroup(group.getGroupId());
                     runOnUiThread(new Runnable() {
                         public void run() {
                             progressDialog.dismiss();
@@ -387,10 +394,10 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 try {
                     // 创建者调用add方法
                     if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
-                        EMGroupManager.getInstance().addUsersToGroup(groupId, newmembers);
+                        EMGroupManager.getInstance().addUsersToGroup(group.getGroupId(), newmembers);
                     } else {
                         // 一般成员调用invite方法
-                        EMGroupManager.getInstance().inviteUser(groupId, newmembers, null);
+                        EMGroupManager.getInstance().inviteUser(group.getGroupId(), newmembers, null);
                     }
                     runOnUiThread(new Runnable() {
                         public void run() {
@@ -431,7 +438,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     new Thread(new Runnable() {
                         public void run() {
                             try {
-                                EMGroupManager.getInstance().unblockGroupMessage(groupId);
+                                EMGroupManager.getInstance().unblockGroupMessage(group.getGroupId());
                                 runOnUiThread(new Runnable() {
                                     public void run() {
                                         iv_switch_block_groupmsg.setVisibility(View.INVISIBLE);
@@ -465,7 +472,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     new Thread(new Runnable() {
                         public void run() {
                             try {
-                                EMGroupManager.getInstance().blockGroupMessage(groupId);
+                                EMGroupManager.getInstance().blockGroupMessage(group.getGroupId());
                                 runOnUiThread(new Runnable() {
                                     public void run() {
                                         iv_switch_block_groupmsg.setVisibility(View.VISIBLE);
@@ -571,7 +578,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 startActivityForResult(intent, REQUEST_CODE_CLEAR_ALL_HISTORY);
                 break;
             case R.id.rl_blacklist: // 黑名单列表
-                startActivity(new Intent(GroupDetailsActivity.this, GroupBlacklistActivity.class).putExtra("groupId", groupId));
+                startActivity(new Intent(GroupDetailsActivity.this, GroupBlacklistActivity.class).putExtra("groupId", group.getGroupId()));
                 break;
 
             case R.id.rl_change_group_name:
@@ -658,7 +665,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                             EMLog.d(TAG, st11);
                             // 进入选人页面
                             startActivityForResult(
-                                    (new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class).putExtra("groupId", groupId)),
+                                    (new Intent(GroupDetailsActivity.this, GroupPickContactsActivity.class).putExtra("groupId", group.getGroupId())),
                                     REQUEST_CODE_ADD_USER);
                         }
                     });
@@ -723,7 +730,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                             public void run() {
                                 try {
                                     // 删除被选中的成员
-                                    EMGroupManager.getInstance().removeUserFromGroup(groupId, username);
+                                    EMGroupManager.getInstance().removeUserFromGroup(group.getGroupId(), username);
                                     isInDeleteMode = false;
                                     runOnUiThread(new Runnable() {
 
@@ -1051,7 +1058,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    final EMGroup returnGroup = EMGroupManager.getInstance().getGroupFromServer(groupId);
+                    final EMGroup returnGroup = EMGroupManager.getInstance().getGroupFromServer(group.getGroupId());
                     // 更新本地数据
                     EMGroupManager.getInstance().createOrUpdateLocalGroup(returnGroup);
 

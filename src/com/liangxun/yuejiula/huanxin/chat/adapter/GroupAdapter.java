@@ -20,7 +20,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroup;
+import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 
 import java.util.List;
@@ -29,13 +32,11 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 
 	private LayoutInflater inflater;
 	private String newGroup;
-	private String addPublicGroup;
 
 	public GroupAdapter(Context context, int res, List<EMGroup> groups) {
 		super(context, res, groups);
 		this.inflater = LayoutInflater.from(context);
 		newGroup = context.getResources().getString(R.string.The_new_group_chat);
-		addPublicGroup = context.getResources().getString(R.string.add_public_group_chat);
 	}
 
 	@Override
@@ -48,9 +49,6 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 		if (position == 0) {
 			return 0;
 		}
-//		else if (position == 1) {
-//			return 1;
-//		}
 		else {
 			return 1;
 		}
@@ -58,59 +56,32 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-//		if (getItemViewType(position) == 0) {
-//			if (convertView == null) {
-//				convertView = inflater.inflate(R.layout.search_bar_with_padding, null);
-//			}
-//			final EditText query = (EditText) convertView.findViewById(R.id.query);
-//			final ImageButton clearSearch = (ImageButton) convertView.findViewById(R.id.search_clear);
-//			query.addTextChangedListener(new TextWatcher() {
-//				public void onTextChanged(CharSequence s, int start, int before, int count) {
-//					getFilter().filter(s);
-//					if (s.length() > 0) {
-//						clearSearch.setVisibility(View.VISIBLE);
-//					} else {
-//						clearSearch.setVisibility(View.INVISIBLE);
-//					}
-//				}
-//
-//				public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//				}
-//
-//				public void afterTextChanged(Editable s) {
-//				}
-//			});
-//			clearSearch.setOnClickListener(new OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//					query.getText().clear();
-//				}
-//			});
-//		} else
 		if (getItemViewType(position) == 0) {
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.row_add_group, null);
 			}
 			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.create_group);
 			((TextView) convertView.findViewById(R.id.name)).setText(newGroup);
-		}
-//		else if (getItemViewType(position) == 1) {
-//			if (convertView == null) {
-//				convertView = inflater.inflate(R.layout.row_add_group, null);
-//			}
-//			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.add_public_group);
-//			((TextView) convertView.findViewById(R.id.name)).setText(addPublicGroup);
-//			((TextView) convertView.findViewById(R.id.header)).setVisibility(View.VISIBLE);
-//
-//		}
-		else {
+		}else {
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.row_group, null);
 			}
 			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position -1).getGroupName());
+			TextView unread_msg_number = (TextView) convertView.findViewById(R.id.unread_msg_number);
+			for(EMGroup emGroup: MainActivity.grouplist){
+				if(getItem(position -1).getGroupId().equals(emGroup.getGroupId())){
+					EMConversation conversation = EMChatManager.getInstance().getConversation(emGroup.getGroupId());
+					int qun = conversation.getUnreadMsgCount();
+					if (qun > 0) {
+						unread_msg_number.setText(String.valueOf(qun));
+						unread_msg_number.setVisibility(View.VISIBLE);
+					} else {
+						unread_msg_number.setVisibility(View.INVISIBLE);
+					}
+				}
 
+			}
 		}
-
 		return convertView;
 	}
 

@@ -573,7 +573,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("cont", "");
-                params.put("schoolId", "");
+                params.put("schoolId", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
                 params.put("page", String.valueOf(pageIndex));
                 params.put("typeId", "");
                 params.put("type", "0");

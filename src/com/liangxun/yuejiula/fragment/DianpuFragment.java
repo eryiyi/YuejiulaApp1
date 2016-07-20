@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.ImageAdapter;
 import com.liangxun.yuejiula.adapter.ItemDianpuAdapter;
+import com.liangxun.yuejiula.adapter.OnClickContentItemListener;
 import com.liangxun.yuejiula.base.BaseFragment;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.DianpuData;
@@ -47,7 +48,7 @@ import java.util.Map;
 /**
  * 商城
  */
-public class DianpuFragment extends BaseFragment implements View.OnClickListener {
+public class DianpuFragment extends BaseFragment implements View.OnClickListener,OnClickContentItemListener {
     //下拉刷新
     private PullToRefreshListView lstv ;
     private ItemDianpuAdapter adapter;
@@ -108,6 +109,11 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
 //        });
         btSecond = (MarqueeButton) headView.findViewById(R.id.btSecond);
         parttimetyupeGridview = (ClassifyGridview) headView.findViewById(R.id.moreparttimetyupeGridview);
+
+        adaptertype = new ImageAdapter(goodstypeList,getActivity());
+        parttimetyupeGridview.setAdapter(adaptertype);
+        parttimetyupeGridview.setOnCreateContextMenuListener(this);
+        parttimetyupeGridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
         parttimetyupeGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,9 +134,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                 }
             }
         });
-        adaptertype = new ImageAdapter(goodstypeList,getActivity());
-        parttimetyupeGridview.setAdapter(adaptertype);
-        parttimetyupeGridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
+
         lstv = (PullToRefreshListView) view.findViewById(R.id.lstv);//列表
 
         ListView listView = lstv.getRefreshableView();
@@ -422,6 +426,31 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
             }
         };
         getRequestQueue().add(request);
+    }
+
+    @Override
+    public void onClickContentItem(int position, int flag, Object object) {
+        switch (flag){
+            case 1:
+            {Goodstype goodstype = goodstypeList.get(position);
+                if("0".equals(goodstype.getLx_goods_type_type())){
+                    //是商城类别
+                    typeId = goodstype.getTypeId();
+                    String typeName = goodstype.getTypeName();
+                    Intent search = new Intent(getActivity(), SearchGoodsActivity.class);
+                    search.putExtra("typeId", typeId);
+                    search.putExtra("typeName", typeName);
+                    startActivity(search);
+                }else if("1".equals(goodstype.getLx_goods_type_type())){
+                    //是第三方网址
+                    Intent webView = new Intent(getActivity(), WebViewActivity.class);
+                    webView.putExtra("strurl", goodstype.getLx_goods_type_url());
+                    startActivity(webView);
+                }
+
+            }
+                break;
+        }
     }
 
 

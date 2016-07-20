@@ -29,6 +29,7 @@ import com.easemob.EMConnectionListener;
 import com.easemob.EMError;
 import com.easemob.EMValueCallBack;
 import com.easemob.chat.*;
+import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.easemob.util.HanziToPinyin;
 import com.liangxun.yuejiula.base.ActivityTack;
@@ -57,10 +58,11 @@ import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
 import com.umeng.update.UmengUpdateAgent;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
+import org.bitlet.weupnp.Main;
 
 import java.util.*;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener,MenuPopMenu.OnItemClickListener,MoodPopMenu.OnItemClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener,MenuPopMenu.OnItemClickListener,MoodPopMenu.OnItemClickListener,Runnable {
     protected static final String TAG = "MainActivity";
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fm;
@@ -192,7 +194,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         // 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
         EMChat.getInstance().setAppInited();
         PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, Utils.getMetaValue(MainActivity.this, "push_api_key"));
-
         arrayMenu.add("文字");
         arrayMenu.add("秒拍");
         arrayMenu.add("相机");
@@ -209,6 +210,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
             getManager();
         }
+
+
 
     }
 
@@ -663,7 +666,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         return unreadMsgCountTotal;
     }
 
-
+    @Override
+    public void run() {
+        try {
+            getAllGroup();
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     /**
@@ -1251,8 +1261,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 //                        msg_mine.setVisibility(View.VISIBLE);
                     }
                 });
-
             }
+            if (action.equals("add_new_group_success")) {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new Thread(MainActivity.this).start();
+                    }
+                });
+            }
+
         }
     }  ;
 
@@ -1261,6 +1278,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         IntentFilter myIntentFilter = new IntentFilter();
         myIntentFilter.addAction("_msg_notice");//有新的通知notice
         myIntentFilter.addAction("_msg_record");//有新的动态
+        myIntentFilter.addAction("add_new_group_success");//有新的动态
         registerReceiver(mBroadcastReceiver, myIntentFilter);
     }
 
@@ -1681,6 +1699,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                                 if(emp1 != null){
                                     save("manager_hxusername", emp1.getHxUsername());
                                     save("manager_empid", emp1.getEmpId());
+                                    // 启动一个线程
+                                    new Thread(MainActivity.this).start();
                                 }
                             }
                         }
@@ -1710,5 +1730,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         };
         getRequestQueue().add(request);
     }
+
+    public static List<EMGroup> grouplist = new ArrayList<EMGroup>();
+
+  void getAllGroup() throws EaseMobException {
+      List<EMGroupInfo> lists = new ArrayList<EMGroupInfo>();
+      lists = EMGroupManager.getInstance().getAllPublicGroupsFromServer();
+      grouplist.clear();
+      for(EMGroupInfo emGroup:lists){
+          EMGroup  group = EMGroupManager.getInstance().getGroupFromServer(emGroup.getGroupId());
+          if(group != null && !StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(group.getOwner())){
+              grouplist.add(group);
+          }
+      }
+  }
 
 }

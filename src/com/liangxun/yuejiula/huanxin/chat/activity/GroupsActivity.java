@@ -14,10 +14,12 @@
 package com.liangxun.yuejiula.huanxin.chat.activity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,8 +36,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
+import com.easemob.chat.EMGroupInfo;
 import com.easemob.chat.EMGroupManager;
+import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
@@ -48,6 +53,7 @@ import com.liangxun.yuejiula.huanxin.chat.adapter.GroupAdapter;
 import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import org.bitlet.weupnp.Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,14 +63,13 @@ import java.util.Map;
 public class GroupsActivity extends BaseActivity {
 	public static final String TAG = "GroupsActivity";
 	private ListView groupListView;
-	protected List<EMGroup> grouplist = new ArrayList<EMGroup>();
+//	protected List<EMGroup> grouplist = new ArrayList<EMGroup>();
 	private GroupAdapter groupAdapter;
 	private InputMethodManager inputMethodManager;
 	public static GroupsActivity instance;
 	private SyncListener syncListener;
 	private View progressBar;
 	private SwipeRefreshLayout swipeRefreshLayout;
-	Handler handler = new Handler();
 
 	class SyncListener implements HXSDKHelper.HXSyncListener {
 		@Override
@@ -94,6 +99,17 @@ public class GroupsActivity extends BaseActivity {
 			});
 		}
 	}
+
+	//定义Handler对象
+	private Handler handler =new Handler(){
+		@Override
+//当有消息发送出来的时候就执行Handler的这个方法
+		public void handleMessage(Message msg){
+			super.handleMessage(msg);
+//处理UI
+
+		}
+	};
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,33 +118,34 @@ public class GroupsActivity extends BaseActivity {
 
 		instance = this;
 		inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
-		//过滤下  只要当前管理员建设的群
-		grouplist.clear();
-		for(EMGroup emGroup:lists){
-			if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
-				grouplist.add(emGroup);
-			}
-		}
+
+		//过滤下  只要当前管理员建设的群EMGroup
+//		grouplist.clear();
+//		for(EMGroupInfo emGroup:lists){
+//			final EMGroup group = null;
+//			group = EMGroupManager.getInstance().getGroupFromServer(emGroup.getGroupId());
+//			if(group != null && !StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(group.getOwner())){
+//				grouplist.add(group);
+//			}
+//		}
 		groupListView = (ListView) findViewById(R.id.list);
 		
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
 		swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
 		                android.R.color.holo_orange_light, android.R.color.holo_red_light);
 		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
 			@Override
 			public void onRefresh() {
 			    MainActivity.asyncFetchGroupsFromServer();
 			}
 		});
 		
-		groupAdapter = new GroupAdapter(this, 1, grouplist);
+		groupAdapter = new GroupAdapter(this, 1, MainActivity.grouplist);
 		groupListView.setAdapter(groupAdapter);
 		groupListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 				if (position == 0) {
 					// 新建群聊
 					//先判断是否是承包商  只有承包商可以新建群
@@ -152,16 +169,35 @@ public class GroupsActivity extends BaseActivity {
 //				}
 				else {
 					// 进入群聊
-
 					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
 						//如果fengqun了
 						showMsgFenghao();
 					}else {
-						Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);
-						// it is group chat
-						intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-						intent.putExtra("groupId", groupAdapter.getItem(position - 1).getGroupId());
-						startActivityForResult(intent, 0);
+						//自己不在群中
+						if(!groupAdapter.getItem(position - 1).getMembers().contains(EMChatManager.getInstance().getCurrentUser())){
+//							addToGroup(groupAdapter.getItem(position - 1));
+							new Thread(new Runnable() {
+								@Override
+								public void run() {
+									try {
+										EMGroupManager.getInstance().joinGroup(groupAdapter.getItem(position - 1).getGroupId());//需异步处理
+										Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);
+										// it is group chat
+										intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+										intent.putExtra("groupId", groupAdapter.getItem(position - 1).getGroupId());
+										startActivityForResult(intent, 0);
+									} catch (EaseMobException e) {
+										e.printStackTrace();
+									}
+								}
+							}).start();
+						}else {
+							Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);
+							// it is group chat
+							intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+							intent.putExtra("groupId", groupAdapter.getItem(position - 1).getGroupId());
+							startActivityForResult(intent, 0);
+						}
 					}
 
 				}
@@ -169,7 +205,6 @@ public class GroupsActivity extends BaseActivity {
 
 		});
 		groupListView.setOnTouchListener(new OnTouchListener() {
-
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
@@ -195,6 +230,49 @@ public class GroupsActivity extends BaseActivity {
 		refresh();
 	}
 
+	//加入群聊
+	public void addToGroup(final EMGroup group){
+		String st1 = getResources().getString(R.string.Is_sending_a_request);
+		final String st2 = getResources().getString(R.string.Request_to_join);
+		final String st3 = getResources().getString(R.string.send_the_request_is);
+		final String st4 = getResources().getString(R.string.Join_the_group_chat);
+		final String st5 = getResources().getString(R.string.Failed_to_join_the_group_chat);
+		final ProgressDialog pd = new ProgressDialog(this);
+//		getResources().getString(R.string)
+		pd.setMessage(st1);
+		pd.setCanceledOnTouchOutside(false);
+		pd.show();
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					//如果是membersOnly的群，需要申请加入，不能直接join
+					if(group.isMembersOnly()){
+						EMGroupManager.getInstance().applyJoinToGroup(group.getGroupId(), st2);
+					}else{
+						EMGroupManager.getInstance().joinGroup(group.getGroupId());
+					}
+					runOnUiThread(new Runnable() {
+						public void run() {
+							pd.dismiss();
+							if(group.isMembersOnly())
+								Toast.makeText(GroupsActivity.this, st3, 0).show();
+							else
+								Toast.makeText(GroupsActivity.this, st4, 0).show();
+						}
+					});
+				} catch (final EaseMobException e) {
+					e.printStackTrace();
+					runOnUiThread(new Runnable() {
+						public void run() {
+							pd.dismiss();
+							Toast.makeText(GroupsActivity.this, st5+e.getMessage(), 0).show();
+						}
+					});
+				}
+			}
+		}).start();
+	}
+
 	/**
 	 * 进入公开群聊列表
 	 */
@@ -210,16 +288,16 @@ public class GroupsActivity extends BaseActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
-		//过滤下  只要当前管理员建设的群
-		grouplist.clear();
-		for(EMGroup emGroup:lists){
-			if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
-				grouplist.add(emGroup);
-			}
-		}
+//		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
+//		//过滤下  只要当前管理员建设的群
+//		grouplist.clear();
+//		for(EMGroup emGroup:lists){
+//			if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
+//				grouplist.add(emGroup);
+//			}
+//		}
 
-		groupAdapter = new GroupAdapter(this, 1, grouplist);
+		groupAdapter = new GroupAdapter(this, 1, MainActivity.grouplist);
 		groupListView.setAdapter(groupAdapter);
 		groupAdapter.notifyDataSetChanged();
 	}
@@ -236,16 +314,16 @@ public class GroupsActivity extends BaseActivity {
 	
 	public void refresh() {
 		if (groupListView != null && groupAdapter != null) {
-			List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
-			//过滤下  只要当前管理员建设的群
-			grouplist.clear();
-			for(EMGroup emGroup:lists){
-				if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
-					grouplist.add(emGroup);
-				}
-			}
+//			List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
+//			//过滤下  只要当前管理员建设的群
+//			grouplist.clear();
+//			for(EMGroup emGroup:lists){
+//				if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
+//					grouplist.add(emGroup);
+//				}
+//			}
 			groupAdapter = new GroupAdapter(GroupsActivity.this, 1,
-					grouplist);
+					MainActivity.grouplist);
 			groupListView.setAdapter(groupAdapter);
 			groupAdapter.notifyDataSetChanged();
 		}
@@ -259,7 +337,6 @@ public class GroupsActivity extends BaseActivity {
 	public void back(View view) {
 		finish();
 	}
-
 
 	private void showMsgFenghao() {
 		final Dialog picAddDialog = new Dialog(GroupsActivity.this, R.style.dialog);

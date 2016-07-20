@@ -128,6 +128,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
             }
 
         });
+        refresh();
     }
 
     void hideSoftKeyboard() {
@@ -168,8 +169,13 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
      * 刷新页面
      */
     public void refresh() {
-        EMConversation conversation = EMChatManager.getInstance().getConversation(getMyApp().getGroupId().trim());
-        int qun = conversation.getUnreadMsgCount();
+//        EMConversation conversation = EMChatManager.getInstance().getConversation(getMyApp().getGroupId().trim());
+        int qun = 0;
+        for(EMGroup emGroup:MainActivity.grouplist){
+            EMConversation conversation = EMChatManager.getInstance().getConversation(emGroup.getGroupId());
+            qun += conversation.getUnreadMsgCount();
+        }
+
         Map<String, HxUser> users = getMyApp().getContactList();
         HxUser hxUser = users.get(HxConstant.NEW_FRIENDS_USERNAME);
         int unread = 0;

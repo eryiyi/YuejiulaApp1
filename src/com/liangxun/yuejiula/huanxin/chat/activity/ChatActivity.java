@@ -55,6 +55,7 @@ import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
+import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.OnClickContentItemListener;
 import com.liangxun.yuejiula.base.BaseActivity;
@@ -182,9 +183,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
         }
     };
     private EMGroup group;
-
-    private String HxUserName;
-
+    private String HxUserName= "";
+    private String groupId= "";
 
 
     /**
@@ -436,8 +436,15 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
             findViewById(R.id.container_remove).setVisibility(View.GONE);
             findViewById(R.id.container_voice_call).setVisibility(View.GONE);
             findViewById(R.id.container_video_call).setVisibility(View.GONE);
-            toChatUsername = getIntent().getStringExtra("groupId");
-                group = EMGroupManager.getInstance().getGroup(toChatUsername);
+            groupId =  getIntent().getStringExtra("groupId");
+            toChatUsername = groupId;
+            //根据groupId 查找群
+            for(EMGroup emGroup: MainActivity.grouplist){
+                if(emGroup.getGroupId().equals(groupId)){
+                    group = emGroup;
+                    break;
+                }
+            }
             if (group != null) {
                 ((TextView) findViewById(R.id.name)).setText(group.getGroupName());
             }
@@ -1069,7 +1076,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
      * @param view
      */
     public void toGroupDetails(View view) {
-        startActivityForResult((new Intent(this, GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
+
+//        startActivityForResult((new Intent(this, GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
+//                REQUEST_CODE_GROUP_DETAIL);
+
+        startActivityForResult((new Intent(this, GroupDetailsActivity.class).putExtra("groupId", group.getGroupId())),
                 REQUEST_CODE_GROUP_DETAIL);
     }
 
