@@ -1,7 +1,9 @@
 package com.liangxun.yuejiula.fragment;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
@@ -56,12 +58,14 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_conversation_history, container, false);
+
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.getBoolean("isConflict", false))
             return;
+        registerBoradcastReceiver();
         inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         errorItem = (RelativeLayout) getView().findViewById(R.id.rl_error_item);
         errorText = (TextView) errorItem.findViewById(R.id.tv_connect_errormsg);
@@ -299,6 +303,8 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
 //                break;
             case R.id.andme:
             {
+                unread_andme_number.setText("0");
+                unread_andme_number.setVisibility(View.INVISIBLE);
                 Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
                 startActivity(relateView);
             }
@@ -445,7 +451,42 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
         if (adapter != null)
             adapter.notifyDataSetChanged();
     }
+    //注册广播
+    public void registerBoradcastReceiver() {
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction("arrived_msg_andMe");//有与我相关
+        getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
+    }
 
+
+    //广播接收动作
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if(action.equals("arrived_msg_andMe")){
+//                getActivity().runOnUiThread(new Runnable() {
+//                    public void run() {
+                        String strCount = unread_andme_number.getText().toString();
+                        if (!StringUtil.isNullOrEmpty(strCount)) {
+                            //说明有值
+                            unread_andme_number.setText(String.valueOf(Integer.parseInt(strCount) + 1));
+                        } else {
+                            unread_andme_number.setText("1");
+                        }
+                        unread_andme_number.setVisibility(View.VISIBLE);
+                    }
+//                });
+//            }
+        }
+    }  ;
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(mBroadcastReceiver);
+    }
 
 }
 

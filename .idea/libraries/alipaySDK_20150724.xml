@@ -16,7 +16,6 @@
       <root url="jar://$PROJECT_DIR$/libs/MobTools-2016.0303.1229.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/Msc.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/nineoldandroids-2.4.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/pushservice-4.4.0.71.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/qiniu-android-sdk-7.0.7.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/SMSSDK-2.0.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/SocialSDK_QQZone_1.jar!/" />
@@ -35,6 +34,7 @@
       <root url="jar://$PROJECT_DIR$/libs/umeng_social_sdk.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/pushservice-5.0.0.66.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

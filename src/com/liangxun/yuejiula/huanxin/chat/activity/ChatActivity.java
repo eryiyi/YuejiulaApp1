@@ -436,6 +436,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
             findViewById(R.id.container_remove).setVisibility(View.GONE);
             findViewById(R.id.container_voice_call).setVisibility(View.GONE);
             findViewById(R.id.container_video_call).setVisibility(View.GONE);
+            findViewById(R.id.container_file).setVisibility(View.GONE);
+            findViewById(R.id.container_two).setVisibility(View.GONE);
             groupId =  getIntent().getStringExtra("groupId");
             toChatUsername = groupId;
             //根据groupId 查找群

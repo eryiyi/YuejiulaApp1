@@ -1,6 +1,7 @@
 package com.yixia.camera.demo;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +10,6 @@ import android.os.Environment;
 import android.util.LruCache;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.baidu.frontia.FrontiaApplication;
 import com.easemob.EMCallBack;
 import com.google.gson.Gson;
 import com.liangxun.yuejiula.R;
@@ -40,7 +40,7 @@ import java.util.concurrent.Executors;
  * Time: 17:04
  * 类的功能、说明写在此处.
  */
-public class UniversityApplication extends FrontiaApplication {
+public class UniversityApplication extends Application {
     // 运用list来保存们每一个activity是关键
     private List<Activity> mList = new LinkedList<Activity>();
     private ExecutorService lxThread;
@@ -50,10 +50,10 @@ public class UniversityApplication extends FrontiaApplication {
 
     private static UniversityApplication application;
 
-    public static String lat;
-    public static String lng;
-    public static String area;
-    public static String address;
+    public static String lat="";
+    public static String lng="";
+    public static String area="";
+    public static String address="";
 
     @Override
     public void onCreate() {

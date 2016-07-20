@@ -72,19 +72,6 @@ public class ImageAdapter extends BaseAdapter {
             imageLoader.displayImage(cell.getTypeCover(), holder.goodstype_item_cover, UniversityApplication.txOptions, animateFirstListener);
             holder.goodstype_item_title.setText(cell.getTypeName());
         }
-        holder.goodstype_item_cover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickContentItemListener.onClickContentItem(position, 1, null);
-            }
-        });
-        holder.goodstype_item_title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickContentItemListener.onClickContentItem(position, 1, null);
-            }
-        });
-
         return convertView;
     }
 

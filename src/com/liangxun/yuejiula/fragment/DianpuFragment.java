@@ -17,9 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.liangxun.yuejiula.R;
-import com.liangxun.yuejiula.adapter.ImageAdapter;
-import com.liangxun.yuejiula.adapter.ItemDianpuAdapter;
-import com.liangxun.yuejiula.adapter.OnClickContentItemListener;
+import com.liangxun.yuejiula.adapter.*;
 import com.liangxun.yuejiula.base.BaseFragment;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.DianpuData;
@@ -29,16 +27,15 @@ import com.liangxun.yuejiula.data.MsgAdData;
 import com.liangxun.yuejiula.entity.EmpDianpu;
 import com.liangxun.yuejiula.entity.Goodstype;
 import com.liangxun.yuejiula.entity.MsgAd;
+import com.liangxun.yuejiula.entity.Province;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
-import com.liangxun.yuejiula.ui.DetailGoodsActivity;
-import com.liangxun.yuejiula.ui.DianpuDetailActivity;
-import com.liangxun.yuejiula.ui.SearchGoodsActivity;
-import com.liangxun.yuejiula.ui.WebViewActivity;
+import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ClassifyGridview;
 import com.liangxun.yuejiula.widget.MarqueeButton;
+import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +45,7 @@ import java.util.Map;
 /**
  * 商城
  */
-public class DianpuFragment extends BaseFragment implements View.OnClickListener,OnClickContentItemListener {
+public class DianpuFragment extends BaseFragment implements View.OnClickListener {
     //下拉刷新
     private PullToRefreshListView lstv ;
     private ItemDianpuAdapter adapter;
@@ -109,11 +106,8 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
 //        });
         btSecond = (MarqueeButton) headView.findViewById(R.id.btSecond);
         parttimetyupeGridview = (ClassifyGridview) headView.findViewById(R.id.moreparttimetyupeGridview);
-
         adaptertype = new ImageAdapter(goodstypeList,getActivity());
         parttimetyupeGridview.setAdapter(adaptertype);
-        parttimetyupeGridview.setOnCreateContextMenuListener(this);
-        parttimetyupeGridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
         parttimetyupeGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -134,6 +128,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                 }
             }
         });
+        parttimetyupeGridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
 
         lstv = (PullToRefreshListView) view.findViewById(R.id.lstv);//列表
 
@@ -240,6 +235,12 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                     params.put("school_id", getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class));
                 }
                 params.put("page", String.valueOf(pageIndex));
+                if(!StringUtil.isNullOrEmpty(UniversityApplication.lat)){
+                    params.put("lat",UniversityApplication.lat);
+                }
+                if(!StringUtil.isNullOrEmpty(UniversityApplication.lng)){
+                    params.put("lng",UniversityApplication.lng);
+                }
 //                params.put("typeId", typeId);
 //                params.put("type", "0");
 //                params.put("empId", "");
@@ -428,30 +429,30 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
         getRequestQueue().add(request);
     }
 
-    @Override
-    public void onClickContentItem(int position, int flag, Object object) {
-        switch (flag){
-            case 1:
-            {Goodstype goodstype = goodstypeList.get(position);
-                if("0".equals(goodstype.getLx_goods_type_type())){
-                    //是商城类别
-                    typeId = goodstype.getTypeId();
-                    String typeName = goodstype.getTypeName();
-                    Intent search = new Intent(getActivity(), SearchGoodsActivity.class);
-                    search.putExtra("typeId", typeId);
-                    search.putExtra("typeName", typeName);
-                    startActivity(search);
-                }else if("1".equals(goodstype.getLx_goods_type_type())){
-                    //是第三方网址
-                    Intent webView = new Intent(getActivity(), WebViewActivity.class);
-                    webView.putExtra("strurl", goodstype.getLx_goods_type_url());
-                    startActivity(webView);
-                }
-
-            }
-                break;
-        }
-    }
+//    @Override
+//    public void onClickContentItem(int position, int flag, Object object) {
+//        switch (flag){
+//            case 1:
+//            {Goodstype goodstype = goodstypeList.get(position);
+//                if("0".equals(goodstype.getLx_goods_type_type())){
+//                    //是商城类别
+//                    typeId = goodstype.getTypeId();
+//                    String typeName = goodstype.getTypeName();
+//                    Intent search = new Intent(getActivity(), SearchGoodsActivity.class);
+//                    search.putExtra("typeId", typeId);
+//                    search.putExtra("typeName", typeName);
+//                    startActivity(search);
+//                }else if("1".equals(goodstype.getLx_goods_type_type())){
+//                    //是第三方网址
+//                    Intent webView = new Intent(getActivity(), WebViewActivity.class);
+//                    webView.putExtra("strurl", goodstype.getLx_goods_type_url());
+//                    startActivity(webView);
+//                }
+//
+//            }
+//                break;
+//        }
+//    }
 
 
 //    private void initViewPager() {

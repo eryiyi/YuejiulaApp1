@@ -50,7 +50,7 @@
                   android:layout_marginLeft="8dp"
                   android:id="@+id/item_nickname"/>
     </RelativeLayout>
-    <LinearLayout android:layout_width="wrap_content"
+    <LinearLayout android:layout_width="match_parent"
                     android:layout_toRightOf="@+id/item_cover"
                     android:layout_below="@+id/liner_one"
                     android:layout_marginTop="10dp"
@@ -59,7 +59,6 @@
         <TextView android:layout_width="wrap_content"
                   android:layout_weight="1"
                   android:layout_height="wrap_content"
-                  android:text="地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址"
                   android:layout_marginLeft="8dp"
                   android:gravity="center_vertical"
                   android:textColor="@color/textColor"

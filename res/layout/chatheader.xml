@@ -105,7 +105,6 @@
                 android:background="@drawable/unread_count_bg"
                 android:gravity="center"
                 android:visibility="invisible"
-                android:text="7"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"/>
     </RelativeLayout>

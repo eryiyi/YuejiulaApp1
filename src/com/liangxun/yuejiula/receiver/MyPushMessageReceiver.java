@@ -3,6 +3,7 @@ package com.liangxun.yuejiula.receiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,7 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.baidu.frontia.api.FrontiaPushMessageReceiver;
+import com.baidu.android.pushservice.PushMessageReceiver;
 import com.google.gson.Gson;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.SuccessData;
@@ -21,14 +22,14 @@ import com.liangxun.yuejiula.util.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by zhanghl on 2015/1/6.
  */
-public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
-
-
+public class MyPushMessageReceiver extends PushMessageReceiver {
 
     @Override
     public void onBind(Context context, int errorCode, String appid, String userId, String channelId, String requestId) {
@@ -58,10 +59,59 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
     }
 
     @Override
-    public void onMessage(Context context, String s, String s2) {
-//        Intent intent = new Intent(context, JiaohuActivity.class);
-//        context.startActivity(intent);
-        Log.e("Message", s);
+    public void onMessage(Context context, String message,
+                          String customContentString) {
+        String messageString = "透传消息 onMessage=\"" + message
+                + "\" customContentString=" + customContentString;
+        Log.d(TAG, messageString);
+
+        // 自定义内容获取方式，mykey和myvalue对应透传消息推送时自定义内容中设置的键和值
+        if (!TextUtils.isEmpty(customContentString)) {
+            JSONObject customJson = null;
+            try {
+                customJson = new JSONObject(customContentString);
+                String myvalue = null;
+                if (!customJson.isNull("mykey")) {
+                    myvalue = customJson.getString("mykey");
+                }
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+    @Override
+    public void onNotificationArrived(Context context, String title,
+                                      String description, String customContentString) {
+
+//        String notifyString = "通知到达 onNotificationArrived  title=\"" + title
+//                + "\" description=\"" + description + "\" customContent="
+//                + customContentString;
+//        Log.d(TAG, notifyString);
+//
+//        // 自定义内容获取方式，mykey和myvalue对应通知推送时自定义内容中设置的键和值
+//        if (!TextUtils.isEmpty(customContentString)) {
+//            JSONObject customJson = null;
+//            try {
+//                customJson = new JSONObject(customContentString);
+//                String myvalue = null;
+//                if (!customJson.isNull("mykey")) {
+//                    myvalue = customJson.getString("mykey");
+//                }
+//            } catch (JSONException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // 你可以參考 onNotificationClicked中的提示从自定义内容获取具体值
+        updateContent(context);
+    }
+
+    private void updateContent(Context context) {
+       //发送通知 修改主页面
+        Intent intent1 = new Intent("arrived_msg_andMe");
+        context.sendBroadcast(intent1);
     }
 
     @Override

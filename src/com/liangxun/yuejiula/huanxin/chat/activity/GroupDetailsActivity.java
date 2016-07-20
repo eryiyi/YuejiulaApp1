@@ -100,7 +100,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         rl_switch_block_groupmsg = (RelativeLayout) findViewById(R.id.rl_switch_block_groupmsg);
         blacklistLayout = (RelativeLayout) findViewById(R.id.rl_blacklist);
         changeGroupNameLayout = (RelativeLayout) findViewById(R.id.rl_change_group_name);
-
+        blacklistLayout.setVisibility(View.GONE);
         iv_switch_block_groupmsg = (ImageView) findViewById(R.id.iv_switch_block_groupmsg);
         iv_switch_unblock_groupmsg = (ImageView) findViewById(R.id.iv_switch_unblock_groupmsg);
 
@@ -130,7 +130,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 || !group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
             exitBtn.setVisibility(View.GONE);
             deleteBtn.setVisibility(View.GONE);
-            blacklistLayout.setVisibility(View.GONE);
+
             changeGroupNameLayout.setVisibility(View.GONE);
         }
 
@@ -143,6 +143,14 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         ((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getAffiliationsCount() + st);
         List<String> members = new ArrayList<String>();
         members.addAll(group.getMembers());
+
+        if (group.getMsgBlocked()) {
+            iv_switch_block_groupmsg.setVisibility(View.VISIBLE);
+            iv_switch_unblock_groupmsg.setVisibility(View.INVISIBLE);
+        } else {
+            iv_switch_block_groupmsg.setVisibility(View.INVISIBLE);
+            iv_switch_unblock_groupmsg.setVisibility(View.VISIBLE);
+        }
 
 //        adapter = new GridAdapter(this, R.layout.grid, group.getMembers());
 //        userGridview.setAdapter(adapter);
@@ -237,6 +245,8 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                                                     + st);
                                             progressDialog.dismiss();
                                             Toast.makeText(getApplicationContext(), st6, Toast.LENGTH_SHORT).show();
+                                            Intent intent1 = new Intent("add_new_group_success");
+                                            sendBroadcast(intent1);
                                         }
                                     });
 
@@ -332,6 +342,8 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                         public void run() {
                             progressDialog.dismiss();
                             setResult(RESULT_OK);
+                            Intent intent1 = new Intent("add_new_group_success");
+                            sendBroadcast(intent1);
                             finish();
                             if (ChatActivity.activityInstance != null)
                                 ChatActivity.activityInstance.finish();
@@ -363,6 +375,8 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     runOnUiThread(new Runnable() {
                         public void run() {
                             progressDialog.dismiss();
+                            Intent intent1 = new Intent("add_new_group_success");
+                            sendBroadcast(intent1);
                             setResult(RESULT_OK);
                             finish();
                             if (ChatActivity.activityInstance != null)
@@ -427,8 +441,13 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         final String st11 = getResources().getString(R.string.remove_group_of_sound);
         switch (v.getId()) {
             case R.id.rl_switch_block_groupmsg: // 屏蔽群组
+                //判断是否是自己
+                if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
+                    // 如果自己是群主，显示解散按钮
+                    Toast.makeText(getApplicationContext(), "您是群主，不能屏蔽群消息哦", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if (iv_switch_block_groupmsg.getVisibility() == View.VISIBLE) {
-                    EMLog.d(TAG, "change to unblock group msg");
                     if (progressDialog == null) {
                         progressDialog = new ProgressDialog(GroupDetailsActivity.this);
                         progressDialog.setCanceledOnTouchOutside(false);

@@ -394,6 +394,7 @@
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/container_two"
                         android:layout_marginBottom="4dp"
                         android:layout_marginTop="6dp"
                         android:weightSum="4">
@@ -402,6 +403,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:id="@+id/container_file"
                             android:gravity="center"
                             android:orientation="vertical">
 

@@ -210,9 +210,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
             getManager();
         }
-
-
-
     }
 
     private void initView() {
@@ -1269,7 +1266,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                     }
                 });
             }
-
+            if(action.equals("arrived_msg_andMe")){
+//                runOnUiThread(new Runnable() {
+//                    public void run() {
+                        String strCount = unreadLabel.getText().toString();
+                        if(!StringUtil.isNullOrEmpty(strCount)){
+                            //说明有值
+                            unreadLabel.setText(String.valueOf(Integer.parseInt(strCount) + 1));
+                        }else {
+                            int count = getUnreadMsgCountTotal();
+                            int count1 = getUnreadAddressCountTotal();
+                            count += count1+1;
+                            if (count > 0) {
+                                if(count > 99){
+                                    unreadLabel.setText("..");
+                                }else {
+                                    unreadLabel.setText(String.valueOf(count));
+                                }
+                                unreadLabel.setVisibility(View.VISIBLE);
+                            } else {
+                                unreadLabel.setVisibility(View.INVISIBLE);
+                            }
+                        }
+//                    }
+//                });
+            }
         }
     }  ;
 
@@ -1279,6 +1300,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         myIntentFilter.addAction("_msg_notice");//有新的通知notice
         myIntentFilter.addAction("_msg_record");//有新的动态
         myIntentFilter.addAction("add_new_group_success");//有新的动态
+        myIntentFilter.addAction("arrived_msg_andMe");//有与我相关
         registerReceiver(mBroadcastReceiver, myIntentFilter);
     }
 
