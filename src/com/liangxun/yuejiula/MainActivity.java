@@ -1273,6 +1273,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                         if(!StringUtil.isNullOrEmpty(strCount)){
                             //说明有值
                             unreadLabel.setText(String.valueOf(Integer.parseInt(strCount) + 1));
+                            unreadLabel.setVisibility(View.VISIBLE);
                         }else {
                             int count = getUnreadMsgCountTotal();
                             int count1 = getUnreadAddressCountTotal();

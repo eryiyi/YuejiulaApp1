@@ -88,7 +88,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    SchoolFind dianpu = listgoods.get(position-2);
+                    SchoolFind dianpu = listgoods.get(position-1);
                     if (dianpu != null) {
                         Intent detail = new Intent(getActivity(), WebViewActivity.class);
                         detail.putExtra("strurl", dianpu.getWww_url());

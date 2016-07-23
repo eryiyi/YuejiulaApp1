@@ -435,10 +435,10 @@ public class MessageAdapter extends BaseAdapter {
             });
 
         } else {
+            //todo
             final String st = context.getResources().getString(R.string.Into_the_blacklist);
             // 长按头像，移入黑名单
             holder.head_iv.setOnLongClickListener(new OnLongClickListener() {
-
                 @Override
                 public boolean onLongClick(View v) {
                     Intent intent = new Intent(activity, HxAlertDialog.class);
@@ -454,7 +454,6 @@ public class MessageAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     onClickContentItemListener.onClickContentItem(position, 1, null);
                 }
-
             });
         }
 
