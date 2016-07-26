@@ -536,7 +536,10 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("emp_id", empId);
+                params.put("emp_id_m", emp_id);
                 params.put("is_fenghao", "1");
+                params.put("school_id",  emp.getSchoolId());
+                params.put("istype",  "0");
                 return params;
             }
 
@@ -579,7 +582,10 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("emp_id", empId);
+                params.put("emp_id_m", emp_id);
                 params.put("is_fengqun", "1");
+                params.put("school_id",  emp.getSchoolId());
+                params.put("istype",  "1");
                 return params;
             }
 

@@ -16,9 +16,11 @@ import com.liangxun.yuejiula.adapter.FenghaofengqAdapter;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.EmpsDATA;
+import com.liangxun.yuejiula.data.FhFqObjData;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.entity.Emp;
+import com.liangxun.yuejiula.entity.FhFqObj;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
@@ -39,7 +41,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
     private FenghaofengqAdapter adapter;
     public static boolean IS_REFRESH = true;
 
-    private List<Emp> lists = new ArrayList<Emp>();
+    private List<FhFqObj> lists = new ArrayList<FhFqObj>();
     private String type="0";//0是封号 1是封群
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,23 +81,22 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Emp emp = lists.get(position - 1);
+                FhFqObj emp = lists.get(position - 1);
                 if (emp != null) {
-
                     if ("0".equals(type)) {
                         //封号 解封
-                        showMsgFenghao(emp.getEmpId(), "0");
+                        showMsgFenghao(emp, "0");
                     }
                     if ("1".equals(type)) {
                         //封群 解封
-                        showMsgFenghao(emp.getEmpId(), "1");
+                        showMsgFenghao(emp, "1");
                     }
                 }
             }
         });
     }
 
-    private void showMsgFenghao(final String emp_id,final String type) {
+    private void showMsgFenghao(final FhFqObj emp,final String type) {
         final Dialog picAddDialog = new Dialog(FenghaoFengqunActivity.this, R.style.dialog);
         View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
         TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
@@ -105,10 +106,10 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 if("0".equals(type)){
-                    updateFh(emp_id);
+                    updateFh(emp);
                 }
                 if("1".equals(type)) {
-                    updateFq(emp_id);
+                    updateFq(emp);
                 }
                 picAddDialog.dismiss();
             }
@@ -134,7 +135,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
                     @Override
                     public void onResponse(String s) {
                         if (StringUtil.isJson(s)) {
-                            EmpsDATA data = getGson().fromJson(s, EmpsDATA.class);
+                            FhFqObjData data = getGson().fromJson(s, FhFqObjData.class);
                             if (data.getCode() == 200) {
                                 if (IS_REFRESH) {
                                     lists.clear();
@@ -167,7 +168,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class))){
-                    params.put("emp_id", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
+                    params.put("emp_id_m", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
                 }
                 if(MainActivity.contractSchools != null){
                     String schoolds = "";
@@ -176,7 +177,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
                     }
                     params.put("schoolds", schoolds);//承包的学校ID
                 }
-                params.put("type", type);
+                params.put("istype", type);
                 return params;
             }
 
@@ -230,7 +231,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
 //    }
 
 
-    private void updateFh(final String empT) {
+    private void updateFh(final FhFqObj empT) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 InternetURL.UPDATE_FENGHAO_URL,
@@ -262,8 +263,12 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("emp_id", empT);
+                params.put("emp_id", empT.getEmp_id());
                 params.put("is_fenghao", "0");
+
+                params.put("emp_id_m", empT.getEmp_id_m());
+                params.put("school_id",  empT.getSchool_id());
+                params.put("istype",  "0");
                 return params;
             }
 
@@ -276,7 +281,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
         };
         getRequestQueue().add(request);
     }
-    private void updateFq(final String empT) {
+    private void updateFq(final FhFqObj empT) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 InternetURL.UPDATE_FENGQUN_URL,
@@ -308,8 +313,12 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("emp_id", empT);
+                params.put("emp_id", empT.getEmp_id());
                 params.put("is_fengqun", "0");
+
+                params.put("emp_id_m", empT.getEmp_id_m());
+                params.put("school_id",  empT.getSchool_id());
+                params.put("istype",  "1");
                 return params;
             }
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.entity.Emp;
+import com.liangxun.yuejiula.entity.FhFqObj;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class FenghaofengqAdapter extends BaseAdapter {
     private ViewHolder holder;
-    private List<Emp> findEmps;
+    private List<FhFqObj> findEmps;
     private Context mContext;
 
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
@@ -30,7 +31,7 @@ public class FenghaofengqAdapter extends BaseAdapter {
         this.onClickContentItemListener = onClickContentItemListener;
     }
 
-    public FenghaofengqAdapter(List<Emp> findEmps, Context mContext) {
+    public FenghaofengqAdapter(List<FhFqObj> findEmps, Context mContext) {
         this.findEmps = findEmps;
         this.mContext = mContext;
 
@@ -63,11 +64,11 @@ public class FenghaofengqAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final Emp cell = findEmps.get(position);//获得元素
+        final FhFqObj cell = findEmps.get(position);//获得元素
 
         if (cell != null) {
-            imageLoader.displayImage(cell.getEmpCover(), holder.ivIcon, UniversityApplication.txOptions, animateFirstListener);
-            holder.name.setText(cell.getEmpName());
+            imageLoader.displayImage(cell.getEmp_cover(), holder.ivIcon, UniversityApplication.txOptions, animateFirstListener);
+            holder.name.setText(cell.getEmp_name());
         }
 //        holder.btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
