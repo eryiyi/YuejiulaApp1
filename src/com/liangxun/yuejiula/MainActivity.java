@@ -36,9 +36,7 @@ import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.*;
-import com.liangxun.yuejiula.entity.ContractSchool;
-import com.liangxun.yuejiula.entity.Emp;
-import com.liangxun.yuejiula.entity.SchoolRecordMood;
+import com.liangxun.yuejiula.entity.*;
 import com.liangxun.yuejiula.face.FaceConversionUtil;
 import com.liangxun.yuejiula.fragment.*;
 import com.liangxun.yuejiula.huanxin.applib.controller.HXSDKHelper;
@@ -113,6 +111,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
 //    public String[] PROVINCES = new String[3];
 //    public String[][] CITYIES = null;
+
+    public  static List<FhFqObj> listFh = new ArrayList<FhFqObj>();
+    public  static List<FhFqObj> listFq = new ArrayList<FhFqObj>();
 
 
     /**
@@ -206,10 +207,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             getSchoolMine();
         }
 
+        if("2".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
+            //是商家
+            getDailiMine();
+        }
+
         //查询承包商信息
         if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
             getManager();
         }
+        getFhFqMine();
+
+        // 启动一个线程
+        new Thread(MainActivity.this).start();
+
+        EMChatManager.getInstance().getChatOptions().setNoticeBySound(false);
+        EMChatManager.getInstance().getChatOptions().setNoticedByVibrate(false);
+        EMChatManager.getInstance().getChatOptions().setUseSpeaker(false);
     }
 
     private void initView() {
@@ -1269,26 +1283,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             if(action.equals("arrived_msg_andMe")){
 //                runOnUiThread(new Runnable() {
 //                    public void run() {
-                        String strCount = unreadLabel.getText().toString();
-                        if(!StringUtil.isNullOrEmpty(strCount)){
-                            //说明有值
-                            unreadLabel.setText(String.valueOf(Integer.parseInt(strCount) + 1));
-                            unreadLabel.setVisibility(View.VISIBLE);
-                        }else {
-                            int count = getUnreadMsgCountTotal();
-                            int count1 = getUnreadAddressCountTotal();
-                            count += count1+1;
-                            if (count > 0) {
-                                if(count > 99){
-                                    unreadLabel.setText("..");
-                                }else {
-                                    unreadLabel.setText(String.valueOf(count));
-                                }
-                                unreadLabel.setVisibility(View.VISIBLE);
-                            } else {
-                                unreadLabel.setVisibility(View.INVISIBLE);
-                            }
-                        }
+//                        String strCount = unreadLabel.getText().toString();
+//                        if(!StringUtil.isNullOrEmpty(strCount)){
+//                            //说明有值
+//                            unreadLabel.setText(String.valueOf(Integer.parseInt(strCount) + 1));
+//                            unreadLabel.setVisibility(View.VISIBLE);
+//                        }else {
+//                            int count = getUnreadMsgCountTotal();
+//                            int count1 = getUnreadAddressCountTotal();
+//                            count += count1+1;
+//                            if (count > 0) {
+//                                if(count > 99){
+//                                    unreadLabel.setText("..");
+//                                }else {
+//                                    unreadLabel.setText(String.valueOf(count));
+//                                }
+//                                unreadLabel.setVisibility(View.VISIBLE);
+//                            } else {
+//                                unreadLabel.setVisibility(View.INVISIBLE);
+//                            }
+//                        }
 //                    }
 //                });
             }
@@ -1458,9 +1472,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     public void onItemClick(int index, String str) {
         if("000".equals(str)){
             if("1".equals(getGson().fromJson(getSp().getString("is_fenghao", ""), String.class))){
-                //如果封号了
-                showMsgFenghao();
-                return;
+                //如果封号了，查询是否封的这个学校的
+                boolean flag = true;
+                if(listFh != null){
+                    for(FhFqObj fhFqObj:listFh){
+                        if(fhFqObj.getSchool_id().equals(emp.getSchoolId())){
+                            //当前登录者的学校ID
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if(!flag){
+                    showMsgFenghao();
+                    return;
+                }
+
             }
             switch (index) {
                 case 0:
@@ -1492,6 +1520,61 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             }
         }
     }
+
+
+
+    void getFhFqMine(){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.GET_FENGHAO_FENGQUN_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            FhFqObjData data = getGson().fromJson(s, FhFqObjData.class);
+                            if (data.getCode() == 200) {
+                                List<FhFqObj> list = data.getData();
+                              for(FhFqObj fhFqObj : list){
+                                  if("0".equals(fhFqObj.getIstype())){
+                                      listFh.add(fhFqObj);
+                                  }
+                                  if("1".equals(fhFqObj.getIstype())){
+                                      listFq.add(fhFqObj);
+                                  }
+                              }
+                            } else {
+                                showMsg(MainActivity.this,"暂无管理员");
+                            }
+                        } else {
+                            showMsg(MainActivity.this, "暂无管理员");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        showMsg(MainActivity.this,"暂无管理员");
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", emp.getEmpId() );
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
 
 
     private void showMsgFenghao() {
@@ -1708,6 +1791,48 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         getRequestQueue().add(request);
     }
 
+    public  static  List<DailiObj> dailiObjs = new ArrayList<DailiObj>();
+
+    private void getDailiMine() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.LIST_DAILI_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            DailiObjData data = getGson().fromJson(s, DailiObjData.class);
+                            if (data.getCode() == 200) {
+                                dailiObjs.clear();
+                                dailiObjs.addAll(data.getData());
+                            } else {
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", emp.getEmpId() );
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
     void getManager(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -1722,8 +1847,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                                 if(emp1 != null){
                                     save("manager_hxusername", emp1.getHxUsername());
                                     save("manager_empid", emp1.getEmpId());
-                                    // 启动一个线程
-                                    new Thread(MainActivity.this).start();
+
                                 }
                             }
                         }

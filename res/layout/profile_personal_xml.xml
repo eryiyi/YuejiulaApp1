@@ -41,6 +41,16 @@
                 android:paddingLeft="10dp"
                 android:src="@drawable/abv"
                 android:paddingRight="10dp"/>
+        <TextView android:layout_width="wrap_content"
+                   android:text="设为代理"
+                   android:visibility="gone"
+                   android:textColor="@color/textColor"
+                   android:layout_alignParentRight="true"
+                   android:padding="12dp"
+                   android:id="@+id/btn_set_dl"
+                   android:layout_marginRight="8dp"
+                   android:layout_centerVertical="true"
+                   android:layout_height="wrap_content"/>
     </RelativeLayout>
     <!--head结束-->
     <com.liangxun.yuejiula.widget.ReboundScrollView

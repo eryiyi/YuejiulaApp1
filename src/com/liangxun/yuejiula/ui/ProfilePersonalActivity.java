@@ -21,6 +21,7 @@ import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.EmpDATA;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.ContractSchool;
+import com.liangxun.yuejiula.entity.DailiObj;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.huanxin.chat.activity.ChatActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxAlertDialog;
@@ -31,6 +32,7 @@ import com.liangxun.yuejiula.widget.popview.SelectFenghaoPopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
+import org.bitlet.weupnp.Main;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +73,10 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private ImageView biaozhi_one;
     private ImageView biaozhi_two;
 
+    private TextView btn_set_dl;
+
+    boolean flag = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +85,32 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         initView();
-        getData();
+        //判断是代理吗
 
+        if("2".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
+            //是商家
+            for(DailiObj dailiObj: MainActivity.dailiObjs){
+                if(dailiObj.getEmp_id_d().equals(empId)){
+                    //这个用户已经是代理了
+                    flag = true;
+                    break;
+                }
+            }
+            btn_set_dl.setVisibility(View.VISIBLE);
+        }
+        if(flag){
+            //已经是代理了
+            btn_set_dl.setText("取消代理");
+        }else {
+            //不是代理
+            btn_set_dl.setText("设置代理");
+        }
+        getData();
     }
 
     private void initView() {
+        btn_set_dl = (TextView) this.findViewById(R.id.btn_set_dl);
+        btn_set_dl.setOnClickListener(this);
         profile_personal_back = (ImageView) this.findViewById(R.id.profile_personal_back);
         profile_personal_back.setOnClickListener(this);
         profile_personal_cover = (ImageView) this.findViewById(R.id.profile_personal_cover);
@@ -156,9 +183,150 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                 //封号 封群
                 ShowPickDialog();
                 break;
-
+            case R.id.btn_set_dl:
+            {
+                showSet();
+            }
+                break;
         }
     }
+
+    private void showSet() {
+        final Dialog picAddDialog = new Dialog(ProfilePersonalActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.msg_dialog, null);
+        TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
+        final TextView jubao_cont = (TextView) picAddInflate.findViewById(R.id.jubao_cont);
+        if("取消代理".equals(btn_set_dl.getText().toString())){
+            jubao_cont.setText("确定取消代理？");
+        }
+        if("设置代理".equals(btn_set_dl.getText().toString())){
+            jubao_cont.setText("确定设置为代理？");
+        }
+        jubao_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if("取消代理".equals(btn_set_dl.getText().toString())){
+                    DailiCancel();
+                }
+                if("设置代理".equals(btn_set_dl.getText().toString())){
+                    DailiSet();
+                }
+                picAddDialog.dismiss();
+            }
+        });
+
+        TextView jubao_cancle = (TextView) picAddInflate.findViewById(R.id.jubao_cancle);
+        jubao_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picAddDialog.dismiss();
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
+    }
+
+
+    public void DailiCancel() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.CANCEL_DAILI_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                if("取消代理".equals(btn_set_dl.getText().toString())){
+                                    //已经是代理了
+                                    btn_set_dl.setText("设置代理");
+                                }else {
+                                    //不是代理
+                                    btn_set_dl.setText("取消代理");
+                                }
+
+                                Toast.makeText(ProfilePersonalActivity.this, "操作成功", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ProfilePersonalActivity.this,  "操作失败", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(ProfilePersonalActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(ProfilePersonalActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", emp_id);
+                params.put("emp_id_d", empId);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+    public void DailiSet() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.SAVE_DAILI_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                btn_set_dl.setText("取消代理");
+                                Toast.makeText(ProfilePersonalActivity.this, "操作成功", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ProfilePersonalActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(ProfilePersonalActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(ProfilePersonalActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", emp_id);
+                params.put("emp_id_d", empId);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
+
 
     // 加入黑名单
     private void addBlack() {
@@ -368,10 +536,12 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         }
         if (emp.getEmpTypeId().equals("2")) {
             profile_personal_flag.setImageResource(R.drawable.icon_type_shang);
+            btn_set_dl.setVisibility(View.VISIBLE);
         }
         if (emp.getEmpTypeId().equals("3")) {
             profile_personal_flag.setImageResource(R.drawable.icon_type_official);
         }
+
 
         //判断是否禁用群聊和紧贴
         if("1".equals(emp.getIs_fenghao())){

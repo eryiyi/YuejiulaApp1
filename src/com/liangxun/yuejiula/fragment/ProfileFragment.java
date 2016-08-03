@@ -208,28 +208,30 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             startActivity(mineschoolView);
                             break;
                         case 2:
+                            Intent relateView = new Intent(getActivity(), MineDailisActivity.class);
+                            startActivity(relateView);
+                            break;
+
+                        case 3:
                             Intent recordView = new Intent(getActivity(), MineRecordActivity.class);
                             startActivity(recordView);
                             break;
-//                        case 3:
-//                            Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
-//                            startActivity(relateView);
-//                            break;
-                        case 3:
+
+                        case 4:
                             Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
                             startActivity(friendView);
                             break;
-                        case 4:
+                        case 5:
                             //收藏
                             Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
-                        case 5:
+                        case 6:
                             //订单
                             Intent orderView = new Intent(getActivity(), MineOrdersActivity.class);
                             startActivity(orderView);
                             break;
-                        case 6:
+                        case 7:
                             //购物车
                             Intent cartView = new Intent(getActivity(), MineCartActivity.class);
                             startActivity(cartView);
@@ -237,12 +239,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                        case 8:
 //                            //帮助与反馈
 //                            break;
-                        case 7:
+                        case 8:
                             //我的收货地址
                             Intent addressView = new Intent(getActivity(), MineAddressActivity.class);
                             startActivity(addressView);
                             break;
-                        case 8:
+                        case 9:
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
@@ -387,6 +389,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         if (empType.equals("2")) {//是商家
             pics.add( new MinePicsObj(R.drawable.mine_dianpu_n, "我的店铺"));
             pics.add(new MinePicsObj(R.drawable.mine_school_n, "我的学校"));
+            pics.add(new MinePicsObj(R.drawable.mine_relate_n, "我的代理"));
         }
         if (empType.equals("3")) {//是代理商
             //显示我的商家、学校、推广

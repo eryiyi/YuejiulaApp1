@@ -302,4 +302,16 @@ public class InternetURL {
     //承包商广告语
     public static final String MANAGER_MSG_AD_URL = INTERNAL + "listsMsgAds.do";
 
+    //查询我的封号 封群
+    public static final String GET_FENGHAO_FENGQUN_URL = INTERNAL + "listsMineFhFq.do";
+
+    //保存代理关系
+    public static final String SAVE_DAILI_URL = INTERNAL + "saveDaili.do";
+
+    //查询代理关系
+    public static final String LIST_DAILI_URL = INTERNAL + "listDaili.do";
+
+    //取消代理
+    public static final String CANCEL_DAILI_URL = INTERNAL + "deleDaili.do";
+
 }

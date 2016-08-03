@@ -34,6 +34,15 @@ public class PaopaoGoods implements Serializable {
     private String is_zhiying;
     private String manager_id;
     private String is_youhuo;
+    private String daili_price;
+
+    public String getDaili_price() {
+        return daili_price;
+    }
+
+    public void setDaili_price(String daili_price) {
+        this.daili_price = daili_price;
+    }
 
     public String getIs_zhiying() {
         return is_zhiying;

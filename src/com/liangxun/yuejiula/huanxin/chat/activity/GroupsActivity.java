@@ -48,6 +48,7 @@ import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.ContractSchoolDATA;
 import com.liangxun.yuejiula.entity.ContractSchool;
+import com.liangxun.yuejiula.entity.FhFqObj;
 import com.liangxun.yuejiula.huanxin.applib.controller.HXSDKHelper;
 import com.liangxun.yuejiula.huanxin.chat.adapter.GroupAdapter;
 import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
@@ -82,6 +83,8 @@ public class GroupsActivity extends BaseActivity {
 						handler.postDelayed(new Runnable() {
 							@Override
 							public void run() {
+								Intent intent1 = new Intent("add_new_group_success");
+								sendBroadcast(intent1);
 								refresh();
 								progressBar.setVisibility(View.GONE);
 							}
@@ -169,10 +172,22 @@ public class GroupsActivity extends BaseActivity {
 //				}
 				else {
 					// 进入群聊
-					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
+//					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
 						//如果fengqun了
-						showMsgFenghao();
-					}else {
+						boolean flag = true;
+						if(MainActivity.listFq != null){
+							for(FhFqObj fhFqObj:MainActivity.listFq){
+								if(fhFqObj.getSchool_id().equals(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
+									//当前登录者的学校ID
+									flag = false;
+									break;
+								}
+							}
+						}
+						if(!flag){
+							showMsgFenghao();
+						}else{
+//					}else {
 						//自己不在群中
 						if(!groupAdapter.getItem(position - 1).getMembers().contains(EMChatManager.getInstance().getCurrentUser())){
 //							addToGroup(groupAdapter.getItem(position - 1));
@@ -198,7 +213,8 @@ public class GroupsActivity extends BaseActivity {
 							intent.putExtra("groupId", groupAdapter.getItem(position - 1).getGroupId());
 							startActivityForResult(intent, 0);
 						}
-					}
+//					}
+						}
 
 				}
 			}
@@ -255,9 +271,9 @@ public class GroupsActivity extends BaseActivity {
 						public void run() {
 							pd.dismiss();
 							if(group.isMembersOnly())
-								Toast.makeText(GroupsActivity.this, st3, 0).show();
+								Toast.makeText(GroupsActivity.this, st3, Toast.LENGTH_SHORT).show();
 							else
-								Toast.makeText(GroupsActivity.this, st4, 0).show();
+								Toast.makeText(GroupsActivity.this, st4, Toast.LENGTH_SHORT).show();
 						}
 					});
 				} catch (final EaseMobException e) {
@@ -265,7 +281,7 @@ public class GroupsActivity extends BaseActivity {
 					runOnUiThread(new Runnable() {
 						public void run() {
 							pd.dismiss();
-							Toast.makeText(GroupsActivity.this, st5+e.getMessage(), 0).show();
+							Toast.makeText(GroupsActivity.this, st5+e.getMessage(), Toast.LENGTH_SHORT).show();
 						}
 					});
 				}
@@ -326,6 +342,8 @@ public class GroupsActivity extends BaseActivity {
 					MainActivity.grouplist);
 			groupListView.setAdapter(groupAdapter);
 			groupAdapter.notifyDataSetChanged();
+//			Intent intent1 = new Intent("add_new_group_success");
+//			sendBroadcast(intent1);
 		}
 	}
 

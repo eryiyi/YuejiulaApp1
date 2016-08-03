@@ -159,11 +159,11 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         final ProgressDialog pd = new ProgressDialog(SetActivity.this);
-                        String st = getResources().getString(R.string.Are_logged_out);
+                        final String st = getResources().getString(R.string.Are_logged_out);
                         pd.setMessage(st);
                         pd.setCanceledOnTouchOutside(false);
                         //  pd.show();
-                        getMyApp().logout(false,new EMCallBack() {
+                        getMyApp().logout(false, new EMCallBack() {
                             @Override
                             public void onSuccess() {
                                 runOnUiThread(new Runnable() {
@@ -172,6 +172,9 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                                         save(Constants.EMPPASS, "");
                                         ActivityTack.getInstanse().exit(SetActivity.this);
                                         finish();
+//                                        ActivityTack.getInstanse().popUntilActivity(LoginActivity.class);
+//                                        Intent intent = new Intent(SetActivity.this, LoginActivity.class);
+//                                        startActivity(intent);
 
                                     }
                                 });

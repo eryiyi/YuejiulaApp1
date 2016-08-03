@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+
+              android:background="@drawable/zhuye_item_select"
+              android:layout_width="match_parent"
+              android:padding="8dp"
+              android:layout_height="wrap_content">
+    <com.liangxun.yuejiula.widget.CircleImageView
+            android:layout_width="50dp"
+            android:id="@+id/head"
+            android:src="@drawable/head"
+            android:layout_height="50dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:text="mingzi"
+              android:layout_gravity="center_vertical"
+              android:textSize="16sp"
+              android:layout_marginLeft="8dp"
+              android:textColor="@color/textColor"
+              android:id="@+id/name"
+              android:layout_height="wrap_content"/>
+</LinearLayout>

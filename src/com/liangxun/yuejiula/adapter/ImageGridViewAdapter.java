@@ -52,10 +52,10 @@ public class ImageGridViewAdapter extends BaseAdapter {
         }
         // 将图片显示任务增加到执行池，图片将被显示到ImageView当轮到此ImageView
         String img_url = imageUrls[position];
-        if(img_url.indexOf("7xt74j.com1.z0.glb.clouddn.com") > 0){
-            //图片保存到七牛上了，有缩率图
-            img_url = img_url + "-yasuoone";
-        }
+//        if(img_url.indexOf("7xt74j.com1.z0.glb.clouddn.com") > 0){
+//            //图片保存到七牛上了，有缩率图
+//            img_url = img_url + "-yasuoone";
+//        }
         imageLoader.displayImage(img_url, imageView, UniversityApplication.tpOptions);
         return imageView;
     }
