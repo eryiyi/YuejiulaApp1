@@ -55,7 +55,6 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     //定位
     private AMapLocationClient mlocationClient = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +76,10 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
         //启动定位
         mlocationClient.startLocation();
-        initAd();
+        if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("select_big_area", ""), String.class))){
+            //有分区信息
+            initAd();
+        }
         // 启动一个线程
         new Thread(WelcomeActivity.this).start();
     }
@@ -118,14 +120,36 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         try {
             // 3秒后跳转到登录界面
             Thread.sleep(1000);
-            if (ad != null){
-                Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
-                intent.putExtra("ad",ad);
-                startActivity(intent);
-                finish();
-            } else{
-//                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-//                finish();
+            if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("select_big_area", ""), String.class))){
+                //有分区信息
+                if (ad != null){
+                    Intent intent = new Intent(WelcomeActivity.this, LoadingActivity.class);
+                    intent.putExtra("ad",ad);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    SharedPreferences.Editor editor = getSp().edit();
+                    boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
+                    if (isFirstRun) {
+                        editor.putBoolean("isFirstRun", false);
+                        editor.commit();
+                        Intent loadIntent = new Intent(WelcomeActivity.this, AboutActivity.class);
+                        startActivity(loadIntent);
+                        finish();
+                    } else {
+                        //判断是否登陆过
+                        String username = getGson().fromJson(getSp().getString(Constants.EMPMOBILE, ""), String.class);
+                        String pwr = getGson().fromJson(getSp().getString(Constants.EMPPASS, ""), String.class);
+                        if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
+                            login();
+                        }else{
+                            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                            finish();
+                        }
+                    }
+                }
+            }else{
+                //无分区信息
                 SharedPreferences.Editor editor = getSp().edit();
                 boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
                 if (isFirstRun) {
@@ -135,17 +159,12 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
                     startActivity(loadIntent);
                     finish();
                 } else {
-                    //判断是否登陆过
-                    String username = getGson().fromJson(getSp().getString(Constants.EMPMOBILE, ""), String.class);
-                    String pwr = getGson().fromJson(getSp().getString(Constants.EMPPASS, ""), String.class);
-                    if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
-                        login();
-                    }else{
-                        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-                        finish();
-                    }
+                    Intent intent = new Intent(WelcomeActivity.this, SelectBigAreaActivity.class);
+                    startActivity(intent);
                 }
+
             }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -156,7 +175,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     private void login() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.LOGIN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.LOGIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -326,7 +345,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     public void getFriends(final String names) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_INVITE_CONTACT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_INVITE_CONTACT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -425,7 +444,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     private void initAd() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_BIGAD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_BIGAD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

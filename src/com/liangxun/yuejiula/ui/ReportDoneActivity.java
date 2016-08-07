@@ -131,7 +131,7 @@ public class ReportDoneActivity extends BaseActivity implements View.OnClickList
     private void doneData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.REPORT_JINBI_TIME_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.REPORT_JINBI_TIME_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

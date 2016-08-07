@@ -84,7 +84,7 @@ public class UpdateShangjiaActivity extends BaseActivity implements View.OnClick
     public void saveData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_SHAGNJIA_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_SHAGNJIA_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

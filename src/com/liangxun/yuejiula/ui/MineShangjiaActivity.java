@@ -146,7 +146,7 @@ public class MineShangjiaActivity extends BaseActivity implements View.OnClickLi
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_SHANGJIAS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_SHANGJIAS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

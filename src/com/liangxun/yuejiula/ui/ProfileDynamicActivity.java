@@ -119,7 +119,7 @@ public class ProfileDynamicActivity extends BaseActivity implements View.OnClick
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.RECORD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.RECORD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -222,7 +222,7 @@ public class ProfileDynamicActivity extends BaseActivity implements View.OnClick
     private void zan_click(final Record record) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CLICK_LIKE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.CLICK_LIKE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

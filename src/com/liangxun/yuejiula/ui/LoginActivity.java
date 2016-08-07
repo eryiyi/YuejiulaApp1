@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText loginname;
     private EditText password;
+    private TextView title;
     private TextView login_activity_login;
 
     private String username;
@@ -88,8 +89,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             password.setText(pwr);
         }
         if(head !=null){
-            imageLoader.displayImage(getGson().fromJson(getSp().getString(Constants.EMPCOVER, ""), String.class),
+            imageLoader.displayImage(getGson().fromJson(getSp().getString("select_big_area_pic", ""), String.class),
                     head, UniversityApplication.txOptions, animateFirstListener);
+        }
+        if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("select_big_area_name", ""), String.class))){
+            title.setText(getGson().fromJson(getSp().getString("select_big_area_name", ""), String.class));
         }
         if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
             progressDialog = new ProgressDialog(LoginActivity.this);
@@ -122,6 +126,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         login_activity_login.setOnClickListener(this);
         login_pwr.setOnClickListener(this);
         login_register.setOnClickListener(this);
+        title = (TextView) this.findViewById(R.id.title);
+        this.findViewById(R.id.btn_select_area).setOnClickListener(this);
     }
 
     @Override
@@ -163,6 +169,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 Intent regist = new Intent(this, RegistTwoActivity.class);
                 startActivity(regist);
                 break;
+            case R.id.btn_select_area:
+            {
+                //分区
+                Intent intent  = new Intent(LoginActivity.this, SelectBigAreaActivity.class);
+                startActivity(intent);
+            }
+                break;
         }
     }
 
@@ -170,7 +183,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private void login() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.LOGIN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.LOGIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -366,7 +379,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         StringRequest request = new StringRequest(
                 Request.Method.POST,
 //                InternetURL.GET_FRIENDS_URL,
-                InternetURL.GET_INVITE_CONTACT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_INVITE_CONTACT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

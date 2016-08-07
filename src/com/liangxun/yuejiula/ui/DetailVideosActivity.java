@@ -261,7 +261,7 @@ public class DetailVideosActivity extends BaseActivity implements View.OnClickLi
     private void loadData(final int currentid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_VIDEOS_PL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_VIDEOS_PL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -320,7 +320,7 @@ public class DetailVideosActivity extends BaseActivity implements View.OnClickLi
     private void getFavour() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_VIDEOS_FAVOUR_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_VIDEOS_FAVOUR_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -430,7 +430,7 @@ public class DetailVideosActivity extends BaseActivity implements View.OnClickLi
     private void zan_click(final Videos record) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PUBLISH_VIDEO_FAVOUR_RECORD,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.PUBLISH_VIDEO_FAVOUR_RECORD,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

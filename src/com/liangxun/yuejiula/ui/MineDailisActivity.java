@@ -132,7 +132,7 @@ public class MineDailisActivity extends BaseActivity implements View.OnClickList
     public void DailiCancel() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CANCEL_DAILI_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.CANCEL_DAILI_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -189,7 +189,7 @@ public class MineDailisActivity extends BaseActivity implements View.OnClickList
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.LIST_DAILI_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.LIST_DAILI_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -253,7 +253,7 @@ public class MineDailisActivity extends BaseActivity implements View.OnClickList
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_FAVOUR,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.DELETE_FAVOUR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -315,7 +315,7 @@ public class MineDailisActivity extends BaseActivity implements View.OnClickList
     private void getGoodsByUUID(final String goodsId) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

@@ -345,7 +345,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     private void getData(final int currentid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_DETAIL_PK_PL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_DETAIL_PK_PL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -402,7 +402,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     private void getFavourData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_PK_FAVOUR_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_PK_FAVOUR_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -622,7 +622,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_DELETE_ZP_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.PK_DELETE_ZP_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -670,7 +670,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     private void sure_prize() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SURE_PRIZES_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.SURE_PRIZES_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -766,7 +766,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     private void zan_click() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_CLICK_LIKE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.PK_CLICK_LIKE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -860,7 +860,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     public void report(final String contReport) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.ADD_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

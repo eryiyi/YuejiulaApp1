@@ -329,7 +329,7 @@ public class PkAddActivity extends BaseActivity implements View.OnClickListener,
     private void publishAll() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_ADD_ZUOPIN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.PK_ADD_ZUOPIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -396,7 +396,7 @@ public class PkAddActivity extends BaseActivity implements View.OnClickListener,
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_ADD_ZUOPIN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.PK_ADD_ZUOPIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -493,7 +493,7 @@ public class PkAddActivity extends BaseActivity implements View.OnClickListener,
     private void publishRun(final String videoPath) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_ADD_ZUOPIN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PK_ADD_ZUOPIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

@@ -109,7 +109,7 @@ public class AddContactActivity extends BaseActivity implements AdapterView.OnIt
     private void searchContact(final String username) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SEARCH_CONTACT,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.SEARCH_CONTACT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -148,7 +148,7 @@ public class AddContactActivity extends BaseActivity implements AdapterView.OnIt
     private void defaultFriends() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.RANDOM_GET_TEN_USERS,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.RANDOM_GET_TEN_USERS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

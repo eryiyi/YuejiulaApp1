@@ -489,7 +489,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private void loadData(final int currentid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_DETAIL_PL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_DETAIL_PL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -548,7 +548,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private void getSmallAd() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_SMALLAD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_SMALLAD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -598,7 +598,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private void getFavour() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_FAVOUR_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_FAVOUR_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -708,7 +708,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private void zan_click(final Record record) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CLICK_LIKE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.CLICK_LIKE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -805,7 +805,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     public void report(final String contReport) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.ADD_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -914,7 +914,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_RECORDS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +    InternetURL.DELETE_RECORDS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

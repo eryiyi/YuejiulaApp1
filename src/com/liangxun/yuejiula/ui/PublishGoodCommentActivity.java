@@ -211,7 +211,7 @@ public class PublishGoodCommentActivity extends BaseActivity implements View.OnC
     private void publish_comment() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PUBLISH_GOODS_COMMNENT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PUBLISH_GOODS_COMMNENT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

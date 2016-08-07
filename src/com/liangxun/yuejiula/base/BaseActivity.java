@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.huanxin.chat.utils.CommonUtils;
-import com.umeng.analytics.MobclickAgent;
 import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.concurrent.ExecutorService;
@@ -86,12 +85,12 @@ public class BaseActivity extends FragmentActivity {
 
     public void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
     }
 
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+//        MobclickAgent.onPause(this);
     }
 
     /**

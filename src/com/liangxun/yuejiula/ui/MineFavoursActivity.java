@@ -122,7 +122,7 @@ public class MineFavoursActivity extends BaseActivity implements View.OnClickLis
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.MINE_FAVOUR,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.MINE_FAVOUR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -198,7 +198,7 @@ public class MineFavoursActivity extends BaseActivity implements View.OnClickLis
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_FAVOUR,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_FAVOUR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -260,7 +260,7 @@ public class MineFavoursActivity extends BaseActivity implements View.OnClickLis
     private void getGoodsByUUID(final String goodsId) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

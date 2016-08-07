@@ -161,7 +161,7 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
     private void getNickNamesByHxUserNames(final String hxUserNames) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_INVITE_CONTACT_URL,
+                 InternetURL.GET_INVITE_CONTACT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

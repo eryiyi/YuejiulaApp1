@@ -235,7 +235,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     private void getSlide() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_DIANPU_ADS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_DIANPU_ADS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -404,7 +404,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     private void getFavour() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_THREE_PT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_THREE_PT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -469,7 +469,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     private void getManagerInfo() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_DIANPU_MSG_DETAIL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_DIANPU_MSG_DETAIL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -540,7 +540,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_GOODS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -594,7 +594,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     void saveFavour(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SAVE_FAVOUR_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.SAVE_FAVOUR_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -643,7 +643,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
     private void isDaili() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.LIST_DAILI_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.LIST_DAILI_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

@@ -81,7 +81,7 @@ public class MineAddressAddCityActivity extends BaseActivity implements View.OnC
     public void getData(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SELECT_CITY_ADDRESS,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.SELECT_CITY_ADDRESS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

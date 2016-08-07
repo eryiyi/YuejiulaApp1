@@ -29,8 +29,6 @@
       <root url="jar://$PROJECT_DIR$/libs/SocialSDK_tencentWB_3.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/SocialSDK_WeiXin_1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/SocialSDK_WeiXin_2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/umeng-analytics-v5.4.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/umeng-update-v2.6.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/umeng_social_sdk.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />

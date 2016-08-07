@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import com.liangxun.yuejiula.ui.AboutActivity;
 import com.liangxun.yuejiula.ui.LoginActivity;
+import com.liangxun.yuejiula.ui.SelectBigAreaActivity;
 import com.liangxun.yuejiula.widget.ViewPageItemView;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +66,7 @@ public class AboutViewPageAdapter extends PagerAdapter {
                     Intent intent = null;
                     switch (position) {
                         case 3:
-                            Intent main = new Intent(context, LoginActivity.class);
+                            Intent main = new Intent(context, SelectBigAreaActivity.class);
                             context.startActivity(main);
                             break;
                     }

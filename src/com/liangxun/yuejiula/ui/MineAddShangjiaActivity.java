@@ -141,7 +141,7 @@ public class MineAddShangjiaActivity extends BaseActivity implements View.OnClic
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SEARCH_CONTACT,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.SEARCH_CONTACT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

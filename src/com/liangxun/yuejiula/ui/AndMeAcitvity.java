@@ -132,7 +132,7 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ANDME_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +   InternetURL.ANDME_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -189,7 +189,7 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
     private void getRecordByUUID(final Relate relate) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_RECORD_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_RECORD_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -235,7 +235,7 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
     private void getGoodsByUUID(final Relate relate) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -285,7 +285,7 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
     private void getOrderByNo(final Relate relate, final String typeId) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.FIND_ORDER_BYNO,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.FIND_ORDER_BYNO,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

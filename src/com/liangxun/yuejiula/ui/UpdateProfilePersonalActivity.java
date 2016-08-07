@@ -303,7 +303,7 @@ public class UpdateProfilePersonalActivity extends BaseActivity implements View.
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_EMP_DETAIL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_EMP_DETAIL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -404,7 +404,7 @@ public class UpdateProfilePersonalActivity extends BaseActivity implements View.
     private void publishAll(final String uploadpic, final int currentType) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_PROFILE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPDATE_PROFILE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

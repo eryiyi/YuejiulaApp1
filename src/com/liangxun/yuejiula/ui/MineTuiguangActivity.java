@@ -97,7 +97,7 @@ public class MineTuiguangActivity extends BaseActivity implements View.OnClickLi
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.TUIGUANG_AD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.TUIGUANG_AD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -170,7 +170,7 @@ public class MineTuiguangActivity extends BaseActivity implements View.OnClickLi
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_TUIGUANG_AD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_TUIGUANG_AD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

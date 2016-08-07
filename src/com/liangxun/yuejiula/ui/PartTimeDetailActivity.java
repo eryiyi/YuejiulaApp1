@@ -217,7 +217,7 @@ public class PartTimeDetailActivity extends BaseActivity implements View.OnClick
     public void report(final String contReport) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +   InternetURL.ADD_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -288,7 +288,7 @@ public class PartTimeDetailActivity extends BaseActivity implements View.OnClick
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_PARTTIME_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_PARTTIME_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

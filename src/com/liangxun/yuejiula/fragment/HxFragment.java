@@ -335,7 +335,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
         //根据schooid获得groupid
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_USER_TO_GROUP,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.ADD_USER_TO_GROUP,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -384,7 +384,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
     private void getNickNamesByHxUserNames(final String hxUserNames) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_INVITE_CONTACT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_INVITE_CONTACT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

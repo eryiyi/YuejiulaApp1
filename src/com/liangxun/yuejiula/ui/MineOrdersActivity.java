@@ -254,7 +254,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.MINE_ORDERS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.MINE_ORDERS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -367,7 +367,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
     private void cancelOrder() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_ORDER,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_ORDER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -413,7 +413,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
     private void sureOrder() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_ORDER,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_ORDER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -459,7 +459,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
     private void sendOrderSingle(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SAVE_ORDER_SIGNLE,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.SAVE_ORDER_SIGNLE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -583,7 +583,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
     void updateMineOrder(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_ORDER_TOSERVER_SINGLE,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_ORDER_TOSERVER_SINGLE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -630,7 +630,7 @@ public class MineOrdersActivity extends BaseActivity implements View.OnClickList
     public void deleteOrder() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_ORDER,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_ORDER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

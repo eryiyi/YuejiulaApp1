@@ -188,7 +188,7 @@ public class MineOrdersMngActivity extends BaseActivity implements View.OnClickL
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.MINE_ORDERS_SJ_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.MINE_ORDERS_SJ_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -283,7 +283,7 @@ public class MineOrdersMngActivity extends BaseActivity implements View.OnClickL
     private void sureOrder() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_ORDER,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_ORDER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -365,7 +365,7 @@ public class MineOrdersMngActivity extends BaseActivity implements View.OnClickL
     public void cancel(final String cont) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CANCEL_ORDERS_SJ_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.CANCEL_ORDERS_SJ_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -414,7 +414,7 @@ public class MineOrdersMngActivity extends BaseActivity implements View.OnClickL
     public void deleteOrder() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_ORDER,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_ORDER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

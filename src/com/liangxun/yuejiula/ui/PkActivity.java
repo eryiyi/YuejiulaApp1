@@ -211,7 +211,7 @@ public class PkActivity extends BaseActivity implements View.OnClickListener, Ma
     private void getDataTheme() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_GET_TITLE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.PK_GET_TITLE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

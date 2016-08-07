@@ -333,7 +333,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
     private void regist() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.REGIST_END_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.REGIST_END_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -396,7 +396,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
     private void getProvince() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_PROVINCE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_PROVINCE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -445,7 +445,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
     private void getUniversity(final String province_uuid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_COLLEAGE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_COLLEAGE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

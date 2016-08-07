@@ -148,7 +148,7 @@ public class DetailShangjiaActivity extends BaseActivity implements View.OnClick
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_SHOOLS_BYSJ_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_SHOOLS_BYSJ_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -200,7 +200,7 @@ public class DetailShangjiaActivity extends BaseActivity implements View.OnClick
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_SHAGNJIA_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_SHAGNJIA_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

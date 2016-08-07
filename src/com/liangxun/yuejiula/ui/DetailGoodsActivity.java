@@ -316,7 +316,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_COMMENT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_GOODS_COMMENT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -518,7 +518,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
     public void report(final String contReport) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.ADD_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -594,7 +594,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_GOODS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_GOODS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -681,7 +681,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
     public void makeTop() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_POSTION_GOODS,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_POSTION_GOODS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -741,7 +741,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
     private void favour() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SAVE_FAVOUR,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.SAVE_FAVOUR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

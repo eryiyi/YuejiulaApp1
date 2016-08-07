@@ -237,7 +237,7 @@ public class FindPwrOneActivity extends BaseActivity implements View.OnClickList
     private void findData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.FIND_PWR_TWO,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.FIND_PWR_TWO,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

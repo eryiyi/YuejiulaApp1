@@ -389,7 +389,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
         final String contentStr = et_sendmessage.getText().toString();
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PUBLIC_MOOD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PUBLIC_MOOD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -472,7 +472,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PUBLIC_MOOD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PUBLIC_MOOD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

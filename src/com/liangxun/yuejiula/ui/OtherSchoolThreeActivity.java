@@ -121,7 +121,7 @@ public class OtherSchoolThreeActivity extends BaseActivity implements View.OnCli
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.RECORD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.RECORD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -238,7 +238,7 @@ public class OtherSchoolThreeActivity extends BaseActivity implements View.OnCli
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_RECORDS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_RECORDS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -284,7 +284,7 @@ public class OtherSchoolThreeActivity extends BaseActivity implements View.OnCli
     private void zan_click(final Record record) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CLICK_LIKE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.CLICK_LIKE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

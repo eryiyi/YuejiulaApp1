@@ -185,7 +185,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -238,7 +238,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void getRecordByUUID(final String xxid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_RECORD_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_RECORD_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -285,7 +285,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void getGoodsByUUID(final String xxid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -335,7 +335,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void getPartByUUID(final String xxid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_PART_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_PART_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -385,7 +385,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void cancleReport() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CANCLE_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.CANCLE_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -447,7 +447,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void getPkdetail(final String xxid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_PK_DETAIL_BYUUID,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_PK_DETAIL_BYUUID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -497,7 +497,7 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
     private void getEmp(final String xxid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_EMP_DETAIL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_EMP_DETAIL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

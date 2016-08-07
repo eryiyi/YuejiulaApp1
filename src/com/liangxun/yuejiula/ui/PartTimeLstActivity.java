@@ -158,7 +158,7 @@ public class PartTimeLstActivity extends BaseActivity implements View.OnClickLis
     private void initData(final int page) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_PARTTIME_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_PARTTIME_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

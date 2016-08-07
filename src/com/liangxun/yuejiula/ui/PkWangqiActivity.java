@@ -111,7 +111,7 @@ public class PkWangqiActivity extends BaseActivity implements View.OnClickListen
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_GET_WANGQI,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PK_GET_WANGQI,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

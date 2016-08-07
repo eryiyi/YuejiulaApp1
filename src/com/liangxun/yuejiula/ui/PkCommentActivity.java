@@ -206,7 +206,7 @@ public class PkCommentActivity extends BaseActivity implements View.OnClickListe
     private void publish_comment() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_PUBLISH_COMMENT_RECORD,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PK_PUBLISH_COMMENT_RECORD,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

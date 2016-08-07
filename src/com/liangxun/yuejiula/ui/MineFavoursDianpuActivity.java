@@ -123,7 +123,7 @@ public class MineFavoursDianpuActivity extends BaseActivity implements View.OnCl
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.APP_GET_FAVOUR_DIANPU_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.APP_GET_FAVOUR_DIANPU_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -197,7 +197,7 @@ public class MineFavoursDianpuActivity extends BaseActivity implements View.OnCl
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.DELETE_DIANPU_FAVOUR_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.DELETE_DIANPU_FAVOUR_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

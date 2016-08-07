@@ -120,7 +120,7 @@ public class PkPrizesActivity extends BaseActivity implements View.OnClickListen
     private void getPrize() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_GET_PRIZES_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PK_GET_PRIZES_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -199,7 +199,7 @@ public class PkPrizesActivity extends BaseActivity implements View.OnClickListen
     private void delete() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_DELETE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PK_DELETE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

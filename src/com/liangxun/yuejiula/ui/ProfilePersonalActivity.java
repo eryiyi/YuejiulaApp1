@@ -231,7 +231,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     public void DailiCancel() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.CANCEL_DAILI_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.CANCEL_DAILI_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -283,7 +283,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     public void DailiSet() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SAVE_DAILI_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.SAVE_DAILI_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -454,7 +454,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_EMP_DETAIL_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_EMP_DETAIL_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -630,7 +630,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     public void report(final String contReport) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_REPORT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.ADD_REPORT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -679,7 +679,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private void updateFh() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_FENGHAO_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPDATE_FENGHAO_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -725,7 +725,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private void updateFq() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_FENGQUN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPDATE_FENGQUN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

@@ -118,7 +118,7 @@ public class DetailPkFavourActivity extends BaseActivity implements View.OnClick
     private void getFavour() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_PK_FAVOUR_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_PK_FAVOUR_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

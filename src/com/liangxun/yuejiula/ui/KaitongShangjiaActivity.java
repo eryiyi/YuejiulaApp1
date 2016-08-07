@@ -147,7 +147,7 @@ public class KaitongShangjiaActivity extends BaseActivity implements View.OnClic
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_SCHOOLS_BY_JXS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_SCHOOLS_BY_JXS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -193,7 +193,7 @@ public class KaitongShangjiaActivity extends BaseActivity implements View.OnClic
     private void setSJ() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SET_SHAGNJIA_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.SET_SHAGNJIA_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

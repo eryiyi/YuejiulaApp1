@@ -78,7 +78,7 @@ public class AddRecordJpActivity extends BaseActivity implements View.OnClickLis
     private void addChaojia() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SAVE_RECORDJP_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +   InternetURL.SAVE_RECORDJP_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

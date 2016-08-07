@@ -14,10 +14,6 @@ import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.HxSetActivity;
 import com.liangxun.yuejiula.util.Constants;
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 
 /**
  * author: ${zhanghailong}
@@ -82,28 +78,28 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
             }
             break;
             case R.id.update://更新
-                progressDialog = new ProgressDialog(SetActivity.this );
-
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
-                progressDialog.show();
-                UmengUpdateAgent.forceUpdate(this);
-                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
-                    @Override
-                    public void onUpdateReturned(int i, UpdateResponse updateResponse) {
-                        progressDialog.dismiss();
-                        switch (i) {
-                            case UpdateStatus.Yes:
-                                break;
-                            case UpdateStatus.No:
-                                Toast.makeText(SetActivity.this, "已是最新版本", Toast.LENGTH_SHORT).show();
-                                break;
-                            case UpdateStatus.Timeout:
-                                Toast.makeText(SetActivity.this, "连接超时", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                    }
-                });
+//                progressDialog = new ProgressDialog(SetActivity.this );
+//
+//                progressDialog.setCancelable(false);
+//                progressDialog.setIndeterminate(true);
+//                progressDialog.show();
+//                UmengUpdateAgent.forceUpdate(this);
+//                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+//                    @Override
+//                    public void onUpdateReturned(int i, UpdateResponse updateResponse) {
+//                        progressDialog.dismiss();
+//                        switch (i) {
+//                            case UpdateStatus.Yes:
+//                                break;
+//                            case UpdateStatus.No:
+//                                Toast.makeText(SetActivity.this, "已是最新版本", Toast.LENGTH_SHORT).show();
+//                                break;
+//                            case UpdateStatus.Timeout:
+//                                Toast.makeText(SetActivity.this, "连接超时", Toast.LENGTH_SHORT).show();
+//                                break;
+//                        }
+//                    }
+//                });
                 break;
             case R.id.chat_set:
                 Intent chat_set = new Intent(SetActivity.this, HxSetActivity.class);

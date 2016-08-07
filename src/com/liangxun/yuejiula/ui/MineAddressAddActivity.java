@@ -105,7 +105,7 @@ public class MineAddressAddActivity extends BaseActivity implements View.OnClick
         //获得收货地址列表
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.ADD_MINE_ADDRSS,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.ADD_MINE_ADDRSS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

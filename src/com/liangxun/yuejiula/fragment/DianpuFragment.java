@@ -192,7 +192,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_DIANPU_MSG_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_DIANPU_MSG_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -262,7 +262,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     void getDataMsgAd(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.MANAGER_MSG_AD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.MANAGER_MSG_AD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -336,7 +336,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     private void getGoodsByUUID(final String goodsid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -387,7 +387,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     void getType(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODSTYPE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_GOODSTYPE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

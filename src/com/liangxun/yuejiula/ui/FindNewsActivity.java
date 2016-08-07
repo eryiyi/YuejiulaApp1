@@ -102,7 +102,7 @@ public class FindNewsActivity extends BaseActivity implements View.OnClickListen
     private void initData(final int pageIndex) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_NEWS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_NEWS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

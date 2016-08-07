@@ -76,25 +76,42 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
         try {
             // 3秒后跳转到登录界面
             Thread.sleep(1000);
-            SharedPreferences.Editor editor = getSp().edit();
-            boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
-            if (isFirstRun) {
-                editor.putBoolean("isFirstRun", false);
-                editor.commit();
-                Intent loadIntent = new Intent(LoadingActivity.this, AboutActivity.class);
-                startActivity(loadIntent);
-                finish();
-            } else {
-                //判断是否登陆过
-                String username = getGson().fromJson(getSp().getString(Constants.EMPMOBILE, ""), String.class);
-                String pwr = getGson().fromJson(getSp().getString(Constants.EMPPASS, ""), String.class);
-                if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
-                    login();
-                }else{
-                    startActivity(new Intent(LoadingActivity.this, LoginActivity.class));
+            if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("select_big_area", ""), String.class))){
+                SharedPreferences.Editor editor = getSp().edit();
+                boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
+                if (isFirstRun) {
+                    editor.putBoolean("isFirstRun", false);
+                    editor.commit();
+                    Intent loadIntent = new Intent(LoadingActivity.this, AboutActivity.class);
+                    startActivity(loadIntent);
                     finish();
+                } else {
+                    //判断是否登陆过
+                    String username = getGson().fromJson(getSp().getString(Constants.EMPMOBILE, ""), String.class);
+                    String pwr = getGson().fromJson(getSp().getString(Constants.EMPPASS, ""), String.class);
+                    if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
+                        login();
+                    }else{
+                        startActivity(new Intent(LoadingActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+            }else{
+                //无分区信息
+                SharedPreferences.Editor editor = getSp().edit();
+                boolean isFirstRun = getSp().getBoolean("isFirstRun", true);
+                if (isFirstRun) {
+                    editor.putBoolean("isFirstRun", false);
+                    editor.commit();
+                    Intent loadIntent = new Intent(LoadingActivity.this, AboutActivity.class);
+                    startActivity(loadIntent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(LoadingActivity.this, SelectBigAreaActivity.class);
+                    startActivity(intent);
                 }
             }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

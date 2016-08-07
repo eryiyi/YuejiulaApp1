@@ -130,7 +130,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
     public void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_FENGHAOFENGQUNS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_FENGHAOFENGQUNS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -234,7 +234,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
     private void updateFh(final FhFqObj empT) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_FENGHAO_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.UPDATE_FENGHAO_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -284,7 +284,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
     private void updateFq(final FhFqObj empT) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_FENGQUN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPDATE_FENGQUN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

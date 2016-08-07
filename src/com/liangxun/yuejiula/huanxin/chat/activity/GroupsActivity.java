@@ -386,7 +386,7 @@ public class GroupsActivity extends BaseActivity {
 	void getManagerBySchoolId(){
 		StringRequest request = new StringRequest(
 				Request.Method.POST,
-				InternetURL.GET_SCHOOL_MANAGER_BY_ID,
+				getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_SCHOOL_MANAGER_BY_ID,
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String s) {

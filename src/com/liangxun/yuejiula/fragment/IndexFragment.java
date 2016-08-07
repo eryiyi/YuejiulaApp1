@@ -55,7 +55,7 @@ public class IndexFragment  extends BaseFragment implements View.OnClickListener
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.RECORD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.RECORD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

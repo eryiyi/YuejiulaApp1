@@ -210,7 +210,7 @@ public class DetailOrderActivity extends BaseActivity implements View.OnClickLis
         //收货地址获得
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_ADDRESS_BYID,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_ADDRESS_BYID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -262,7 +262,7 @@ public class DetailOrderActivity extends BaseActivity implements View.OnClickLis
     private void getGoodsByUUID() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_GOODS_DETAIL_BYUUID_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

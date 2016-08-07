@@ -233,7 +233,7 @@ public class PublishNewsActivity extends BaseActivity implements View.OnClickLis
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_NEWS_TYPE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_NEWS_TYPE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -474,7 +474,7 @@ public class PublishNewsActivity extends BaseActivity implements View.OnClickLis
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PUBLISH_NEWS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PUBLISH_NEWS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

@@ -69,7 +69,7 @@ public class MineShangpuActivity extends BaseActivity implements View.OnClickLis
     public void selectNum(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.SELECT_ORDER_NUM,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.SELECT_ORDER_NUM,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

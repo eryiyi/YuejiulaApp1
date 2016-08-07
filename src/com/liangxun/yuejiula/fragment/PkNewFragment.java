@@ -187,7 +187,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_NEW_PK_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_NEW_PK_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -333,7 +333,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
     private void zan_click() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.PK_CLICK_LIKE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.PK_CLICK_LIKE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

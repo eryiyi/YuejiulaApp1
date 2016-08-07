@@ -228,7 +228,7 @@ public class ReSetMobileActivity extends BaseActivity implements View.OnClickLis
     private void resetMobile() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.UPDATE_MOBILE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPDATE_MOBILE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

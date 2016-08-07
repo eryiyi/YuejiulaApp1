@@ -116,7 +116,7 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_NOTICE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.GET_NOTICE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {

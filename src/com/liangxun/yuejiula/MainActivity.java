@@ -54,7 +54,6 @@ import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.util.Utils;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
-import com.umeng.update.UmengUpdateAgent;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
 import org.bitlet.weupnp.Main;
 
@@ -136,7 +135,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         super.onCreate(savedInstanceState);
         registerBoradcastReceiver();
         //umeng自动更新
-        UmengUpdateAgent.update(this);
+//        UmengUpdateAgent.update(this);
         if (savedInstanceState != null && savedInstanceState.getBoolean(HxConstant.ACCOUNT_REMOVED, false)) {
             // 防止被移除后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
             // 三个fragment里加的判断同理
@@ -510,7 +509,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         StringRequest request = new StringRequest(
                 Request.Method.POST,
 //                InternetURL.GET_FRIENDS_URL,
-                InternetURL.GET_INVITE_CONTACT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.GET_INVITE_CONTACT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1197,8 +1196,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     private void getFriends(final String userNames) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-//                InternetURL.GET_FRIENDS_URL,
-                InternetURL.GET_INVITE_CONTACT_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_INVITE_CONTACT_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1526,7 +1524,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     void getFhFqMine(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_FENGHAO_FENGQUN_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_FENGHAO_FENGQUN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1607,7 +1605,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     void getManagerBySchoolId(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_SCHOOL_MANAGER_BY_ID,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.GET_SCHOOL_MANAGER_BY_ID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1658,7 +1656,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     void getMood(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_MOOD_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.GET_MOOD_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1752,7 +1750,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     private void getSchoolMine() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_SCHOOLS_BY_JXS_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_SCHOOLS_BY_JXS_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1796,7 +1794,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     private void getDailiMine() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.LIST_DAILI_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.LIST_DAILI_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -1836,7 +1834,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     void getManager(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                InternetURL.GET_MANAGER_COLLEGE_BY_EMPID,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.GET_MANAGER_COLLEGE_BY_EMPID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
