@@ -30,7 +30,6 @@ public class DetailDianpuThreePtAdapter extends BaseAdapter {
         this.findEmps = findEmps;
         this.mContext = mContext;
         this.countTmp = countTmp;
-
     }
 
     @Override

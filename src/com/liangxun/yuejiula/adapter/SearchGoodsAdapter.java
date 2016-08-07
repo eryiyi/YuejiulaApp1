@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.entity.PaopaoGoods;
+import com.liangxun.yuejiula.ui.DianpuDetailActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
@@ -89,6 +90,7 @@ public class SearchGoodsAdapter extends BaseAdapter {
             holder.item_marketPrice = (TextView) convertView.findViewById(R.id.item_marketPrice);
             holder.item_nickname = (TextView) convertView.findViewById(R.id.item_nickname);
             holder.item_zhiying = (TextView) convertView.findViewById(R.id.item_zhiying);
+            holder.item_dailiPrice = (TextView) convertView.findViewById(R.id.item_dailiPrice);
             holder.item_marketPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             convertView.setTag(holder);
         } else {
@@ -97,11 +99,19 @@ public class SearchGoodsAdapter extends BaseAdapter {
         PaopaoGoods cell = list.get(position);
         holder.item_sellPrice.setText(String.format(res.getString(R.string.goods_prices), cell.getSellPrice()));
         holder.item_marketPrice.setText(String.format(res.getString(R.string.goods_prices), cell.getMarketPrice()));
+        holder.item_dailiPrice.setVisibility(View.GONE);
         String titlte = cell.getName();
         if(titlte!= null && titlte.length()>20){
             holder.item_title.setText(titlte.substring(0,19));
         }else {
             holder.item_title.setText(titlte);
+        }
+        if(DianpuDetailActivity.flagR){
+            //说明是代理关系
+            holder.item_dailiPrice.setVisibility(View.VISIBLE);
+            holder.item_dailiPrice.setText("￥"+cell.getDaili_price()==null?"暂无代理价格":"暂无代理价格");
+        }else {
+            holder.item_dailiPrice.setVisibility(View.GONE);
         }
         holder.item_nickname.setText(cell.getNickName());
         if("1".endsWith(cell.getIs_zhiying())){
@@ -119,5 +129,6 @@ public class SearchGoodsAdapter extends BaseAdapter {
         TextView item_nickname;
         TextView item_marketPrice;
         TextView item_zhiying;
+        TextView item_dailiPrice;
     }
 }

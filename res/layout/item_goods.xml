@@ -64,5 +64,15 @@
               android:singleLine="true"
               android:textSize="16sp"
               android:id="@+id/item_marketPrice"/>
-
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/goods_prices"
+              android:layout_toRightOf="@+id/item_cover"
+              android:textColor="#f00f00"
+              android:layout_marginLeft="12dp"
+              android:layout_below="@+id/item_sellPrice"
+              android:layout_marginTop="10dp"
+              android:singleLine="true"
+              android:textSize="16sp"
+              android:id="@+id/item_dailiPrice"/>
 </RelativeLayout>

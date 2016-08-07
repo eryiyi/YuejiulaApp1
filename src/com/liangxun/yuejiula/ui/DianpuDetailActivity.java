@@ -23,10 +23,7 @@ import com.liangxun.yuejiula.adapter.*;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.*;
-import com.liangxun.yuejiula.entity.AdObj;
-import com.liangxun.yuejiula.entity.ManagerInfo;
-import com.liangxun.yuejiula.entity.PaopaoGoods;
-import com.liangxun.yuejiula.entity.SchoolThreeTingtaiBd;
+import com.liangxun.yuejiula.entity.*;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
@@ -149,6 +146,8 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         //个人商品
         initData();
 
+        //查询我和店铺是否是代理关系
+        isDaili();
     }
 
     void initView(){
@@ -638,4 +637,59 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         };
         getRequestQueue().add(request);
     }
+
+    public  static  Boolean flagR = false;
+    private List<DailiObj> dailis = new ArrayList<DailiObj>();
+    private void isDaili() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                InternetURL.LIST_DAILI_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            DailiObjData data = getGson().fromJson(s, DailiObjData.class);
+                            if (data.getCode() == 200) {
+                                if (IS_REFRESH) {
+                                    dailis.clear();
+                                }
+                                dailis.addAll(data.getData());
+                                if(dailis != null && dailis.size() > 0){
+                                    //说明是代理关系
+                                    flagR = true;
+                                }
+                            } else {
+                                Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", emp_id);
+                params.put("emp_id_d", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+
 }

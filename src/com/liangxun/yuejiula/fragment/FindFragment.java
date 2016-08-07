@@ -92,6 +92,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                     if (dianpu != null) {
                         Intent detail = new Intent(getActivity(), WebViewActivity.class);
                         detail.putExtra("strurl", dianpu.getWww_url());
+                        detail.putExtra("strtitle", dianpu.getTitle());
                         startActivity(detail);
                     }
                 } catch (Exception e) {

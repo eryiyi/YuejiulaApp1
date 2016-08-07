@@ -4,13 +4,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.webkit.*;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.StringUtil;
 import com.umeng.socialize.bean.RequestType;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -30,6 +30,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
     private WebView detail_webview;
     private ImageView menu;
     private String strurl;
+    private String strtitle;
 
     private static final String APP_CACAHE_DIRNAME = "/webcache";
 
@@ -40,22 +41,25 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
     String shareParams = "";
     String appID = "wx198fc23a0fae697a";
 
+    private TextView part_news_title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
         strurl = getIntent().getExtras().getString("strurl");
+        strtitle = getIntent().getExtras().getString("strtitle");
         progressDialog = new ProgressDialog(WebViewActivity.this );
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
-
         initView();
-        detail_webview.getSettings().setJavaScriptEnabled(true);
         shareUrl = strurl;
 
+        detail_webview.setInitialScale(35);
+        detail_webview.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
         detail_webview.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        detail_webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);  //设置 缓存模式
+        detail_webview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);  //设置 缓存模式
         // 开启 DOM storage API 功能
         detail_webview.getSettings().setDomStorageEnabled(true);
         //开启 database storage API 功能
@@ -68,12 +72,26 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         detail_webview.getSettings().setAppCachePath(cacheDirPath);
         //开启 Application Caches 功能
         detail_webview.getSettings().setAppCacheEnabled(true);
+        detail_webview.getSettings().setJavaScriptEnabled(true);
+        detail_webview.requestFocus();
+        detail_webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, true);
+                super.onGeolocationPermissionsShowPrompt(origin, callback);
+            }
+        });
+
 
         detail_webview.loadUrl(strurl);
         detail_webview.setWebViewClient(new HelloWebViewClient());
 
         // 启动一个线程
         new Thread(WebViewActivity.this).start();
+        if(!StringUtil.isNullOrEmpty(strtitle)){
+            part_news_title.setText(strtitle);
+        }
+
     }
 
     private void initView() {
@@ -82,6 +100,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         detail_webview = (WebView) this.findViewById(R.id.detail_webview);
         this.findViewById(R.id.close).setOnClickListener(this);
         this.findViewById(R.id.detail_share).setOnClickListener(this);
+        part_news_title = (TextView) this.findViewById(R.id.part_news_title);
     }
 
     @Override
@@ -103,7 +122,6 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
                 mController.setShareMedia(new UMImage(this, sharePic));//设置分享图片
                 shareParams = "" ;//设置分享链接
                 mController.setShareContent(shareCont + "," + shareUrl + shareParams);//设置分享内容
-
 
                 //新浪微博
                 mController.getConfig().setSsoHandler(new SinaSsoHandler());
