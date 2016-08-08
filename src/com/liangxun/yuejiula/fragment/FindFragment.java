@@ -1,6 +1,7 @@
 package com.liangxun.yuejiula.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -90,10 +91,13 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 try {
                     SchoolFind dianpu = listgoods.get(position-1);
                     if (dianpu != null) {
-                        Intent detail = new Intent(getActivity(), WebViewActivity.class);
-                        detail.putExtra("strurl", dianpu.getWww_url());
-                        detail.putExtra("strtitle", dianpu.getTitle());
-                        startActivity(detail);
+//                        Intent detail = new Intent(getActivity(), WebViewActivity.class);
+//                        detail.putExtra("strurl", dianpu.getWww_url());
+//                        detail.putExtra("strtitle", dianpu.getTitle());
+//                        startActivity(detail);
+                        final Uri uri = Uri.parse(dianpu.getWww_url());
+                        final Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(it);
                     }
                 } catch (Exception e) {
 
