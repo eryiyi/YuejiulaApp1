@@ -376,16 +376,16 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".receiver.PushMessageReceiver">
-            <intent-filter>
-                <action android:name="com.baidu.android.pushservice.action.METHOD"/>
-                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
-            </intent-filter>
-        </receiver>
+        <!--<receiver android:name=".receiver.PushMessageReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.baidu.android.pushservice.action.METHOD"/>-->
+                <!--<action android:name="com.baidu.android.pushservice.action.BIND_SYNC"/>-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.PACKAGE_REMOVED"/>-->
+                <!--<data android:scheme="package"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
         <service
                 android:name="com.baidu.android.pushservice.CommandService"
                 android:exported="true" />
@@ -645,20 +645,21 @@
                 android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
 
-        <service
-                android:name="com.umeng.update.net.DownloadingService"
-                android:process=":DownloadingService">
-        </service>
-        <activity
-                android:name="com.umeng.update.UpdateDialogActivity"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar">
-        </activity>
+        <!--<service-->
+                <!--android:name="com.umeng.update.net.DownloadingService"-->
+                <!--android:process=":DownloadingService">-->
+        <!--</service>-->
+        <!--<activity-->
+                <!--android:name="com.umeng.update.UpdateDialogActivity"-->
+                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar">-->
+        <!--</activity>-->
         <activity android:name="com.liangxun.yuejiula.ui.Pk_new_detailsActivity"/>
 
         <activity android:name="com.liangxun.yuejiula.ui.InstructionActivity"/>
         <activity android:name="com.liangxun.yuejiula.ui.CoalitionActivity"/>
         <activity android:name="com.liangxun.yuejiula.ui.UserProtocolActivity"/>
         <activity android:name="com.liangxun.yuejiula.ui.ExplainActivity"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AddFriendActivity"/>
 
         <!--支付宝-->
         <activity

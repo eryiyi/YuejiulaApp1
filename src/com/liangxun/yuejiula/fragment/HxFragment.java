@@ -22,7 +22,6 @@ import com.liangxun.yuejiula.data.EmpsDATA;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.huanxin.chat.HxConstant;
-import com.liangxun.yuejiula.huanxin.chat.activity.AddContactActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.ChatActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.ContactlistActivity;
 import com.liangxun.yuejiula.huanxin.chat.activity.GroupsActivity;
@@ -30,6 +29,7 @@ import com.liangxun.yuejiula.huanxin.chat.adapter.ChatAllHistoryAdapter;
 import com.liangxun.yuejiula.huanxin.chat.db.InviteMessgeDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.my.MyEMConversation;
+import com.liangxun.yuejiula.ui.AddFriendActivity;
 import com.liangxun.yuejiula.ui.AndMeAcitvity;
 import com.liangxun.yuejiula.util.StringUtil;
 
@@ -278,7 +278,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_contact:
-                Intent add_intent = new Intent(getActivity(), AddContactActivity.class);
+                Intent add_intent = new Intent(getActivity(), AddFriendActivity.class);
                 startActivity(add_intent);
                 break;
             case R.id.dating:

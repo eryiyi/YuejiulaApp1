@@ -71,19 +71,19 @@ public class FindEmpAdapter extends BaseAdapter {
             holder.findemp_item_name.setText(cell.getEmpName());
         }
         //右侧点击进入该会员的主页
-        holder.findemp_item_in.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickContentItemListener.onClickContentItem(position, 1, null);
-            }
-        });
-        //头像点击进入该会员的主页
-        holder.findemp_item_cover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickContentItemListener.onClickContentItem(position, 1, null);
-            }
-        });
+//        holder.findemp_item_in.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickContentItemListener.onClickContentItem(position, 1, null);
+//            }
+//        });
+//        //头像点击进入该会员的主页
+//        holder.findemp_item_cover.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickContentItemListener.onClickContentItem(position, 1, null);
+//            }
+//        });
         return convertView;
     }
 

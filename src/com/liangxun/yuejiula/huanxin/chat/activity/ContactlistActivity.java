@@ -34,6 +34,7 @@ import com.liangxun.yuejiula.huanxin.chat.db.HxUserDao;
 import com.liangxun.yuejiula.huanxin.chat.db.InviteMessgeDao;
 import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.huanxin.chat.widget.Sidebar;
+import com.liangxun.yuejiula.ui.AddFriendActivity;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -278,7 +279,7 @@ public class ContactlistActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_contact:
-                Intent add_intent = new Intent(this, AddContactActivity.class);
+                Intent add_intent = new Intent(this, AddFriendActivity.class);
                 startActivity(add_intent);
                 break;
 //            case R.id.paopaokf:

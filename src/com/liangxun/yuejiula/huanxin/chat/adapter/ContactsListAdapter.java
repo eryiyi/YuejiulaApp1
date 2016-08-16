@@ -44,9 +44,9 @@ public class ContactsListAdapter extends ArrayAdapter<com.liangxun.yuejiula.enti
 
     //private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 //	com.nostra13.universalimageloader.core.ImageLoader imageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();//图片加载类
-    public void setOnClickContentItemListener(OnClickContentItemListener onClickContentItemListener) {
-        this.onClickContentItemListener = onClickContentItemListener;
-    }
+//    public void setOnClickContentItemListener(OnClickContentItemListener onClickContentItemListener) {
+//        this.onClickContentItemListener = onClickContentItemListener;
+//    }
 
     public ContactsListAdapter(Context context, int textViewResourceId, List<Emp> objects, ImageLoader imageLoader) {
         super(context, textViewResourceId, objects);
@@ -87,13 +87,13 @@ public class ContactsListAdapter extends ArrayAdapter<com.liangxun.yuejiula.enti
         holder.avatar.setImageUrl(url, MyImageLoader.getInstance());
 //		imageLoader.displayImage(InternetURL.INTERNAL+emp.getEmpCover(), holder.avatar , UniversityApplication.txOptions, animateFirstListener);
 
-        final String s = getContext().getResources().getString(R.string.Add_a_friend);
-        holder.add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickContentItemListener.onClickContentItem(position, 1, null);
-            }
-        });
+//        final String s = context.getResources().getString(R.string.Add_a_friend);
+//        holder.add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickContentItemListener.onClickContentItem(position, 1, null);
+//            }
+//        });
 
         return convertView;
     }

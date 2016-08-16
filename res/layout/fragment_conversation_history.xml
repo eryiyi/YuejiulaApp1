@@ -20,24 +20,25 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
         <ImageView
-                android:id="@+id/add_contact"
+                android:id="@+id/add_group"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/common_tab_bg"
                 android:clickable="true"
+                android:visibility="gone"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_titleaddfriend"/>
+                android:src="@drawable/icons_others_allusers"/>
         <ImageView
-                android:id="@+id/add_group"
+                android:id="@+id/add_contact"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
-                android:visibility="gone"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/common_tab_bg"
                 android:clickable="true"
+                android:layout_marginRight="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icons_others_allusers"/>
+                android:src="@drawable/icon_titleaddfriend"/>
     </RelativeLayout>
 
     <include
