@@ -421,9 +421,12 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         SchoolThreeTingtaiBd schoolThreeTingtaiBd = itemList.get(position);
                                         if(schoolThreeTingtaiBd != null){
-                                            Intent adView =  new Intent(DianpuDetailActivity.this, WebViewActivity.class);
-                                            adView.putExtra("strurl", schoolThreeTingtaiBd.getPingtai_url());
-                                            startActivity(adView);
+//                                            Intent adView =  new Intent(DianpuDetailActivity.this, WebViewActivity.class);
+//                                            adView.putExtra("strurl", schoolThreeTingtaiBd.getPingtai_url());
+//                                            startActivity(adView);
+                                            final Uri uri = Uri.parse(schoolThreeTingtaiBd.getPingtai_url());
+                                            final Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                                            startActivity(it);
                                         }
                                     }
                                 });

@@ -9,6 +9,15 @@ public class SchoolFind {
     private String title;
     private String www_url;
     private String top_num;
+    private String istype;
+
+    public String getIstype() {
+        return istype;
+    }
+
+    public void setIstype(String istype) {
+        this.istype = istype;
+    }
 
     public String getSchool_find_id() {
         return school_find_id;

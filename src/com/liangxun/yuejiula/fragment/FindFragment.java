@@ -91,13 +91,19 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
                 try {
                     SchoolFind dianpu = listgoods.get(position-1);
                     if (dianpu != null) {
-//                        Intent detail = new Intent(getActivity(), WebViewActivity.class);
-//                        detail.putExtra("strurl", dianpu.getWww_url());
-//                        detail.putExtra("strtitle", dianpu.getTitle());
-//                        startActivity(detail);
-                        final Uri uri = Uri.parse(dianpu.getWww_url());
-                        final Intent it = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(it);
+                        switch (Integer.parseInt(dianpu.getIstype())){
+                            case 0:
+                                Intent detail = new Intent(getActivity(), WebViewActivity.class);
+                                detail.putExtra("strurl", dianpu.getWww_url());
+                                detail.putExtra("strtitle", dianpu.getTitle());
+                                startActivity(detail);
+                                break;
+                            case 1:
+                                final Uri uri = Uri.parse(dianpu.getWww_url());
+                                final Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(it);
+                                break;
+                        }
                     }
                 } catch (Exception e) {
 
