@@ -86,7 +86,6 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         initView();
         //判断是代理吗
-
         if("2".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
             //是商家
             for(DailiObj dailiObj: MainActivity.dailiObjs){
@@ -97,14 +96,17 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                 }
             }
             btn_set_dl.setVisibility(View.VISIBLE);
-        }
-        if(flag){
-            //已经是代理了
-            btn_set_dl.setText("取消代理");
+            if(flag){
+                //已经是代理了
+                btn_set_dl.setText("取消代理");
+            }else {
+                //不是代理
+                btn_set_dl.setText("设置代理");
+            }
         }else {
-            //不是代理
-            btn_set_dl.setText("设置代理");
+            btn_set_dl.setVisibility(View.GONE);
         }
+
         getData();
     }
 
@@ -536,7 +538,6 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         }
         if (emp.getEmpTypeId().equals("2")) {
             profile_personal_flag.setImageResource(R.drawable.icon_type_shang);
-            btn_set_dl.setVisibility(View.VISIBLE);
         }
         if (emp.getEmpTypeId().equals("3")) {
             profile_personal_flag.setImageResource(R.drawable.icon_type_official);

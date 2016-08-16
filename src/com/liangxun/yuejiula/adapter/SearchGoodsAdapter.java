@@ -109,7 +109,7 @@ public class SearchGoodsAdapter extends BaseAdapter {
         if(DianpuDetailActivity.flagR){
             //说明是代理关系
             holder.item_dailiPrice.setVisibility(View.VISIBLE);
-            holder.item_dailiPrice.setText("￥"+cell.getDaili_price()==null?"暂无代理价格":"暂无代理价格");
+            holder.item_dailiPrice.setText("￥"+cell.getDaili_price());
         }else {
             holder.item_dailiPrice.setVisibility(View.GONE);
         }
