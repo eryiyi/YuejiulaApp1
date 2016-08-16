@@ -1,6 +1,5 @@
 package com.liangxun.yuejiula.base;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import com.liangxun.yuejiula.widget.CustomProgressDialog;
 

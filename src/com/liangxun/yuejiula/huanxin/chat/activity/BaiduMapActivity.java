@@ -13,7 +13,6 @@
  */
 package com.liangxun.yuejiula.huanxin.chat.activity;
 
-import android.app.ProgressDialog;
 import android.content.*;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;

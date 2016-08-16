@@ -17,8 +17,6 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * author: ${zhanghailong}

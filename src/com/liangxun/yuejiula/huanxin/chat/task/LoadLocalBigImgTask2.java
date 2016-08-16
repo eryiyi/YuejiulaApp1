@@ -23,7 +23,6 @@ import android.widget.ProgressBar;
 import com.easemob.util.ImageUtils;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.huanxin.chat.utils.ImageCache;
-import com.liangxun.yuejiula.huanxin.chat.widget.photoview.PhotoView;
 
 public class LoadLocalBigImgTask2 extends AsyncTask<Void, Void, Bitmap> {
 

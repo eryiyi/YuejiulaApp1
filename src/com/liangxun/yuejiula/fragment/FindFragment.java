@@ -3,7 +3,6 @@ package com.liangxun.yuejiula.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import com.liangxun.yuejiula.base.BaseFragment;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.SchoolFindData;
 import com.liangxun.yuejiula.entity.SchoolFind;
-import com.liangxun.yuejiula.library.PullToRefreshBase;
-import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.StringUtil;
 

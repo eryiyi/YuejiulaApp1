@@ -1,6 +1,5 @@
 package com.liangxun.yuejiula.ui;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;

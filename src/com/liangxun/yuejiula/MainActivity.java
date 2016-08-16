@@ -55,7 +55,6 @@ import com.liangxun.yuejiula.util.Utils;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
-import org.bitlet.weupnp.Main;
 
 import java.util.*;
 

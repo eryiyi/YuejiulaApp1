@@ -1,6 +1,5 @@
 package com.liangxun.yuejiula.ui;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;

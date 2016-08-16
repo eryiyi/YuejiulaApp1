@@ -22,8 +22,6 @@ import com.liangxun.yuejiula.util.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**

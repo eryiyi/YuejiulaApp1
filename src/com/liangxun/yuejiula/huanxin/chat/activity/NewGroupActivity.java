@@ -24,7 +24,6 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
-import com.liangxun.yuejiula.util.Constants;
 
 public class NewGroupActivity extends BaseActivity {
 	private EditText groupNameEditText;

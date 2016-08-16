@@ -33,15 +33,9 @@ import com.easemob.cloud.HttpFileManager;
 import com.easemob.util.ImageUtils;
 import com.easemob.util.PathUtil;
 import com.liangxun.yuejiula.R;
-import com.liangxun.yuejiula.adapter.AnimateFirstDisplayListener;
 import com.liangxun.yuejiula.base.BaseActivity;
-import com.liangxun.yuejiula.huanxin.chat.task.LoadLocalBigImgTask;
 import com.liangxun.yuejiula.huanxin.chat.task.LoadLocalBigImgTask2;
 import com.liangxun.yuejiula.huanxin.chat.utils.ImageCache;
-import com.liangxun.yuejiula.huanxin.chat.widget.photoview.PhotoView;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.yixia.camera.demo.UniversityApplication;
 
 import java.io.File;
 import java.io.FileInputStream;

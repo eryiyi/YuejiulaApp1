@@ -1,15 +1,13 @@
 package com.liangxun.yuejiula.huanxin.chat.activity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.*;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ListView;
+import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -25,7 +23,10 @@ import com.liangxun.yuejiula.data.EmpsDATA;
 import com.liangxun.yuejiula.entity.Emp;
 import com.liangxun.yuejiula.util.StringUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 黑名单列表页面

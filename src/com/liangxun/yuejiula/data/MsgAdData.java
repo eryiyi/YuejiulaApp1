@@ -2,8 +2,6 @@ package com.liangxun.yuejiula.data;
 
 import com.liangxun.yuejiula.entity.MsgAd;
 
-import java.util.List;
-
 /**
  * Created by zhl on 2016/7/3.
  */

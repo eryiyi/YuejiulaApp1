@@ -38,7 +38,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMGroupInfo;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
@@ -54,9 +53,7 @@ import com.liangxun.yuejiula.huanxin.chat.adapter.GroupAdapter;
 import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
-import org.bitlet.weupnp.Main;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

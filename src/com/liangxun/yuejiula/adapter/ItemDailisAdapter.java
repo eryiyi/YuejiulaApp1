@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.entity.DailiObj;
-import com.liangxun.yuejiula.entity.GoodsFavourVO;
-import com.liangxun.yuejiula.util.StringUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;

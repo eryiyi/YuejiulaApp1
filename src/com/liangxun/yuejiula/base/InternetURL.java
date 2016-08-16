@@ -1,7 +1,5 @@
 package com.liangxun.yuejiula.base;
 
-import com.yixia.camera.demo.UniversityApplication;
-
 /**
  * Created by zhanghl on 2015/1/12.
  */

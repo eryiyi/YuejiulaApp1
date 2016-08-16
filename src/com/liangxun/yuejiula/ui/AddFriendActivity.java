@@ -20,7 +20,6 @@ import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.EmpsDATA;
 import com.liangxun.yuejiula.entity.Emp;
-import com.liangxun.yuejiula.huanxin.chat.adapter.ContactsListAdapter;
 import com.liangxun.yuejiula.util.Constants;
 
 import java.util.ArrayList;

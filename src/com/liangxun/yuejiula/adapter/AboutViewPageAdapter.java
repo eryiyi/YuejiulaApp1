@@ -9,7 +9,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import com.liangxun.yuejiula.ui.AboutActivity;
-import com.liangxun.yuejiula.ui.LoginActivity;
 import com.liangxun.yuejiula.ui.SelectBigAreaActivity;
 import com.liangxun.yuejiula.widget.ViewPageItemView;
 import org.json.JSONArray;

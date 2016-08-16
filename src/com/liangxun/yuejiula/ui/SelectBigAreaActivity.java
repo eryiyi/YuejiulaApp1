@@ -15,9 +15,7 @@ import com.liangxun.yuejiula.adapter.SelectBigAreaAdapter;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.BigAreaObjData;
-import com.liangxun.yuejiula.data.EmpDATA;
 import com.liangxun.yuejiula.entity.BigAreaObj;
-import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 
 import java.util.ArrayList;

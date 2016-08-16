@@ -20,11 +20,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.easemob.chat.EMChatManager;
@@ -35,9 +33,7 @@ import com.easemob.util.EMLog;
 import com.easemob.util.NetUtils;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
-import com.liangxun.yuejiula.huanxin.chat.widget.ExpandGridView;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 

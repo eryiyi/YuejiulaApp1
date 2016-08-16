@@ -32,7 +32,6 @@ import com.liangxun.yuejiula.widget.popview.SelectFenghaoPopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
-import org.bitlet.weupnp.Main;
 
 import java.util.HashMap;
 import java.util.List;

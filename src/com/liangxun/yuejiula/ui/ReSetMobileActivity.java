@@ -1,6 +1,5 @@
 package com.liangxun.yuejiula.ui;
 
-import android.app.ProgressDialog;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
