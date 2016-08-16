@@ -117,8 +117,11 @@ public class SearchGoodsAdapter extends BaseAdapter {
         if("1".endsWith(cell.getIs_zhiying())){
             holder.item_zhiying.setVisibility(View.VISIBLE);
         }
-        //加载图片
-        imageLoader.displayImage(cell.getCover(), holder.item_cover, UniversityApplication.options, animateFirstListener);
+        String[] arrts = cell.getCover().split(",");
+        if(arrts != null && arrts.length >0){
+            //加载图片
+            imageLoader.displayImage(arrts[0], holder.item_cover, UniversityApplication.options, animateFirstListener);
+        }
         return convertView;
     }
 

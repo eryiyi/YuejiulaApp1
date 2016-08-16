@@ -8,8 +8,8 @@ import com.yixia.camera.demo.UniversityApplication;
 public class InternetURL {
 
     //获得分区
-//    public static String DEFAULT_GET_BIG_AREA = "http://120.27.108.66:8081/getDefaultBigAreas.do";
-    public static String DEFAULT_GET_BIG_AREA = "http://192.168.0.224:8080/getDefaultBigAreas.do";
+    public static String DEFAULT_GET_BIG_AREA = "http://120.27.108.66:8081/getDefaultBigAreas.do";
+//    public static String DEFAULT_GET_BIG_AREA = "http://192.168.0.224:8080/getDefaultBigAreas.do";
 
     //mob
     public static final String APP_MOB_KEY = "12bd04f0dc118";
