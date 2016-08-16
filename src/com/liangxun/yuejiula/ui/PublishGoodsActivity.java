@@ -3,6 +3,7 @@ package com.liangxun.yuejiula.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,12 +26,24 @@ import com.liangxun.yuejiula.adapter.Publish_mood_GridView_Adapter;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.GoodsTypeDATA;
+import com.liangxun.yuejiula.data.SellerSchoolListDATA;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.Goodstype;
+import com.liangxun.yuejiula.entity.SellerSchoolList;
 import com.liangxun.yuejiula.util.*;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.NoScrollGridView;
 import com.liangxun.yuejiula.widget.popview.CustomerSpinner;
 import com.liangxun.yuejiula.widget.popview.SelectPhoTwoPopWindow;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,9 +64,9 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     private EditText publish_good_title;//标题
     private EditText publish_good_content;//内容
     private EditText publish_good_money;//价格
-    private EditText publish_good_address;//地址
-    private EditText publish_good_person;//联系人
-    private EditText publish_good_tel;//电话
+    private EditText publish_good_money_2;//价格
+    private EditText publish_good_money_3;//价格
+    private EditText countn;//数量
     private ImageView publis_goods_back;
     private TextView publish_goods_run;//发布按钮
     private TextView publish_goods_notice;//发布须知
@@ -66,9 +79,6 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     private String title;
     private String content;
     private String money;
-    private String person;
-    private String address;
-    private String tel;
     private String typeId = "";
     private String typeTitle = "";
     private String typeIsBusiness = "";
@@ -85,6 +95,9 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
 
     private SelectPhoTwoPopWindow deleteWindow;
 
+    AsyncHttpClient client = new AsyncHttpClient();
+    private String schoolds = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,14 +107,18 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         emp_typeid = getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class);
         initData();
+        getGoodsType();
     }
 
     private void initView() {
         publish_goods_imv = (ImageView) this.findViewById(R.id.publish_goods_imv);
         publish_goods_imv.setOnClickListener(this);
+        countn = (EditText) this.findViewById(R.id.countn);
         publish_good_title = (EditText) this.findViewById(R.id.publish_good_title);
         publish_good_content = (EditText) this.findViewById(R.id.publish_good_content);
         publish_good_money = (EditText) this.findViewById(R.id.publish_good_money);
+        publish_good_money_2 = (EditText) this.findViewById(R.id.publish_good_money_2);
+        publish_good_money_3 = (EditText) this.findViewById(R.id.publish_good_money_3);
         publis_goods_back = (ImageView) this.findViewById(R.id.publis_goods_back);
         publis_goods_back.setOnClickListener(this);
         publish_goods_run = (TextView) this.findViewById(R.id.publish_goods_run);
@@ -146,9 +163,6 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                 }
             }
         });
-        publish_good_address = (EditText) this.findViewById(R.id.publish_good_address);
-        publish_good_person = (EditText) this.findViewById(R.id.publish_good_person);
-        publish_good_tel = (EditText) this.findViewById(R.id.publish_good_tel);
         publish_goods_notice = (TextView) this.findViewById(R.id.publish_goods_notice);
         publish_goods_notice.setOnClickListener(this);
     }
@@ -160,123 +174,114 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.publish_goods_run:
-//                title = publish_good_title.getText().toString();
-//                content = publish_good_content.getText().toString();
-//                money = publish_good_money.getText().toString();
-//                address = publish_good_address.getText().toString();
-//                person = publish_good_person.getText().toString();
+                title = publish_good_title.getText().toString();
+                content = publish_good_content.getText().toString();
+                money = publish_good_money.getText().toString();
+//                publish_good_money_2 = publish_good_money_2.getText().toString();
+//                publish_good_money_3 = publish_good_money_3.getText().toString();
 //                tel = publish_good_tel.getText().toString();
-//                if (StringUtil.isNullOrEmpty(title)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_one, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (title.length() > 100) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_two, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (StringUtil.isNullOrEmpty(content)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_three, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (content.length() > 4000) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_four, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (StringUtil.isNullOrEmpty(money)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (money.length() > 100) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (StringUtil.isNullOrEmpty(address)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_nine, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (address.length() > 250) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_ten, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (StringUtil.isNullOrEmpty(person)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_evelen, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (person.length() > 50) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_twelve, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (StringUtil.isNullOrEmpty(tel)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_thirty, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (tel.length() > 50) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_fourty, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (StringUtil.isNullOrEmpty(typeId)) {
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_seven, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                if (StringUtil.isNullOrEmpty(title)) {
+                    Toast.makeText(PublishGoodsActivity.this, "请输入商品名称", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (title.length() > 100) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_two, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (StringUtil.isNullOrEmpty(content)) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_three, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (content.length() > 2000) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_four, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (StringUtil.isNullOrEmpty(money)) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (money.length() > 100) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (StringUtil.isNullOrEmpty(publish_good_money_2.getText().toString())) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (publish_good_money_2.getText().toString().length() > 100) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (StringUtil.isNullOrEmpty(publish_good_money_3.getText().toString())) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (publish_good_money_3.getText().toString().length() > 100) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (StringUtil.isNullOrEmpty(typeId)) {
+                    Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_seven, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(StringUtil.isNullOrEmpty(countn.getText().toString())){
+                    Toast.makeText(PublishGoodsActivity.this, "请输入商品数量", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 //                if (typeIsBusiness.equals("1")) {//1说明该类别是商家的
 //                    if (!(emp_typeid.equals("2") || emp_typeid.equals("3"))) {
 //                        Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_eight, Toast.LENGTH_SHORT).show();
 //                        return;
 //                    }
 //                }
-//                Resources res = getBaseContext().getResources();
-//                String message = res.getString(R.string.check_publish).toString();
-//                progressDialog = new ProgressDialog(PublishGoodsActivity.this);
-//                progressDialog.setCanceledOnTouchOutside(false);
-//                progressDialog.setMessage(message);
-//                progressDialog.show();
-//                //检查有没有选择图片
-//                if (dataList.size() == 0) {
-//                    progressDialog.dismiss();
-//                    Toast.makeText(PublishGoodsActivity.this, R.string.check_is_picture, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                for (int i = 0; i < dataList.size(); i++) {
-//                    File file = new File(dataList.get(i));
-//                    Map<String, File> files = new HashMap<String, File>();
-//                    files.put("file", file);
-//                    Map<String, String> params = new HashMap<String, String>();
-//                    CommonUtil.addPutUploadFileRequest(
-//                            this,
-//                            InternetURL.UPLOAD_FILE,
-//                            files,
-//                            params,
-//                            new Response.Listener<String>() {
-//                                @Override
-//                                public void onResponse(String s) {
-//                                    if (StringUtil.isJson(s)) {
-//                                        SuccessData data = getGson().fromJson(s, SuccessData.class);
-//                                        if (data.getCode() == 200) {
-//                                            uploadPaths.add(data.getData());
-//                                            //说明文件已经上传完毕
-//                                            if (uploadPaths.size() == dataList.size()) {
-//                                                publishAll();
-//                                            }
-//                                        } else {
-//                                            Toast.makeText(PublishGoodsActivity.this, R.string.publish_error_one, Toast.LENGTH_SHORT).show();
-//                                            if (progressDialog != null) {
-//                                                progressDialog.dismiss();
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            },
-//                            new Response.ErrorListener() {
-//                                @Override
-//                                public void onErrorResponse(VolleyError volleyError) {
-//                                    Toast.makeText(PublishGoodsActivity.this, R.string.publish_error_two, Toast.LENGTH_SHORT).show();
-//                                    if (progressDialog != null) {
-//                                        progressDialog.dismiss();
-//                                    }
-//                                }
-//                            },
-//                            null);
-//                }
+                if(StringUtil.isNullOrEmpty(schoolds)){
+                    Toast.makeText(PublishGoodsActivity.this, "您的账号异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                progressDialog = new CustomProgressDialog(this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.show();
+                //检查有没有选择图片
+                if (dataList.size() == 0) {
+                    progressDialog.dismiss();
+                    Toast.makeText(PublishGoodsActivity.this, R.string.check_is_picture, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                for (int i = 0; i < dataList.size(); i++) {
+                    //七牛
+                    Bitmap bm = FileUtils.getSmallBitmap(dataList.get(i));
+                    final String cameraImagePath = FileUtils.saveBitToSD(bm, System.currentTimeMillis() + ".jpg");
+                    Map<String,String> map = new HashMap<>();
+                    map.put("space", "paopao-pic");
+                    RequestParams params = new RequestParams(map);
+                    client.get(getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            super.onSuccess(statusCode, headers, response);
+                            try {
+                                String token = response.getString("data");
+                                UploadManager uploadManager = new UploadManager();
+                                uploadManager.put(StringUtil.getBytes(cameraImagePath), StringUtil.getUUID(), token,
+                                        new UpCompletionHandler() {
+                                            @Override
+                                            public void complete(String key, ResponseInfo info, JSONObject response) {
+                                                //key
+                                                uploadPaths.add(key);
+                                                if (uploadPaths.size() == dataList.size()) {
+                                                    publishAll();
+                                                }
+                                            }
+                                        }, null);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                        }
+                    });
+                }
                 break;
             case R.id.publish_goods_imv:
                 //选择照片
@@ -284,8 +289,8 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.publish_goods_notice:
                 //发布须知
-                Intent noticegoods = new Intent(PublishGoodsActivity.this, GoodsNoticesActivity.class);
-                startActivity(noticegoods);
+//                Intent noticegoods = new Intent(PublishGoodsActivity.this, GoodsNoticesActivity.class);
+//                startActivity(noticegoods);
                 break;
         }
     }
@@ -294,7 +299,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_GOODSTYPE_URL,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.GET_GOODSTYPE_URL2,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -326,6 +331,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("lx_goods_type_type", "0");
                 return params;
             }
 
@@ -452,14 +458,26 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                 params.put("typeId", typeId);
                 params.put("name", title);
                 params.put("cover", String.valueOf(filePath));
-                params.put("content", content);
-                params.put("money", money);
+                params.put("cont", content);
+                params.put("sellPrice", money);
+                params.put("marketPrice", publish_good_money_2.getText().toString());
+                params.put("daili_price", publish_good_money_3.getText().toString());
                 params.put("empId", emp_id);
                 params.put("schoolId", schoolId);
-                params.put("address", address);
-                params.put("person", person);
-                params.put("tel", tel);
-                params.put("type", emp_typeid);
+                params.put("is_zhiying", "0");
+                params.put("manager_id", "");
+                params.put("is_youhuo", "0");
+                params.put("person", "");
+                params.put("tel", "");
+                params.put("qq", "");
+                params.put("address", "");
+                params.put("count", countn.getText().toString());
+                if(!StringUtil.isNullOrEmpty(schoolds)){
+                    params.put("schools", schoolds);
+                }
+
+//                params.put("type", emp_typeid);
+
                 return params;
 
             }
@@ -563,4 +581,61 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
             }
         }
     };
+
+    private List<SellerSchoolList> lists = new ArrayList<SellerSchoolList>();
+
+    private void getGoodsType() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.GET_SCHOOL_BYSJUUID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SellerSchoolListDATA data = getGson().fromJson(s, SellerSchoolListDATA.class);
+                            if (data.getCode() == 200) {
+                                lists.clear();
+                                lists.addAll(data.getData());
+                                if(lists != null){
+                                    for(SellerSchoolList sellerSchoolList: lists){
+                                        schoolds += sellerSchoolList.getSchoolId()+"|";
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(PublishGoodsActivity.this, R.string.report_error_two, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(PublishGoodsActivity.this, R.string.report_error_two, Toast.LENGTH_SHORT).show();
+                        }
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                        }
+                        Toast.makeText(PublishGoodsActivity.this, R.string.report_error_two, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("empId", emp_id);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
 }

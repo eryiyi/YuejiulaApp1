@@ -28,6 +28,7 @@ public class InternetURL {
     public static final String RECORD_URL =  "recordList.do";
     //获得二手市场类别
     public static final String GET_GOODSTYPE_URL =  "goodsTypeList.do";
+    public static final String GET_GOODSTYPE_URL2 =  "goodsTypeList2.do";
     //赞动态
     public static final String CLICK_LIKE_URL =  "zanRecord.do";
     //注册
@@ -45,7 +46,7 @@ public class InternetURL {
     //查询赞
     public static final String GET_FAVOUR_URL =  "listZan.do";
     //发布商品
-    public static final String PUBLISH_GOODS_URL =  "addGoods.do";
+    public static final String PUBLISH_GOODS_URL =  "paopaogoods/saveAppGoods.do";
     //删除商品
     public static final String DELETE_GOODS_URL =  "paopaogoods/delete.do";
     //查询告示

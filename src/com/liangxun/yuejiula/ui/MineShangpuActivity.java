@@ -46,11 +46,20 @@ public class MineShangpuActivity extends BaseActivity implements View.OnClickLis
         pricesCount_one = (TextView) this.findViewById(R.id.pricesCount_one);
         order_number_one = (TextView) this.findViewById(R.id.order_number_one);
         order_number_two = (TextView) this.findViewById(R.id.order_number_two);
+        this.findViewById(R.id.btn_add).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()){
+            case R.id.btn_add:
+            {
+                //添加
+                Intent intent  = new Intent(MineShangpuActivity.this, PublishGoodsActivity.class);
+                startActivity(intent);
+            }
+                break;
+        }
     }
 
     public void back(View view){

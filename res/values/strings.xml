@@ -23,8 +23,8 @@
     <string name="sd_card_is_in">请检查是否安装内存卡</string>
     <string name="network_in">请检查网络连接</string>
 
-    <string name="publishgoods_error_one">商品标题不能为空</string>
-    <string name="publishgoods_error_two">商品标题超出字段</string>
+    <string name="publishgoods_error_one">商品名称不能为空</string>
+    <string name="publishgoods_error_two">商品名称超出字段</string>
     <string name="publishgoods_error_three">商品介绍不能为空</string>
     <string name="publishgoods_error_four">商品介绍超出字段</string>
     <string name="publishgoods_error_five">商品价格不能为空</string>
