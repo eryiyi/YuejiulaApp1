@@ -11,6 +11,7 @@ import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.umeng.socialize.bean.RequestType;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -49,8 +50,8 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.webview);
         strurl = getIntent().getExtras().getString("strurl");
         strtitle = getIntent().getExtras().getString("strtitle");
-        progressDialog = new ProgressDialog(WebViewActivity.this );
-        progressDialog.setCancelable(false);
+        progressDialog =  new CustomProgressDialog(WebViewActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initView();

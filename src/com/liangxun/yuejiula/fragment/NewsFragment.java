@@ -29,6 +29,7 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.DetailNewsActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -206,10 +207,8 @@ public class NewsFragment extends BaseNewsFragment {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(Constants.SEND_NEWS_DELETE_SUCCESS)) {
-                progressDialog = new ProgressDialog(getActivity());
+                progressDialog = new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 initData();
             }

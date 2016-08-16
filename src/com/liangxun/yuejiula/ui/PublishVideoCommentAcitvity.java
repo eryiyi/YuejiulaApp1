@@ -29,6 +29,7 @@ import com.liangxun.yuejiula.face.FaceConversionUtil;
 import com.liangxun.yuejiula.face.ViewPagerAdapter;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -174,9 +175,9 @@ public class PublishVideoCommentAcitvity extends BaseActivity implements View.On
                     Toast.makeText(this, R.string.pk_cont_length, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(PublishVideoCommentAcitvity.this );
+                progressDialog = new CustomProgressDialog(PublishVideoCommentAcitvity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 publish_comment_run.setClickable(false);

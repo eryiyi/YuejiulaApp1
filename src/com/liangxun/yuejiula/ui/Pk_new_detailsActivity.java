@@ -33,6 +33,7 @@ import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.PicUtil;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ContentListView;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
 import com.liangxun.yuejiula.widget.popview.IsSurePrizesWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -553,8 +554,8 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
                 showJubao();
                 break;
             case R.id.pk_favour_liner:
-                progressDialog = new ProgressDialog(Pk_new_detailsActivity.this );
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(Pk_new_detailsActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 pk_favour_liner.setClickable(false);

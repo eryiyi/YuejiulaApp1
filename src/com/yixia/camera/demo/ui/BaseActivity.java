@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.view.Window;
 import com.google.gson.Gson;
+import com.liangxun.yuejiula.R;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.yixia.camera.demo.log.Logger;
 import com.yixia.camera.model.MediaObject;
 import com.yixia.camera.model.MediaObject.MediaPart;
@@ -25,9 +27,9 @@ public class BaseActivity extends Activity {
 	public ProgressDialog showProgress(String title, String message, int theme) {
 		if (mProgressDialog == null) {
 			if (theme > 0)
-				mProgressDialog = new ProgressDialog(this, theme);
+				mProgressDialog =  new CustomProgressDialog(BaseActivity.this, "正在加载中", R.anim.custom_dialog_frame);
 			else
-				mProgressDialog = new ProgressDialog(this);
+				mProgressDialog = new CustomProgressDialog(BaseActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 			mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			mProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			mProgressDialog.setCanceledOnTouchOutside(false);// 不能取消

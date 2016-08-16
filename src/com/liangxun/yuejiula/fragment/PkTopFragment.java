@@ -31,6 +31,7 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.Pk_new_detailsActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,9 +94,7 @@ public class PkTopFragment extends BasePkFragment implements View.OnClickListene
                 } else {
                     deleteContSearch.setVisibility(View.GONE);
                 }
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 getData();
             }
@@ -133,9 +132,7 @@ public class PkTopFragment extends BasePkFragment implements View.OnClickListene
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = false;
                 pageIndex++;
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 getData();
             }
@@ -319,9 +316,7 @@ public class PkTopFragment extends BasePkFragment implements View.OnClickListene
                 //刷新内容
                 IS_REFRESH = true;
                 pageIndex = 1;
-                progressDialog = new ProgressDialog(getActivity() );
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 getData();
             }

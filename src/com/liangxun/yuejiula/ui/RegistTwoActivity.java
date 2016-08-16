@@ -31,6 +31,7 @@ import com.liangxun.yuejiula.entity.Univerty;
 import com.liangxun.yuejiula.receiver.SMSBroadcastReceiver;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.CustomerSpinner;
 import org.json.JSONObject;
 
@@ -250,7 +251,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
                     Toast.makeText(RegistTwoActivity.this, R.string.register_error_school, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(RegistTwoActivity.this);
+                progressDialog = new CustomProgressDialog(RegistTwoActivity.this, "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 SMSSDK.submitVerificationCode("86", phString, code.getText().toString());

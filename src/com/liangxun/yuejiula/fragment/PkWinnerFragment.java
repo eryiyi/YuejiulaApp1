@@ -32,6 +32,7 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.Pk_new_detailsActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -237,9 +238,7 @@ public class PkWinnerFragment extends BasePkFragment implements View.OnClickList
                 //刷新内容
                 IS_REFRESH = true;
                 pageIndex = 1;
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 initData();
             }

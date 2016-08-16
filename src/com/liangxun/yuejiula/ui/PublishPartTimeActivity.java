@@ -23,6 +23,7 @@ import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.PartTimeType;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.CustomerSpinner;
 
 import java.util.ArrayList;
@@ -205,8 +206,8 @@ public class PublishPartTimeActivity extends BaseActivity implements View.OnClic
                     Toast.makeText(PublishPartTimeActivity.this, R.string.publishpart_error_night, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(PublishPartTimeActivity.this);
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(PublishPartTimeActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 publishAll();

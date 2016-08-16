@@ -26,6 +26,7 @@ import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.receiver.SMSBroadcastReceiver;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -157,7 +158,7 @@ public class FindPwrOneActivity extends BaseActivity implements View.OnClickList
                     Toast.makeText(this, R.string.pwr_error_three, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(FindPwrOneActivity.this);
+                progressDialog = new CustomProgressDialog(FindPwrOneActivity.this, "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 SMSSDK.submitVerificationCode("86", phString, code.getText().toString());

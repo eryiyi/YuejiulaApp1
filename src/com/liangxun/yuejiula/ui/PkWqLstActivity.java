@@ -29,6 +29,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.PkFootPopWindow;
 
 import java.util.ArrayList;
@@ -68,8 +69,8 @@ public class PkWqLstActivity extends BaseActivity implements View.OnClickListene
         pkTheme = (PKTheme) getIntent().getExtras().get(Constants.PK_ADD_PRIZE_THEME_WQ);
         setContentView(R.layout.pk_wqlstv);
         initView();
-        progressDialog = new ProgressDialog(PkWqLstActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(PkWqLstActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         getData();
@@ -102,8 +103,8 @@ public class PkWqLstActivity extends BaseActivity implements View.OnClickListene
                 } else {
                     deleteContSearch.setVisibility(View.GONE);
                 }
-                progressDialog = new ProgressDialog(PkWqLstActivity.this );
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(PkWqLstActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 getData();
@@ -289,7 +290,7 @@ public class PkWqLstActivity extends BaseActivity implements View.OnClickListene
                 //刷新内容
                 IS_REFRESH = true;
                 pageIndex = 1;
-                progressDialog = new ProgressDialog( PkWqLstActivity.this);
+                progressDialog =  new CustomProgressDialog(PkWqLstActivity.this, "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.setCancelable(false);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();

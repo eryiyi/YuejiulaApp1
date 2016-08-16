@@ -20,6 +20,7 @@ import com.liangxun.yuejiula.data.MineShangjiasDATA;
 import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,8 +45,8 @@ public class MineSchoolsActivity extends BaseActivity implements View.OnClickLis
         setContentView(R.layout.mine_schools);
         initView();
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
-        progressDialog = new ProgressDialog(MineSchoolsActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(MineSchoolsActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         getData();

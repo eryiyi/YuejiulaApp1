@@ -26,6 +26,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
 
 import java.util.ArrayList;
@@ -60,9 +61,9 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
         initView();
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
-        progressDialog = new ProgressDialog(ReportActivity.this );
+        progressDialog = new CustomProgressDialog(ReportActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initData();
@@ -84,9 +85,9 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                progressDialog = new ProgressDialog(ReportActivity.this);
+                progressDialog = new CustomProgressDialog(ReportActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 initData();
@@ -98,9 +99,9 @@ public class ReportActivity extends BaseActivity implements View.OnClickListener
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                progressDialog = new ProgressDialog(ReportActivity.this );
+                progressDialog =  new CustomProgressDialog(ReportActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 initData();

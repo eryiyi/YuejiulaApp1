@@ -30,6 +30,7 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
 import com.liangxun.yuejiula.R;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 
 public class BaiduMapActivity extends HxBaseActivity {
@@ -131,7 +132,7 @@ public class BaiduMapActivity extends HxBaseActivity {
 
     private void showMapWithLocationClient() {
         String str1 = getResources().getString(R.string.Making_sure_your_location);
-        progressDialog = new ProgressDialog(BaiduMapActivity.this );
+        progressDialog =  new CustomProgressDialog(BaiduMapActivity.this, "正在加载中",R.anim.custom_dialog_frame);
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setCanceledOnTouchOutside(false);

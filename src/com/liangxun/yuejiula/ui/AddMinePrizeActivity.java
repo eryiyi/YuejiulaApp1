@@ -27,6 +27,7 @@ import com.liangxun.yuejiula.entity.ContractSchool;
 import com.liangxun.yuejiula.util.CompressPhotoUtil;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.NoScrollGridView;
 import com.liangxun.yuejiula.widget.popview.SelectPhoPopWindow;
 import com.loopj.android.http.AsyncHttpClient;
@@ -147,9 +148,9 @@ public class AddMinePrizeActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(this, R.string.publishnews_error_four, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(this );
+                progressDialog =  new CustomProgressDialog(AddMinePrizeActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
 

@@ -32,6 +32,7 @@ import com.liangxun.yuejiula.ui.PkCommentActivity;
 import com.liangxun.yuejiula.ui.Pk_new_detailsActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,9 +96,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
                 } else {
                     deleteContSearch.setVisibility(View.GONE);
                 }
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 getData();
             }
@@ -135,9 +134,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = false;
                 pageIndex++;
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 getData();
             }
@@ -165,10 +162,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
         tmpPosition = position;
         switch (flag) {
             case 1:
-                progressDialog = new ProgressDialog(getActivity() );
-
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 zan_click();
                 break;
@@ -280,9 +274,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
                 //刷新内容
                 IS_REFRESH = true;
                 pageIndex = 1;
-                progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+                progressDialog =  new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.show();
                 getData();
             }

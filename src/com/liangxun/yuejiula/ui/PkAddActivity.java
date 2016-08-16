@@ -33,6 +33,7 @@ import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.util.*;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.NoScrollGridView;
 import com.liangxun.yuejiula.widget.popview.PublishPopWindow;
 import com.liangxun.yuejiula.widget.popview.SelectPhoTwoPopWindow;
@@ -220,8 +221,8 @@ public class PkAddActivity extends BaseActivity implements View.OnClickListener,
                     Toast.makeText(this, R.string.pk_cont_length, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(PkAddActivity.this );
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(PkAddActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 if (type.equals("0")) {
@@ -240,7 +241,7 @@ public class PkAddActivity extends BaseActivity implements View.OnClickListener,
                         Map<String,String> map = new HashMap<>();
                         map.put("space", "paopao-pic");
                         RequestParams params = new RequestParams(map);
-                        client.get(InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
+                        client.get(getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                 super.onSuccess(statusCode, headers, response);
@@ -464,7 +465,7 @@ public class PkAddActivity extends BaseActivity implements View.OnClickListener,
         Map<String,String> map = new HashMap<>();
         map.put("space", "paopao-pic");
         RequestParams params = new RequestParams(map);
-        client.get(InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
+        client.get(getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);

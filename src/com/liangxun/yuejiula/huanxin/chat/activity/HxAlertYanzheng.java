@@ -24,6 +24,7 @@ import com.easemob.chat.EMContactManager;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 
 public class HxAlertYanzheng extends BaseActivity {
@@ -48,8 +49,8 @@ public class HxAlertYanzheng extends BaseActivity {
             Toast.makeText(this, "请输入验证信息", Toast.LENGTH_LONG).show();
             return;
         } else {
-            progressDialog = new ProgressDialog(this );
-            progressDialog.setCancelable(false);
+            progressDialog =  new CustomProgressDialog(HxAlertYanzheng.this, "正在加载中",R.anim.custom_dialog_frame);
+            progressDialog.setCancelable(true);
             progressDialog.setIndeterminate(true);
             progressDialog.show();
             progressDialog.setMessage(stri);

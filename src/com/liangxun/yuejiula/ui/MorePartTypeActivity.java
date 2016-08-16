@@ -23,6 +23,7 @@ import com.liangxun.yuejiula.entity.PartTimeType;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ClassifyGridview;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,8 +62,8 @@ public class MorePartTypeActivity extends BaseActivity implements View.OnClickLi
         adapter = new PartTimeTypeAdapter(goodstypeList, this);
         parttimetyupeGridview.setAdapter(adapter);
         parttimetyupeGridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
-        progressDialog = new ProgressDialog(MorePartTypeActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(MorePartTypeActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initData();

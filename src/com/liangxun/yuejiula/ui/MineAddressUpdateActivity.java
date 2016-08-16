@@ -17,6 +17,7 @@ import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.ShoppingAddress;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.OrderCancelPopWindow;
 
 import java.util.HashMap;
@@ -107,8 +108,8 @@ public class MineAddressUpdateActivity extends BaseActivity implements View.OnCl
                     return;
                 }
 
-                progressDialog = new ProgressDialog(MineAddressUpdateActivity.this );
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(MineAddressUpdateActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 saveAddress();

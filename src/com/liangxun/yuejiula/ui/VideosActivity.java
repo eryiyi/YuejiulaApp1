@@ -29,6 +29,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.umeng.socialize.bean.RequestType;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -78,9 +79,9 @@ public class VideosActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.videos_activity);
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         initView();
-        progressDialog = new ProgressDialog(this );
+        progressDialog =  new CustomProgressDialog(VideosActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initData();
@@ -132,9 +133,9 @@ public class VideosActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.liner_one:
-                progressDialog = new ProgressDialog(this );
+                progressDialog = new CustomProgressDialog(VideosActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 IS_REFRESH = true;
@@ -144,9 +145,9 @@ public class VideosActivity extends BaseActivity implements View.OnClickListener
                 initData();
                 break;
             case R.id.liner_two:
-                progressDialog = new ProgressDialog(this );
+                progressDialog = new CustomProgressDialog(VideosActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 IS_REFRESH = true;
@@ -229,9 +230,9 @@ public class VideosActivity extends BaseActivity implements View.OnClickListener
             case 3:
                 //赞
             {
-                progressDialog = new ProgressDialog(this );
+                progressDialog =  new CustomProgressDialog(VideosActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 zan_click(tmpVideos);

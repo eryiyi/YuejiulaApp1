@@ -31,6 +31,7 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -83,8 +84,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         initView(view);
         String cover = getGson().fromJson(getSp().getString(Constants.EMPCOVER, ""), String.class);
         schoolIdEmp = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
         progressDialog.show();
         initData();
         return view;

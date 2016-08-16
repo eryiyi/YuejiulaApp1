@@ -20,6 +20,7 @@ import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.Record;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,8 +67,8 @@ public class AddRecordJpActivity extends BaseActivity implements View.OnClickLis
                     showMsg(AddRecordJpActivity.this, "请输入超价金额！");
                     return;
                 }
-                progressDialog = new ProgressDialog(AddRecordJpActivity.this);
-                progressDialog.setCancelable(false);
+                progressDialog =  new CustomProgressDialog(AddRecordJpActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.show();
                 addChaojia();
                 break;

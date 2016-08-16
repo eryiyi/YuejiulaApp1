@@ -33,6 +33,7 @@ import com.liangxun.yuejiula.order.OrderInfoAndSign;
 import com.liangxun.yuejiula.order.PayResult;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -125,8 +126,8 @@ public class OrderMakeActivity  extends BaseActivity implements View.OnClickList
         lists = (List<ShoppingCart>) getIntent().getExtras().get("listsgoods");
         initView();
 
-        progressDialog = new ProgressDialog(OrderMakeActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(OrderMakeActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         toCalculate();

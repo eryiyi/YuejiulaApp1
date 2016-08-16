@@ -30,6 +30,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.MorePartTypePopWindow;
 import com.liangxun.yuejiula.widget.popview.PublishGoodsInfoPopWindow;
 
@@ -76,8 +77,8 @@ public class PartsActivity extends BaseActivity implements View.OnClickListener,
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         type = getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class);
         initView();
-        progressDialog = new ProgressDialog(PartsActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(PartsActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initData();

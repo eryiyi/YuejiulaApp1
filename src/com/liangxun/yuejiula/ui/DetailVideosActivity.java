@@ -34,6 +34,7 @@ import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ContentListView;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.umeng.socialize.bean.RequestType;
@@ -238,8 +239,8 @@ public class DetailVideosActivity extends BaseActivity implements View.OnClickLi
                 startActivity(comment);
                 break;
             case R.id.detail_like_liner://点赞
-                progressDialog = new ProgressDialog(this );
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(DetailVideosActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 detail_like_liner.setClickable(false);

@@ -26,6 +26,7 @@ import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.receiver.SMSBroadcastReceiver;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -148,7 +149,7 @@ public class ReSetMobileActivity extends BaseActivity implements View.OnClickLis
                     Toast.makeText(ReSetMobileActivity.this, R.string.register_error_two, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(ReSetMobileActivity.this);
+                progressDialog = new CustomProgressDialog(ReSetMobileActivity.this, "正在加载中",R.anim.custom_dialog_frame);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 SMSSDK.submitVerificationCode("86", phString, code.getText().toString());

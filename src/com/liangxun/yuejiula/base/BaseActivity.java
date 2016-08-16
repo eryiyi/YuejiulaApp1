@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.huanxin.chat.utils.CommonUtils;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.yixia.camera.demo.UniversityApplication;
 
 import java.util.concurrent.ExecutorService;
@@ -29,7 +30,7 @@ import java.util.concurrent.ExecutorService;
  * Created by zhanghl on 2014/11/11.
  */
 public class BaseActivity extends FragmentActivity {
-    public ProgressDialog progressDialog;
+    public CustomProgressDialog progressDialog;
     private static final int notifiId = 11;
     protected NotificationManager notificationManager;
     /**

@@ -28,6 +28,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +63,8 @@ public class MineShangjiaActivity extends BaseActivity implements View.OnClickLi
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         initView();
-        progressDialog = new ProgressDialog(MineShangjiaActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(MineShangjiaActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initData();
@@ -211,8 +212,8 @@ public class MineShangjiaActivity extends BaseActivity implements View.OnClickLi
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(Constants.UPDATE_SHANGJIA_INFOS)) {
-                progressDialog = new ProgressDialog(MineShangjiaActivity.this);
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(MineShangjiaActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 initData();

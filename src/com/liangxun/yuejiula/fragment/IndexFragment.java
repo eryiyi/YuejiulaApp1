@@ -20,6 +20,7 @@ import com.liangxun.yuejiula.base.BaseFragment;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,9 +45,7 @@ public class IndexFragment  extends BaseFragment implements View.OnClickListener
 //        initView(view);
 //        String cover = getGson().fromJson(getSp().getString(Constants.EMPCOVER, ""), String.class);
 //        imageLoader.displayImage(cover, main_cover, UniversityApplication.txOptions, animateFirstListener);
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(true);
+        progressDialog = new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
         progressDialog.show();
         initData();
         return view;

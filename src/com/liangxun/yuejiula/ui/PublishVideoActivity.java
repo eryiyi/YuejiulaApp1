@@ -38,6 +38,7 @@ import com.liangxun.yuejiula.face.FaceConversionUtil;
 import com.liangxun.yuejiula.face.ViewPagerAdapter;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.CustomerSpinner;
 import com.liangxun.yuejiula.widget.popview.PublishPopWindow;
 import com.loopj.android.http.AsyncHttpClient;
@@ -264,9 +265,9 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
                     Toast.makeText(this, "请选择标签", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(PublishVideoActivity.this );
+                progressDialog = new CustomProgressDialog(PublishVideoActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 uploadFile();
@@ -338,7 +339,7 @@ public class PublishVideoActivity extends BaseActivity implements AdapterView.On
         Map<String,String> map = new HashMap<>();
         map.put("space", "paopao-pic");
         RequestParams params = new RequestParams(map);
-        client.get(InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
+        client.get(getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);

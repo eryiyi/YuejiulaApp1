@@ -24,6 +24,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,8 +54,8 @@ public class NoticeActivity extends BaseActivity implements View.OnClickListener
         initView();
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
-        progressDialog = new ProgressDialog(NoticeActivity.this);
-        progressDialog.setCancelable(false);
+        progressDialog = new CustomProgressDialog(NoticeActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+        progressDialog.setCancelable(true);
         progressDialog.setIndeterminate(true);
         progressDialog.show();
         initData();

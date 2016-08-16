@@ -38,6 +38,7 @@ import com.liangxun.yuejiula.huanxin.chat.domain.HxUser;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yixia.camera.demo.UniversityApplication;
@@ -96,8 +97,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             title.setText(getGson().fromJson(getSp().getString("select_big_area_name", ""), String.class));
         }
         if (!StringUtil.isNullOrEmpty(username) && !StringUtil.isNullOrEmpty(pwr)) {
-            progressDialog = new ProgressDialog(LoginActivity.this);
-            progressDialog.setCancelable(false);
+            progressDialog = new CustomProgressDialog(LoginActivity.this, "正在加载中",R.anim.custom_dialog_frame);
+            progressDialog.setCancelable(true);
             progressDialog.setIndeterminate(true);
             progressDialog.show();
             login();
@@ -154,9 +155,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     Toast.makeText(this, R.string.login_error_two, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                progressDialog = new ProgressDialog(LoginActivity.this );
+                progressDialog = new CustomProgressDialog(LoginActivity.this, "正在加载中",R.anim.custom_dialog_frame);
 
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 login();

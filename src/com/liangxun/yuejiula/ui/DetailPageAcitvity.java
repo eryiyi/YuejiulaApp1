@@ -32,6 +32,7 @@ import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.PicUtil;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ContentListView;
+import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.PictureGridview;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -418,8 +419,8 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
 
                 break;
             case R.id.detail_like_liner://点赞
-                progressDialog = new ProgressDialog(this);
-                progressDialog.setCancelable(false);
+                progressDialog = new CustomProgressDialog(DetailPageAcitvity.this, "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.setCancelable(true);
                 progressDialog.setIndeterminate(true);
                 progressDialog.show();
                 detail_like_liner.setClickable(false);
