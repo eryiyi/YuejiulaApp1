@@ -19,6 +19,15 @@ public class Goodstype {
     private String school_id;
     private String emp_id;
     private String schoolName;
+    private String istype;
+
+    public String getIstype() {
+        return istype;
+    }
+
+    public void setIstype(String istype) {
+        this.istype = istype;
+    }
 
     public String getLx_goods_type_type() {
         return lx_goods_type_type;

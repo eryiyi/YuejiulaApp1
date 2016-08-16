@@ -76,7 +76,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
 
     UMSocialService mController;
     String shareCont = "";//内容
-    String shareUrl = InternetURL.SHARE_GOODS;
+    String shareUrl = "";
     String shareParams = "";
     String appID = Constants.social_wx_key;
     String sharePic = "";
@@ -104,6 +104,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         res=getResources();
+        shareUrl =  getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.SHARE_GOODS;
         img_favour = res.getDrawable(R.drawable.favour_p);
         img_favour.setBounds(0, 0, img_favour.getMinimumWidth(), img_favour.getMinimumHeight());
         setContentView(R.layout.detail_goods_xml);
@@ -172,7 +173,7 @@ public class DetailGoodsActivity extends BaseActivity implements OnClickContentI
         //设置WebView属性，能够执行Javascript脚本
         webview.getSettings().setJavaScriptEnabled(true);
         //加载需要显示的网页
-        webview.loadUrl(InternetURL.DETAIL_GOODS_URL + "?id=" + goods.getId());
+        webview.loadUrl(getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +InternetURL.DETAIL_GOODS_URL + "?id=" + goods.getId());
         //设置Web视图
         webview.setWebViewClient(new HelloWebViewClient());
         webview.addJavascriptInterface(new Contact(), "contact");

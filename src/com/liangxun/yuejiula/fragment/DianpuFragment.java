@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -122,9 +123,18 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                     startActivity(search);
                 }else if("1".equals(goodstype.getLx_goods_type_type())){
                     //是第三方网址
-                    Intent webView = new Intent(getActivity(), WebViewActivity.class);
-                    webView.putExtra("strurl", goodstype.getLx_goods_type_url());
-                    startActivity(webView);
+                    switch (Integer.parseInt(goodstype.getIstype())){
+                        case 0:
+                            Intent webView = new Intent(getActivity(), WebViewActivity.class);
+                            webView.putExtra("strurl", goodstype.getLx_goods_type_url());
+                            startActivity(webView);
+                            break;
+                        case 1:
+                            final Uri uri = Uri.parse(goodstype.getLx_goods_type_url());
+                            final Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(it);
+                            break;
+                    }
                 }
             }
         });
