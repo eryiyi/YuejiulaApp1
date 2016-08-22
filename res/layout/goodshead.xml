@@ -89,22 +89,34 @@
                         <!--android:id="@+id/soubtn"/>-->
             <!--</LinearLayout>-->
         <!--</LinearLayout>-->
-    <com.liangxun.yuejiula.widget.MarqueeButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btSecond"
-            android:layout_marginTop="5dp"
-            android:ellipsize="marquee"
-            android:gravity="center"
-            android:padding="12dp"
-            android:textColor="@color/red"
-            android:background="@color/transgray"
-            android:focusable="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:textSize="16dip"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:layout_height="wrap_content">
+        <com.liangxun.yuejiula.widget.MarqueeButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/btSecond"
+                android:layout_marginTop="5dp"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:padding="12dp"
+                android:textColor="@color/red"
+                android:background="@color/transgray"
+                android:focusable="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusableInTouchMode="true"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textSize="16dip"/>
+        <ImageView android:layout_width="50dp"
+                   android:padding="3dp"
+                   android:id="@+id/btn_img"
+                   android:src="@drawable/tree_user_crs"
+                   android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 
     <!--分类-->
         <com.liangxun.yuejiula.widget.ClassifyGridview

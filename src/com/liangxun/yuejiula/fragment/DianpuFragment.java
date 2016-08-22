@@ -29,10 +29,7 @@ import com.liangxun.yuejiula.entity.Goodstype;
 import com.liangxun.yuejiula.entity.MsgAd;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
-import com.liangxun.yuejiula.ui.DetailGoodsActivity;
-import com.liangxun.yuejiula.ui.DianpuDetailActivity;
-import com.liangxun.yuejiula.ui.SearchGoodsActivity;
-import com.liangxun.yuejiula.ui.WebViewActivity;
+import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ClassifyGridview;
@@ -73,6 +70,8 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     private MarqueeButton btSecond;
     MsgAd msgAd;
 
+    private ImageView btn_img;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +92,8 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     private void initView(View view) {
         //头部文件
         headView = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.goodshead, null);
+        btn_img = (ImageView) headView.findViewById(R.id.btn_img);
+        btn_img.setOnClickListener(this);
 //        searchText = (EditText) headView.findViewById(R.id.searchText);
 //        soubtn = (ImageView) headView.findViewById(R.id.soubtn);
 //        soubtn.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +196,24 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_img:
+            {
+                //找到管理员
+//                save("manager_hxusername", emp1.getHxUsername());
+//                save("manager_empid", emp1.getEmpId());
+                String manager_empid = getGson ().fromJson(getSp().getString("manager_empid", ""), String.class);
+                if(manager_empid.equals(emp_id)){
+                    //同一个人
+                    Intent profileV = new Intent(getActivity(), UpdateProfilePersonalActivity.class);
+                    startActivity(profileV);
+                }else{
+                    Intent profileV = new Intent(getActivity(), ProfilePersonalActivity.class);
+                    profileV.putExtra(Constants.EMPID, manager_empid);
+                    startActivity(profileV);
+                }
 
+            }
+                break;
         }
     }
 

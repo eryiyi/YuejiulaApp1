@@ -1844,7 +1844,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                                 if(emp1 != null){
                                     save("manager_hxusername", emp1.getHxUsername());
                                     save("manager_empid", emp1.getEmpId());
-
                                 }
                             }
                         }
