@@ -131,7 +131,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                 try {
                     PaopaoGoods good = listgoods.get(position-2);
                     if (good != null) {
-                        Intent detail = new Intent(DianpuDetailActivity.this, DetailGoodsActivity.class);
+                        Intent detail = new Intent(DianpuDetailActivity.this, DetailPaopaoGoodsActivity.class);
                         detail.putExtra(Constants.GOODS, good);
                         startActivity(detail);
                     }
@@ -216,7 +216,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void run() {
                 int next = viewpager.getCurrentItem()+1;
-                if (next > adaptertwo.getCount()) {
+                if (next > adapterAd.getCount()) {
                     next = 0;
                 }
                 viewHandler.sendEmptyMessage(next);
@@ -341,7 +341,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
      * 设置当前的引导页
      */
     private void setCurView(int position) {
-        if (position < 0 || position > adaptertwo.getCount()) {
+        if (position < 0 || position > adapterAd.getCount()) {
             return;
         }
         viewpager.setCurrentItem(position);

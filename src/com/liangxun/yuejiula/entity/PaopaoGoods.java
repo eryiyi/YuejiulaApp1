@@ -35,6 +35,24 @@ public class PaopaoGoods implements Serializable {
     private String manager_id;
     private String is_youhuo;
     private String daili_price;
+    private String is_video;
+    private String videourl;
+
+    public String getIs_video() {
+        return is_video;
+    }
+
+    public void setIs_video(String is_video) {
+        this.is_video = is_video;
+    }
+
+    public String getVideourl() {
+        return videourl;
+    }
+
+    public void setVideourl(String videourl) {
+        this.videourl = videourl;
+    }
 
     public String getDaili_price() {
         return daili_price;

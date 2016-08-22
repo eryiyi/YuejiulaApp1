@@ -97,6 +97,11 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     AsyncHttpClient client = new AsyncHttpClient();
     private String schoolds = "";
 
+    private ImageView publish_goods_video;//添加视频
+    private TextView video_url;
+    private LinearLayout liner_video;
+    private String videoKey= "";//视频上传之后的key
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +115,11 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initView() {
+        publish_goods_video = (ImageView) this.findViewById(R.id.publish_goods_video);
+        liner_video = (LinearLayout) this.findViewById(R.id.liner_video);
+        liner_video.setVisibility(View.GONE);
+        video_url = (TextView) this.findViewById(R.id.video_url);
+        publish_goods_video.setOnClickListener(this);
         publish_goods_imv = (ImageView) this.findViewById(R.id.publish_goods_imv);
         publish_goods_imv.setOnClickListener(this);
         countn = (EditText) this.findViewById(R.id.countn);
@@ -166,9 +176,11 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
         publish_goods_notice.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.publis_goods_back:
                 finish();
                 break;
@@ -267,7 +279,11 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                                                 //key
                                                 uploadPaths.add(key);
                                                 if (uploadPaths.size() == dataList.size()) {
-                                                    publishAll();
+                                                    if(!StringUtil.isNullOrEmpty(video_url.getText().toString())){
+                                                        sendVideo(video_url.getText().toString());
+                                                    }else {
+                                                        publishAll();
+                                                    }
                                                 }
                                             }
                                         }, null);
@@ -291,9 +307,50 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
 //                Intent noticegoods = new Intent(PublishGoodsActivity.this, GoodsNoticesActivity.class);
 //                startActivity(noticegoods);
                 break;
+            case R.id.publish_goods_video:
+            {
+                //添加视频
+                //拍摄视频
+                Intent videoV = new Intent(PublishGoodsActivity.this, AddVideoActivity.class);
+                startActivityForResult(videoV, 10001);
+            }
+            break;
         }
     }
 
+
+    void sendVideo(final String videoUrl){
+            //七牛
+            Map<String,String> map = new HashMap<>();
+            map.put("space", "paopao-pic");
+            RequestParams params = new RequestParams(map);
+            client.get(getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.UPLOAD_TOKEN ,params, new JsonHttpResponseHandler(){
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    super.onSuccess(statusCode, headers, response);
+                    try {
+                        String token = response.getString("data");
+                        UploadManager uploadManager = new UploadManager();
+                        uploadManager.put(StringUtil.getBytes(videoUrl), StringUtil.getUUID(), token,
+                                new UpCompletionHandler() {
+                                    @Override
+                                    public void complete(String key, ResponseInfo info, JSONObject response) {
+                                        //key
+                                        videoKey = key;
+                                        publishAll();
+                                    }
+                                }, null);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+            });
+
+    }
     //获得二手市场类别
     private void initData() {
         StringRequest request = new StringRequest(
@@ -366,6 +423,14 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 10001 && resultCode == 0){
+            //拍摄视频
+            String urlv = data.getStringExtra("video_url");
+            if(!StringUtil.isNullOrEmpty(urlv)){
+                liner_video.setVisibility(View.VISIBLE);
+                video_url.setText(urlv);
+            }
+        }else
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case SELECT_LOCAL_PHOTO:
@@ -473,6 +538,12 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                 params.put("count", countn.getText().toString());
                 if(!StringUtil.isNullOrEmpty(schoolds)){
                     params.put("schools", schoolds);
+                }
+                if(!StringUtil.isNullOrEmpty(videoKey)){
+                    params.put("is_video", "1");
+                    params.put("videourl", videoKey);
+                }else {
+                    params.put("is_video", "0");
                 }
 
 //                params.put("type", emp_typeid);

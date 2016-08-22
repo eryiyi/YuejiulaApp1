@@ -59,13 +59,39 @@
                       android:focusable="true"
                       android:focusableInTouchMode="true"
                       android:layout_height="match_parent">
-            <ImageView
-                    android:id="@+id/publish_goods_imv"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/addphoto_button_pressed"/>
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:gravity="center"
+                              android:layout_height="wrap_content">
+                        <ImageView
+                                android:id="@+id/publish_goods_imv"
+                                android:layout_gravity="center"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/addphoto_button_pressed"/>
+                        <ImageView
+                                android:id="@+id/publish_goods_video"
+                                android:layout_gravity="center"
+                                android:layout_width="60dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/add_video"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:id="@+id/liner_video"
+                              android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content"
+                                  android:text="视频路径："
+                                  android:textColor="@color/textColor"
+                                  android:padding="8dp"
+                                  android:layout_height="wrap_content"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:textColor="@color/textColor"
+                                  android:padding="8dp"
+                                  android:id="@+id/video_url"
+                                  android:layout_height="wrap_content"/>
+                </LinearLayout>
 
             <com.liangxun.yuejiula.widget.NoScrollGridView
                     android:id="@+id/publish_goods_gridview_image"
@@ -73,7 +99,7 @@
                     android:layout_height="match_parent"
                     android:listSelector="@drawable/selector_pressed_gray"
                     android:horizontalSpacing="5dip"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="3dp"
                     android:numColumns="4"
                     android:padding="10dip"
                     android:verticalSpacing="5dip"/>

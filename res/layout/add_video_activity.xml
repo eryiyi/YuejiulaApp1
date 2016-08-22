@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:id="@+id/main"
+              android:background="@color/detail_back"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="48dip"
+                    android:background="@drawable/global_top_background">
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="拍摄视频"
+                  android:textSize="18sp"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                  android:textColor="@color/textColor"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <com.liangxun.yuejiula.widget.MovieRecorderView
+            android:id="@+id/movieRecorderView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="3dp" />
+
+    <ImageView
+            android:id="@+id/shoot_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/record_controller_seletor"
+            android:textColor="#20b6ff"/>
+</LinearLayout>

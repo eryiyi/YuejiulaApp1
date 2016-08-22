@@ -292,6 +292,8 @@
         <activity android:name="com.liangxun.yuejiula.ui.SelectProvinceActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.MineDailisActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.SelectBigAreaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AddVideoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.DetailPaopaoGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
 
 
