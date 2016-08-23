@@ -174,7 +174,7 @@ public class MineCartActivity extends BaseActivity implements View.OnClickListen
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsdetail = new Intent(MineCartActivity.this, DetailGoodsActivity.class);
+                                    Intent goodsdetail = new Intent(MineCartActivity.this, DetailPaopaoGoodsActivity.class);
                                     goodsdetail.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsdetail);
                                 } else {

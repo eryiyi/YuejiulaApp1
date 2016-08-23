@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,21 +27,16 @@ import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.*;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
-import com.liangxun.yuejiula.data.AdObjData;
-import com.liangxun.yuejiula.data.FavoursDATA;
-import com.liangxun.yuejiula.data.GoodsCommentDATA;
-import com.liangxun.yuejiula.data.SuccessData;
+import com.liangxun.yuejiula.data.*;
 import com.liangxun.yuejiula.db.DBHelper;
 import com.liangxun.yuejiula.db.ShoppingCart;
-import com.liangxun.yuejiula.entity.AdObj;
-import com.liangxun.yuejiula.entity.GoodsComment;
-import com.liangxun.yuejiula.entity.PaopaoGoods;
-import com.liangxun.yuejiula.entity.VideoPlayer;
+import com.liangxun.yuejiula.entity.*;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.DateUtil;
 import com.liangxun.yuejiula.util.StringUtil;
+import com.liangxun.yuejiula.widget.ContentListView;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
 import com.liangxun.yuejiula.widget.popview.GoodsPopMenu;
 import com.liangxun.yuejiula.widget.popview.GoodsTelPopWindow;
@@ -67,7 +63,7 @@ import java.util.Map;
 /**
  * Created by zhl on 2016/8/22.
  */
-public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickContentItemListener,View.OnClickListener, GoodsPopMenu.OnItemClickListener {
+public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickContentItemListener,View.OnClickListener, GoodsPopMenu.OnItemClickListener,ContentListView.OnRefreshListener, ContentListView.OnLoadListener {
     private ImageView detail_goods_back;//返回
     private Button foot_cart;//加入购物车
     private Button foot_order;//立即购买
@@ -94,10 +90,10 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
     //下拉菜单
     private GoodsPopMenu menu;
     List<String> arrayMenu = new ArrayList<>();
-    private LinearLayout headView;
+    private ScrollView headView;
 
     String topPosition;
-    PullToRefreshListView lstv;
+    ContentListView lstv;
     private GoodsCommentAdapter adapter;
     private List<GoodsComment> comments;
     private int pageIndex = 1;
@@ -145,6 +141,65 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         goods = (PaopaoGoods) getIntent().getExtras().get(Constants.GOODS);
         topPosition = goods.getGoodsPosition();
         initView();
+        initData();
+    }
+    public  static  Boolean flagR = false;
+    private List<DailiObj> dailis = new ArrayList<DailiObj>();
+    private void isDaili() {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) + InternetURL.LIST_DAILI_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            DailiObjData data = getGson().fromJson(s, DailiObjData.class);
+                            if (data.getCode() == 200) {
+                                if (IS_REFRESH) {
+                                    dailis.clear();
+                                }
+                                dailis.addAll(data.getData());
+                                if(dailis != null && dailis.size() > 0){
+                                    //说明是代理关系
+                                    flagR = true;
+                                    money_three.setVisibility(View.VISIBLE);
+                                }else {
+                                    money_three.setVisibility(View.GONE);
+                                }
+                                if(goods.getEmpId().equals(getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class))){
+                                    money_three.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+                                Toast.makeText(DetailPaopaoGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(DetailPaopaoGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(DetailPaopaoGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("emp_id", goods.getEmpId());
+                params.put("emp_id_d", getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
     }
 
     // 选择相册，相机
@@ -266,9 +321,11 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
 
         //评论
         comments = new ArrayList<>();
-        lstv = (PullToRefreshListView) this.findViewById(R.id.lstv);
-        ListView listView = lstv.getRefreshableView();
-        headView =  (LinearLayout) LayoutInflater.from(DetailPaopaoGoodsActivity.this).inflate(R.layout.paopao_head, null);
+        lstv = (ContentListView) this.findViewById(R.id.lstv);
+        headView =  (ScrollView) LayoutInflater.from(DetailPaopaoGoodsActivity.this).inflate(R.layout.paopao_head, null);
+
+        AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.WRAP_CONTENT);
+        headView.setLayoutParams(layoutParams);
 
         relative_video = (RelativeLayout) headView.findViewById(R.id.relative_video);
         img_video = (ImageView) headView.findViewById(R.id.img_video);
@@ -285,6 +342,7 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         money_two = (TextView) headView.findViewById(R.id.money_two);
         money_three = (TextView) headView.findViewById(R.id.money_three);
         content = (TextView) headView.findViewById(R.id.content);
+        money_two.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
 
         imageLoader.displayImage(goods.getEmpCover(), head, UniversityApplication.options);
         if("0".equals(goods.getIs_video())){
@@ -300,38 +358,43 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         nickname.setText(goods.getNickName());
         money_one.setText("价格："+goods.getSellPrice());
         money_two.setText("市场价："+goods.getMarketPrice());
-        money_three.setText("代理价："+goods.getDaili_price());
+        if(!StringUtil.isNullOrEmpty(goods.getDaili_price())){
+            money_three.setText("代理价："+goods.getDaili_price());
+        }else {
+            money_three.setText("代理价：暂无");
+        }
+
         content.setText(goods.getCont());
 
-        listView.addHeaderView(headView);
         adapter = new GoodsCommentAdapter(comments, DetailPaopaoGoodsActivity.this);
         adapter.setOnClickContentItemListener(this);
+        lstv.setOnRefreshListener(this);
+        lstv.setOnLoadListener(this);
+        lstv.addHeaderView(headView);
         lstv.setAdapter(adapter);
-        lstv.setMode(PullToRefreshBase.Mode.BOTH);
-        lstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(DetailPaopaoGoodsActivity.this, System.currentTimeMillis(),
-                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                IS_REFRESH = true;
-                pageIndex = 1;
-                initData();
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(DetailPaopaoGoodsActivity.this, System.currentTimeMillis(),
-                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                IS_REFRESH = false;
-                pageIndex++;
-                initData();
-            }
-        });
-        lstv.setAdapter(adapter);
+//        lstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+//            @Override
+//            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+//                String label = DateUtils.formatDateTime(DetailPaopaoGoodsActivity.this, System.currentTimeMillis(),
+//                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+//
+//                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+//                IS_REFRESH = true;
+//                pageIndex = 1;
+//                initData();
+//            }
+//
+//            @Override
+//            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+//                String label = DateUtils.formatDateTime(DetailPaopaoGoodsActivity.this, System.currentTimeMillis(),
+//                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+//
+//                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+//                IS_REFRESH = false;
+//                pageIndex++;
+//                initData();
+//            }
+//        });
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -355,6 +418,7 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         }
 
         initViewPager();
+        isDaili();//是否代理
     }
 
     //评论获取
@@ -370,9 +434,13 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
                             if (data.getCode() == 200) {
                                 if (IS_REFRESH) {
                                     comments.clear();
+                                    lstv.onRefreshComplete();
+                                    comments.addAll(data.getData());
+                                    lstv.setResultSize(data.getData().size());
+                                } else {
+                                    lstv.onLoadComplete();
+                                    lstv.setResultSize(data.getData().size());
                                 }
-                                comments.addAll(data.getData());
-                                lstv.onRefreshComplete();
                                 adapter.notifyDataSetChanged();
                             } else {
                                 Toast.makeText(DetailPaopaoGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
@@ -380,11 +448,15 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
                         } else {
                             Toast.makeText(DetailPaopaoGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                         }
+                        lstv.onRefreshComplete();
+                        lstv.onLoadComplete();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        lstv.onRefreshComplete();
+                        lstv.onLoadComplete();
                         Toast.makeText(DetailPaopaoGoodsActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -988,4 +1060,20 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         }
 
     }
+
+    @Override
+    public void onLoad() {
+        IS_REFRESH = false;
+        pageIndex++;
+        initData();
+    }
+
+    @Override
+    public void onRefresh() {
+        IS_REFRESH = true;
+        pageIndex = 1;
+        initData();
+    }
+
+
 }

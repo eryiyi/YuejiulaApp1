@@ -243,7 +243,7 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsdetail = new Intent(AndMeAcitvity.this, DetailGoodsActivity.class);
+                                    Intent goodsdetail = new Intent(AndMeAcitvity.this, DetailPaopaoGoodsActivity.class);
                                     goodsdetail.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsdetail);
                                 } else {

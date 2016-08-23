@@ -268,7 +268,7 @@ public class MineFavoursActivity extends BaseActivity implements View.OnClickLis
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsdetail = new Intent(MineFavoursActivity.this, DetailGoodsActivity.class);
+                                    Intent goodsdetail = new Intent(MineFavoursActivity.this, DetailPaopaoGoodsActivity.class);
                                     goodsdetail.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsdetail);
                                 } else {

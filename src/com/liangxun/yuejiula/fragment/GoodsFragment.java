@@ -26,6 +26,7 @@ import com.liangxun.yuejiula.data.GoodsTypeDATA;
 import com.liangxun.yuejiula.entity.Goodstype;
 import com.liangxun.yuejiula.entity.PaopaoGoods;
 import com.liangxun.yuejiula.ui.DetailGoodsActivity;
+import com.liangxun.yuejiula.ui.DetailPaopaoGoodsActivity;
 import com.liangxun.yuejiula.ui.SearchGoodsActivity;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.StringUtil;
@@ -136,7 +137,7 @@ public class GoodsFragment extends BaseFragment implements ContentListView.OnRef
                 try {
                     PaopaoGoods good = listgoods.get(position-2);
                     if (good != null) {
-                        Intent detail = new Intent(getActivity(), DetailGoodsActivity.class);
+                        Intent detail = new Intent(getActivity(), DetailPaopaoGoodsActivity.class);
                         detail.putExtra(Constants.GOODS, good);
                         startActivity(detail);
                     }
@@ -268,7 +269,7 @@ public class GoodsFragment extends BaseFragment implements ContentListView.OnRef
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsdetail = new Intent(getActivity(), DetailGoodsActivity.class);
+                                    Intent goodsdetail = new Intent(getActivity(), DetailPaopaoGoodsActivity.class);
                                     goodsdetail.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsdetail);
                                 } else {

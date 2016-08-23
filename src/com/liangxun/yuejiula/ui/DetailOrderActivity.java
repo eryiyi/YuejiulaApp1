@@ -270,7 +270,7 @@ public class DetailOrderActivity extends BaseActivity implements View.OnClickLis
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsView = new Intent(DetailOrderActivity.this, DetailGoodsActivity.class);
+                                    Intent goodsView = new Intent(DetailOrderActivity.this, DetailPaopaoGoodsActivity.class);
                                     goodsView.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsView);
                                 } else {

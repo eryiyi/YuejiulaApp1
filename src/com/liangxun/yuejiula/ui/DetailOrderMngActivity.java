@@ -269,7 +269,7 @@ public class DetailOrderMngActivity extends BaseActivity implements View.OnClick
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsView = new Intent(DetailOrderMngActivity.this, DetailGoodsActivity.class);
+                                    Intent goodsView = new Intent(DetailOrderMngActivity.this, DetailPaopaoGoodsActivity.class);
                                     goodsView.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsView);
                                 } else {

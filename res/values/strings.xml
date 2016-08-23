@@ -520,7 +520,8 @@
     <string name="send_order_error_one">发货失败，请稍后重试</string>
 
     <string name="delete_order_success">成功删除订单</string>
-    <string name="goods_prices">￥%1$s</string>
+    <string name="goods_prices">价格：￥%1$s</string>
+    <string name="goods_prices1">原价格：￥%1$s</string>
     <string name="create_time">下单时间:</string>
 
     <string name="imageview_content_description"></string>

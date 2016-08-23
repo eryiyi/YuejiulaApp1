@@ -373,7 +373,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsdetail = new Intent(getActivity(), DetailGoodsActivity.class);
+                                    Intent goodsdetail = new Intent(getActivity(), DetailPaopaoGoodsActivity.class);
                                     goodsdetail.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsdetail);
                                 } else {

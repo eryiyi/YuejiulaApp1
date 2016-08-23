@@ -50,19 +50,19 @@
               android:layout_marginTop="8dp"
               android:singleLine="true"
               android:textStyle="bold"
-              android:textSize="18sp"
+              android:textSize="15sp"
               android:layout_marginRight="5dp"
               android:id="@+id/item_sellPrice"/>
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="@string/goods_prices"
+              android:text="@string/goods_prices1"
               android:layout_marginLeft="8dp"
               android:layout_toRightOf="@+id/item_sellPrice"
               android:textColor="#f00f00"
               android:layout_below="@+id/item_nickname"
               android:layout_marginTop="10dp"
               android:singleLine="true"
-              android:textSize="16sp"
+              android:textSize="14sp"
               android:id="@+id/item_marketPrice"/>
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -73,6 +73,6 @@
               android:layout_below="@+id/item_sellPrice"
               android:layout_marginTop="10dp"
               android:singleLine="true"
-              android:textSize="16sp"
+              android:textSize="14sp"
               android:id="@+id/item_dailiPrice"/>
 </RelativeLayout>

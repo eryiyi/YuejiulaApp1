@@ -107,7 +107,7 @@ public class MineGoodsActivity extends BaseActivity implements View.OnClickListe
         classtype_lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detail = new Intent(MineGoodsActivity.this, DetailGoodsActivity.class);
+                Intent detail = new Intent(MineGoodsActivity.this, DetailPaopaoGoodsActivity.class);
                 PaopaoGoods record = goods.get(position - 1);
                 detail.putExtra(Constants.GOODS, record);
                 startActivity(detail);
@@ -204,6 +204,10 @@ public class MineGoodsActivity extends BaseActivity implements View.OnClickListe
 //                showSelectImageDialog();
                 updateStatus(good.getId(), "1");
                 break;
+            case 3:
+                tmpSelected = position;
+                showSelectImageDialog();
+                break;
         }
     }
 
@@ -247,8 +251,8 @@ public class MineGoodsActivity extends BaseActivity implements View.OnClickListe
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("goodsId", good.getId());
-                params.put("type", "1");
+                params.put("id", good.getId());
+//                params.put("type", "1");
                 return params;
             }
 

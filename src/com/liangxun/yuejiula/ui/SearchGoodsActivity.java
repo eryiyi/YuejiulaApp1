@@ -85,7 +85,7 @@ public class SearchGoodsActivity extends BaseActivity implements View.OnClickLis
                 try {
                     PaopaoGoods good = listgoods.get(position-1);
                     if (good != null) {
-                        Intent detail = new Intent(SearchGoodsActivity.this, DetailGoodsActivity.class);
+                        Intent detail = new Intent(SearchGoodsActivity.this, DetailPaopaoGoodsActivity.class);
                         detail.putExtra(Constants.GOODS, good);
                         startActivity(detail);
                     }

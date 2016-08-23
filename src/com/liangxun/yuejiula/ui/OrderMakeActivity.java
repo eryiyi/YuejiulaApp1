@@ -279,7 +279,7 @@ public class OrderMakeActivity  extends BaseActivity implements View.OnClickList
                             if (StringUtil.isJson(s)) {
                                 GoodSingleDATA data = getGson().fromJson(s, GoodSingleDATA.class);
                                 if (data.getCode() == 200) {
-                                    Intent goodsdetail = new Intent(OrderMakeActivity.this, DetailGoodsActivity.class);
+                                    Intent goodsdetail = new Intent(OrderMakeActivity.this, DetailPaopaoGoodsActivity.class);
                                     goodsdetail.putExtra(Constants.GOODS, data.getData());
                                     startActivity(goodsdetail);
                                 } else {

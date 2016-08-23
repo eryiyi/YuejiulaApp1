@@ -661,6 +661,9 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
                                     //说明是代理关系
                                     flagR = true;
                                 }
+                                if(emp_id.equals(getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class))){
+                                    flagR = true;
+                                }
                             } else {
                                 Toast.makeText(DianpuDetailActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }

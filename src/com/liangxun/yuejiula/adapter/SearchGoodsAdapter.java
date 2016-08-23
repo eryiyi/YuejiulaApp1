@@ -98,7 +98,7 @@ public class SearchGoodsAdapter extends BaseAdapter {
         }
         PaopaoGoods cell = list.get(position);
         holder.item_sellPrice.setText(String.format(res.getString(R.string.goods_prices), cell.getSellPrice()));
-        holder.item_marketPrice.setText(String.format(res.getString(R.string.goods_prices), cell.getMarketPrice()));
+        holder.item_marketPrice.setText(String.format(res.getString(R.string.goods_prices1), cell.getMarketPrice()));
         holder.item_dailiPrice.setVisibility(View.GONE);
         String titlte = cell.getName();
         if(titlte!= null && titlte.length()>20){
@@ -109,7 +109,7 @@ public class SearchGoodsAdapter extends BaseAdapter {
         if(DianpuDetailActivity.flagR){
             //说明是代理关系
             holder.item_dailiPrice.setVisibility(View.VISIBLE);
-            holder.item_dailiPrice.setText("￥"+cell.getDaili_price());
+            holder.item_dailiPrice.setText("代理价:￥"+cell.getDaili_price());
         }else {
             holder.item_dailiPrice.setVisibility(View.GONE);
         }

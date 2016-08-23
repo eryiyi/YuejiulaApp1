@@ -71,6 +71,7 @@ public class MineGoodsAdapter extends BaseAdapter {
             holder.button_three = (TextView) convertView.findViewById(R.id.button_three);
             holder.goods_item_money_market.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             holder.status = (TextView) convertView.findViewById(R.id.status);
+            holder.button_delete = (TextView) convertView.findViewById(R.id.button_delete);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -94,8 +95,11 @@ public class MineGoodsAdapter extends BaseAdapter {
             }
             if("1".equals(cell.getIs_zhiying())){
                 holder.button_three.setVisibility(View.VISIBLE);
+                //直营的
+                holder.button_delete.setVisibility(View.GONE);
             }else {
                 holder.button_three.setVisibility(View.GONE);
+                holder.button_delete.setVisibility(View.VISIBLE);
             }
             holder.button_one.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,6 +111,12 @@ public class MineGoodsAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     onClickContentItemListener.onClickContentItem(position, 2, null);
+                }
+            });
+            holder.button_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickContentItemListener.onClickContentItem(position, 3, null);
                 }
             });
         }
@@ -123,6 +133,7 @@ public class MineGoodsAdapter extends BaseAdapter {
         TextView button_two;
         TextView status;
         TextView button_three;
+        TextView button_delete;//删除按钮
 
     }
 }
