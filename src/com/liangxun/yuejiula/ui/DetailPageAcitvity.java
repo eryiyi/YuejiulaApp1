@@ -28,6 +28,7 @@ import com.liangxun.yuejiula.entity.*;
 import com.liangxun.yuejiula.face.FaceConversionUtil;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.PicUtil;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ContentListView;
@@ -120,6 +121,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
 
     private LinearLayout liner_jp;
     private TextView detail_jp;
+    boolean isMobileNet, isWifiNet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +135,20 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         emp_type = getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class);
         initView();
-        initData();
+
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(DetailPageAcitvity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(DetailPageAcitvity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(DetailPageAcitvity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+            }else{
+                initData();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         mController = UMServiceFactory.getUMSocialService(DetailPageAcitvity.class.getName(), RequestType.SOCIAL);
         mController.setShareMedia(new UMImage(this, sharePic));//设置分享图片
@@ -261,16 +276,30 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
         detail_lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CommentContent commentContent = (CommentContent) parent.getAdapter().getItem(position);
-                if (commentContent != null) {
-                    Intent comment = new Intent(DetailPageAcitvity.this, PublishCommentAcitvity.class);
-                    comment.putExtra(Constants.FATHER_PERSON_NAME, commentContent.getNickName());
-                    comment.putExtra(Constants.FATHER_UUID, commentContent.getId());
-                    comment.putExtra(Constants.RECORD_UUID, record.getRecordId());
-                    comment.putExtra(Constants.FATHER_PERSON_UUID, record.getRecordEmpId());
-                    comment.putExtra("fplempid", commentContent.getEmpId());
-                    startActivity(comment);
+                //判断是否有网
+                try {
+                    isMobileNet = HttpUtils.isMobileDataEnable(DetailPageAcitvity.this);
+                    isWifiNet = HttpUtils.isWifiDataEnable(DetailPageAcitvity.this);
+                    if (!isMobileNet && !isWifiNet) {
+                        Toast.makeText(DetailPageAcitvity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+                    }else{
+                        CommentContent commentContent = (CommentContent) parent.getAdapter().getItem(position);
+                        if (commentContent != null) {
+                            Intent comment = new Intent(DetailPageAcitvity.this, PublishCommentAcitvity.class);
+                            comment.putExtra(Constants.FATHER_PERSON_NAME, commentContent.getNickName());
+                            comment.putExtra(Constants.FATHER_UUID, commentContent.getId());
+                            comment.putExtra(Constants.RECORD_UUID, record.getRecordId());
+                            comment.putExtra(Constants.FATHER_PERSON_UUID, record.getRecordEmpId());
+                            comment.putExtra("fplempid", commentContent.getEmpId());
+                            startActivity(comment);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
+
+
             }
         });
 
@@ -389,6 +418,18 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(DetailPageAcitvity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(DetailPageAcitvity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(DetailPageAcitvity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         switch (v.getId()) {
             case R.id.detail_back://返回按钮
                 finish();
@@ -689,6 +730,19 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClickContentItem(int position, int flag, Object object) {
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(DetailPageAcitvity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(DetailPageAcitvity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(DetailPageAcitvity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         comt = commentContents.get(position);
         switch (flag) {
             case 1:

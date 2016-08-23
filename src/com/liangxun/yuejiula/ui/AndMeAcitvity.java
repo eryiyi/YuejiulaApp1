@@ -17,10 +17,7 @@ import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.AndMeAdapter;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
-import com.liangxun.yuejiula.data.GoodSingleDATA;
-import com.liangxun.yuejiula.data.OrdersSingleDATA;
-import com.liangxun.yuejiula.data.RecordSingleDATA;
-import com.liangxun.yuejiula.data.RelateDATA;
+import com.liangxun.yuejiula.data.*;
 import com.liangxun.yuejiula.entity.Relate;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
@@ -52,7 +49,7 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
     private String schoolId = "";
     private String emp_id = "";//当前登陆者UUID
     Relate recordtmp;//转换用
-
+    int tmpPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +113,8 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
                     //查询订单
                     getOrderByNo(relate, "1");
                 }
+                tmpPosition = position;
+                updateRelateById(relate.getId());
             }
         });
     }
@@ -320,6 +319,45 @@ public class AndMeAcitvity extends BaseActivity implements View.OnClickListener 
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("orderNo", relate.getOrderId());
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        getRequestQueue().add(request);
+    }
+
+    private void updateRelateById(final String id) {
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                getGson().fromJson(getSp().getString("select_big_area", ""), String.class) +  InternetURL.UPDATE_RELATE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (StringUtil.isJson(s)) {
+                            SuccessData data = getGson().fromJson(s, SuccessData.class);
+                            if (data.getCode() == 200) {
+                                recordList.get(tmpPosition - 1).setIs_read("1");
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", id);
                 return params;
             }
 

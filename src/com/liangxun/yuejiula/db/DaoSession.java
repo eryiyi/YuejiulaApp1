@@ -1,6 +1,9 @@
 package com.liangxun.yuejiula.db;
 
 import android.database.sqlite.SQLiteDatabase;
+import com.liangxun.yuejiula.entity.Record;
+import com.liangxun.yuejiula.entity.Relate;
+import com.liangxun.yuejiula.entity.SchoolFind;
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.AbstractDaoSession;
 import de.greenrobot.dao.identityscope.IdentityScopeType;
@@ -22,6 +25,14 @@ public class DaoSession extends AbstractDaoSession {
 
     private final ShoppingCartDao shoppingCartDao;
 
+    private final DaoConfig recordDaoConfig;
+    private final DaoConfig relateDaoConfig;
+    private final DaoConfig schoolFindDaoConfig;
+
+    private final RecordDao recordDao;
+    private final RelateDao relateDao;
+    private final SchoolFindDao schoolFindDao;
+
     public DaoSession(SQLiteDatabase db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
         super(db);
@@ -32,14 +43,46 @@ public class DaoSession extends AbstractDaoSession {
         shoppingCartDao = new ShoppingCartDao(shoppingCartDaoConfig, this);
 
         registerDao(ShoppingCart.class, shoppingCartDao);
+        recordDaoConfig = daoConfigMap.get(RecordDao.class).clone();
+        recordDaoConfig.initIdentityScope(type);
+
+        relateDaoConfig = daoConfigMap.get(RelateDao.class).clone();
+        relateDaoConfig.initIdentityScope(type);
+
+        schoolFindDaoConfig = daoConfigMap.get(SchoolFindDao.class).clone();
+        schoolFindDaoConfig.initIdentityScope(type);
+
+        recordDao = new RecordDao(recordDaoConfig, this);
+        relateDao = new RelateDao(relateDaoConfig, this);
+        schoolFindDao = new SchoolFindDao(schoolFindDaoConfig, this);
+
+        registerDao(Record.class, recordDao);
+        registerDao(Relate.class, relateDao);
+        registerDao(SchoolFind.class, schoolFindDao);
+
     }
     
     public void clear() {
         shoppingCartDaoConfig.getIdentityScope().clear();
+        recordDaoConfig.getIdentityScope().clear();
+        relateDaoConfig.getIdentityScope().clear();
+        schoolFindDaoConfig.getIdentityScope().clear();
     }
 
     public ShoppingCartDao getShoppingCartDao() {
         return shoppingCartDao;
+    }
+
+    public RecordDao getRecordDao() {
+        return recordDao;
+    }
+
+    public RelateDao getRelateDao() {
+        return relateDao;
+    }
+
+    public SchoolFindDao getSchoolFindDao() {
+        return schoolFindDao;
     }
 
 }

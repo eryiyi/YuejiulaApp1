@@ -23,12 +23,14 @@ import com.liangxun.yuejiula.base.BaseFragment;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.RecordDATA;
 import com.liangxun.yuejiula.data.SuccessData;
+import com.liangxun.yuejiula.db.DBHelper;
 import com.liangxun.yuejiula.entity.Record;
 import com.liangxun.yuejiula.entity.VideoPlayer;
 import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.CustomProgressDialog;
 import com.liangxun.yuejiula.widget.popview.DeletePopWindow;
@@ -69,6 +71,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     private int tmpSelected;//暂时存UUID  删除用
     private DeletePopWindow deleteWindow;
+    boolean isMobileNet, isWifiNet;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,9 +87,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         initView(view);
         String cover = getGson().fromJson(getSp().getString(Constants.EMPCOVER, ""), String.class);
         schoolIdEmp = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
-        progressDialog = new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
-        progressDialog.show();
-        initData();
+
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+            isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+            if (!isMobileNet && !isWifiNet) {
+                recordList.addAll(DBHelper.getInstance(getActivity()).getRecordList());
+                adapter.notifyDataSetChanged();
+            }else {
+                progressDialog = new CustomProgressDialog(getActivity(), "正在加载中",R.anim.custom_dialog_frame);
+                progressDialog.show();
+                initData();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -108,7 +125,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = true;
                 pageIndex = 1;
-                initData();
+                //判断是否有网
+                try {
+                    isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+                    isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+                    if (!isMobileNet && !isWifiNet) {
+                        home_lstv.onRefreshComplete();
+                    }else {
+                        initData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -119,20 +148,45 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = false;
                 pageIndex++;
-                initData();
+                //判断是否有网
+                try {
+                    isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+                    isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+                    if (!isMobileNet && !isWifiNet) {
+                        home_lstv.onRefreshComplete();
+                    }else {
+                        initData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         home_lstv.setAdapter(adapter);
         home_lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Record record = recordList.get(position - 1);
-                if (!record.getRecordType().equals("1")) {
-                    //不是推广
-                    Intent detail = new Intent(getActivity(), DetailPageAcitvity.class);
-                    detail.putExtra(Constants.INFO, record);
-                    startActivity(detail);
+
+                //判断是否有网
+                try {
+                    isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+                    isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+                    if (!isMobileNet && !isWifiNet) {
+                        Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Record record = recordList.get(position - 1);
+                        if (!record.getRecordType().equals("1")) {
+                            //不是推广
+                            Intent detail = new Intent(getActivity(), DetailPageAcitvity.class);
+                            detail.putExtra(Constants.INFO, record);
+                            startActivity(detail);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
+
             }
         });
         adapter.setOnClickContentItemListener(this);
@@ -180,6 +234,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onClickContentItem(int position, int flag, Object object) {
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+            isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         record = recordList.get(position);
         switch (flag) {
             case 1:
@@ -535,6 +601,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                                 recordList.addAll(data.getData());
                                 home_lstv.onRefreshComplete();
                                 adapter.notifyDataSetChanged();
+                                //处理数据，需要的话保存到数据库
+                                if (data != null && data.getData() != null) {
+                                    DBHelper dbHelper = DBHelper.getInstance(getActivity());
+                                    for (Record record1 : data.getData()) {
+                                        if (dbHelper.getRecordById(record1.getRecordId()) == null) {
+                                            DBHelper.getInstance(getActivity()).saveRecord(record1);
+                                        }
+                                    }
+                                }
                             } else {
                                 Toast.makeText(getActivity(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }

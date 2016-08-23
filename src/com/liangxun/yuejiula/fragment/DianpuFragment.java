@@ -31,6 +31,7 @@ import com.liangxun.yuejiula.library.PullToRefreshBase;
 import com.liangxun.yuejiula.library.PullToRefreshListView;
 import com.liangxun.yuejiula.ui.*;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.widget.ClassifyGridview;
 import com.liangxun.yuejiula.widget.MarqueeButton;
@@ -71,6 +72,7 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
     MsgAd msgAd;
 
     private ImageView btn_img;
+    boolean isMobileNet, isWifiNet;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,9 +85,23 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
 //        schoolId = ;
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         initView(view);
-        getType();
-        initData();
-        getDataMsgAd();
+
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+            isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+            }else{
+
+                getType();
+                initData();
+                getDataMsgAd();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return view;
     }
 
@@ -160,7 +176,19 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = true;
                 pageIndex = 1;
-                initData();
+                //判断是否有网
+                try {
+                    isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+                    isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+                    if (!isMobileNet && !isWifiNet) {
+                        Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+                    }else{
+                        initData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -171,22 +199,45 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 IS_REFRESH = false;
                 pageIndex++;
-                initData();
+                //判断是否有网
+                try {
+                    isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+                    isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+                    if (!isMobileNet && !isWifiNet) {
+                        Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+                    }else{
+                        initData();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //判断是否有网
                 try {
-                    EmpDianpu dianpu = listgoods.get(position-2);
-                    if (dianpu != null) {
-                        Intent detail = new Intent(getActivity(), DianpuDetailActivity.class);
-                        detail.putExtra("emp_id", dianpu.getEmpId());
-                        startActivity(detail);
+                    isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+                    isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+                    if (!isMobileNet && !isWifiNet) {
+                        Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+                    }else{
+                        try {
+                            EmpDianpu dianpu = listgoods.get(position-2);
+                            if (dianpu != null) {
+                                Intent detail = new Intent(getActivity(), DianpuDetailActivity.class);
+                                detail.putExtra("emp_id", dianpu.getEmpId());
+                                startActivity(detail);
+                            }
+                        } catch (Exception e) {
+
+                        }
                     }
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
+
             }
         });
         no_record = (ImageView) view.findViewById(R.id.no_record);
@@ -195,6 +246,18 @@ public class DianpuFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+            isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         switch (v.getId()) {
             case R.id.btn_img:
             {

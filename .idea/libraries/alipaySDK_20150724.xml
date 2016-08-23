@@ -32,7 +32,7 @@
       <root url="jar://$PROJECT_DIR$/libs/umeng_social_sdk.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/pushservice-5.0.0.66.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/pushservice-5.1.0.48.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -106,7 +106,7 @@ public class UrlTouchImageView extends RelativeLayout {
                 options.inTempStorage = new byte[100 * 1024];
                 options.inPreferredConfig = Bitmap.Config.RGB_565;
                 options.inPurgeable = true;
-                options.inSampleSize = 2;//压缩
+                options.inSampleSize = 1;//压缩
                 options.inInputShareable = true;
                 bm = BitmapFactory.decodeStream(bis, null, options);
                 bis.close();

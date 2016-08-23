@@ -43,6 +43,11 @@
             android:gravity="right"
             android:layout_alignParentRight="true"
             android:id="@+id/andme_item_dateline"/>
+    <ImageView android:layout_width="wrap_content"
+               android:src="@drawable/dotc"
+               android:id="@+id/is_read"
+               android:layout_alignParentRight="true"
+               android:layout_height="wrap_content"/>
 </RelativeLayout>
 
 

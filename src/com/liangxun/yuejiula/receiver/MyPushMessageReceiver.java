@@ -157,7 +157,8 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 //        }
         String empId = new Gson().fromJson(sp.getString(Constants.EMPID, ""), String.class);
         RequestQueue queue = Volley.newRequestQueue(context);
-        String uri = String.format(InternetURL.UPDATE_PUSH_ID + "?id=%s&pushId=%s&type=3", empId, userId);
+        String urlStr = new Gson().fromJson(sp.getString("select_big_area", ""), String.class);
+        String uri = String.format( urlStr + InternetURL.UPDATE_PUSH_ID + "?id=%s&pushId=%s&type=3", empId, userId);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 uri,

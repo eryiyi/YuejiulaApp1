@@ -320,4 +320,7 @@ public class InternetURL {
     //取消代理
     public static final String CANCEL_DAILI_URL =  "deleDaili.do";
 
+    //跟新与我相关  已读
+    public static final String UPDATE_RELATE_URL = "updateRelateById.do";
+
 }

@@ -50,6 +50,7 @@ import com.liangxun.yuejiula.ui.LoginActivity;
 import com.liangxun.yuejiula.ui.ProfilePersonalActivity;
 import com.liangxun.yuejiula.ui.PublishPicActivity;
 import com.liangxun.yuejiula.util.Constants;
+import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.util.Utils;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
@@ -112,7 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
     public  static List<FhFqObj> listFh = new ArrayList<FhFqObj>();
     public  static List<FhFqObj> listFq = new ArrayList<FhFqObj>();
-
+    boolean isMobileNet, isWifiNet;
 
     /**
      * 检查当前用户是否被删除
@@ -192,7 +193,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         EMGroupManager.getInstance().addGroupChangeListener(new MyGroupChangeListener());
         // 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
         EMChat.getInstance().setAppInited();
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, Utils.getMetaValue(MainActivity.this, "push_api_key"));
+        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, Utils.getMetaValue(MainActivity.this, "api_key"));
+
         arrayMenu.add("文字");
         arrayMenu.add("秒拍");
         arrayMenu.add("相机");
@@ -219,9 +221,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         // 启动一个线程
         new Thread(MainActivity.this).start();
 
-        EMChatManager.getInstance().getChatOptions().setNoticeBySound(false);
-        EMChatManager.getInstance().getChatOptions().setNoticedByVibrate(false);
-        EMChatManager.getInstance().getChatOptions().setUseSpeaker(false);
+//        EMChatManager.getInstance().getChatOptions().setNoticeBySound(false);
+//        EMChatManager.getInstance().getChatOptions().setNoticedByVibrate(false);
+//        EMChatManager.getInstance().getChatOptions().setUseSpeaker(false);
     }
 
     private void initView() {
@@ -246,6 +248,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
     @Override
     public void onClick(View v) {
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(MainActivity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(MainActivity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(MainActivity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+                return;
+            }else{
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         switchFragment(v.getId());
     }
 
@@ -1319,17 +1333,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
     //弹出顶部主菜单
     public void onTopMenuPopupButtonClick(View view) {
-        //顶部右侧按钮
-        menu = new MenuPopMenu(MainActivity.this, arrayMenu);
-        menu.setOnItemClickListener(this);
-        menu.showAsDropDown(view);
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(MainActivity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(MainActivity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(MainActivity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+            }else{
+                //顶部右侧按钮
+                menu = new MenuPopMenu(MainActivity.this, arrayMenu);
+                menu.setOnItemClickListener(this);
+                menu.showAsDropDown(view);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     public void onTopHeadButtonClick(View view){
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(MainActivity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(MainActivity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(MainActivity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+            }else{
+                //顶部右侧按钮
+                moodMenu = new MoodPopMenu(MainActivity.this, arrayMood);
+                moodMenu.setOnItemClickListener(this);
+                moodMenu.showAsDropDown(view);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 //        Intent profile = new Intent(MainActivity.this, UpdateProfilePersonalActivity.class);
 //        startActivity(profile);
-        moodMenu = new MoodPopMenu(MainActivity.this, arrayMood);
-        moodMenu.setOnItemClickListener(this);
-        moodMenu.showAsDropDown(view);
+
 //        View view1 = dialogm();
 //        final MyAlertDialog dialog1 = new MyAlertDialog(MainActivity.this)
 //                .builder()
@@ -1467,6 +1507,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
     @Override
     public void onItemClick(int index, String str) {
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(MainActivity.this);
+            isWifiNet = HttpUtils.isWifiDataEnable(MainActivity.this);
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(MainActivity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if("000".equals(str)){
             if("1".equals(getGson().fromJson(getSp().getString("is_fenghao", ""), String.class))){
                 //如果封号了，查询是否封的这个学校的

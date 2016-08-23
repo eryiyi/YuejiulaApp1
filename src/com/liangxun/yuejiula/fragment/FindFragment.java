@@ -19,6 +19,7 @@ import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.SchoolFindData;
 import com.liangxun.yuejiula.entity.SchoolFind;
 import com.liangxun.yuejiula.ui.*;
+import com.liangxun.yuejiula.util.HttpUtils;
 import com.liangxun.yuejiula.util.StringUtil;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
     private int pageIndex = 1;
     private static boolean IS_REFRESH = true;
     private List<SchoolFind> listgoods = new ArrayList<SchoolFind>();
-
+    boolean isMobileNet, isWifiNet;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,19 @@ public class FindFragment extends BaseFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.find, null);
         initView(view);
-        initData();
+        //判断是否有网
+        try {
+            isMobileNet = HttpUtils.isMobileDataEnable(getActivity());
+            isWifiNet = HttpUtils.isWifiDataEnable(getActivity());
+            if (!isMobileNet && !isWifiNet) {
+                Toast.makeText(getActivity(), "请检查网络链接", Toast.LENGTH_SHORT).show();
+            }else{
+                initData();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return view;
     }
 

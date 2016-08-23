@@ -19,11 +19,17 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
         ShoppingCartDao.createTable(db, ifNotExists);
+        RecordDao.createTable(db, ifNotExists);
+        RelateDao.createTable(db, ifNotExists);
+        SchoolFindDao.createTable(db, ifNotExists);
     }
     
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(SQLiteDatabase db, boolean ifExists) {
         ShoppingCartDao.dropTable(db, ifExists);
+        RecordDao.dropTable(db, ifExists);
+        RelateDao.dropTable(db, ifExists);
+        SchoolFindDao.dropTable(db, ifExists);
     }
     
     public static abstract class OpenHelper extends SQLiteOpenHelper {
@@ -56,6 +62,9 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(SQLiteDatabase db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(ShoppingCartDao.class);
+        registerDaoClass(RecordDao.class);
+        registerDaoClass(RelateDao.class);
+        registerDaoClass(SchoolFindDao.class);
     }
     
     public DaoSession newSession() {

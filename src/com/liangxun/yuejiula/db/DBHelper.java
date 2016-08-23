@@ -2,6 +2,7 @@ package com.liangxun.yuejiula.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import com.liangxun.yuejiula.entity.Record;
 import de.greenrobot.dao.query.QueryBuilder;
 
 import java.util.List;
@@ -17,19 +18,32 @@ public class DBHelper {
     private static SQLiteDatabase db;
     private static DaoMaster daoMaster;
     private DBHelper(){}
+
+    private RecordDao recordDao;
+    private RelateDao relateDao;
+    private SchoolFindDao schoolFindDao;
+
     public static DBHelper getInstance(Context context){
         if (instance == null){
             instance = new DBHelper();
             if (mContext == null){
                 mContext = context;
             }
-            helper = new DaoMaster.DevOpenHelper(context, "pp_lx_db", null);
+            helper = new DaoMaster.DevOpenHelper(context, "yjl_db_lbins_1", null);
             db = helper.getWritableDatabase();
             daoMaster = new DaoMaster(db);
             instance.testDao = daoMaster.newSession().getShoppingCartDao();
+            instance.recordDao = daoMaster.newSession().getRecordDao();
+            instance.relateDao = daoMaster.newSession().getRelateDao();
+            instance.schoolFindDao = daoMaster.newSession().getSchoolFindDao();
         }
         return instance;
     }
+
+
+
+
+
 
     /**
      * 插入数据
@@ -103,4 +117,31 @@ public class DBHelper {
         qb.where(ShoppingCartDao.Properties.Cartid.eq(cartid));
         testDao.deleteByKey(cartid);//删除
     }
+
+
+    //------动态----
+    /**
+     * 查询动态
+     *
+     * @return
+     */
+    public List<Record> getRecordList() {
+        return recordDao.loadAll();
+    }
+
+    //查询动态是否存在
+    public Record getRecordById(String id) {
+        Record record = recordDao.load(id);
+        return record;
+    }
+
+    /**
+     * 插入或是更新数据
+     *
+     * @return
+     */
+    public long saveRecord(Record record) {
+        return recordDao.insertOrReplace(record);
+    }
+
 }
