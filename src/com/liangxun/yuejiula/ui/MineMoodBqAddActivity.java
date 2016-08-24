@@ -3,6 +3,7 @@ package com.liangxun.yuejiula.ui;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.android.volley.*;
@@ -66,7 +67,9 @@ public class MineMoodBqAddActivity extends BaseActivity implements View.OnClickL
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                Log.d("","");
             }
+
         });
 
         provinces.clear();
@@ -153,6 +156,8 @@ public class MineMoodBqAddActivity extends BaseActivity implements View.OnClickL
                                     finish();
                                 }else if(Integer.parseInt(code) == 2){
                                     showMsg(MineMoodBqAddActivity.this, "发布失败，最多设置5个标签！");
+                                } else if(Integer.parseInt(code) == 3){
+                                    showMsg(MineMoodBqAddActivity.this, "发布失败，您已添加了该标签，换个试试！");
                                 } else {
                                     showMsg(MineMoodBqAddActivity.this, "发布失败，请稍后重试！");
                                 }
