@@ -1,6 +1,7 @@
 package com.liangxun.yuejiula.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,10 +27,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.liangxun.yuejiula.MainActivity;
 import com.liangxun.yuejiula.R;
+import com.liangxun.yuejiula.adapter.MoodAdapter;
 import com.liangxun.yuejiula.adapter.Publish_mood_GridView_Adapter;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
 import com.liangxun.yuejiula.data.RecordSingleDATA;
+import com.liangxun.yuejiula.entity.RecordBigType;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
 import com.liangxun.yuejiula.face.ChatEmoji;
 import com.liangxun.yuejiula.face.FaceAdapter;
@@ -157,10 +160,12 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
     AsyncHttpClient client = new AsyncHttpClient();
 
     private CustomerSpinner provinceSpinner;
-    private ArrayList<SchoolRecordMood> provinces = new ArrayList<SchoolRecordMood>();
+    private ArrayList<RecordBigType> provinces = new ArrayList<RecordBigType>();
     private ArrayList<String> provinces_names = new ArrayList<String>();
     private ArrayAdapter<String> provinceAdapter;
-    SchoolRecordMood schoolRecordMood = null;//选中的那个额
+    RecordBigType schoolRecordMood = null;//选中的那个额
+
+    private TextView bianqian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +190,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
     private void initView() {
         publis_pic_back = (ImageView) this.findViewById(R.id.publis_pic_back);
         publis_pic_back.setOnClickListener(this);
+        bianqian = (TextView) this.findViewById(R.id.bianqian);
         publish_pic_run = (TextView) this.findViewById(R.id.publish_pic_run);
         publish_pic_run.setOnClickListener(this);
         title = (TextView) this.findViewById(R.id.title);
@@ -218,7 +224,8 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
         provinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
-                    schoolRecordMood = provinces.get(position );
+                    schoolRecordMood = provinces.get(position-1);
+                    showMoodSmallDialog(schoolRecordMood.getId());
                 }
             }
             @Override
@@ -226,24 +233,50 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
             }
         });
 
+
+
         provinces.clear();
-        provinces.addAll(MainActivity.arrayMood);
+        provinces.addAll(MainActivity.arrayMoodBigType);
         provinces_names.clear();
         provinces_names.add("请选择标签");
 
-        for (SchoolRecordMood pro : provinces) {
+        for (RecordBigType pro : provinces) {
+            provinces_names.add(pro.getTitle());
+        }
 
-            if("0".equals(pro.getSchool_record_mood_type())){
-                provinces_names.add("心情-"+pro.getSchool_record_mood_name());
-            }else
-            if("1".equals(pro.getSchool_record_mood_type())){
-                provinces_names.add("求助-"+pro.getSchool_record_mood_name());
-            }else
-            if("2".equals(pro.getSchool_record_mood_type())){
-                provinces_names.add("拍卖-"+pro.getSchool_record_mood_name());
+        provinceAdapter.notifyDataSetChanged();
+    }
+
+
+    List<SchoolRecordMood> arrayMoodTmp = new ArrayList<SchoolRecordMood>();
+    String school_record_mood_id = "";
+
+    private void showMoodSmallDialog(String bigType) {
+        final Dialog picAddDialog = new Dialog(PublishPicActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.mood_dialog, null);
+        ListView listView = (ListView) picAddInflate.findViewById(R.id.lstv);
+        arrayMoodTmp.clear();
+        for(SchoolRecordMood moods:MainActivity.arrayMood){
+            if(bigType.equals(moods.getSchool_record_mood_type())){
+                arrayMoodTmp.add(moods);
             }
         }
-        provinceAdapter.notifyDataSetChanged();
+        MoodAdapter adapter = new MoodAdapter(arrayMoodTmp, PublishPicActivity.this);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SchoolRecordMood schoolRecordMood = arrayMoodTmp.get(i);
+                if(schoolRecordMood != null){
+                    school_record_mood_id = schoolRecordMood.getSchool_record_mood_id();
+                    bianqian.setText(schoolRecordMood.getSchool_record_mood_name());
+                    picAddDialog.dismiss();
+                }
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
     }
 
     @Override
@@ -260,7 +293,7 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.publish_pic_run:
                 uploadPaths.clear();
-                if(schoolRecordMood == null){
+                if(StringUtil.isNullOrEmpty(school_record_mood_id)){
                     Toast.makeText(this, "请选择标签", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -437,9 +470,9 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                 params.put("recordCont", contentStr);
                 params.put("recordEmpId", emp_id);
                 params.put("recordSchoolId", schoolId);
-                if(schoolRecordMood != null && !StringUtil.isNullOrEmpty(schoolRecordMood.getSchool_record_mood_id())){
-                    params.put("school_record_mood_id", schoolRecordMood.getSchool_record_mood_id());
-                    if("2".equals(schoolRecordMood.getSchool_record_mood_type())){
+                if(!StringUtil.isNullOrEmpty(school_record_mood_id)){
+                    params.put("school_record_mood_id", school_record_mood_id);
+                    if("2".equals(schoolRecordMood.getId())){
                         params.put("is_paimai", "1");
                     }
                 }
@@ -523,9 +556,9 @@ public class PublishPicActivity extends BaseActivity implements View.OnClickList
                 params.put("recordVideo", "");
                 params.put("recordEmpId", emp_id);
                 params.put("recordSchoolId", schoolId);
-                if(schoolRecordMood != null && !StringUtil.isNullOrEmpty(schoolRecordMood.getSchool_record_mood_id())){
-                    params.put("school_record_mood_id", schoolRecordMood.getSchool_record_mood_id());
-                    if("2".equals(schoolRecordMood.getSchool_record_mood_type())){
+                if(!StringUtil.isNullOrEmpty(school_record_mood_id)){
+                    params.put("school_record_mood_id", school_record_mood_id);
+                    if("2".equals(schoolRecordMood.getId())){
                         params.put("is_paimai", "1");
                     }
                 }

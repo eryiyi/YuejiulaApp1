@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/zhuye_item_select"
+                android:padding="8dp">
+
+    <TextView android:layout_width="wrap_content"
+              android:textSize="18sp"
+              android:text="昵称"
+              android:padding="8dp"
+              android:id="@+id/title"
+              android:layout_marginLeft="8dp"
+              android:layout_marginTop="8dp"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:maxEms="7"
+              android:textColor="@color/textColor"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="80dp"
+              android:textSize="18sp"
+              android:text="删除"
+              android:background="@drawable/btn_blue_shap"
+              android:padding="8dp"
+              android:gravity="center"
+              android:id="@+id/delete"
+              android:layout_marginLeft="8dp"
+              android:layout_marginTop="8dp"
+              android:layout_alignParentRight="true"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:maxEms="7"
+              android:textColor="@color/white"
+              android:layout_height="wrap_content"/>
+</RelativeLayout>
+
+

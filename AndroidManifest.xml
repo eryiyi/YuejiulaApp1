@@ -310,6 +310,8 @@
         <activity android:name="com.liangxun.yuejiula.ui.SelectBigAreaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.AddVideoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.DetailPaopaoGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineMoodBqActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.MineMoodBqAddActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
 
 

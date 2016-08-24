@@ -140,6 +140,11 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
                             break;
+                        case 7:
+                            //关注的标签
+                            Intent bqV = new Intent(getActivity(), MineMoodBqActivity.class);
+                            startActivity(bqV);
+                            break;
                     }
                 }
                 if("1".equals(empType)){
@@ -192,6 +197,11 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
+                            break;
+                        case 9:
+                            //关注的标签
+                            Intent bqV = new Intent(getActivity(), MineMoodBqActivity.class);
+                            startActivity(bqV);
                             break;
                     }
                 }
@@ -248,6 +258,11 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
+                            break;
+                        case 10:
+                            //关注的标签
+                            Intent bqV = new Intent(getActivity(), MineMoodBqActivity.class);
+                            startActivity(bqV);
                             break;
                     }
                 }
@@ -315,6 +330,11 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
+                            break;
+                        case 11:
+                            //关注的标签
+                            Intent bqV = new Intent(getActivity(), MineMoodBqActivity.class);
+                            startActivity(bqV);
                             break;
                     }
                 }
@@ -413,6 +433,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         pics.add(new MinePicsObj(R.drawable.mine_address_n ,"收货地址"));
         pics.add(new MinePicsObj(R.drawable.mine_set_n ,"我的设置"));
+        pics.add(new MinePicsObj(R.drawable.mine_set_n ,"关注的标签"));
 
         adapter.notifyDataSetChanged();
 

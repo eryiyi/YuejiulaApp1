@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.GoodsPopMenuAdapter;
+import com.liangxun.yuejiula.entity.RecordBigType;
 import com.liangxun.yuejiula.entity.SchoolRecordMood;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
 public class MoodPopMenu implements AdapterView.OnItemClickListener {
     private static MoodPopMenu mainMenu;
 
-    public static MoodPopMenu getInstance(Context context, List<SchoolRecordMood> arras) {
+    public static MoodPopMenu getInstance(Context context, List<RecordBigType> arras) {
         if (mainMenu == null) {
             mainMenu = new MoodPopMenu(context, arras);
         }
@@ -39,9 +40,9 @@ public class MoodPopMenu implements AdapterView.OnItemClickListener {
     private OnItemClickListener listener;
     private LayoutInflater inflater;
 
-    public MoodPopMenu(Context context, List<SchoolRecordMood> arras) {
+    public MoodPopMenu(Context context, List<RecordBigType> arras) {
         this.context = context;
-        List<SchoolRecordMood> menus = arras;
+        List<RecordBigType> menus = arras;
         itemList = new ArrayList<String>(menus.size());
         addItems(menus);
 
@@ -71,16 +72,19 @@ public class MoodPopMenu implements AdapterView.OnItemClickListener {
     }
 
     // 批量添加菜单项
-    public void addItems( List<SchoolRecordMood> items) {
-        for (SchoolRecordMood s : items){
-            if("0".equals(s.getSchool_record_mood_type())){
-                itemList.add("心情-"+s.getSchool_record_mood_name());
-            }else
-            if("1".equals(s.getSchool_record_mood_type())){
-                itemList.add("求助-"+s.getSchool_record_mood_name());
-            }else{
-                itemList.add(s.getSchool_record_mood_name());
-            }
+    public void addItems( List<RecordBigType> items) {
+//        for (SchoolRecordMood s : items){
+//            if("0".equals(s.getSchool_record_mood_type())){
+//                itemList.add("心情-"+s.getSchool_record_mood_name());
+//            }else
+//            if("1".equals(s.getSchool_record_mood_type())){
+//                itemList.add("求助-"+s.getSchool_record_mood_name());
+//            }else{
+//                itemList.add(s.getSchool_record_mood_name());
+//            }
+//        }
+        for (RecordBigType s : items){
+            itemList.add(s.getTitle());
         }
     }
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@drawable/global_top_background"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="@dimen/height_top_bar">
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:onClick="back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/back"
+                android:paddingRight="10dp"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="关注的标签"
+                android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="添加"
+                  android:id="@+id/add"
+                  android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:padding="15dp"
+                  android:textColor="@color/textColor"
+                  android:gravity="center"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+    <ListView android:layout_width="match_parent"
+              android:layout_marginTop="5dp"
+              android:cacheColorHint="#00000000"
+              android:divider="#19000000"
+              android:dividerHeight="1dp"
+              android:fadingEdge="none"
+              android:layout_weight="1"
+              android:id="@+id/lstv"
+              android:fastScrollEnabled="false"
+              android:footerDividersEnabled="false"
+              android:headerDividersEnabled="false"
+              android:smoothScrollbar="true"
+              android:layout_height="wrap_content">
+    </ListView>
+    <TextView android:layout_width="wrap_content"
+              android:textColor="@color/red"
+              android:padding="6dp"
+              android:text="*设置关注之后，会提醒您与该类别有关的最新动态"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>

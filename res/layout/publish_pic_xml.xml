@@ -113,6 +113,11 @@
                         android:layout_alignParentRight="true"
                         android:id="@+id/provice_select_school"
                         android:layout_marginTop="7px"/>
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/bianqian"
+                          android:textColor="@color/blue"
+                          android:textSize="16sp"
+                          android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
 

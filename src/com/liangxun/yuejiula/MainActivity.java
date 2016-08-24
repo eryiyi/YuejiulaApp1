@@ -14,9 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -32,6 +30,7 @@ import com.easemob.chat.*;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.easemob.util.HanziToPinyin;
+import com.liangxun.yuejiula.adapter.MoodAdapter;
 import com.liangxun.yuejiula.base.ActivityTack;
 import com.liangxun.yuejiula.base.BaseActivity;
 import com.liangxun.yuejiula.base.InternetURL;
@@ -56,6 +55,7 @@ import com.liangxun.yuejiula.util.Utils;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
+import org.bitlet.weupnp.Main;
 
 import java.util.*;
 
@@ -104,6 +104,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     List<String> arrayMenu = new ArrayList<>();
     private MoodPopMenu moodMenu;
     public static List<SchoolRecordMood> arrayMood = new ArrayList<SchoolRecordMood>();
+    public static List<RecordBigType> arrayMoodBigType = new ArrayList<RecordBigType>();
 
     private TextView msg_find;
     private TextView msg_mine;
@@ -224,6 +225,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 //        EMChatManager.getInstance().getChatOptions().setNoticeBySound(false);
 //        EMChatManager.getInstance().getChatOptions().setNoticedByVibrate(false);
 //        EMChatManager.getInstance().getChatOptions().setUseSpeaker(false);
+        arrayMoodBigType.add(new RecordBigType("心情", "0"));
+        arrayMoodBigType.add(new RecordBigType("求助", "1"));
+//        arrayMoodBigType.add(new RecordBigType("拍卖", "2"));
     }
 
     private void initView() {
@@ -1359,7 +1363,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                 Toast.makeText(MainActivity.this, "请检查网络链接", Toast.LENGTH_SHORT).show();
             }else{
                 //顶部右侧按钮
-                moodMenu = new MoodPopMenu(MainActivity.this, arrayMood);
+                moodMenu = new MoodPopMenu(MainActivity.this, arrayMoodBigType);
                 moodMenu.setOnItemClickListener(this);
                 moodMenu.showAsDropDown(view);
             }
@@ -1560,17 +1564,68 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         }
         if("111".equals(str)){
             //根据心情查询动态
-            SchoolRecordMood schoolRecordMood = arrayMood.get(index);
-            if(schoolRecordMood != null){
-                school_record_mood_id = schoolRecordMood.getSchool_record_mood_id();
-                //发通知  更新朋友圈
-                homeFragment.IS_REFRESH = true;
-                homeFragment.initData();
-            }
+            RecordBigType recordBigType = arrayMoodBigType.get(index);
+           switch (Integer.parseInt(recordBigType.getId())){
+               case 0:
+               {
+                   //心情
+                   showMoodSmallDialog("0");
+               }
+                   break;
+               case 1:
+               {
+                   //求助
+                   showMoodSmallDialog("1");
+               }
+                   break;
+               case 2:
+               {
+                   //拍卖
+                   showMoodSmallDialog("2");
+               }
+                   break;
+           }
         }
     }
 
+    List<SchoolRecordMood> arrayMoodTmp = new ArrayList<SchoolRecordMood>();
 
+    private void showMoodSmallDialog(String bigType) {
+        final Dialog picAddDialog = new Dialog(MainActivity.this, R.style.dialog);
+        View picAddInflate = View.inflate(this, R.layout.mood_dialog, null);
+        ListView listView = (ListView) picAddInflate.findViewById(R.id.lstv);
+        arrayMoodTmp.clear();
+        for(SchoolRecordMood moods:arrayMood){
+            if(moods.getSchool_record_mood_id().equals("100000001")){
+                //说明是全部
+                arrayMoodTmp.add(0, moods);//把全部分类放到第一个位置
+            }
+            if(bigType.equals(moods.getSchool_record_mood_type())){
+                arrayMoodTmp.add(moods);
+            }
+        }
+        MoodAdapter adapter = new MoodAdapter(arrayMoodTmp, MainActivity.this);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SchoolRecordMood schoolRecordMood = arrayMoodTmp.get(i);
+                if(schoolRecordMood != null){
+                    school_record_mood_id = schoolRecordMood.getSchool_record_mood_id();
+                    if("100000001".equals(school_record_mood_id)){
+                        school_record_mood_id = "";
+                    }
+                    //发通知  更新朋友圈
+                    homeFragment.IS_REFRESH = true;
+                    homeFragment.initData();
+                    picAddDialog.dismiss();
+                 }
+            }
+        });
+        picAddDialog.setContentView(picAddInflate);
+        picAddDialog.show();
+    }
 
     void getFhFqMine(){
         StringRequest request = new StringRequest(
@@ -1717,7 +1772,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
                                 arrayMood.clear();
                                 SchoolRecordMood schoolRecordMood = new SchoolRecordMood();
                                 schoolRecordMood.setSchool_record_mood_name("全部");
-                                schoolRecordMood.setSchool_record_mood_id("");
+                                schoolRecordMood.setSchool_record_mood_id("100000001");
                                 schoolRecordMood.setTop_num("");
                                 arrayMood.add(schoolRecordMood);
                                 arrayMood.addAll(data.getData());

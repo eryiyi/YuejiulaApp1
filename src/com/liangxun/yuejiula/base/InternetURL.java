@@ -323,4 +323,11 @@ public class InternetURL {
     //跟新与我相关  已读
     public static final String UPDATE_RELATE_URL = "updateRelateById.do";
 
+    //获得关注心情列表
+    public static final String GET_MOODS_BQ_URL = "appGetMoodsGuanzhu.do";
+    //保存关注心情
+    public static final String SAVE_MOODS_BQ_URL = "saveMoodsGuanzhu.do";
+    //删除关注标签
+    public static final String DELETE_MOODS_BQ_URL = "deleteMoodsGuanzhuById.do";
+
 }
