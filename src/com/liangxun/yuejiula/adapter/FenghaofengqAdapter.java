@@ -59,6 +59,7 @@ public class FenghaofengqAdapter extends BaseAdapter {
             holder.ivIcon = (ImageView) convertView.findViewById(R.id.detail_favour_item_icon);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.btn = (TextView) convertView.findViewById(R.id.btn);
+            holder.schoolname = (TextView) convertView.findViewById(R.id.schoolname);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -68,6 +69,7 @@ public class FenghaofengqAdapter extends BaseAdapter {
         if (cell != null) {
             imageLoader.displayImage(cell.getEmp_cover(), holder.ivIcon, UniversityApplication.txOptions, animateFirstListener);
             holder.name.setText(cell.getEmp_name());
+            holder.schoolname.setText(cell.getSchoolName());
         }
 //        holder.btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -81,6 +83,7 @@ public class FenghaofengqAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView ivIcon;
         TextView name;
+        TextView schoolname;
         TextView btn;
     }
 

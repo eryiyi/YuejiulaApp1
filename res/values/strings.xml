@@ -24,11 +24,11 @@
     <string name="network_in">请检查网络连接</string>
 
     <string name="publishgoods_error_one">商品名称不能为空</string>
-    <string name="publishgoods_error_two">商品名称超出字段</string>
+    <string name="publishgoods_error_two">商品名称超出字段，最多20字</string>
     <string name="publishgoods_error_three">商品介绍不能为空</string>
-    <string name="publishgoods_error_four">商品介绍超出字段</string>
+    <string name="publishgoods_error_four">商品介绍超出字段，最多200字</string>
     <string name="publishgoods_error_five">商品价格不能为空</string>
-    <string name="publishgoods_error_six">商品价格超出字段</string>
+    <string name="publishgoods_error_six">商品价格超出字段，最大7位</string>
     <string name="publishgoods_error_seven">选择商品分类</string>
     <string name="publishgoods_error_eight">您不是商家用户，请选择二手市场发布信息</string>
     <string name="publishgoods_error_nine">商品地址不能为空</string>

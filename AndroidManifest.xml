@@ -312,6 +312,7 @@
         <activity android:name="com.liangxun.yuejiula.ui.DetailPaopaoGoodsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.MineMoodBqActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.liangxun.yuejiula.ui.MineMoodBqAddActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.liangxun.yuejiula.ui.AlbumActivityT" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
 
 
 
@@ -329,6 +330,28 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/CameraTheme">
         </activity>
+
+
+        <activity
+                android:name="com.yixia.camera.demo.ui.record.MediaRecorderActivityT"
+                android:hardwareAccelerated="true"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/CameraTheme">
+        </activity>
+        <activity
+                android:name="com.yixia.camera.demo.ui.record.MediaPreviewActivityT"
+                android:hardwareAccelerated="true"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/CameraTheme">
+        </activity>
+        <activity
+                android:name="com.yixia.camera.demo.ui.record.VideoPlayerActivityT"
+                android:screenOrientation="portrait"
+                android:theme="@style/CameraTheme">
+        </activity>
+
         <activity
                 android:name="com.yixia.camera.demo.ui.record.ImportVideoActivity"
                 android:hardwareAccelerated="true"

@@ -15,6 +15,15 @@ public class FhFqObj {
     private String emp_name;
     private String emp_cover;
     private String emp_mobile;
+    private String schoolName;
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
 
     public String getFhfq_id() {
         return fhfq_id;

@@ -57,7 +57,6 @@
                     android:layout_marginLeft="5dp"
                     android:visibility="gone"
                     android:layout_marginRight="5dp"
-                    android:text="中国家庭院校园区域名字体现"
                     android:textColor="#ffffff"/>
 
             <LinearLayout
@@ -82,7 +81,6 @@
               android:background="@color/gray"
               android:layout_height="0.5dp"></View>
         <TextView android:layout_width="match_parent"
-                  android:text="商品名称"
                   android:padding="8dp"
                   android:textColor="@color/textColor"
                   android:textSize="18sp"
@@ -98,7 +96,6 @@
                     android:src="@drawable/head"
                     android:layout_height="45dp"/>
             <TextView android:layout_width="wrap_content"
-                      android:text="用户姓名"
                       android:textSize="16sp"
                       android:layout_marginLeft="8dp"
                       android:layout_marginTop="5dp"
@@ -131,20 +128,17 @@
                       android:padding="8dp"
                     android:layout_height="wrap_content">
                 <TextView android:layout_width="wrap_content"
-                          android:text="现价：￥10.00"
                           android:textColor="@color/red"
                           android:textSize="16sp"
                           android:id="@+id/money_one"
                           android:layout_height="wrap_content"/>
                 <TextView android:layout_width="wrap_content"
-                          android:text="原价：￥10.00"
                           android:textColor="@color/red"
                           android:textSize="14sp"
                           android:layout_marginLeft="8dp"
                           android:id="@+id/money_two"
                           android:layout_height="wrap_content"/>
                 <TextView android:layout_width="wrap_content"
-                          android:text="代理价：￥10.00"
                           android:textColor="@color/red"
                           android:textSize="14sp"
                           android:visibility="gone"
@@ -153,7 +147,6 @@
                           android:layout_height="wrap_content"/>
         </LinearLayout>
         <TextView android:layout_width="wrap_content"
-                  android:text="内容"
                   android:id="@+id/content"
                   android:padding="8dp"
                   android:textColor="@color/textColor"

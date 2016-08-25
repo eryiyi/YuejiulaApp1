@@ -1,8 +1,10 @@
 package com.liangxun.yuejiula.ui;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import com.liangxun.yuejiula.data.GoodsTypeDATA;
 import com.liangxun.yuejiula.data.SellerSchoolListDATA;
 import com.liangxun.yuejiula.data.SuccessData;
 import com.liangxun.yuejiula.entity.Goodstype;
+import com.liangxun.yuejiula.entity.Record;
 import com.liangxun.yuejiula.entity.SellerSchoolList;
 import com.liangxun.yuejiula.util.*;
 import com.liangxun.yuejiula.widget.CustomProgressDialog;
@@ -40,6 +43,8 @@ import com.loopj.android.http.RequestParams;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
+import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
+import com.yixia.camera.demo.ui.record.MediaRecorderActivityT;
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,14 +103,22 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     private String schoolds = "";
 
     private ImageView publish_goods_video;//添加视频
-    private TextView video_url;
+//    private TextView video_url;
     private LinearLayout liner_video;
+    private LinearLayout liner_play;
     private String videoKey= "";//视频上传之后的key
+    private VideoView videoView1;//视频播放控件
+
+    private Button button1;//播放开关
+    private Button button2;//暂停开关
+    private Button button3;//重新播放开关
+    private Button button4;//视频大小开关
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.publish_goods_xml);
+        registerBoradcastReceiver();
         initView();
         schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
@@ -117,8 +130,20 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         publish_goods_video = (ImageView) this.findViewById(R.id.publish_goods_video);
         liner_video = (LinearLayout) this.findViewById(R.id.liner_video);
+        liner_play = (LinearLayout) this.findViewById(R.id.liner_play);
         liner_video.setVisibility(View.GONE);
-        video_url = (TextView) this.findViewById(R.id.video_url);
+        liner_play.setVisibility(View.GONE);
+        videoView1 = (VideoView) this.findViewById(R.id.videoView1);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+
+//        video_url = (TextView) this.findViewById(R.id.video_url);
         publish_goods_video.setOnClickListener(this);
         publish_goods_imv = (ImageView) this.findViewById(R.id.publish_goods_imv);
         publish_goods_imv.setOnClickListener(this);
@@ -162,7 +187,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 String path = dataList.get(position);
-                if (path.contains("default") && position == dataList.size() - 1 && dataList.size() - 1 != 9) {
+                if (path.contains("default") && position == dataList.size() - 1 && dataList.size() - 1 != 15) {
                     showSelectImageDialog();
                 } else {
                     Intent intent = new Intent(PublishGoodsActivity.this, ImageDelActivity.class);
@@ -195,7 +220,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(PublishGoodsActivity.this, "请输入商品名称", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (title.length() > 100) {
+                if (title.length() > 20) {
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_two, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -203,7 +228,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_three, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (content.length() > 2000) {
+                if (content.length() > 200) {
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_four, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -211,7 +236,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (money.length() > 100) {
+                if (money.length() > 7) {
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -219,7 +244,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (publish_good_money_2.getText().toString().length() > 100) {
+                if (publish_good_money_2.getText().toString().length() > 7) {
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -227,7 +252,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_five, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (publish_good_money_3.getText().toString().length() > 100) {
+                if (publish_good_money_3.getText().toString().length() > 7) {
                     Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_six, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -240,12 +265,11 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(PublishGoodsActivity.this, "请输入商品数量", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                if (typeIsBusiness.equals("1")) {//1说明该类别是商家的
-//                    if (!(emp_typeid.equals("2") || emp_typeid.equals("3"))) {
-//                        Toast.makeText(PublishGoodsActivity.this, R.string.publishgoods_error_eight, Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                }
+                if (countn.getText().toString().length() > 4) {
+                    Toast.makeText(PublishGoodsActivity.this, "商品数量超出限制，最大4位", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(StringUtil.isNullOrEmpty(schoolds)){
                     Toast.makeText(PublishGoodsActivity.this, "您的账号异常，请稍后重试", Toast.LENGTH_SHORT).show();
                     return;
@@ -279,8 +303,8 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                                                 //key
                                                 uploadPaths.add(key);
                                                 if (uploadPaths.size() == dataList.size()) {
-                                                    if(!StringUtil.isNullOrEmpty(video_url.getText().toString())){
-                                                        sendVideo(video_url.getText().toString());
+                                                    if(!StringUtil.isNullOrEmpty(urlv)){
+                                                        sendVideo(urlv);
                                                     }else {
                                                         publishAll();
                                                     }
@@ -311,10 +335,29 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
             {
                 //添加视频
                 //拍摄视频
-                Intent videoV = new Intent(PublishGoodsActivity.this, AddVideoActivity.class);
-                startActivityForResult(videoV, 10001);
+                Intent videoV = new Intent(PublishGoodsActivity.this, MediaRecorderActivityT.class);
+                startActivity(videoV);
+
+//                Intent intent = new Intent(MainActivity.this, MediaRecorderActivity.class);
+//                startActivity(intent);
             }
             break;
+            case R.id.button1:
+                videoView1.start();
+                break;
+
+            case R.id.button2:
+                videoView1.pause();
+                break;
+
+            case R.id.button3:
+                videoView1.resume();
+                videoView1.start();
+                break;
+
+            case R.id.button4:
+                Toast.makeText(this, "视频长度："+(videoView1.getDuration()/1024)+"M", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 
@@ -423,14 +466,14 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 10001 && resultCode == 0){
-            //拍摄视频
-            String urlv = data.getStringExtra("video_url");
-            if(!StringUtil.isNullOrEmpty(urlv)){
-                liner_video.setVisibility(View.VISIBLE);
-                video_url.setText(urlv);
-            }
-        }else
+//        if(requestCode == 10001 && resultCode == 0){
+//            //拍摄视频
+//            String urlv = data.getStringExtra("video_url");
+//            if(!StringUtil.isNullOrEmpty(urlv)){
+//                liner_video.setVisibility(View.VISIBLE);
+//                video_url.setText(urlv);
+//            }
+//        }else
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case SELECT_LOCAL_PHOTO:
@@ -638,7 +681,7 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
                 case R.id.mapstorage: {
-                    Intent intent = new Intent(PublishGoodsActivity.this, AlbumActivity.class);
+                    Intent intent = new Intent(PublishGoodsActivity.this, AlbumActivityT.class);
                     Bundle bundle = new Bundle();
                     bundle.putStringArrayList("dataList", getIntentArrayList(dataList));
                     bundle.putString("editContent", "");
@@ -708,4 +751,38 @@ public class PublishGoodsActivity extends BaseActivity implements View.OnClickLi
         };
         getRequestQueue().add(request);
     }
+    String urlv = "";
+    //广播接收动作
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals("add_video_goods_success")) {
+                urlv =  intent.getExtras().getString("video_url");
+                //拍摄视频
+                if(!StringUtil.isNullOrEmpty(urlv)){
+                    liner_video.setVisibility(View.VISIBLE);
+                    liner_play.setVisibility(View.VISIBLE);
+                    videoView1.setVideoPath(urlv);
+                }
+            }
+
+        }
+    };
+
+    //注册广播
+    public void registerBoradcastReceiver() {
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction("add_video_goods_success");
+        //注册广播
+        registerReceiver(mBroadcastReceiver, myIntentFilter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mBroadcastReceiver);
+    }
+
+
 }

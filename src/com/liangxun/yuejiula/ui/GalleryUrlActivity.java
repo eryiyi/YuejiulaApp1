@@ -1,8 +1,10 @@
 package com.liangxun.yuejiula.ui;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.liangxun.yuejiula.R;
@@ -13,6 +15,10 @@ import com.liangxun.yuejiula.galleryweidget.UrlPagerAdapter;
 import com.liangxun.yuejiula.util.Constants;
 import com.liangxun.yuejiula.util.PicUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,11 +33,11 @@ public class GalleryUrlActivity extends BaseActivity {
     private GalleryViewPager mViewPager;
     private String[] imageUrls;
     private TextView picSum;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_url);
+
         picSum = (TextView) findViewById(R.id.gallery_pic_sum);
         Bundle bundle = getIntent().getExtras();
         imageUrls = bundle.getStringArray(Constants.IMAGE_URLS);
@@ -63,6 +69,7 @@ public class GalleryUrlActivity extends BaseActivity {
     public void download(View view) {
         int i = mViewPager.getCurrentItem();
         getLxThread().execute(new PicUtil(imageUrls[i]));
+        PicUtil.downloadImage(imageUrls[i]);
         String fileName = PicUtil.getImagePath(imageUrls[i]);
         Toast.makeText(this, "已保存至" + fileName, Toast.LENGTH_SHORT).show();
     }

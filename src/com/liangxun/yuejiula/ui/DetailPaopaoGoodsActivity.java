@@ -345,14 +345,7 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         money_two.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
 
         imageLoader.displayImage(goods.getEmpCover(), head, UniversityApplication.options);
-        if("0".equals(goods.getIs_video())){
-            //没有视频
-            relative_video.setVisibility(View.GONE);
-        }else{
-            //有视频
-            relative_video.setVisibility(View.VISIBLE);
-            imageLoader.displayImage(goods.getVideourl(), img_video, UniversityApplication.options);
-        }
+
         title.setText(goods.getName());
         shuliang.setText("数量："+goods.getCount());
         nickname.setText(goods.getNickName());
@@ -416,7 +409,16 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
                 lists.add(str);
             }
         }
-
+        if("0".equals(goods.getIs_video())){
+            //没有视频
+            relative_video.setVisibility(View.GONE);
+        }else{
+            //有视频
+            relative_video.setVisibility(View.VISIBLE);
+            if(lists != null && lists.size()>0){
+                imageLoader.displayImage(lists.get(0), img_video, UniversityApplication.options);
+            }
+        }
         initViewPager();
         isDaili();//是否代理
     }

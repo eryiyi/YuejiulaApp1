@@ -103,8 +103,8 @@ public class UrlTouchImageView extends RelativeLayout {
                     }
                 });
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inTempStorage = new byte[100 * 1024];
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
+//                options.inTempStorage = new byte[100 * 1024];
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                 options.inPurgeable = true;
                 options.inSampleSize = 1;//压缩
                 options.inInputShareable = true;
