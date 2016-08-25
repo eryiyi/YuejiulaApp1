@@ -74,11 +74,14 @@ public class ImageUtils {
      */
     public static Bitmap getSmallBitmap(String filePath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(filePath, options);
-
-        options.inSampleSize = calculateInSampleSize(options, 320, 480);
         options.inJustDecodeBounds = false;
+//        BitmapFactory.decodeFile(filePath, options);
+        options.inTempStorage = new byte[100 * 1024];
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        options.inPurgeable = true;
+        options.inSampleSize = 1;//压缩
+        options.inInputShareable = true;
+//        options.inSampleSize = calculateInSampleSize(options, 320, 480);
         Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
         return bitmap;
     }

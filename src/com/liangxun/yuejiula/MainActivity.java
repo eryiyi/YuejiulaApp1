@@ -54,6 +54,7 @@ import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.util.Utils;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
+import com.yixia.camera.demo.UniversityApplication;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
 import org.bitlet.weupnp.Main;
 
@@ -1994,5 +1995,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
           }
       }
   }
+
+    // 统计未读消息数
+//    (void)setupUnreadMessageCount
+//    {
+//        NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+//        NSInteger unreadCount = 0;
+//        for (EMConversation *conversation in conversations) {
+//        unreadCount += conversation.unreadMessagesCount;
+//    }
+//        if (_chatListVC) {
+//            if (unreadCount > 0) {
+//                _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+//            }else{
+//                _chatListVC.tabBarItem.badgeValue = nil;
+//            }
+//        }
+//
+//        getApplication() setApplicationIconBadgeNumber:unreadCount];
+//    }
+
 
 }

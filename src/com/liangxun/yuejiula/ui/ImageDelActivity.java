@@ -35,7 +35,6 @@ public class ImageDelActivity extends AbsActivity {
                     @Override
                     public void onClick(View v) {
                         finish();
-
                     }
                 });
         findViewById(R.id.group_photo_del).setOnClickListener(new OnClickListener() {
