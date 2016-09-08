@@ -1320,6 +1320,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 //                    }
 //                });
             }
+            if(action.equals("update_group_block")){
+//                EMGroup group = (EMGroup) intent.getExtras().get("groupNew");
+//                int tmpI = 0;
+//                for(int i=0;i<grouplist.size();i++){
+//                    EMGroup emGroup = grouplist.get(i);
+//                    if(emGroup.getGroupId().equals(group.getGroupId())){
+//                        tmpI = i;
+//                        break;
+//                    }
+//                }
+//                grouplist.remove(tmpI);
+//                grouplist.add(group);
+            }
         }
     }  ;
 
@@ -1330,6 +1343,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         myIntentFilter.addAction("_msg_record");//有新的动态
         myIntentFilter.addAction("add_new_group_success");//有新的动态
         myIntentFilter.addAction("arrived_msg_andMe");//有与我相关
+        myIntentFilter.addAction("update_group_block");//更改群屏蔽与否
         registerReceiver(mBroadcastReceiver, myIntentFilter);
     }
 

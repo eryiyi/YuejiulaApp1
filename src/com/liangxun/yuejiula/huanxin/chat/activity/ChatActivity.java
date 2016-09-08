@@ -81,6 +81,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -201,12 +202,36 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        registerBoradcastReceiver();
         HxUserName=getIntent().getStringExtra("userId");
         initView();
         setUpView();
         Init_Point();
         Init_Data();
     }
+
+
+    //广播接收动作
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+//            if (action.equals("update_group_block")) {
+//                group = (EMGroup) intent.getExtras().get("groupNew");
+//            }
+
+        }
+    };
+
+    //注册广播
+    public void registerBoradcastReceiver() {
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction("update_group_block");
+        //注册广播
+        registerReceiver(mBroadcastReceiver, myIntentFilter);
+    }
+
+
 
     /**
      * 初始化游标
@@ -1403,6 +1428,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
             deliveryAckMessageReceiver = null;
         } catch (Exception e) {
         }
+        unregisterReceiver(mBroadcastReceiver);
     }
 
     @Override

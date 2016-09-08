@@ -120,7 +120,7 @@
                       android:padding="8dp"
                       android:id="@+id/zixun"
                       android:textColor="@color/white"
-                      android:background="@drawable/btn_blue_shap"
+                      android:background="@drawable/btn_logout_normal_shape"
                       android:layout_height="wrap_content"/>
     </RelativeLayout>
         <LinearLayout android:layout_width="match_parent"

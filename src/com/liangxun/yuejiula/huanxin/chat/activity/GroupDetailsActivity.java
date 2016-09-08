@@ -140,7 +140,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         List<String> members = new ArrayList<String>();
         members.addAll(group.getMembers());
 
-        if (group.getMsgBlocked()) {
+        if (group.isMsgBlocked()) {
             iv_switch_block_groupmsg.setVisibility(View.VISIBLE);
             iv_switch_unblock_groupmsg.setVisibility(View.INVISIBLE);
         } else {
@@ -459,6 +459,10 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                                         iv_switch_block_groupmsg.setVisibility(View.INVISIBLE);
                                         iv_switch_unblock_groupmsg.setVisibility(View.VISIBLE);
                                         progressDialog.dismiss();
+                                        //解锁
+                                        Intent intent1 = new Intent("add_new_group_success");
+                                        sendBroadcast(intent1);
+                                        setResult(RESULT_OK);
                                     }
                                 });
                             } catch (Exception e) {
@@ -493,6 +497,10 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                                         iv_switch_block_groupmsg.setVisibility(View.VISIBLE);
                                         iv_switch_unblock_groupmsg.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
+                                        //屏蔽
+                                        Intent intent1 = new Intent("add_new_group_success");
+                                        sendBroadcast(intent1);
+                                        setResult(RESULT_OK);
                                     }
                                 });
                             } catch (Exception e) {

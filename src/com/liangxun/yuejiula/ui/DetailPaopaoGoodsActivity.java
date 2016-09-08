@@ -391,14 +391,16 @@ public class DetailPaopaoGoodsActivity extends BaseActivity implements OnClickCo
         lstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                GoodsComment comment1 = comments.get(position - 1);
-                Intent comment = new Intent(DetailPaopaoGoodsActivity.this, PublishGoodCommentActivity.class);
-                comment.putExtra(Constants.GOODS_FATHER_PERSON_NAME, comment1.getNickName());
-                comment.putExtra(Constants.GOODS_FATHER_UUID, comment1.getId());
-                comment.putExtra(Constants.GOODS_RECORD_UUID, comment1.getGoodsId());
-                comment.putExtra(Constants.GOODS_PERSON_UUID, goods.getEmpId());
-                comment.putExtra("fplempid", comment1.getEmpId());
-                startActivity(comment);
+                if(comments.size() > (position - 2)){
+                    GoodsComment comment1 = comments.get(position - 2);
+                    Intent comment = new Intent(DetailPaopaoGoodsActivity.this, PublishGoodCommentActivity.class);
+                    comment.putExtra(Constants.GOODS_FATHER_PERSON_NAME, comment1.getNickName());
+                    comment.putExtra(Constants.GOODS_FATHER_UUID, comment1.getId());
+                    comment.putExtra(Constants.GOODS_RECORD_UUID, comment1.getGoodsId());
+                    comment.putExtra(Constants.GOODS_PERSON_UUID, goods.getEmpId());
+                    comment.putExtra("fplempid", comment1.getEmpId());
+                    startActivity(comment);
+                }
             }
         });
 
