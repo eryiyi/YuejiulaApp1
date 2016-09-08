@@ -53,7 +53,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
     private String content = "";
     private String schoolId = "";
     private String empId = "";//当前登陆者的ID
-    private String type_pk = "0";//查询的时候  区分是查询全部的还是自己学校的
+    private String type_pk = "0";//查询的时候  区分是查询全部的还是自己圈子的
 
     private int tmpPosition;
     private ImageView search_null;
@@ -231,7 +231,7 @@ public class PkNewFragment extends BasePkFragment implements OnClickContentItemL
                         params.put("schoolId", "");
                     }
                     if (type_pk.equals(Constants.RECORD_TYPE)) {
-                        //我的学校
+                        //我的圈子
                         params.put("schoolId", schoolId);
                     }
                 }

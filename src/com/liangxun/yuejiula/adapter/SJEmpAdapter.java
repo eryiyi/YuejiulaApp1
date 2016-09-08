@@ -16,7 +16,7 @@ import com.yixia.camera.demo.UniversityApplication;
 import java.util.List;
 
 /**
- * 承包商列表
+ * 圈主列表
  */
 public class SJEmpAdapter extends BaseAdapter {
     private ViewHolder holder;
@@ -78,7 +78,7 @@ public class SJEmpAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView item_cover;//头像
         TextView item_nickname;//昵称
-        TextView itemt_colleage;//大学
+        TextView itemt_colleage;//圈子
     }
 
 }

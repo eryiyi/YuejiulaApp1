@@ -4,7 +4,7 @@ package com.liangxun.yuejiula.entity;
  * author: ${zhanghailong}
  * Date: 2015/3/27
  * Time: 9:16
- * 商家承包学校表
+ * 商家承包圈子表
  */
 public class ContractSchool {
     private String id;
@@ -15,8 +15,8 @@ public class ContractSchool {
     private String empName;
     private String schoolName;
     private String empCover;
-    private String isOpen;//是否开通，服务端无此字段 我用来标记代理商是否给商家开通此学校
-    private String isSelected;//是否选中，服务端无此字段 我用来标记选择学校用  0否  1是
+    private String isOpen;//是否开通，服务端无此字段 我用来标记代理商是否给商家开通此圈子
+    private String isSelected;//是否选中，服务端无此字段 我用来标记选择圈子用  0否  1是
 
     public String getIsSelected() {
         return isSelected;

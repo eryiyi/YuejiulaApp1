@@ -129,11 +129,11 @@ public class IndexFragment  extends BaseFragment implements View.OnClickListener
 //                String str = intent.getExtras().getString(Constants.SEND_VALUE_ONE);
 //                if ("0".equals(str)) {
 //                    schoolId = "";
-//                    maintitle.setText("所有大学");
+//                    maintitle.setText("所有圈子");
 //                }
 //                if ("1".equals(str)) {
 //                    schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
-//                    maintitle.setText("我的大学");
+//                    maintitle.setText("我的圈子");
 //                }
 //                IS_REFRESH = true;
 //                pageIndex = 1;

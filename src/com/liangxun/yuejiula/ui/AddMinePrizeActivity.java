@@ -65,7 +65,7 @@ public class AddMinePrizeActivity extends BaseActivity implements View.OnClickLi
     private String pic_url = "";
     private String themeId = "";
 
-    private NoScrollGridView add_prizes_gridview_image;//学校
+    private NoScrollGridView add_prizes_gridview_image;//圈子
     private PkColleageAdapter adapter;
     List<ContractSchool> lists = new ArrayList<ContractSchool>();
     private String schoolstr;
@@ -121,7 +121,7 @@ public class AddMinePrizeActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.add_mine_prize_run:
-                //处理选中的学校
+                //处理选中的圈子
                 if (lists.size() > 0) {
                     schoolstr = "";
                     for (int i = 0; i < lists.size(); i++) {
@@ -339,7 +339,7 @@ public class AddMinePrizeActivity extends BaseActivity implements View.OnClickLi
         getRequestQueue().add(request);
     }
 
-    //查询该代理商下面的学校
+    //查询该代理商下面的圈子
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,

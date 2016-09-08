@@ -76,7 +76,7 @@
                   android:padding="10dp"
                   android:layout_height="wrap_content">
         <TextView android:layout_width="wrap_content"
-                  android:text="学校"
+                  android:text="圈子"
                   android:gravity="center"
                   android:layout_weight="1"
                   android:textColor="@color/main"

@@ -33,7 +33,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout update;//检查更新
     private LinearLayout chat_set;//聊天设置
     private LinearLayout find_aboutus;//关于我们
-    private LinearLayout qiehuan_school;//切换学校
+    private LinearLayout qiehuan_school;//切换圈子
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +114,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.qiehuan_school:
             {
-                //切换学校
+                //切换圈子
                 showMsg();
             }
                 break;
@@ -127,7 +127,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
         TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
         final TextView jubao_cont = (TextView) picAddInflate.findViewById(R.id.content);
-        jubao_cont.setText("确定切换学校？");
+        jubao_cont.setText("确定切换圈子？");
         //举报提交
         jubao_sure.setOnClickListener(new View.OnClickListener() {
 

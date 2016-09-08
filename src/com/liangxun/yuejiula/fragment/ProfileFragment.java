@@ -408,12 +408,12 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         }
         if (empType.equals("2")) {//是商家
             pics.add( new MinePicsObj(R.drawable.mine_dianpu_n, "我的店铺"));
-            pics.add(new MinePicsObj(R.drawable.mine_school_n, "我的学校"));
+            pics.add(new MinePicsObj(R.drawable.mine_school_n, "入驻圈子"));
             pics.add(new MinePicsObj(R.drawable.mine_relate_n, "我的代理"));
         }
         if (empType.equals("3")) {//是代理商
-            //显示我的商家、学校、推广
-            pics.add(new MinePicsObj(R.drawable.mine_school_n ,"我的学校"));
+            //显示我的商家、圈子、推广
+            pics.add(new MinePicsObj(R.drawable.mine_school_n ,"我的圈子"));
             pics.add(new MinePicsObj(R.drawable.mine_shangjia_n ,"我的商家"));
             pics.add(new MinePicsObj(R.drawable.mine_tg_n ,"我的推广"));
             pics.add(new MinePicsObj(R.drawable.mine_pingbi_n ,"禁帖禁群"));
@@ -422,7 +422,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         pics.add(new MinePicsObj(R.drawable.mine_record_n ,"我的动态"));
 //        pics.add(new MinePicsObj(R.drawable.mine_relate_n ,"与我相关"));
-        pics.add(new MinePicsObj(R.drawable.mine_friends_n ,"我的好友"));
+        pics.add(new MinePicsObj(R.drawable.mine_friends_n ,"兴趣好友"));
 
         pics.add( new MinePicsObj(R.drawable.mine_favour_n ,"我的收藏"));
         pics.add(new MinePicsObj(R.drawable.mine_order_n ,"我的订单"));

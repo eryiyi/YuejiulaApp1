@@ -326,7 +326,7 @@ public class MessageAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        // 群聊时，显示接收的消息的发送人的名称
+        // 房间时，显示接收的消息的发送人的名称
         if (chatType == ChatType.GroupChat && message.direct == EMMessage.Direct.RECEIVE) {
             // demo用username代替nick
             String nick = userDao.getNick(message.getFrom());
@@ -337,7 +337,7 @@ public class MessageAdapter extends BaseAdapter {
             loadImage(message, holder.head_iv);//加载头像
 
         }
-        // 如果是发送的消息并且不是群聊消息，显示已读textview
+        // 如果是发送的消息并且不是房间消息，显示已读textview
         if (message.direct == EMMessage.Direct.SEND && chatType != ChatType.GroupChat) {
             holder.tv_ack = (TextView) convertView.findViewById(R.id.tv_ack);
             holder.tv_delivered = (TextView) convertView.findViewById(R.id.tv_delivered);
@@ -484,7 +484,7 @@ public class MessageAdapter extends BaseAdapter {
     private void handleTextMessage(EMMessage message, ViewHolder holder, final int position) {
         loadImage(message, holder.head_iv);//加载头像
         TextMessageBody txtBody = (TextMessageBody) message.getBody();
-        String texstr=txtBody.getMessage().equals("12345678910邀请你加入了群聊") ? "管理员邀请你加入了群聊" : txtBody.getMessage();
+        String texstr=txtBody.getMessage().equals("12345678910邀请你加入了房间") ? "管理员邀请你加入了房间" : txtBody.getMessage();
         int textsize = ( int) holder.tv.getTextSize();
         textsize = StringUtil.dp2px(context, textsize + 25);
         Spannable span = FaceConversionUtil.getInstace().getExpressionString(context, texstr,textsize);

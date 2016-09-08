@@ -54,7 +54,7 @@ public class PkWqLstActivity extends BaseActivity implements View.OnClickListene
 
     private int tmpPosition;
     private ImageView search_null;
-    private String type_pk = "0";//查询的时候  区分是查询全部的还是自己学校的
+    private String type_pk = "0";//查询的时候  区分是查询全部的还是自己圈子的
     private PKTheme pkTheme;
     private PkFootPopWindow deleteWindow;
 
@@ -215,7 +215,7 @@ public class PkWqLstActivity extends BaseActivity implements View.OnClickListene
                         params.put("schoolId", "");
                     }
                     if (type_pk.equals(Constants.RECORD_TYPE)) {
-                        //我的学校
+                        //我的圈子
                         params.put("schoolId", schoolId);
                     }
                 }

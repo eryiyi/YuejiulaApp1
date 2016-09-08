@@ -35,7 +35,7 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2015/4/11.
- * 根据承包商ID查找所有设置的奖品
+ * 根据圈主ID查找所有设置的奖品
  */
 public class PkPrizesActivity extends BaseActivity implements View.OnClickListener, OnClickContentItemListener {
     private PullToRefreshListView prize_lstv;

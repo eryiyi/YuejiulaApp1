@@ -41,8 +41,8 @@ public class OtherSchoolThreeActivity extends BaseActivity implements View.OnCli
     private ImageView other_back;//返回按钮
     private TextView maintitle;//标题
     private ImageView search_null;
-    private String university_uuid;//大学UUID--要查询的
-    private String university_title;//大学昵称--要查询的
+    private String university_uuid;//圈子UUID--要查询的
+    private String university_title;//圈子昵称--要查询的
 
     private List<Record> recordList;
     //动态listview
@@ -62,8 +62,8 @@ public class OtherSchoolThreeActivity extends BaseActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.other_school_three);
-        university_uuid = getIntent().getExtras().getString(Constants.OTHER_UNIVERSITY);//要查询的大学的UUID
-        university_title = getIntent().getExtras().getString(Constants.OTHER_UNIVERSITY_TITLE);//要查询的大学的昵称
+        university_uuid = getIntent().getExtras().getString(Constants.OTHER_UNIVERSITY);//要查询的圈子的UUID
+        university_title = getIntent().getExtras().getString(Constants.OTHER_UNIVERSITY_TITLE);//要查询的圈子的昵称
 
         emp_id = getGson().fromJson(getSp().getString(Constants.EMPID, ""), String.class);
         initView();

@@ -173,7 +173,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
                     for(ContractSchool con:MainActivity.contractSchools){
                         schoolds +=con.getSchoolId() +",";
                     }
-                    params.put("schoolds", schoolds);//承包的学校ID
+                    params.put("schoolds", schoolds);//承包的圈子ID
                 }
                 params.put("istype", type);
                 return params;

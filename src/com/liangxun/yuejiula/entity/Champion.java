@@ -5,9 +5,9 @@ public class Champion {
     private String themeNumber;//期次
     private String themeId;//主题ID
     private String empId;//会员ID
-    private String schoolId;//学校ID
+    private String schoolId;//圈子ID
     private String zpId;//作品ID
-    private String type;//类别  0 全国  1学校
+    private String type;//类别  0 全国  1圈子
     private String dateline;
     private String isPic;//是否传图  0未传  1传了
     private String uploadPic;//上传的图片
@@ -15,7 +15,7 @@ public class Champion {
     private String empName;//冠军昵称
     private String empCover;//冠军会员头像
     private String zpContent;//作品内容
-    private String schoolName;//学校名称
+    private String schoolName;//圈子名称
     private String picUrl;
     private String videoUrl;
     private String zpType;//作品类型

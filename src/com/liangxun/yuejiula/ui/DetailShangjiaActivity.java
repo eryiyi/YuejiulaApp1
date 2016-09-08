@@ -144,7 +144,7 @@ public class DetailShangjiaActivity extends BaseActivity implements View.OnClick
 
     };
 
-    //查询商家的学校
+    //查询商家的圈子
     private void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,

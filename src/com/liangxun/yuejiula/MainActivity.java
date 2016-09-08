@@ -54,9 +54,7 @@ import com.liangxun.yuejiula.util.StringUtil;
 import com.liangxun.yuejiula.util.Utils;
 import com.liangxun.yuejiula.widget.popview.MenuPopMenu;
 import com.liangxun.yuejiula.widget.popview.MoodPopMenu;
-import com.yixia.camera.demo.UniversityApplication;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
-import org.bitlet.weupnp.Main;
 
 import java.util.*;
 
@@ -191,7 +189,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         EMContactManager.getInstance().setContactListener(new MyContactListener());
         // 注册一个监听连接状态的listener
         EMChatManager.getInstance().addConnectionListener(new MyConnectionListener());
-        // 注册群聊相关的listener
+        // 注册房间相关的listener
         EMGroupManager.getInstance().addGroupChangeListener(new MyGroupChangeListener());
         // 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
         EMChat.getInstance().setAppInited();
@@ -203,7 +201,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         //查询心情标签
         getMood();
-        //如果是承包商 查询他的学校
+        //如果是圈主 查询他的圈子
         if("3".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
             //是代理商
             getSchoolMine();
@@ -214,7 +212,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
             getDailiMine();
         }
 
-        //查询承包商信息
+        //查询圈主信息
         if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
             getManager();
         }
@@ -961,7 +959,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 //                newFriends.setNick(strChat);
 //
 //                userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
-//                // 添加"群聊"
+//                // 添加"房间"
 //                User groupUser = new User();
 //                String strGroup = context.getString(R.string.group_chat);
 //                groupUser.setUsername(Constant.GROUP_USERNAME);
@@ -1127,14 +1125,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         @Override
         public void onApplicationReceived(String groupId, String groupName, String applyer, String reason) {
-            // 用户申请加入群聊
+            // 用户申请加入房间
             InviteMessage msg = new InviteMessage();
             msg.setFrom(applyer);
             msg.setTime(System.currentTimeMillis());
             msg.setGroupId(groupId);
             msg.setGroupName(groupName);
             msg.setReason(reason);
-            Log.d(TAG, applyer + " 申请加入群聊：" + groupName);
+            Log.d(TAG, applyer + " 申请加入房间：" + groupName);
             msg.setStatus(InviteMessage.InviteMesageStatus.BEAPPLYED);
             notifyNewIviteMessage(msg);
         }
@@ -1526,12 +1524,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         if("000".equals(str)){
             if("1".equals(getGson().fromJson(getSp().getString("is_fenghao", ""), String.class))){
-                //如果封号了，查询是否封的这个学校的
+                //如果封号了，查询是否封的这个圈子的
                 boolean flag = true;
                 if(listFh != null){
                     for(FhFqObj fhFqObj:listFh){
                         if(fhFqObj.getSchool_id().equals(emp.getSchoolId())){
-                            //当前登录者的学校ID
+                            //当前登录者的圈子ID
                             flag = false;
                             break;
                         }
@@ -1852,7 +1850,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
     }
 
 
-    //承包商的学校
+    //圈主的圈子
     public static  List<ContractSchool> contractSchools = new ArrayList<ContractSchool>();
     private void getSchoolMine() {
         StringRequest request = new StringRequest(

@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2015/3/30.
- * 代理商开通的学校
+ * 代理商开通的圈子
  */
 public class MineSchoolsActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mine_school_menu;

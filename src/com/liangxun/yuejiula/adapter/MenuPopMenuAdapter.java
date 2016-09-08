@@ -17,12 +17,12 @@ import java.util.ArrayList;
  * Time: 10:31
  * 商品详情页右上角  弹出功能菜单选择器
  */
-public class GoodsPopMenuAdapter extends BaseAdapter {
+public class MenuPopMenuAdapter extends BaseAdapter {
     private ArrayList<String> itemList;
     private LayoutInflater inflater;
     private Context mContext;
 
-    public GoodsPopMenuAdapter(ArrayList<String> itemList, Context mContext) {
+    public MenuPopMenuAdapter(ArrayList<String> itemList, Context mContext) {
         this.itemList = itemList;
         this.mContext = mContext;
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -56,16 +56,15 @@ public class GoodsPopMenuAdapter extends BaseAdapter {
         }
         holder.groupItem.setText(itemList.get(position));
         ImageView icon = (ImageView) convertView.findViewById(R.id.popmenu_item_img);//设置每个条目的图标
-        icon.setVisibility(View.GONE);
-//        if (0 == position) {
-//            icon.setBackgroundResource(R.drawable.woyaocansai);
-//        } else if (1 == position) {
-//            icon.setBackgroundResource(R.drawable.cansaiguize);
-//        } else if (2 == position) {
-//            icon.setBackgroundResource(R.drawable.wangqihuigu);
-//        } else {
-//            icon.setBackgroundResource(R.drawable.tuichupk);
-//        }
+        if (0 == position) {
+            icon.setBackgroundResource(R.drawable.bj__ic_bestcollection_first);
+        } else if (1 == position) {
+            icon.setBackgroundResource(R.drawable.bj__ic_bestcollection_second);
+        } else if (2 == position) {
+            icon.setBackgroundResource(R.drawable.bj__ic_bestcollection_third);
+        } else {
+            icon.setBackgroundResource(R.drawable.bj__ic_bestcollection_third);
+        }
         return convertView;
     }
 

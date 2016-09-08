@@ -122,7 +122,7 @@ public class SelectCollegeActivity extends BaseActivity implements View.OnClickL
                         if (StringUtil.isJson(s)) {
                             SuccessData data = getGson().fromJson(s, SuccessData.class);
                             if (data.getCode() == 200) {
-                                showMsg(SelectCollegeActivity.this,"切换学校成功，请重新登录");
+                                showMsg(SelectCollegeActivity.this,"切换圈子成功，请重新登录");
                                 Intent loginV = new Intent(SelectCollegeActivity.this, LoginActivity.class);
                                 startActivity(loginV);
                             } else {

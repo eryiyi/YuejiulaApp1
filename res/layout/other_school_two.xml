@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dip"
-                    android:text="其他大学"
+                    android:text="其他圈子"
                     android:id="@+id/maintitle"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
@@ -65,7 +65,7 @@
                     android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:hint="请输入大学名称"
+                    android:hint="请输入圈子名称"
                     android:singleLine="true"
                     android:background="@null"
                     />

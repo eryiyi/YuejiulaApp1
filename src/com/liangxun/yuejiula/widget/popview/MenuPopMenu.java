@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import com.liangxun.yuejiula.R;
 import com.liangxun.yuejiula.adapter.GoodsPopMenuAdapter;
+import com.liangxun.yuejiula.adapter.MenuPopMenuAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class MenuPopMenu implements AdapterView.OnItemClickListener {
         View view = inflater.inflate(R.layout.main_popmenu, null);
 
         listView = (ListView) view.findViewById(R.id.listView1);
-        listView.setAdapter(new GoodsPopMenuAdapter(itemList, context));
+        listView.setAdapter(new MenuPopMenuAdapter(itemList, context));
         listView.setOnItemClickListener(this);
 
         popupWindow = new PopupWindow(view,

@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
-                        android:text="学校"
+                        android:text="圈子"
                         android:id="@+id/pk_detail_colleage"
                         android:textSize="13sp"
                         android:layout_alignBottom="@+id/detail_pk_cover"

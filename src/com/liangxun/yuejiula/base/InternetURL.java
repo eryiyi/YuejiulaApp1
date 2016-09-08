@@ -95,7 +95,7 @@ public class InternetURL {
     public static final String GET_FRIENDS_URL =  "listMemberInfo.do";
     //获取省份列表
     public static final String GET_PROVINCE_URL =  "getProvince.do";
-    //获取大学列表
+    //获取圈子列表
     public static final String GET_COLLEAGE_URL =  "getCollege.do";
     //修改密码
     public static final String UPDATE_PWR_URL =  "resetPass.do";
@@ -124,19 +124,19 @@ public class InternetURL {
 
     //share viewGoods.do 根据ID查看商品展示
     public static final String SHARE_GOODS =  "viewGoods.do";
-    //根据承包商的会员ID查找该承包商的商家
+    //根据圈主的会员ID查找该圈主的商家
     public static final String GET_SHANGJIAS_URL =  "findSellerById.do";
     //设置商家setSeller.do
     public static final String SET_SHAGNJIA_URL =  "setSeller.do";
-    // 查找经销商开通了几个学校
+    // 查找经销商开通了几个圈子
     public static final String GET_SCHOOLS_BY_JXS_URL =  "findContractSchoolById.do";
-    //查询商家的学校
+    //查询商家的圈子
     public static final String GET_SHOOLS_BYSJ_URL =  "findSchoolList.do";
     //删除商家
     public static final String DELETE_SHAGNJIA_URL =  "deleteSeller.do";
     // 给商家更新到期时间updateSellerGoods.do
     public static final String UPDATE_SHAGNJIA_URL =  "updateSellerGoods.do";
-    //查询所有的承包商
+    //查询所有的圈主
     public static final String SEARCH_SJS_URL =  "getAllContract.do";
     //置顶  取消置顶商品
     public static final String UPDATE_GOODS_TOP_URL =  "updateGoodsPosition.do";
@@ -144,7 +144,7 @@ public class InternetURL {
     public static final String TUIGUANG_AD_URL =  "getPromotion.do";
     //删除推广
     public static final String DELETE_TUIGUANG_AD_URL =  "deletePromotion.do";
-    //添加用户到群组
+    //添加用户到房间
     public static final String ADD_USER_TO_GROUP =  "addUserToGroup.do";
     //获取随机的十个用户
     public static final String RANDOM_GET_TEN_USERS =  "searchRecommend.do";
@@ -170,13 +170,13 @@ public class InternetURL {
     public static final String PK_GET_CHAMPION =  "getChampion.do";
     //添加奖品--代理商
     public static final String PK_ADD_PRIZE_URL =  "savePrize.do";
-    //根据承包商ID查找所有设置的奖品 + 查询 主题的奖品
+    //根据圈主ID查找所有设置的奖品 + 查询 主题的奖品
     public static final String PK_GET_PRIZES_URL =  "viewPriceApp.do";
     //根据id删除奖品
     public static final String PK_DELETE_URL =  "deletePrize.do";
     //查询所有往期主题
     public static final String PK_GET_WANGQI =  "listThemeApp.do";
-    //根据商家会员ID查找所有的学校
+    //根据商家会员ID查找所有的圈子
     public static final String GET_SCHOOL_BYSJUUID =  "findSchoolListByEmp.do";
     //确认领奖
     public static final String SURE_PRIZES_URL =  "championSure.do";
@@ -277,7 +277,7 @@ public class InternetURL {
 
     //发现网址
     public static final String FIND_WWW_URL =  "listFindsApp.do";
-    //根据学校ID查询学校承包商
+    //根据圈子ID查询圈子圈主
     public static final String GET_SCHOOL_MANAGER_BY_ID =  "getManagerById.do";
 
     //封号
@@ -285,7 +285,7 @@ public class InternetURL {
     //封群
     public static final String UPDATE_FENGQUN_URL =  "updateEmpIsFengQun.do";
 
-    //查询封号封群的承包商下的会员列表
+    //查询封号封群的圈主下的会员列表
     public static final String GET_FENGHAOFENGQUNS_URL =  "getFenghaofengquns.do";
 
     //竞价保存 查询  单个查询
@@ -298,14 +298,14 @@ public class InternetURL {
     public static final String SAVE_FAVOUR_URL =  "saveDianpuFavour.do";
     //获得我的店铺收藏列表
     public static final String APP_GET_FAVOUR_DIANPU_URL =  "appGetDianpuFavour.do";
-    //更改学校
+    //更改圈子
     public static final String UPDATE_COLLEGE_URL =  "updateCollegeById.do";
 
-    //查询承包商信息
+    //查询圈主信息
     public static final String GET_MANAGER_COLLEGE_BY_EMPID =  "getManagerCollegeByEmpId.do";
 //    public static final String GET_MANAGER_COLLEGE_BY_EMPID =  "getManagerCollegeByEmpId.do";
 
-    //承包商广告语
+    //圈主广告语
     public static final String MANAGER_MSG_AD_URL =  "listsMsgAds.do";
 
     //查询我的封号 封群

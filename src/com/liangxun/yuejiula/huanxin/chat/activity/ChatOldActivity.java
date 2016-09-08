@@ -290,7 +290,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
         manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         wakeLock = ((PowerManager) getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
-        // 判断单聊还是群聊
+        // 判断单聊还是房间
         chatType = getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
 
         if (chatType == CHATTYPE_SINGLE) { // 单聊
@@ -299,7 +299,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
             // conversation =
             // EMChatManager.getInstance().getConversation(toChatUsername,false);
         } else {
-            // 群聊
+            // 房间
             findViewById(R.id.container_to_group).setVisibility(View.VISIBLE);
             findViewById(R.id.container_remove).setVisibility(View.GONE);
             findViewById(R.id.container_voice_call).setVisibility(View.GONE);
@@ -351,7 +351,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
         deliveryAckMessageIntentFilter.setPriority(5);
         registerReceiver(deliveryAckMessageReceiver, deliveryAckMessageIntentFilter);
 
-        // 监听当前会话的群聊解散被T事件
+        // 监听当前会话的房间解散被T事件
         groupListener = new GroupListener();
         EMGroupManager.getInstance().addGroupChangeListener(groupListener);
 
@@ -651,13 +651,13 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
 
         if (content.length() > 0) {
             EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
-            // 如果是群聊，设置chattype,默认是单聊
+            // 如果是房间，设置chattype,默认是单聊
             if (chatType == CHATTYPE_GROUP)
                 message.setChatType(ChatType.GroupChat);
             TextMessageBody txtBody = new TextMessageBody(content);
             // 设置消息body
             message.addBody(txtBody);
-            // 设置要发给谁,用户username或者群聊groupid
+            // 设置要发给谁,用户username或者房间groupid
             message.setReceipt(toChatUsername);
             // 把messgage加到conversation中
             conversation.addMessage(message);
@@ -685,7 +685,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
         }
         try {
             final EMMessage message = EMMessage.createSendMessage(EMMessage.Type.VOICE);
-            // 如果是群聊，设置chattype,默认是单聊
+            // 如果是房间，设置chattype,默认是单聊
             if (chatType == CHATTYPE_GROUP)
                 message.setChatType(ChatType.GroupChat);
             message.setReceipt(toChatUsername);
@@ -713,7 +713,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
         String to = toChatUsername;
         // create and add image message in view
         final EMMessage message = EMMessage.createSendMessage(EMMessage.Type.IMAGE);
-        // 如果是群聊，设置chattype,默认是单聊
+        // 如果是房间，设置chattype,默认是单聊
         if (chatType == CHATTYPE_GROUP)
             message.setChatType(ChatType.GroupChat);
 
@@ -741,7 +741,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
         }
         try {
             EMMessage message = EMMessage.createSendMessage(EMMessage.Type.VIDEO);
-            // 如果是群聊，设置chattype,默认是单聊
+            // 如果是房间，设置chattype,默认是单聊
             if (chatType == CHATTYPE_GROUP)
                 message.setChatType(ChatType.GroupChat);
             String to = toChatUsername;
@@ -805,7 +805,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
      */
     private void sendLocationMsg(double latitude, double longitude, String imagePath, String locationAddress) {
         EMMessage message = EMMessage.createSendMessage(EMMessage.Type.LOCATION);
-        // 如果是群聊，设置chattype,默认是单聊
+        // 如果是房间，设置chattype,默认是单聊
         if (chatType == CHATTYPE_GROUP)
             message.setChatType(ChatType.GroupChat);
         LocationMessageBody locBody = new LocationMessageBody(locationAddress, latitude, longitude);
@@ -854,7 +854,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
 
         // 创建一个文件消息
         EMMessage message = EMMessage.createSendMessage(EMMessage.Type.FILE);
-        // 如果是群聊，设置chattype,默认是单聊
+        // 如果是房间，设置chattype,默认是单聊
         if (chatType == CHATTYPE_GROUP)
             message.setChatType(ChatType.GroupChat);
 
@@ -948,7 +948,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
     }
 
     /**
-     * 点击进入群组详情
+     * 点击进入房间详情
      *
      * @param view
      */
@@ -1009,7 +1009,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
             String msgid = intent.getStringExtra("msgid");
             // 收到这个广播的时候，message已经在db和内存里了，可以通过id获取mesage对象
             EMMessage message = EMChatManager.getInstance().getMessage(msgid);
-            // 如果是群聊消息，获取到group id
+            // 如果是房间消息，获取到group id
             if (message.getChatType() == ChatType.GroupChat) {
                 username = message.getTo();
             }
@@ -1383,7 +1383,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
     }
 
     /**
-     * 监测群组解散或者被T事件
+     * 监测房间解散或者被T事件
      *
      */
     class GroupListener extends GroupReomveListener {
@@ -1404,11 +1404,11 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
 
         @Override
         public void onGroupDestroy(final String groupId, String groupName) {
-            // 群组解散正好在此页面，提示群组被解散，并finish此页面
+            // 房间解散正好在此页面，提示房间被解散，并finish此页面
             runOnUiThread(new Runnable() {
                 public void run() {
                     if (toChatUsername.equals(groupId)) {
-                        Toast.makeText(ChatOldActivity.this, "当前群聊已被群创建者解散", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChatOldActivity.this, "当前房间已被群创建者解散", Toast.LENGTH_LONG).show();
                         if (GroupDetailsActivity.instance != null)
                             GroupDetailsActivity.instance.finish();
                         finish();

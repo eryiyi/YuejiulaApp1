@@ -82,7 +82,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
     private ImageView detail_photo;//头像
     private TextView detail_nickname;//昵称
     private TextView detail_time;//时间
-    private TextView home_item_school;//学校
+    private TextView home_item_school;//圈子
     private TextView detail_content;//详细内容
     private PictureGridview detail_grideview;//grideview
     private ImageView detail_video_pic;//视频图片
@@ -234,7 +234,7 @@ public class DetailPageAcitvity extends BaseActivity implements View.OnClickList
             }
         }
         if (emp_type.equals("1") || flagMine) {
-            //是管理员 或者是这个学校的承包商
+            //是管理员 或者是这个圈子的圈主
             detail_delete_liner.setVisibility(View.VISIBLE);
             detail_report_liner.setVisibility(View.GONE);
         }

@@ -83,7 +83,7 @@ public class PublicGroupsSeachActivity extends BaseActivity {
     
     
     /**
-     * 点击搜索到的群组进入群组信息页面
+     * 点击搜索到的房间进入房间信息页面
      * @param view
      */
     public void enterToDetails(View view){

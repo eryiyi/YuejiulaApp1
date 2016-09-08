@@ -239,7 +239,7 @@ public class MineRecordAdapter extends BaseAdapter {
         TextView home_photo_item_level;
         TextView home_photo_item_like_count;//赞的数量
         ImageView home_player_icon_video;//视频播放
-        TextView home_item_school;//所属学校
+        TextView home_item_school;//所属圈子
 
         PictureGridview gridview_detail_picture;//九宫格--图片
     }

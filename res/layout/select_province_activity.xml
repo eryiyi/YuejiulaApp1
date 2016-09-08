@@ -65,7 +65,7 @@
                     <!--android:layout_marginLeft="5dp"-->
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="match_parent"-->
-                    <!--android:hint="请输入大学名称"-->
+                    <!--android:hint="请输入圈子名称"-->
                     <!--android:singleLine="true"-->
                     <!--android:background="@null"-->
                     <!--/>-->

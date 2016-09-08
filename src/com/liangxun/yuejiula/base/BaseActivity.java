@@ -100,7 +100,7 @@ public class BaseActivity extends FragmentActivity {
      * @param message
      */
     protected void notifyNewMessage(EMMessage message, String empName) {
-        //如果是设置了不提醒只显示数目的群组(这个是app里保存这个数据的，demo里不做判断)
+        //如果是设置了不提醒只显示数目的房间(这个是app里保存这个数据的，demo里不做判断)
         //以及设置了setShowNotificationInbackgroup:false(设为false后，后台时sdk也发送广播)
         if (!EasyUtils.isAppRunningForeground(this)) {
             return;

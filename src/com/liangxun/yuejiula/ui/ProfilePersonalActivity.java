@@ -56,7 +56,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private TextView profile_count;//积分
     private TextView profile_dengji;//等级
     private TextView profile_sign;//签名
-    private TextView profile_personal_school;//学校名字
+    private TextView profile_personal_school;//圈子名字
     private ImageView profile_personal_flag;//标识
     private LinearLayout profile_record;// 动态
 
@@ -543,7 +543,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         }
 
 
-        //判断是否禁用群聊和紧贴
+        //判断是否禁用房间和紧贴
         if("1".equals(emp.getIs_fenghao())){
             biaozhi_one.setVisibility(View.VISIBLE);
         }
@@ -555,7 +555,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
         if(MainActivity.contractSchools != null){
             for(ContractSchool contractSchool :MainActivity.contractSchools ){
                 if(emp.getSchoolId().equals(contractSchool.getSchoolId())){
-                    //当前用户学校id  == 承包商学校id 说明这个用户是我管理的
+                    //当前用户圈子id  == 圈主圈子id 说明这个用户是我管理的
                     flagT = true;
                     select_fenghq.setVisibility(View.VISIBLE);
                     break;
@@ -732,7 +732,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                         if (StringUtil.isJson(s)) {
                             SuccessData data = getGson().fromJson(s, SuccessData.class);
                             if (data.getCode() == 200) {
-                                showMsg(ProfilePersonalActivity.this , "禁群聊操作成功！");
+                                showMsg(ProfilePersonalActivity.this , "禁房间操作成功！");
                             } else {
                                 Toast.makeText(ProfilePersonalActivity.this, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }

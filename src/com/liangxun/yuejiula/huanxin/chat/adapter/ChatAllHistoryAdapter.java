@@ -87,11 +87,11 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<MyEMConversation> {
             holder.list_item_layout.setBackgroundResource(R.drawable.find_item_select2);
         }
 
-        // 获取与此用户/群组的会话
+        // 获取与此用户/房间的会话
         MyEMConversation myConversation = getItem(position);
         EMConversation conversation = myConversation.getEmConversation();
         Emp emp = myConversation.getEmp();
-        // 获取用户username或者群组groupid
+        // 获取用户username或者房间groupid
 //		String username = conversation.getUserName();
         String username = conversation.getUserName();
         List<EMGroup> groups = EMGroupManager.getInstance().getAllGroups();
@@ -105,7 +105,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<MyEMConversation> {
             }
         }
         if (isGroup) {
-            // 群聊消息，显示群聊头像
+            // 房间消息，显示房间头像
             holder.avatar.setDefaultImageResId(R.drawable.icon_paopao_chat_group);
             holder.avatar.setErrorImageResId(R.drawable.icon_paopao_chat_group);
             holder.avatar.setImageUrl("", imageLoader);
@@ -120,7 +120,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<MyEMConversation> {
             holder.avatar.setErrorImageResId(R.drawable.default_image);
             holder.avatar.setImageUrl(emp == null ? "" : emp.getEmpCover(), imageLoader);
             if (username.equals(HxConstant.GROUP_USERNAME)) {
-                holder.name.setText("群聊");
+                holder.name.setText("房间");
 
             } else if (username.equals(HxConstant.NEW_FRIENDS_USERNAME)) {
                 holder.name.setText("申请与通知");
@@ -193,7 +193,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<MyEMConversation> {
             case TXT: // 文本消息
                 if (!message.getBooleanAttribute(HxConstant.MESSAGE_ATTR_IS_VOICE_CALL, false)) {
                     TextMessageBody txtBody = (TextMessageBody) message.getBody();
-                    digest = txtBody.getMessage().equals("12345678910邀请你加入了群聊") ? "管理员邀请你加入了群聊" : txtBody.getMessage();
+                    digest = txtBody.getMessage().equals("12345678910邀请你加入了房间") ? "管理员邀请你加入了房间" : txtBody.getMessage();
                 } else {
                     TextMessageBody txtBody = (TextMessageBody) message.getBody();
                     digest = getStrng(context, R.string.voice_call) + txtBody.getMessage();

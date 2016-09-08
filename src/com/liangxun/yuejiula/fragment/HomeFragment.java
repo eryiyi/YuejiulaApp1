@@ -51,7 +51,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
     private ImageView select_school;
-    private String[] mPopupWindowItems = {"所有大学", "我的大学", "其他大学"};
+    private String[] mPopupWindowItems = {"所有圈子", "我的圈子", "其他圈子"};
     private PopupWindow mPopupWindow;
     private View mPopView;
     private LinearLayout mTopLayout;
@@ -111,7 +111,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         select_school = (ImageView) view.findViewById(R.id.select_school);
         mTopLayout.setOnClickListener(this);
         maintitle = (TextView) view.findViewById(R.id.home_maintitle);
-        maintitle.setText("所有大学");
+        maintitle.setText("所有圈子");
         recordList = new ArrayList<Record>();
         home_lstv = (PullToRefreshListView) view.findViewById(R.id.home_lstv);
         adapter = new RecordAdapter(recordList, getActivity(), emp_id);
@@ -209,7 +209,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                         intent1.putExtra(Constants.SEND_VALUE_ONE, "1");
                         getActivity().sendBroadcast(intent1);
                         break;
-                    case 2://其他大学
+                    case 2://其他圈子
                         Intent other = new Intent(getActivity(), OtherSchoolOneActivity.class);
                         startActivity(other);
                         break;
@@ -311,7 +311,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             }
                 break;
             case 9:
-                //点击学校
+                //点击圈子
 //                schoolId = record.getRecordSchoolId();
 //                initData();
                 break;
@@ -439,11 +439,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 String str = intent.getExtras().getString(Constants.SEND_VALUE_ONE);
                 if ("0".equals(str)) {
                     schoolId = "";
-                    maintitle.setText("所有大学");
+                    maintitle.setText("所有圈子");
                 }
                 if ("1".equals(str)) {
                     schoolId = getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class);
-                    maintitle.setText("我的大学");
+                    maintitle.setText("我的圈子");
                 }
                 IS_REFRESH = true;
                 pageIndex = 1;

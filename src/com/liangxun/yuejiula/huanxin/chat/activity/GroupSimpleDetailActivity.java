@@ -95,7 +95,7 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 		
 	}
 	
-	//加入群聊
+	//加入房间
 	public void addToGroup(View view){
 		String st1 = getResources().getString(R.string.Is_sending_a_request);
 		final String st2 = getResources().getString(R.string.Request_to_join);
@@ -141,7 +141,7 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 	
      private void showGroupDetail() {
          progressBar.setVisibility(View.INVISIBLE);
-         //获取详情成功，并且自己不在群中，才让加入群聊按钮可点击
+         //获取详情成功，并且自己不在群中，才让加入房间按钮可点击
          if(!group.getMembers().contains(EMChatManager.getInstance().getCurrentUser()))
              btn_add_group.setEnabled(true);
          tv_name.setText(group.getGroupName());

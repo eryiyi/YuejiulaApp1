@@ -70,7 +70,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:text="1.如果您想开通商家权限，可以选择联系学校负责人"
+                        android:text="1.如果您想开通商家权限，可以选择联系圈子负责人"
                         android:textColor="@color/main"
                         android:textSize="16sp"/>
 
@@ -81,7 +81,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:text="2.如果您所在的学校没有负责人，请联系我们"
+                        android:text="2.如果您所在的圈子没有负责人，请联系我们"
                         android:textColor="@color/main"
                         android:textSize="16sp"/>
 

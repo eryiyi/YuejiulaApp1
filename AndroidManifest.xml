@@ -491,14 +491,14 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide">
         </activity>
-        <!-- 群组详情 -->
+        <!-- 房间详情 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.GroupDetailsActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide">
         </activity>
-        <!-- 群组列表 -->
-        <!-- 新建群组 -->
+        <!-- 房间列表 -->
+        <!-- 新建房间 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.NewGroupActivity"
                 android:screenOrientation="portrait"
@@ -520,13 +520,13 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide">
         </activity>
-        <!-- 退出群组提示框 -->
+        <!-- 退出房间提示框 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.ExitGroupDialog"
                 android:screenOrientation="portrait"
                 android:theme="@style/MyDialogStyleBottom">
         </activity>
-        <!-- 群组选人 -->
+        <!-- 房间选人 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.GroupPickContactsActivity"
                 android:screenOrientation="portrait"
@@ -608,7 +608,7 @@
                 android:theme="@style/horizontal_slide">
         </activity>
 
-        <!-- 公开的群聊列表 -->
+        <!-- 公开的房间列表 -->
         <!-- 语音通话 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.VoiceCallActivity"
@@ -623,8 +623,8 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 >
         </activity>
-        <!-- 群聊简单信息 -->
-        <!-- 群组黑名单用户列表 -->
+        <!-- 房间简单信息 -->
+        <!-- 房间黑名单用户列表 -->
         <activity
                 android:name="com.liangxun.yuejiula.huanxin.chat.activity.GroupBlacklistActivity"
                 android:screenOrientation="portrait"

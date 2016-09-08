@@ -116,7 +116,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
             case R.id.detail_share:
                 //分享
                 shareUrl = detail_webview.getUrl();
-                shareCont = "老年大学我们的家";
+                shareCont = "这里有各行各业的圈子，欢迎来加入！";
                 sharePic = getGson().fromJson(getSp().getString(Constants.EMPCOVER, ""), String.class) ;
                 mController = UMServiceFactory.getUMSocialService(DetailPageAcitvity.class.getName(), RequestType.SOCIAL);
                 mController.setShareMedia(new UMImage(this, sharePic));//设置分享图片

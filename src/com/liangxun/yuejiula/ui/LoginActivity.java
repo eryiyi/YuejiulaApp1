@@ -277,7 +277,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     /**
      * 环信账号登陆，
-     * 获取好友列表，黑名单列表，群聊列表
+     * 获取好友列表，黑名单列表，房间列表
      */
     private void hxLogin() {
         final String userName = getMyApp().getUserName();
@@ -297,11 +297,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     EMGroupManager.getInstance().getAllGroups();
 //                    EMGroupManager.getInstance().getGroupsFromServer();
                     EMChatManager.getInstance().loadAllConversations();
-                    //处理好友和群组
+                    //处理好友和房间
                     processContactsAndGroups();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    //取好友或者群聊失败，不让进入主页面
+                    //取好友或者房间失败，不让进入主页面
                     runOnUiThread(new Runnable() {
                         public void run() {
                             getMyApp().logout(false, null);
@@ -444,7 +444,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             newFriends.setNick(strChat);
 
             hxUserList.put(HxConstant.NEW_FRIENDS_USERNAME, newFriends);
-            // 添加"群聊"
+            // 添加"房间"
             HxUser groupUser = new HxUser();
             String strGroup = getMyApp().getCurrentEmp().getUniversityName();
             groupUser.setUsername(HxConstant.GROUP_USERNAME);
@@ -464,7 +464,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             //保存黑名单
             EMContactManager.getInstance().saveBlackList(blackList);
 
-            // 获取群聊列表(群聊里只有groupid和groupname等简单信息，不包含members),sdk会把群组存入到内存和db中
+            // 获取房间列表(房间里只有groupid和groupname等简单信息，不包含members),sdk会把房间存入到内存和db中
 //            EMGroupManager.getInstance().getGroupsFromServer();
             EMGroupManager.getInstance().getAllGroups();
 

@@ -40,7 +40,7 @@ import java.util.List;
 
 public class GroupPickContactsActivity extends BaseActivity {
     private ListView listView;
-    /** 是否为一个新建的群组 */
+    /** 是否为一个新建的房间 */
     protected boolean isCreatingNewGroup;
     /** 是否为单选 */
     private boolean isSignleChecked;
@@ -55,10 +55,10 @@ public class GroupPickContactsActivity extends BaseActivity {
 
         // String groupName = getIntent().getStringExtra("groupName");
         String groupId = getIntent().getStringExtra("groupId");
-        if (groupId == null) {// 创建群组
+        if (groupId == null) {// 创建房间
             isCreatingNewGroup = true;
         } else {
-            // 获取此群组的成员列表
+            // 获取此房间的成员列表
             EMGroup group = EMGroupManager.getInstance().getGroup(groupId);
             exitingMembers = group.getMembers();
         }
@@ -154,7 +154,7 @@ public class GroupPickContactsActivity extends BaseActivity {
                 checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        // 群组中原来的成员一直设为选中状态
+                        // 房间中原来的成员一直设为选中状态
                         if (exitingMembers.contains(username)) {
                             isChecked = true;
                             checkBox.setChecked(true);
@@ -172,7 +172,7 @@ public class GroupPickContactsActivity extends BaseActivity {
 
                     }
                 });
-                // 群组中原来的成员一直设为选中状态
+                // 房间中原来的成员一直设为选中状态
                 if (exitingMembers.contains(username)) {
                     checkBox.setChecked(true);
                     isCheckedArray[position] = true;

@@ -15,7 +15,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.List;
 
 /**
- * 代理商添加奖品   选择学校
+ * 代理商添加奖品   选择圈子
  */
 public class PkColleageAdapter extends BaseAdapter {
     private ViewHolder holder;

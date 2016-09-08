@@ -143,7 +143,7 @@ public class KaitongShangjiaActivity extends BaseActivity implements View.OnClic
         }
     }
 
-    //查询该代理商下面的学校
+    //查询该代理商下面的圈子
     private void getData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -254,7 +254,7 @@ public class KaitongShangjiaActivity extends BaseActivity implements View.OnClic
         if (listgoods.size() > 0) {
             SGform.setList(listgoods);
         } else {
-            Toast.makeText(KaitongShangjiaActivity.this, "请选择开通一个学校", Toast.LENGTH_SHORT).show();
+            Toast.makeText(KaitongShangjiaActivity.this, "请选择开通一个圈子", Toast.LENGTH_SHORT).show();
             return;
         }
         setSJ();

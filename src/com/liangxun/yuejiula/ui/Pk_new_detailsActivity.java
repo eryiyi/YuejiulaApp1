@@ -92,7 +92,7 @@ public class Pk_new_detailsActivity extends BaseActivity implements View.OnClick
     private LinearLayout pk_delete_liner;//删除中间的图片
     private DeletePopWindow deleteWindow;
     private IsSurePrizesWindow issureWindow;
-    private TextView pk_detail_colleages;//大学
+    private TextView pk_detail_colleages;//圈子
     private RelativeLayout video_pic;//视频部分
     private ImageView video_pic_url;
     private ImageView video_pic_img;

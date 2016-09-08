@@ -10,10 +10,10 @@ public class PkPrize {
     private String content;
     private String pic;
     private String schoolId;
-    private String type;//0是我们   1是承包商
+    private String type;//0是我们   1是圈主
     private String dateline;
     private String themeNumber;//主题期次
-    private String schoolName;//学校名称
+    private String schoolName;//圈子名称
 
     public String getThemeNumber() {
         return themeNumber;

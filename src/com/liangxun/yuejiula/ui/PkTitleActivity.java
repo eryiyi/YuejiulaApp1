@@ -45,8 +45,8 @@ public class PkTitleActivity extends BaseActivity implements View.OnClickListene
     private ImageView pk_title_pic;//主题图片
     private TextView pk_title_prize_textone;//总舵奖品说明
     private ImageView pk_title_prize_imgone;//总舵奖品图片
-    private TextView pk_title_prize_texttwo;//学校奖品说明
-    private ImageView pk_title_prize_imgtwo;//学校奖品图片
+    private TextView pk_title_prize_texttwo;//圈子奖品说明
+    private ImageView pk_title_prize_imgtwo;//圈子奖品图片
     private PKTheme pkTheme;//主题
     private Button mine_prize;//我是代理商 我来设置奖品
     private View mine_prize_line;//代理商上面的横线
@@ -56,7 +56,7 @@ public class PkTitleActivity extends BaseActivity implements View.OnClickListene
     private String schoolId = "";
     private LinearLayout prize_all;
     private PkPrize pkPrizeZ = new PkPrize();//总舵设置的奖品
-    private PkPrize pkPrizeSchool = new PkPrize();//学校设置的奖品
+    private PkPrize pkPrizeSchool = new PkPrize();//圈子设置的奖品
 //    private TextView pk_title_prize_texttwo_title;
 private LinearLayout pk_title_prize_texttwo_title;
     private LinearLayout searchnull;

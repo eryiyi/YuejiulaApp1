@@ -283,8 +283,8 @@ public class DemoHXSDKHelper extends HXSDKHelper {
                     if (chatType == ChatType.Chat) { // 单聊信息
                         intent.putExtra("userId", message.getFrom());
                         intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
-                    } else { // 群聊信息
-                        // message.getTo()为群聊id
+                    } else { // 房间信息
+                        // message.getTo()为房间id
                         intent.putExtra("groupId", message.getTo());
                         if(chatType == ChatType.GroupChat){
                             intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
@@ -344,8 +344,8 @@ public class DemoHXSDKHelper extends HXSDKHelper {
 //                if (chatType == ChatType.Chat) { // 单聊信息
 //                    intent.putExtra("userId", message.getFrom());
 //                    intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
-//                } else { // 群聊信息
-//                    // message.getTo()为群聊id
+//                } else { // 房间信息
+//                    // message.getTo()为房间id
 //                    intent.putExtra("groupId", message.getTo());
 //                    intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
 //                }

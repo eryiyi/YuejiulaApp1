@@ -219,7 +219,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     deleteGrop();
                     break;
                 case REQUEST_CODE_CLEAR_ALL_HISTORY:
-                    // 清空此群聊的聊天记录
+                    // 清空此房间的聊天记录
                     progressDialog.setMessage(st4);
                     progressDialog.show();
                     clearGroupHistory();
@@ -292,7 +292,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 点击退出群组按钮
+     * 点击退出房间按钮
      *
      * @param view
      */
@@ -302,7 +302,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 点击解散群组按钮
+     * 点击解散房间按钮
      *
      * @param view
      */
@@ -313,7 +313,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 清空群聊天记录
+     * 清空房间天记录
      */
     public void clearGroupHistory() {
 
@@ -324,7 +324,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 退出群组
+     * 退出房间
      *
      * @param
      */
@@ -349,7 +349,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     runOnUiThread(new Runnable() {
                         public void run() {
                             progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "退出群聊失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "退出房间失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -358,7 +358,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 解散群组
+     * 解散房间
      *
      * @param
      */
@@ -436,7 +436,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
         String st10 = getResources().getString(R.string.Is_unblock_sound);
         final String st11 = getResources().getString(R.string.remove_group_of_sound);
         switch (v.getId()) {
-            case R.id.rl_switch_block_groupmsg: // 屏蔽群组
+            case R.id.rl_switch_block_groupmsg: // 屏蔽房间
                 //判断是否是自己
                 if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
                     // 如果自己是群主，显示解散按钮
@@ -509,7 +509,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     }).start();
                 }
                 break;
-//            case R.id.rl_switch_block_groupmsg_sound: // 屏蔽群组声音提示
+//            case R.id.rl_switch_block_groupmsg_sound: // 屏蔽房间声音提示
 //                if (iv_switch_block_groupmsg_sound.getVisibility() == View.VISIBLE) {
 //                    if (progressDialog == null) {
 //                        progressDialog = new ProgressDialog(this);
@@ -606,7 +606,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 群组成员gridadapter
+     * 房间成员gridadapter
      *
      * @author admin_new
      *
@@ -658,7 +658,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                         }
                     });
                 }
-            } else if (position == getCount() - 2) { // 添加群组成员按钮
+            } else if (position == getCount() - 2) { // 添加房间成员按钮
                 button.setText("");
                 button.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.smiley_add_btn, 0, 0);
                 // 如果不是创建者或者没有相应权限
@@ -685,7 +685,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                         }
                     });
                 }
-            } else { // 普通item，显示群组成员
+            } else { // 普通item，显示房间成员
                 final String username = getItem(position);
                 button.setText(username);
                 convertView.setVisibility(View.VISIBLE);
@@ -693,7 +693,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 Drawable avatar = getResources().getDrawable(R.drawable.head);
                 avatar.setBounds(0, 0, referenceWidth, referenceHeight);
                 button.setCompoundDrawables(null, avatar, null, null);
-                // demo群组成员的头像都用默认头像，需由开发者自己去设置头像
+                // demo房间成员的头像都用默认头像，需由开发者自己去设置头像
                 if (isInDeleteMode) {
                     // 如果是删除模式下，显示减人图标
                     convertView.findViewById(R.id.badge_delete).setVisibility(View.VISIBLE);
@@ -867,7 +867,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 //        instance = null;
 //    }
 //    /**
-//     * 群组成员gridadapter
+//     * 房间成员gridadapter
 //     *
 //     * @author admin_new
 //     *
@@ -928,7 +928,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 //                        }
 //                    });
 //                }
-//            } else if (position == getCount() - 2) { // 添加群组成员按钮
+//            } else if (position == getCount() - 2) { // 添加房间成员按钮
 //                holder.textView.setText("");
 //                holder.imageView.setImageResource(R.drawable.smiley_add_btn);
 ////				button.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.smiley_add_btn, 0, 0);
@@ -956,7 +956,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 //                        }
 //                    });
 //                }
-//            } else { // 普通item，显示群组成员
+//            } else { // 普通item，显示房间成员
 //                final String username = getItem(position);
 //                convertView.setVisibility(View.VISIBLE);
 //                button.setVisibility(View.VISIBLE);
@@ -965,7 +965,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 ////				button.setCompoundDrawables(null, avatar, null, null);
 //                holder.textView.setText(username);
 //                UserUtils.setUserAvatar(getContext(), username, holder.imageView);
-//                // demo群组成员的头像都用默认头像，需由开发者自己去设置头像
+//                // demo房间成员的头像都用默认头像，需由开发者自己去设置头像
 //                if (isInDeleteMode) {
 //                    // 如果是删除模式下，显示减人图标
 //                    convertView.findViewById(R.id.badge_delete).setVisibility(View.VISIBLE);

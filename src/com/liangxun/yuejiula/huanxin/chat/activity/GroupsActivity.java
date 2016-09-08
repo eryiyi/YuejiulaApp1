@@ -147,13 +147,13 @@ public class GroupsActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 				if (position == 0) {
-					// 新建群聊
-					//先判断是否是承包商  只有承包商可以新建群
+					// 新建房间
+					//先判断是否是圈主  只有圈主可以新建群
 					if("3".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
-						//是承包商
+						//是圈主
 						startActivityForResult(new Intent(GroupsActivity.this, NewGroupActivity.class), 0);
 					}else {
-						showMsg(GroupsActivity.this, "您不是承包商，没有权限新建群组！");
+						showMsg(GroupsActivity.this, "您不是圈主，没有权限新建房间！");
 					}
 
 				}
@@ -168,14 +168,14 @@ public class GroupsActivity extends BaseActivity {
 //
 //				}
 				else {
-					// 进入群聊
+					// 进入房间
 //					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
 						//如果fengqun了
 						boolean flag = true;
 						if(MainActivity.listFq != null){
 							for(FhFqObj fhFqObj:MainActivity.listFq){
 								if(fhFqObj.getSchool_id().equals(getGson().fromJson(getSp().getString(Constants.SCHOOLID, ""), String.class))){
-									//当前登录者的学校ID
+									//当前登录者的圈子ID
 									flag = false;
 									break;
 								}
@@ -243,7 +243,7 @@ public class GroupsActivity extends BaseActivity {
 		refresh();
 	}
 
-	//加入群聊
+	//加入房间
 	public void addToGroup(final EMGroup group){
 		String st1 = getResources().getString(R.string.Is_sending_a_request);
 		final String st2 = getResources().getString(R.string.Request_to_join);
@@ -287,7 +287,7 @@ public class GroupsActivity extends BaseActivity {
 	}
 
 	/**
-	 * 进入公开群聊列表
+	 * 进入公开房间列表
 	 */
 	public void onPublicGroups(View view) {
 		startActivity(new Intent(this, PublicGroupsActivity.class));

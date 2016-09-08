@@ -78,7 +78,7 @@ public class NewGroupActivity extends BaseActivity {
 		String st1 = getResources().getString(R.string.Is_to_create_a_group_chat);
 		final String st2 = getResources().getString(R.string.Failed_to_create_groups);
 		if (resultCode == RESULT_OK) {
-			//新建群组
+			//新建房间
 			progressDialog = new ProgressDialog(this);
 			progressDialog.setMessage(st1);
 			progressDialog.setCanceledOnTouchOutside(false);
@@ -87,7 +87,7 @@ public class NewGroupActivity extends BaseActivity {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					// 调用sdk创建群组方法
+					// 调用sdk创建房间方法
 					String groupName = groupNameEditText.getText().toString().trim();
 					String desc = introductionEditText.getText().toString();
 					String[] members = data.getStringArrayExtra("newmembers");

@@ -103,7 +103,7 @@ public class ContactAdapter extends ArrayAdapter<HxUser> implements SectionIndex
                     unreadMsgView.setVisibility(View.INVISIBLE);
                 }
             } else if (username.equals(HxConstant.GROUP_USERNAME)) {
-                //群聊item
+                //房间item
                 nameTextview.setText(user.getNick());
                 avatar.setImageResource(R.drawable.groups_icon);
             } else {

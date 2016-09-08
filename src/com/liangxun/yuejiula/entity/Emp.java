@@ -22,7 +22,7 @@ public class Emp implements Serializable {
     private String empTypeId;
     private String isUse;//是否禁用
     private String dateline;
-    private String universityName;//学校名字
+    private String universityName;//圈子名字
     private String levelName;//等级名字
     private String jfcount;//积分
     private String hxUsername;

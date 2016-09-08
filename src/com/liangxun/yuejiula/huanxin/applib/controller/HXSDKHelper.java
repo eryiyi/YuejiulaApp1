@@ -46,7 +46,7 @@ import java.util.List;
  */
 public abstract class HXSDKHelper {
     /**
-     * 群组更新完成
+     * 房间更新完成
      */
     static public interface HXSyncListener {
         public void onSyncSucess(boolean success);
@@ -478,7 +478,7 @@ public abstract class HXSDKHelper {
     }
 
     /**
-     * 同步操作，从服务器获取群组列表
+     * 同步操作，从服务器获取房间列表
      * 该方法会记录更新状态，可以通过isSyncingGroupsFromServer获取是否正在更新
      * 和HXPreferenceUtils.getInstance().getSettingSyncGroupsFinished()获取是否更新已经完成
      */

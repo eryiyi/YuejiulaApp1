@@ -119,7 +119,7 @@ public class Constants {
     public static final String NEWS_TYPEID_UUID = "typeID";
     public static final String NEWS_TYPEID_NAME = "typeName";
 
-    //查询其他大学
+    //查询其他圈子
     public static final String OTHER_PROVINCE = "province_uuid";
     public static final String OTHER_PROVINCE_CONT = "province_uuid_cont";
     public static final String OTHER_UNIVERSITY = "university_uuid";

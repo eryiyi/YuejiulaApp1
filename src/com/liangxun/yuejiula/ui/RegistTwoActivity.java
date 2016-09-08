@@ -58,7 +58,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
 
     private String nickname;
 
-    //学校
+    //圈子
     private CustomerSpinner provinceSpinner;
     private CustomerSpinner universitySpinner;
     private ArrayList<Province> provinces = new ArrayList<Province>();
@@ -156,7 +156,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
                     Province building = provinces.get(position - 1);
                     String province_name = building.getPname();
                     try {
-                        //获取大学列表
+                        //获取圈子列表
                         getUniversity(building.getProvinceId());
                     } catch (Exception e) {
                         e.printStackTrace();

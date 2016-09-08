@@ -75,7 +75,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
         String str6 = context.getResources().getString(R.string.Has_refused_to);
         final InviteMessage msg = getItem(position);
         if (msg != null) {
-            if (msg.getGroupId() != null) { // 显示群聊提示
+            if (msg.getGroupId() != null) { // 显示房间提示
                 holder.groupContainer.setVisibility(View.VISIBLE);
                 holder.groupname.setText(msg.getGroupName());
             } else {
