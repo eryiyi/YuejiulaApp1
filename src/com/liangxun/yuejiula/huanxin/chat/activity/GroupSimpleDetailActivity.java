@@ -110,7 +110,7 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					//如果是membersOnly的群，需要申请加入，不能直接join
+					//如果是membersOnly的房间，需要申请加入，不能直接join
 					if(group.isMembersOnly()){
 					    EMGroupManager.getInstance().applyJoinToGroup(groupid, st2);
 					}else{
@@ -141,7 +141,7 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 	
      private void showGroupDetail() {
          progressBar.setVisibility(View.INVISIBLE);
-         //获取详情成功，并且自己不在群中，才让加入房间按钮可点击
+         //获取详情成功，并且自己不在房间中，才让加入房间按钮可点击
          if(!group.getMembers().contains(EMChatManager.getInstance().getCurrentUser()))
              btn_add_group.setEnabled(true);
          tv_name.setText(group.getGroupName());

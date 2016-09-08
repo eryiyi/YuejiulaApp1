@@ -282,10 +282,10 @@ public class InternetURL {
 
     //封号
     public static final String UPDATE_FENGHAO_URL =  "updateEmpIsFenghao.do";
-    //封群
+    //封房间
     public static final String UPDATE_FENGQUN_URL =  "updateEmpIsFengQun.do";
 
-    //查询封号封群的圈主下的会员列表
+    //查询封号封房间的圈主下的会员列表
     public static final String GET_FENGHAOFENGQUNS_URL =  "getFenghaofengquns.do";
 
     //竞价保存 查询  单个查询
@@ -308,7 +308,7 @@ public class InternetURL {
     //圈主广告语
     public static final String MANAGER_MSG_AD_URL =  "listsMsgAds.do";
 
-    //查询我的封号 封群
+    //查询我的封号 封房间
     public static final String GET_FENGHAO_FENGQUN_URL =  "listsMineFhFq.do";
 
     //保存代理关系

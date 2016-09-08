@@ -68,7 +68,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
     private LinearLayout mobile_status_liner;//手机号区域
     private View mobile_status_liner_line;//手机号上方的割线
 
-    private ImageView select_fenghq;//封号封群操作
+    private ImageView select_fenghq;//封号封房间操作
     private ImageView biaozhi_one;
     private ImageView biaozhi_two;
 
@@ -181,7 +181,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                 startActivity(dynamic);
                 break;
             case R.id.select_fenghq:
-                //封号 封群
+                //封号 封房间
                 ShowPickDialog();
                 break;
             case R.id.btn_set_dl:
@@ -439,7 +439,7 @@ public class ProfilePersonalActivity extends BaseActivity implements View.OnClic
                 }
                 break;
                 case R.id.mapstorage: {
-                   //封群
+                   //封房间
                     updateFq();
                 }
                 break;

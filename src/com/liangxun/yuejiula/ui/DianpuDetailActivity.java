@@ -524,7 +524,7 @@ public class DianpuDetailActivity extends BaseActivity implements View.OnClickLi
         tel.setText(managerInfo.getCompany_tel());
         address.setText(managerInfo.getCompany_address());
         yingyetime.setText("营业时间:"+managerInfo.getYingye_time_start() + "-" + managerInfo.getYingye_time_end());
-        youhui.setText("优惠承诺:"+managerInfo.getShouhui());
+        youhui.setText(managerInfo.getShouhui()==null?"":managerInfo.getShouhui());
         content.setText(managerInfo.getCompany_detail());
         //AdObj
         AdObj adObj = new AdObj();

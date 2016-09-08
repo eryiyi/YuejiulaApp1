@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:padding="8dip"
                 android:layout_centerInParent="true"
-                android:text="封号封群相关"
+                android:text="封号封房间相关"
                 android:id="@+id/maintitle"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
@@ -42,7 +42,7 @@
                   android:layout_height="wrap_content"/>
         <TextView android:layout_width="0dp"
                   android:layout_weight="1"
-                  android:text="点击（封群）显示相关"
+                  android:text="点击（封房间）显示相关"
                   android:gravity="center"
                   android:padding="8dp"
                   android:id="@+id/text_two"

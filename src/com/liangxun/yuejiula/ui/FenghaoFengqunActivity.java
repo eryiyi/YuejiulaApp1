@@ -40,7 +40,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
     public static boolean IS_REFRESH = true;
 
     private List<FhFqObj> lists = new ArrayList<FhFqObj>();
-    private String type="0";//0是封号 1是封群
+    private String type="0";//0是封号 1是封房间
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +86,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
                         showMsgFenghao(emp, "0");
                     }
                     if ("1".equals(type)) {
-                        //封群 解封
+                        //封房间 解封
                         showMsgFenghao(emp, "1");
                     }
                 }
@@ -124,7 +124,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
         picAddDialog.show();
     }
 
-    //获得封号封群的组
+    //获得封号封房间的组
     public void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -289,7 +289,7 @@ public class FenghaoFengqunActivity extends BaseActivity implements View.OnClick
                         if (StringUtil.isJson(s)) {
                             SuccessData data = getGson().fromJson(s, SuccessData.class);
                             if (data.getCode() == 200) {
-                                showMsg(FenghaoFengqunActivity.this , "解除封群操作成功！");
+                                showMsg(FenghaoFengqunActivity.this , "解除封房间操作成功！");
                                 type = "1";
                                 IS_REFRESH = true;
                                 initData();

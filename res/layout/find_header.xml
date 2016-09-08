@@ -38,7 +38,7 @@
               android:drawableRight="@drawable/in"
               android:drawableLeft="@drawable/find_item_pk"
               android:layout_below="@+id/line_two"
-              android:text="童心堂新闻"
+              android:text="兴趣微文"
               android:drawablePadding="8dp"
               android:id="@+id/find_news"
               android:layout_marginLeft="10dp"
@@ -54,6 +54,7 @@
               android:layout_height="wrap_content"
               android:layout_weight="1"
               android:gravity="center|left"
+              android:visibility="gone"
               android:padding="8dp"
               android:drawableRight="@drawable/in"
               android:drawableLeft="@drawable/find_item_notice"
@@ -67,6 +68,7 @@
     <View android:layout_width="match_parent"
           android:layout_height="0.5dp"
           android:id="@+id/line_four"
+          android:visibility="gone"
           android:background="#e9e9e9"/>
 
     <TextView android:layout_width="match_parent"
@@ -75,6 +77,7 @@
               android:gravity="center|left"
               android:padding="8dp"
               android:id="@+id/find_jianzhi"
+              android:visibility="gone"
               android:drawableRight="@drawable/in"
               android:drawableLeft="@drawable/find_item_resume"
               android:text="校园招聘"
@@ -86,6 +89,7 @@
     <View android:layout_width="match_parent"
           android:layout_height="0.5dp"
           android:id="@+id/line_five"
+          android:visibility="gone"
           android:background="#e9e9e9"/>
 
     <TextView android:layout_width="match_parent"
@@ -96,7 +100,7 @@
               android:id="@+id/find_tv"
               android:drawableRight="@drawable/in"
               android:drawableLeft="@drawable/find_item_navi"
-              android:text="童心堂导航"
+              android:text="影视进驻"
               android:drawablePadding="8dp"
               android:layout_marginLeft="10dp"
               android:textColor="@color/textColor"
@@ -114,7 +118,7 @@
               android:id="@+id/find_videos"
               android:drawableRight="@drawable/in"
               android:drawableLeft="@drawable/find_item_videos"
-              android:text="童心堂视频"
+              android:text="合作影视"
               android:drawablePadding="8dp"
               android:layout_marginLeft="10dp"
               android:textColor="@color/textColor"

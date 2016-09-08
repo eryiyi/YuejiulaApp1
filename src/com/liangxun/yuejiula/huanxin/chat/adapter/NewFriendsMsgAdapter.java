@@ -102,7 +102,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
                         // 如果没写理由
                         holder.reason.setText(str3);
                     }
-                } else { //入群申请
+                } else { //入房间申请
                     if (TextUtils.isEmpty(msg.getReason())) {
                         holder.reason.setText(str4 + msg.getGroupName());
                     }
@@ -155,7 +155,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
     }
 
     /**
-     * 同意好友请求或者群申请
+     * 同意好友请求或者房间申请
      *
      * @param button
      * @param
@@ -175,7 +175,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
                 try {
                     if (msg.getGroupId() == null) //同意好友请求
                         EMChatManager.getInstance().acceptInvitation(msg.getFrom());
-                    else //同意加群申请
+                    else //同意加房间申请
                         EMGroupManager.getInstance().acceptApplication(msg.getFrom(), msg.getGroupId());
                     ((Activity) context).runOnUiThread(new Runnable() {
 
@@ -209,7 +209,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
     }
 
     /**
-     * 拒绝好友请求或者群申请
+     * 拒绝好友请求或者房间申请
      *
      * @param button
      * @param
@@ -229,7 +229,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
                 try {
                     if (msg.getGroupId() == null) //拒绝好友请求
                         EMChatManager.getInstance().refuseInvitation(msg.getFrom());
-                    else //同意加群申请
+                    else //同意加房间申请
                         EMGroupManager.getInstance().acceptApplication(msg.getFrom(), msg.getGroupId());
                     ((Activity) context).runOnUiThread(new Runnable() {
 

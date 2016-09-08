@@ -60,12 +60,12 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     private RelativeLayout rl_switch_block_groupmsg;
 //    private RelativeLayout rl_switch_block_groupmsg_sound;
     /**
-     * 屏蔽群消息imageView
+     * 屏蔽房间消息imageView
      */
     private ImageView iv_switch_block_groupmsg;
     private ImageView iv_switch_block_groupmsg_sound;
     /**
-     * 关闭屏蔽群消息imageview
+     * 关闭屏蔽房间消息imageview
      */
     private ImageView iv_switch_unblock_groupmsg;
     private ImageView iv_switch_unblock_groupmsg_sound;
@@ -75,7 +75,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     String st = "";
     // 清空所有聊天记录
     private RelativeLayout clearAllHistory;
-    //修改群昵称
+    //修改房间昵称
     private RelativeLayout blacklistLayout;
     private RelativeLayout changeGroupNameLayout;
 
@@ -115,7 +115,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 
         // 获取传过来的groupid
         String groupId =  getIntent().getExtras().getString("groupId");
-        //根据groupId 查找群
+        //根据groupId 查找房间
         for(EMGroup emGroup: MainActivity.grouplist){
             if(emGroup.getGroupId().equals(groupId)){
                 group = emGroup;
@@ -130,7 +130,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
             changeGroupNameLayout.setVisibility(View.GONE);
         }
 
-        // 如果自己是群主，显示解散按钮
+        // 如果自己是房间主，显示解散按钮
         if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
             exitBtn.setVisibility(View.GONE);
             deleteBtn.setVisibility(View.VISIBLE);
@@ -202,18 +202,18 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                 progressDialog.setCanceledOnTouchOutside(false);
             }
             switch (requestCode) {
-                case REQUEST_CODE_ADD_USER:// 添加群成员
+                case REQUEST_CODE_ADD_USER:// 添加房间成员
                     final String[] newmembers = data.getStringArrayExtra("newmembers");
                     progressDialog.setMessage(st1);
                     progressDialog.show();
                     addMembersToGroup(newmembers);
                     break;
-                case REQUEST_CODE_EXIT: // 退出群
+                case REQUEST_CODE_EXIT: // 退出房间
                     progressDialog.setMessage(st2);
                     progressDialog.show();
                     exitGrop();
                     break;
-                case REQUEST_CODE_EXIT_DELETE: // 解散群
+                case REQUEST_CODE_EXIT_DELETE: // 解散房间
                     progressDialog.setMessage(st3);
                     progressDialog.show();
                     deleteGrop();
@@ -225,7 +225,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     clearGroupHistory();
                     break;
 
-                case REQUEST_CODE_EDIT_GROUPNAME: //修改群名称
+                case REQUEST_CODE_EDIT_GROUPNAME: //修改房间名称
                     final String returnData = data.getStringExtra("data");
                     if (!TextUtils.isEmpty(returnData)) {
                         progressDialog.setMessage(st5);
@@ -392,7 +392,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
     }
 
     /**
-     * 增加群成员
+     * 增加房间成员
      *
      * @param newmembers
      */
@@ -439,8 +439,8 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
             case R.id.rl_switch_block_groupmsg: // 屏蔽房间
                 //判断是否是自己
                 if (EMChatManager.getInstance().getCurrentUser().equals(group.getOwner())) {
-                    // 如果自己是群主，显示解散按钮
-                    Toast.makeText(getApplicationContext(), "您是群主，不能屏蔽群消息哦", Toast.LENGTH_LONG).show();
+                    // 如果自己是房间主，显示解散按钮
+                    Toast.makeText(getApplicationContext(), "您是房间主，不能屏蔽房间消息哦", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (iv_switch_block_groupmsg.getVisibility() == View.VISIBLE) {
@@ -730,7 +730,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
                     }
 
                     /**
-                     * 删除群成员
+                     * 删除房间成员
                      *
                      * @param username
                      */
@@ -1002,7 +1002,7 @@ public class GroupDetailsActivity extends HxBaseActivity implements OnClickListe
 //                    }
 //
 //                    /**
-//                     * 删除群成员
+//                     * 删除房间成员
 //                     *
 //                     * @param username
 //                     */

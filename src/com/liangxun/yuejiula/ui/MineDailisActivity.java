@@ -55,7 +55,7 @@ public class MineDailisActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mine_favours_xml);
+        setContentView(R.layout.mine_daili_xml);
         initView();
         initData();
     }

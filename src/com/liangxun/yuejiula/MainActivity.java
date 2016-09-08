@@ -1109,8 +1109,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         @Override
         public void onGroupDestroy(String groupId, String groupName) {
-            // 群被解散
-            // 提示用户群被解散,demo省略
+            // 房间被解散
+            // 提示用户房间被解散,demo省略
             // 刷新ui
             runOnUiThread(new Runnable() {
                 public void run() {
@@ -1140,7 +1140,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         @Override
         public void onApplicationAccept(String groupId, String groupName, String accepter) {
             String st4 = getResources().getString(R.string.Agreed_to_your_group_chat_application);
-            // 加群申请被同意
+            // 加房间申请被同意
             EMMessage msg = EMMessage.createReceiveMessage(EMMessage.Type.TXT);
             msg.setChatType(EMMessage.ChatType.GroupChat);
             msg.setFrom(accepter);
@@ -1165,7 +1165,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
 
         @Override
         public void onApplicationDeclined(String groupId, String groupName, String decliner, String reason) {
-            // 加群申请被拒绝，demo未实现
+            // 加房间申请被拒绝，demo未实现
         }
 
     }

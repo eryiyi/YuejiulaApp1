@@ -1393,7 +1393,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
             runOnUiThread(new Runnable() {
                 public void run() {
                     if (toChatUsername.equals(groupId)) {
-                        Toast.makeText(ChatOldActivity.this, "你被群创建者从此群中移除", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChatOldActivity.this, "你被房间创建者从此房间中移除", Toast.LENGTH_LONG).show();
                         if (GroupDetailsActivity.instance != null)
                             GroupDetailsActivity.instance.finish();
                         finish();
@@ -1408,7 +1408,7 @@ public class ChatOldActivity extends BaseActivity implements OnClickListener {
             runOnUiThread(new Runnable() {
                 public void run() {
                     if (toChatUsername.equals(groupId)) {
-                        Toast.makeText(ChatOldActivity.this, "当前房间已被群创建者解散", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChatOldActivity.this, "当前房间已被房间创建者解散", Toast.LENGTH_LONG).show();
                         if (GroupDetailsActivity.instance != null)
                             GroupDetailsActivity.instance.finish();
                         finish();

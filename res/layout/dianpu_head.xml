@@ -60,7 +60,6 @@
                         android:padding="8dp"
                         android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                      android:text="好店铺"
                       android:lineSpacingMultiplier="1.2"
                       android:layout_marginBottom="6dp"
                       android:layout_marginLeft="8dp"
@@ -76,7 +75,6 @@
                     android:src="@drawable/head"
                     android:layout_height="45dp"/>
             <TextView android:layout_width="wrap_content"
-                      android:text="用户姓名"
                       android:textSize="16sp"
                       android:layout_below="@+id/title"
                       android:layout_marginLeft="8dp"
@@ -87,6 +85,7 @@
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
                       android:text="咨询卖家"
+                      android:visibility="gone"
                       android:layout_marginRight="8dp"
                       android:layout_below="@+id/title"
                       android:layout_alignParentRight="true"
@@ -104,7 +103,7 @@
                       android:padding="8dp"
                       android:id="@+id/favour"
                       android:textColor="@color/white"
-                      android:background="@drawable/btn_blue_shap"
+                      android:background="@drawable/btn_logout_normal_shape"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
                       android:text="地图导航"
@@ -115,11 +114,10 @@
                       android:padding="8dp"
                       android:id="@+id/location"
                       android:textColor="@color/white"
-                      android:background="@drawable/btn_blue_shap"
+                      android:background="@drawable/btn_logout_normal_shape"
                       android:layout_height="wrap_content"/>
 
             <TextView android:layout_width="wrap_content"
-                      android:text="tel:13181038186"
                       android:textSize="16sp"
                       android:drawablePadding="6dp"
                       android:layout_below="@+id/head"
@@ -130,7 +128,6 @@
                       android:id="@+id/tel"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
-                      android:text="address:sfdsafads"
                       android:textSize="16sp"
                       android:layout_below="@+id/tel"
                       android:layout_marginLeft="8dp"
@@ -147,10 +144,19 @@
                             android:orientation="horizontal"
                             android:id="@+id/detail_like_liner_layout"
                             android:layout_marginTop="10dp">
+                <TextView android:layout_width="wrap_content"
+                          android:text="平台店铺:"
+                          android:textSize="16sp"
+                          android:textColor="@color/textColor"
+                          android:id="@+id/item_msg_pt"
+                          android:gravity="center_vertical"
+                          android:layout_height="match_parent"/>
                 <GridView
                         android:numColumns="8"
+                        android:layout_marginLeft="8dp"
                         android:stretchMode="columnWidth"
                         android:id="@+id/gridView"
+                        android:layout_toRightOf="@+id/item_msg_pt"
                         android:horizontalSpacing="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -167,10 +173,8 @@
                       android:layout_marginTop="6dp"
                       android:layout_marginLeft="8dp"
                       android:layout_below="@+id/line_one"
-                      android:text="营业时间：早8点 - 晚9点"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
-                      android:text="优惠承诺：司法地方的发生"
                       android:textColor="@color/blue"
                       android:layout_marginLeft="8dp"
                       android:id="@+id/youhui"
@@ -179,7 +183,6 @@
                       android:layout_marginRight="8dp"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="wrap_content"
-                      android:text="contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent"
                       android:textSize="16sp"
                       android:layout_below="@+id/youhui"
                       android:layout_marginLeft="8dp"

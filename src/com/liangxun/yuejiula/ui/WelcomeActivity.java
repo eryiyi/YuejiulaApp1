@@ -261,7 +261,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
             public void onSuccess() {
                 try {
 
-                    // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
+                    // ** 第一次登录或者之前logout后再登录，加载所有本地房间和回话
                     // ** manually load all local groups and
                     // conversations in case we are auto login
                     EMGroupManager.getInstance().getAllGroups();

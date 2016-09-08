@@ -24,9 +24,9 @@ public class InviteMessage {
 
     //未验证，已同意等状态
     private InviteMesageStatus status;
-    //群id
+    //房间id
     private String groupId;
-    //群名称
+    //房间名称
     private String groupName;
 
 

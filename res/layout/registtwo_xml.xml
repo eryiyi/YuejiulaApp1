@@ -74,7 +74,7 @@
                         android:layout_alignParentRight="true"
                         android:textColor="@color/white"
                         android:padding="8dp"
-                        android:background="@drawable/button_background"
+                        android:background="@drawable/btn_logout_normal_shape"
                         android:layout_height="50dp"/>
             </RelativeLayout>
             <EditText android:layout_width="match_parent"

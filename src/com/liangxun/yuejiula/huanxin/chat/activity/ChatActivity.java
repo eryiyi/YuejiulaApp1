@@ -440,7 +440,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, OnCli
             findViewById(R.id.container_two).setVisibility(View.GONE);
             groupId =  getIntent().getStringExtra("groupId");
             toChatUsername = groupId;
-            //根据groupId 查找群
+            //根据groupId 查找房间
             for(EMGroup emGroup: MainActivity.grouplist){
                 if(emGroup.getGroupId().equals(groupId)){
                     group = emGroup;

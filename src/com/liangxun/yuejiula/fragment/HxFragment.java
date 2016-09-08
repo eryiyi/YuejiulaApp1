@@ -330,7 +330,7 @@ public class HxFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    //加群
+    //加房间
     private void addToGroup() {
         //根据schooid获得groupid
         StringRequest request = new StringRequest(

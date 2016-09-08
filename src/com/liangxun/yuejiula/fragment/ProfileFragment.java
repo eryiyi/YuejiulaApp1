@@ -277,21 +277,21 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                             Intent shangjia = new Intent(getActivity(), MineShangjiaActivity.class);
                             startActivity(shangjia);
                             break;
+//                        case 2:
+//                            Intent tg = new Intent(getActivity(), MineTuiguangActivity.class);
+//                            startActivity(tg);
+//                            break;
                         case 2:
-                            Intent tg = new Intent(getActivity(), MineTuiguangActivity.class);
-                            startActivity(tg);
-                            break;
-                        case 3:
                             //pk奖品
 //                            Intent prizesView = new Intent(getActivity(), PkPrizesActivity.class);
 //                            startActivity(prizesView);
                         {
-                            //封号封群
+                            //封号封房间
                             Intent fhfq = new Intent(getActivity(), FenghaoFengqunActivity.class);
                             startActivity(fhfq);
                         }
                             break;
-                        case 4:
+                        case 3:
                             Intent recordView = new Intent(getActivity(), MineRecordActivity.class);
                             startActivity(recordView);
                             break;
@@ -299,21 +299,21 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                            Intent relateView = new Intent(getActivity(), AndMeAcitvity.class);
 //                            startActivity(relateView);
 //                            break;
-                        case 5:
+                        case 4:
                             Intent friendView = new Intent(getActivity(), ContactlistActivity.class);
                             startActivity(friendView);
                             break;
-                        case 6:
+                        case 5:
                             //收藏
                             Intent favourView = new Intent(getActivity(), MineFavoursDianpuActivity.class);
                             startActivity(favourView);
                             break;
-                        case 7:
+                        case 6:
                             //订单
                             Intent orderView = new Intent(getActivity(), MineOrdersActivity.class);
                             startActivity(orderView);
                             break;
-                        case 8:
+                        case 7:
                             //购物车
                             Intent cartView = new Intent(getActivity(), MineCartActivity.class);
                             startActivity(cartView);
@@ -321,17 +321,17 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 //                        case 10:
 //                            //帮助与反馈
 //                            break;
-                        case 9:
+                        case 8:
                             //我的收货地址
                             Intent addressView = new Intent(getActivity(), MineAddressActivity.class);
                             startActivity(addressView);
                             break;
-                        case 10:
+                        case 9:
                             //设置
                             Intent setView = new Intent(getActivity(), SetActivity.class);
                             startActivity(setView);
                             break;
-                        case 11:
+                        case 10:
                             //关注的标签
                             Intent bqV = new Intent(getActivity(), MineMoodBqActivity.class);
                             startActivity(bqV);
@@ -415,8 +415,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             //显示我的商家、圈子、推广
             pics.add(new MinePicsObj(R.drawable.mine_school_n ,"我的圈子"));
             pics.add(new MinePicsObj(R.drawable.mine_shangjia_n ,"我的商家"));
-            pics.add(new MinePicsObj(R.drawable.mine_tg_n ,"我的推广"));
-            pics.add(new MinePicsObj(R.drawable.mine_pingbi_n ,"禁帖禁群"));
+//            pics.add(new MinePicsObj(R.drawable.mine_tg_n ,"我的推广"));
+            pics.add(new MinePicsObj(R.drawable.mine_pingbi_n ,"禁封管理"));
         }
 
 
@@ -433,7 +433,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         pics.add(new MinePicsObj(R.drawable.mine_address_n ,"收货地址"));
         pics.add(new MinePicsObj(R.drawable.mine_set_n ,"我的设置"));
-        pics.add(new MinePicsObj(R.drawable.mine_set_n ,"关注的标签"));
+        pics.add(new MinePicsObj(R.drawable.mine_mood_val ,"关注的兴趣标签"));
 
         adapter.notifyDataSetChanged();
 

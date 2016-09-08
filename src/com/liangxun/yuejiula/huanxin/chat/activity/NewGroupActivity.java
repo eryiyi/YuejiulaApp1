@@ -93,12 +93,12 @@ public class NewGroupActivity extends BaseActivity {
 					String[] members = data.getStringArrayExtra("newmembers");
 					try {
 						if(checkBox.isChecked()){
-							//创建公开群，此种方式创建的群，可以自由加入
+							//创建公开房间，此种方式创建的房间，可以自由加入
 							EMGroupManager.getInstance().createPublicGroup(groupName, desc, members, false, 2000);//需异步处理
 							Intent intent1 = new Intent("add_new_group_success");
 							sendBroadcast(intent1);
 						}else{
-							//创建不公开群
+							//创建不公开房间
 						    EMGroupManager.getInstance().createPrivateGroup(groupName, desc, members, memberCheckbox.isChecked(),200);
 						}
 						runOnUiThread(new Runnable() {

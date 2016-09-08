@@ -119,7 +119,7 @@ public class GroupsActivity extends BaseActivity {
 		instance = this;
 		inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-		//过滤下  只要当前管理员建设的群EMGroup
+		//过滤下  只要当前管理员建设的房间EMGroup
 //		grouplist.clear();
 //		for(EMGroupInfo emGroup:lists){
 //			final EMGroup group = null;
@@ -148,7 +148,7 @@ public class GroupsActivity extends BaseActivity {
 			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 				if (position == 0) {
 					// 新建房间
-					//先判断是否是圈主  只有圈主可以新建群
+					//先判断是否是圈主  只有圈主可以新建房间
 					if("3".equals(getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class))){
 						//是圈主
 						startActivityForResult(new Intent(GroupsActivity.this, NewGroupActivity.class), 0);
@@ -158,7 +158,7 @@ public class GroupsActivity extends BaseActivity {
 
 				}
 //				else if (position == 1) {
-//					// 添加公开群
+//					// 添加公开房间
 //					if("1".equals(getGson().fromJson(getSp().getString("is_fengqun", ""), String.class))){
 //						//如果fengqun了
 //						showMsgFenghao();
@@ -185,7 +185,7 @@ public class GroupsActivity extends BaseActivity {
 							showMsgFenghao();
 						}else{
 //					}else {
-						//自己不在群中
+						//自己不在房间中
 						if(!groupAdapter.getItem(position - 1).getMembers().contains(EMChatManager.getInstance().getCurrentUser())){
 //							addToGroup(groupAdapter.getItem(position - 1));
 							new Thread(new Runnable() {
@@ -258,7 +258,7 @@ public class GroupsActivity extends BaseActivity {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					//如果是membersOnly的群，需要申请加入，不能直接join
+					//如果是membersOnly的房间，需要申请加入，不能直接join
 					if(group.isMembersOnly()){
 						EMGroupManager.getInstance().applyJoinToGroup(group.getGroupId(), st2);
 					}else{
@@ -301,8 +301,8 @@ public class GroupsActivity extends BaseActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-//		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
-//		//过滤下  只要当前管理员建设的群
+//		List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有房间
+//		//过滤下  只要当前管理员建设的房间
 //		grouplist.clear();
 //		for(EMGroup emGroup:lists){
 //			if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
@@ -327,8 +327,8 @@ public class GroupsActivity extends BaseActivity {
 	
 	public void refresh() {
 		if (groupListView != null && groupAdapter != null) {
-//			List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有群
-//			//过滤下  只要当前管理员建设的群
+//			List<EMGroup> lists = EMGroupManager.getInstance().getAllGroups();//获得所有房间
+//			//过滤下  只要当前管理员建设的房间
 //			grouplist.clear();
 //			for(EMGroup emGroup:lists){
 //				if(!StringUtil.isNullOrEmpty(getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class)) && getGson().fromJson(getSp().getString("manager_hxusername", ""), String.class).equals(emGroup.getOwner())){
@@ -358,7 +358,7 @@ public class GroupsActivity extends BaseActivity {
 		View picAddInflate = View.inflate(this, R.layout.msg_mine_dialog, null);
 		TextView jubao_sure = (TextView) picAddInflate.findViewById(R.id.jubao_sure);
 		final TextView content = (TextView) picAddInflate.findViewById(R.id.content);
-		content.setText("您已被本区域管理员请出群，快去找他说说好话吧！");
+		content.setText("您已被本区域管理员请出房间，快去找他说说好话吧！");
 		//举报提交
 		jubao_sure.setOnClickListener(new View.OnClickListener() {
 			@Override
