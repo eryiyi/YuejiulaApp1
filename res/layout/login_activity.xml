@@ -95,7 +95,7 @@
                 android:background="@drawable/button_background"
                 android:layout_below="@+id/login_activity_login"
                 android:gravity="center"
-                android:text="选择分区"
+                android:text="选择兴趣圈"
                 android:textStyle="bold"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/white"

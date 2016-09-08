@@ -92,7 +92,7 @@ public class ProfileDynamicAdapter extends BaseAdapter {
             holder.home_viewed_item_name.setText(cell.getEmpName());
             holder.home_viewed_item_time.setText(cell.getDateLine());
             holder.home_item_school.setText(cell.getSchoolName());
-            holder.home_photo_item_level.setText(cell.getLevelName());
+            holder.home_photo_item_level.setText(cell.getSchool_record_mood_name()==null?"":cell.getSchool_record_mood_name());
 
             String urlStr = "  >>网页链接";
             if (!StringUtil.isNullOrEmpty(cell.getRecordCont())) {

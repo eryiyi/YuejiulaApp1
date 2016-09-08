@@ -164,7 +164,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
                 } else {
                     universitySpinner.setEnabled(false);//如果没有选择建筑物，让选择楼层不可点击
                     uniersitys_names.clear();
-                    uniersitys_names.add("请选择大学");
+                    uniersitys_names.add("请选择圈子");
                     universityAdapter.notifyDataSetChanged();
                 }
             }
@@ -455,7 +455,7 @@ public class RegistTwoActivity extends BaseActivity implements View.OnClickListe
                                 universitys.clear();
                                 universitys.addAll(data.getData());
                                 uniersitys_names.clear();
-                                uniersitys_names.add("请选择大学");
+                                uniersitys_names.add("请选择圈子");
                                 for (Univerty univerty : universitys) {
                                     uniersitys_names.add(univerty.getName());
                                 }

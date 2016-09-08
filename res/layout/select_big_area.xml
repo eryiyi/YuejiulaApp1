@@ -20,7 +20,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dip"
-                    android:text="选择分区"
+                    android:text="选择兴趣圈"
                     android:id="@+id/title"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>

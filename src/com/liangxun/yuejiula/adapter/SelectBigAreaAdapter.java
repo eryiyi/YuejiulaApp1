@@ -62,6 +62,7 @@ public class SelectBigAreaAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_big_area, null);
             holder.detail_favour_item_cover = (ImageView) convertView.findViewById(R.id.detail_favour_item_cover);
             holder.detail_favour_item_nickname = (TextView) convertView.findViewById(R.id.detail_favour_item_nickname);
+            holder.content = (TextView) convertView.findViewById(R.id.content);
 
             convertView.setTag(holder);
         } else {
@@ -71,6 +72,7 @@ public class SelectBigAreaAdapter extends BaseAdapter {
         if (findEmps != null) {
             imageLoader.displayImage(favour.getArea_pic(), holder.detail_favour_item_cover, UniversityApplication.txOptions, animateFirstListener);
             holder.detail_favour_item_nickname.setText(favour.getArea_title());
+            holder.content.setText(favour.getArea_content());
         }
         return convertView;
     }
@@ -78,6 +80,7 @@ public class SelectBigAreaAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView detail_favour_item_cover;
         TextView detail_favour_item_nickname;
+        TextView content;
     }
 
 }

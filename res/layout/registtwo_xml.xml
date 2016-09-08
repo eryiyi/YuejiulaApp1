@@ -74,7 +74,7 @@
                         android:layout_alignParentRight="true"
                         android:textColor="@color/white"
                         android:padding="8dp"
-                        android:background="#ff5929"
+                        android:background="@drawable/button_background"
                         android:layout_height="50dp"/>
             </RelativeLayout>
             <EditText android:layout_width="match_parent"
@@ -130,12 +130,6 @@
                           android:gravity="center"
                           android:padding="5dp"
                           android:layout_height="wrap_content">
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textColor="#333333"
-                          android:textSize="16sp"
-                          android:text="省份："
-                          android:phoneNumber="true"/>
 
                 <com.liangxun.yuejiula.widget.popview.CustomerSpinner
                         android:background="@drawable/spinner1_bg"
@@ -153,12 +147,6 @@
                           android:gravity="center"
                           android:padding="5dp"
                           android:layout_height="wrap_content">
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textColor="#333333"
-                          android:textSize="16sp"
-                          android:text="学校："
-                          android:phoneNumber="true"/>
                 <com.liangxun.yuejiula.widget.popview.CustomerSpinner
                         android:background="@drawable/spinner1_bg"
                         android:layout_width="fill_parent"
@@ -168,7 +156,6 @@
                         android:layout_alignParentRight="true"
                         android:id="@+id/university_select_school"
                         android:layout_marginTop="7px"/>
-
             </LinearLayout>
             <LinearLayout android:layout_width="match_parent"
                           android:orientation="horizontal"

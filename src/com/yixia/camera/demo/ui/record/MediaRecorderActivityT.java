@@ -51,7 +51,7 @@ public class MediaRecorderActivityT extends BaseActivity implements
 		MediaRecorderBase.OnEncodeListener {
 
 	/** 录制最长时间 */
-	public final static int RECORD_TIME_MAX = 30 * 1000;
+	public final static int RECORD_TIME_MAX = 15 * 1000;
 	/** 录制最小时间 */
 	public final static int RECORD_TIME_MIN = 3 * 1000;
 	/** 刷新进度条 */

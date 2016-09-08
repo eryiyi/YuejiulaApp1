@@ -48,7 +48,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     private ImageView profile_cover;//头像
     private TextView profile_nickname;//昵称
     private TextView profile_sign;//签名
-    private TextView level_title;//等级
+//    private TextView level_title;//等级
     private ImageView profile_sex;//性别图片
     private ImageView profile_type;//类别  商家还是代理
 
@@ -86,7 +86,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         profile_cover = (ImageView) view.findViewById(R.id.profile_cover);
         profile_nickname = (TextView) view.findViewById(R.id.profile_nickname);
         profile_sign = (TextView) view.findViewById(R.id.profile_sign);
-        level_title = (TextView) view.findViewById(R.id.level_title);
+//        level_title = (TextView) view.findViewById(R.id.level_title);
         profile_sex = (ImageView) view.findViewById(R.id.profile_sex);
         profile_type = (ImageView) view.findViewById(R.id.profile_type);
 
@@ -446,8 +446,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             profile_sex.setImageResource(R.drawable.icon_sex_female);
         }
 
-        level_title.setText(emp.getJfcount());
-        level_title.setText(emp.getLevelName());
+//        level_title.setText(emp.getJfcount());
+//        level_title.setText(emp.getLevelName());
         if (!StringUtil.isNullOrEmpty(emp.getEmpSign())) {
             profile_sign.setText(emp.getEmpSign());
         } else {

@@ -157,6 +157,6 @@
             android:text="保存"
             android:id="@+id/button_add_address"
             android:textColor="@color/white"
-            android:background="@drawable/button_selector_red_one"
+            android:background="@drawable/button_background"
             android:layout_height="40dp"/>
 </LinearLayout>

@@ -259,7 +259,7 @@
             android:gravity="center"
             android:shadowRadius="1.0"
             android:text="退出账号"
-            android:textColor="#ffffff"
+            android:textColor="@color/btn_text_color"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"

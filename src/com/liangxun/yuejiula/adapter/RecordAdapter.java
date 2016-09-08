@@ -79,7 +79,6 @@ public class RecordAdapter extends BaseAdapter {
             holder.home_photo_item_like_count = (TextView) convertView.findViewById(R.id.home_photo_item_like_count);
             holder.home_item_school = (TextView) convertView.findViewById(R.id.home_item_school);
             holder.home_photo_item_delete = (TextView) convertView.findViewById(R.id.home_photo_item_delete);
-            holder.home_item_mood = (TextView) convertView.findViewById(R.id.home_item_mood);
             holder.money = (TextView) convertView.findViewById(R.id.money);
             holder.home_player_icon_video = (ImageView) convertView.findViewById(R.id.home_player_icon_video);
             convertView.setTag(holder);
@@ -126,7 +125,7 @@ public class RecordAdapter extends BaseAdapter {
             holder.home_viewed_item_time.setText(cell.getDateLine());
 
             holder.home_item_school.setText(cell.getSchoolName());
-            holder.home_item_mood.setText("--"+(cell.getSchool_record_mood_name()==null?"":cell.getSchool_record_mood_name()));
+            holder.home_photo_item_level.setText((cell.getSchool_record_mood_name()==null?"":cell.getSchool_record_mood_name()));
             String urlStr = "  >>网页链接";
 
             if (!StringUtil.isNullOrEmpty(cell.getRecordCont())) {
@@ -202,7 +201,7 @@ public class RecordAdapter extends BaseAdapter {
                 imageLoader.displayImage(cell.getRecordPicUrl(), holder.home_photo_item_photo_video, UniversityApplication.videofailed, animateFirstListener);
 
             }
-            holder.home_photo_item_level.setText(cell.getLevelName());
+//            holder.home_photo_item_level.setText(cell.getLevelName());
             if("0".equals(cell.getZanNum())){
                 holder.home_photo_item_like_count.setText("赞");
             }else {
@@ -276,7 +275,6 @@ public class RecordAdapter extends BaseAdapter {
         ImageView home_viewed_item_cover;//头像
         TextView home_viewed_item_name;//昵称
         TextView money;
-        TextView home_item_mood;//mood
         TextView home_viewed_item_time;//日期
         TextView home_viewed_item_cont;//内容
         ImageView home_photo_item_photo;//图片

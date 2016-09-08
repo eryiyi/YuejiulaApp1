@@ -56,7 +56,7 @@
     <com.liangxun.yuejiula.widget.ReboundScrollView
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/bg_two"
+            android:background="@drawable/profile_bg"
             android:layout_height="wrap_content">
         <LinearLayout android:layout_width="match_parent"
                       android:orientation="vertical"
@@ -131,6 +131,8 @@
                               android:layout_height="wrap_content"
                               android:layout_weight="2"
                               android:gravity="left"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
                               android:singleLine="true"
                               android:textColor="@color/white"
                               android:textSize="14sp"
@@ -157,6 +159,8 @@
                               android:layout_height="wrap_content"
                               android:layout_weight="2"
                               android:gravity="left"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
                               android:singleLine="true"
                               android:textColor="@color/white"
                               android:textSize="14sp"
@@ -184,6 +188,9 @@
                               android:layout_height="wrap_content"
                               android:layout_weight="2"
                               android:gravity="left"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
+
                               android:singleLine="true"
                               android:textColor="@color/white"
                               android:textSize="14sp"
@@ -209,9 +216,11 @@
                               android:src="@drawable/part_type_tel"/>
 
                     <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                              android:layout_height="match_parent"
                               android:layout_weight="2"
-                              android:gravity="left"
+                              android:gravity="center"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
                               android:singleLine="true"
                               android:textColor="@color/white"
                               android:textSize="14sp"
@@ -219,10 +228,12 @@
                 </LinearLayout>
                 <View android:layout_width="match_parent"
                       android:layout_height="0.5dp"
+                      android:visibility="gone"
                       android:background="#e9e9e9"/>
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:orientation="horizontal"
+                              android:visibility="gone"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
                               android:paddingRight="10dp"
@@ -244,10 +255,12 @@
                               android:id="@+id/profile_count"/>
                 </LinearLayout>
                 <View android:layout_width="match_parent"
+                      android:visibility="gone"
                       android:layout_height="0.5dp"
                       android:background="#e9e9e9"/>
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
+                              android:visibility="gone"
                               android:orientation="horizontal"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
@@ -264,6 +277,8 @@
                               android:layout_height="wrap_content"
                               android:layout_weight="2"
                               android:gravity="left"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
                               android:singleLine="true"
                               android:textColor="@color/white"
                               android:textSize="14sp"
@@ -274,7 +289,7 @@
                       android:layout_height="0.5dp"
                       android:background="#e9e9e9"/>
                 <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
+                              android:layout_height="40dp"
                               android:orientation="horizontal"
                               android:gravity="center_vertical"
                               android:paddingLeft="10dp"
@@ -289,9 +304,10 @@
                               />
 
                     <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                              android:layout_height="match_parent"
                               android:layout_weight="2"
-                              android:gravity="left"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
                               android:text="青春无悔，童心堂"
                               android:textColor="@color/white"
                               android:textSize="14sp"
@@ -301,7 +317,7 @@
                       android:layout_height="0.5dp"
                       android:background="#e9e9e9"/>
                 <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
+                              android:layout_height="40dp"
                               android:orientation="horizontal"
                               android:gravity="center_vertical"
                               android:id="@+id/profile_record"
@@ -318,14 +334,16 @@
                                android:padding="8dp"
                             />
                     <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                              android:layout_height="match_parent"
                               android:layout_weight="2"
-                              android:layout_gravity="center"
-                              android:paddingLeft="30dp"
                               android:text="个人动态"
+                              android:shadowColor="#7f000000"
+                              android:shadowDx="0.0"
+                              android:gravity="center|left"
                               android:textColor="@color/white"
                               android:textSize="14sp"
                             />
+
                 </LinearLayout>
                 <View android:layout_width="match_parent"
                       android:layout_height="0.5dp"
@@ -384,6 +402,8 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="私聊"
+                      android:shadowColor="#7f000000"
+                      android:shadowDx="0.0"
                       android:textSize="14sp"
                       android:textColor="@color/profile_font_color"
                       android:layout_marginLeft="5dp"/>
@@ -408,6 +428,8 @@
                       android:layout_height="wrap_content"
                       android:text="举报"
                       android:textSize="14sp"
+                      android:shadowColor="#7f000000"
+                      android:shadowDx="0.0"
                       android:textColor="@color/profile_font_color"
                       android:layout_marginLeft="5dp"/>
         </LinearLayout>
@@ -430,6 +452,8 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="加好友"
+                      android:shadowColor="#7f000000"
+                      android:shadowDx="0.0"
                       android:textSize="14sp"
                       android:textColor="@color/profile_font_color"
                       android:layout_marginLeft="5dp"/>
