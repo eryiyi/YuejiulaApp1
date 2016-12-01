@@ -584,7 +584,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         }
     };
 
-
     public void initData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,

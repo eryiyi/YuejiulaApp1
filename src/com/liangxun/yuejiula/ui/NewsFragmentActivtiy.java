@@ -62,7 +62,7 @@ public class NewsFragmentActivtiy extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.news_fragment);
         typeId = getGson().fromJson(getSp().getString(Constants.EMPTYPE, ""), String.class);
         mScreenWidth = BaseTools.getWindowsWidth(this);
-        mItemWidth = mScreenWidth / 7;
+        mItemWidth = mScreenWidth / 5;
         initView();
         initColumnData();
     }

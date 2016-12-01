@@ -149,7 +149,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
 
-    public void updateChanelId(final Context context, String chanelId, final String userId) {
+    public void updateChanelId(final Context context, String chanelId, final String pushId) {
         final SharedPreferences sp = context.getSharedPreferences("university_manage", Context.MODE_PRIVATE);
 //        String spUserId = sp.getString(Constants.PUSH_USER_ID, "");
 //        if(spUserId.equals(userId)){
@@ -158,7 +158,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
         String empId = new Gson().fromJson(sp.getString(Constants.EMPID, ""), String.class);
         RequestQueue queue = Volley.newRequestQueue(context);
         String urlStr = new Gson().fromJson(sp.getString("select_big_area", ""), String.class);
-        String uri = String.format( urlStr + InternetURL.UPDATE_PUSH_ID + "?id=%s&pushId=%s&type=3", empId, userId);
+        String uri = String.format( urlStr + InternetURL.UPDATE_PUSH_ID + "?id=%s&pushId=%s&channelId=%s&type=3", empId, pushId, chanelId);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 uri,
@@ -169,7 +169,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
                             SuccessData successDATA = new Gson().fromJson(s, SuccessData.class);
                             if (successDATA.getCode() == 200) {
                                 SharedPreferences.Editor editor = sp.edit();
-                                editor.putString(Constants.PUSH_USER_ID, userId).commit();
+                                editor.putString(Constants.PUSH_USER_ID, pushId).commit();
                             }
                         } catch (Exception e) {
 
